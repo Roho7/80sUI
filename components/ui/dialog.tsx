@@ -5,6 +5,7 @@ import { Dialog as DialogPrimitive } from "radix-ui"
 import * as React from "react"
 
 import { Button } from "@/components/ui/button"
+import { CloseGlyph } from "@/components/ui/pixel-glyphs"
 import { useComposedRef } from "@/lib/composeRefs"
 import { readElementRect, useEink } from "@/lib/eink"
 
@@ -59,19 +60,6 @@ function useRegionRefreshOnPresence(ref: React.RefObject<HTMLElement | null>) {
   }, [engine, ref])
 }
 
-function DialogCloseGlyph() {
-  return (
-    <svg
-      viewBox="0 0 7 7"
-      shapeRendering="crispEdges"
-      className="size-3.5 fill-current"
-      aria-hidden="true"
-    >
-      <path d="M0 0h2v1H0zM5 0h2v1H5zM1 1h2v1H1zM4 1h2v1H4zM2 2h3v1H2zM3 3h1v1H3zM2 4h3v1H2zM1 5h2v1H1zM4 5h2v1H4zM0 6h2v1H0zM5 6h2v1H5z" />
-    </svg>
-  )
-}
-
 function DialogContent({
   className,
   children,
@@ -105,7 +93,7 @@ function DialogContent({
               className="absolute top-1 right-1 text-titlebar-foreground"
               size="icon-xs"
             >
-              <DialogCloseGlyph />
+              <CloseGlyph />
               <span className="sr-only">Close</span>
             </Button>
           </DialogPrimitive.Close>
