@@ -1,16 +1,27 @@
 import "./globals.css"
 
-import { Geist, Geist_Mono } from "next/font/google"
+import type { Metadata } from "next"
+import { Silkscreen, VT323 } from "next/font/google"
 
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
-
-const fontMono = Geist_Mono({
+const fontPixel = Silkscreen({
   subsets: ["latin"],
-  variable: "--font-mono",
+  weight: ["400", "700"],
+  variable: "--font-silkscreen",
 })
+
+const fontMono = VT323({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-vt323",
+})
+
+export const metadata: Metadata = {
+  title: "dither-ui",
+  description: "Retro e-ink components for shadcn",
+}
 
 export default function RootLayout({
   children,
@@ -20,11 +31,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="phosphor"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
+      className={cn(fontPixel.variable, fontMono.variable)}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider defaultTheme="light" enableSystem={false}>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
