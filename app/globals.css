@@ -200,7 +200,7 @@
     mask-repeat: repeat-x;
 }
 
-@utility border-pixel {
+@utility pixel-border {
     border-style: solid;
     border-width: var(--pixel);
 }

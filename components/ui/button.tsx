@@ -9,12 +9,12 @@ import { useComposedRef } from "@/lib/composeRefs"
 import { useEinkRefresh } from "@/lib/eink"
 
 const buttonVariants = cva(
-  "group/button relative inline-flex shrink-0 items-center justify-center border-pixel border-border font-pixel text-[16px] leading-none whitespace-nowrap uppercase outline-none select-none disabled:pointer-events-none disabled:text-muted-foreground aria-invalid:border-destructive [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button relative inline-flex shrink-0 items-center justify-center pixel-border border-border font-pixel text-[16px] leading-none whitespace-nowrap uppercase outline-none select-none disabled:pointer-events-none disabled:text-muted-foreground aria-invalid:border-destructive [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
         default:
-          "bg-card text-card-foreground offset-shadow-2 hover:bg-foreground hover:text-background active:not-aria-[haspopup]:translate-x-[calc(var(--pixel)*2)] active:not-aria-[haspopup]:translate-y-[calc(var(--pixel)*2)] active:not-aria-[haspopup]:offset-shadow-none aria-expanded:bg-foreground aria-expanded:text-background",
+          "bg-card text-card-foreground offset-shadow-2 hover:bg-foreground hover:text-card active:not-aria-[haspopup]:translate-x-[calc(var(--pixel)*2)] active:not-aria-[haspopup]:translate-y-[calc(var(--pixel)*2)] active:not-aria-[haspopup]:offset-shadow-none aria-expanded:bg-foreground aria-expanded:text-card",
         outline:
           "bg-transparent text-foreground hover:bg-muted aria-expanded:bg-muted",
         secondary:
@@ -22,14 +22,14 @@ const buttonVariants = cva(
         ghost:
           "border-transparent bg-transparent text-foreground hover:border-current aria-expanded:border-current",
         destructive:
-          "bg-foreground text-background offset-shadow-2 hover:bg-card hover:text-card-foreground active:not-aria-[haspopup]:translate-x-[calc(var(--pixel)*2)] active:not-aria-[haspopup]:translate-y-[calc(var(--pixel)*2)] active:not-aria-[haspopup]:offset-shadow-none",
+          "bg-foreground text-card offset-shadow-2 hover:bg-card hover:text-card-foreground active:not-aria-[haspopup]:translate-x-[calc(var(--pixel)*2)] active:not-aria-[haspopup]:translate-y-[calc(var(--pixel)*2)] active:not-aria-[haspopup]:offset-shadow-none",
         link: "border-transparent bg-transparent text-foreground decoration-[length:var(--pixel)] underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-9 gap-2 px-4",
-        xs: "h-6 gap-1 px-2 text-[8px] [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-7 gap-1.5 px-3 text-[8px] [&_svg:not([class*='size-'])]:size-3.5",
-        lg: "h-11 gap-2 px-6",
+        default: "h-10 gap-2 px-4",
+        xs: "h-6 gap-1 px-1.5 text-[8px] [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-8 gap-1.5 px-2.5 [&_svg:not([class*='size-'])]:size-3.5",
+        lg: "h-12 gap-2 px-6 text-[24px]",
         icon: "size-9",
         "icon-xs": "size-6 [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-7 [&_svg:not([class*='size-'])]:size-3.5",

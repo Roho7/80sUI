@@ -28,7 +28,7 @@ function Progress({
       data-slot="progress"
       value={value}
       className={cn(
-        "relative flex h-7 w-full items-center overflow-hidden border-pixel border-border bg-card p-(--pixel)",
+        "relative flex h-7 w-full items-center overflow-hidden pixel-border border-border bg-card p-(--pixel)",
         className
       )}
       {...props}

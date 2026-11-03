@@ -46,7 +46,7 @@ function Window({
       data-active={isActive}
       data-dragging={isDragging}
       className={cn(
-        "absolute flex flex-col border-pixel border-border bg-card text-card-foreground offset-shadow-3",
+        "absolute flex flex-col pixel-border border-border bg-card text-card-foreground offset-shadow-3",
         className
       )}
       style={{ left: position.x, top: position.y, ...style }}
