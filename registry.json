@@ -248,12 +248,12 @@
           "body": {
             "@apply bg-background text-foreground text-lg leading-tight": {}
           },
-          "canvas,\n  img": {
-            "image-rendering": "pixelated"
-          },
           "::selection": {
             "background-color": "var(--foreground)",
             "color": "var(--background)"
+          },
+          "canvas,\n  img": {
+            "image-rendering": "pixelated"
           },
           ":focus-visible": {
             "outline-style": "dashed",
