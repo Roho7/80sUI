@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "error-dialog",
+  "title": "Error dialog",
+  "description": "Stackable error dialogs that cascade diagonally.",
+  "registryDependencies": [
+    "@dither/button",
+    "@dither/dialog",
+    "@dither/pixel-glyphs"
+  ],
+  "files": [
+    {
+      "path": "components/retro/error-dialog.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { Button } from \"@/components/ui/button\"\nimport {\n  Dialog,\n  DialogClose,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogTitle,\n} from \"@/components/ui/dialog\"\nimport { ErrorGlyph } from \"@/components/ui/pixel-glyphs\"\n\ntype ErrorDialogProps = {\n  message: React.ReactNode\n  title?: string\n  actionLabel?: string\n  cascadeIndex?: number\n  open?: boolean\n  onOpenChange?: (open: boolean) => void\n}\n\ntype ErrorEntry = {\n  id: string\n  message: React.ReactNode\n  title?: string\n}\n\ntype ErrorDialogStackProps = {\n  errors: readonly ErrorEntry[]\n  onDismiss: (id: string) => void\n}\n\nconst CASCADE_STEP_PIXELS = 12\n\nfunction preventOutsideDismiss(event: Event) {\n  event.preventDefault()\n}\n\nfunction readCascadeTranslate(cascadeIndex: number): string {\n  const offset = `${cascadeIndex} * var(--pixel) * ${CASCADE_STEP_PIXELS}`\n  return `calc(-50% + ${offset}) calc(-50% + ${offset})`\n}\n\nfunction ErrorDialog({\n  message,\n  title = \"Error\",\n  actionLabel = \"OK\",\n  cascadeIndex = 0,\n  open = true,\n  onOpenChange,\n}: ErrorDialogProps) {\n  return (\n    <Dialog open={open} onOpenChange={onOpenChange} modal={false}>\n      <DialogContent\n        data-slot=\"error-dialog\"\n        className=\"w-80 gap-5 sm:max-w-80\"\n        style={{ translate: readCascadeTranslate(cascadeIndex) }}\n        onInteractOutside={preventOutsideDismiss}\n      >\n        <DialogTitle>{title}</DialogTitle>\n        <div className=\"flex items-center gap-4 px-1\">\n          <ErrorGlyph />\n          <DialogDescription>{message}</DialogDescription>\n        </div>\n        <DialogFooter className=\"sm:justify-center\">\n          <DialogClose asChild>\n            <Button className=\"min-w-28\">{actionLabel}</Button>\n          </DialogClose>\n        </DialogFooter>\n      </DialogContent>\n    </Dialog>\n  )\n}\n\nfunction ErrorDialogStack({ errors, onDismiss }: ErrorDialogStackProps) {\n  return errors.map((error, index) => (\n    <ErrorDialog\n      key={error.id}\n      title={error.title}\n      message={error.message}\n      cascadeIndex={index}\n      onOpenChange={(isOpen) => {\n        if (!isOpen) {\n          onDismiss(error.id)\n        }\n      }}\n    />\n  ))\n}\n\nexport {\n  ErrorDialog,\n  type ErrorDialogProps,\n  ErrorDialogStack,\n  type ErrorDialogStackProps,\n  type ErrorEntry,\n}\n",
+      "type": "registry:component",
+      "target": "@components/retro/error-dialog.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

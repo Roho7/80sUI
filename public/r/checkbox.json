@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "title": "Checkbox",
+  "description": "shadcn checkbox with a pixel check and partial refresh on toggle.",
+  "dependencies": [
+    "cn",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@dither/eink",
+    "@dither/pixel-glyphs"
+  ],
+  "files": [
+    {
+      "path": "components/ui/checkbox.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"cn\"\nimport { Checkbox as CheckboxPrimitive } from \"radix-ui\"\nimport * as React from \"react\"\n\nimport { CheckGlyph } from \"@/components/ui/pixel-glyphs\"\nimport { useComposedRef } from \"@/lib/composeRefs\"\nimport { useEinkRefresh } from \"@/lib/eink\"\n\nfunction Checkbox({\n  className,\n  ref,\n  onCheckedChange,\n  ...props\n}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {\n  const checkboxRef = React.useRef<HTMLButtonElement>(null)\n  const composedRef = useComposedRef(ref, checkboxRef)\n  const refresh = useEinkRefresh(checkboxRef, \"partial\")\n\n  return (\n    <CheckboxPrimitive.Root\n      ref={composedRef}\n      data-slot=\"checkbox\"\n      className={cn(\n        \"peer relative flex size-5 shrink-0 items-center justify-center pixel-border border-input bg-card text-card-foreground outline-none after:absolute after:-inset-x-3 after:-inset-y-2 disabled:cursor-not-allowed disabled:text-muted-foreground aria-invalid:border-destructive data-checked:bg-primary data-checked:text-primary-foreground\",\n        className\n      )}\n      onCheckedChange={(checked) => {\n        refresh()\n        onCheckedChange?.(checked)\n      }}\n      {...props}\n    >\n      <CheckboxPrimitive.Indicator\n        data-slot=\"checkbox-indicator\"\n        className=\"grid place-content-center text-current\"\n      >\n        <CheckGlyph />\n      </CheckboxPrimitive.Indicator>\n    </CheckboxPrimitive.Root>\n  )\n}\n\nexport { Checkbox }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

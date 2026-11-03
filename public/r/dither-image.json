@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dither-image",
+  "title": "Dither image",
+  "description": "Ordered Bayer dithering quantized to the theme inks, rendered through the shared WebGL2 context.",
+  "dependencies": [
+    "cn"
+  ],
+  "registryDependencies": [
+    "@dither/eink"
+  ],
+  "files": [
+    {
+      "path": "components/ui/dither-image.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"cn\"\nimport * as React from \"react\"\n\nimport {\n  type BayerMatrixSize,\n  ditherOnCpu,\n  type DitherRequest,\n  readInks,\n  useEink,\n  useInkVersion,\n} from \"@/lib/eink\"\n\ntype DitherImageProps = Omit<\n  React.ComponentProps<\"canvas\">,\n  \"width\" | \"height\" | \"children\"\n> & {\n  src: string\n  alt: string\n  width: number\n  height: number\n  pixelSize?: number\n  matrixSize?: BayerMatrixSize\n  contrast?: number\n  isAnimated?: boolean\n}\n\nfunction useLoadedImage(src: string): HTMLImageElement | null {\n  const [image, setImage] = React.useState<HTMLImageElement | null>(null)\n\n  React.useEffect(() => {\n    let isCurrent = true\n    const loading = new Image()\n    loading.src = src\n    loading\n      .decode()\n      .then(() => {\n        if (isCurrent) {\n          setImage(loading)\n        }\n      })\n      .catch(() => {\n        if (isCurrent) {\n          setImage(null)\n        }\n      })\n    return () => {\n      isCurrent = false\n    }\n  }, [src])\n\n  return image\n}\n\nfunction useReseed(isAnimated: boolean, fps: number): number {\n  const [seed, setSeed] = React.useState(0)\n\n  React.useEffect(() => {\n    if (!isAnimated) {\n      return\n    }\n    const interval = window.setInterval(\n      () => setSeed((current) => current + 1),\n      1000 / fps\n    )\n    return () => window.clearInterval(interval)\n  }, [isAnimated, fps])\n\n  return seed\n}\n\nfunction DitherImage({\n  src,\n  alt,\n  width,\n  height,\n  pixelSize = 2,\n  matrixSize = 4,\n  contrast = 1.2,\n  isAnimated = false,\n  className,\n  style,\n  ...props\n}: DitherImageProps) {\n  const canvasRef = React.useRef<HTMLCanvasElement>(null)\n  const { engine, intensity } = useEink()\n  const image = useLoadedImage(src)\n  const inkVersion = useInkVersion()\n  const fps = engine?.readFps() ?? 12\n  const seed = useReseed(isAnimated && intensity !== \"off\", fps)\n  const outputWidth = Math.max(1, Math.round(width / pixelSize))\n  const outputHeight = Math.max(1, Math.round(height / pixelSize))\n\n  React.useEffect(() => {\n    const canvas = canvasRef.current\n    if (!canvas || !image) {\n      return\n    }\n    const request: DitherRequest = {\n      source: image,\n      width: outputWidth,\n      height: outputHeight,\n      matrixSize,\n      contrast,\n      seed,\n    }\n    const dithered =\n      engine?.renderDither(request) ??\n      ditherOnCpu(request, readInks(document.documentElement))\n    if (dithered) {\n      canvas.getContext(\"2d\")?.putImageData(dithered, 0, 0)\n    }\n  }, [engine, image, inkVersion, seed, outputWidth, outputHeight, matrixSize, contrast])\n\n  return (\n    <canvas\n      ref={canvasRef}\n      role=\"img\"\n      aria-label={alt}\n      data-slot=\"dither-image\"\n      width={outputWidth}\n      height={outputHeight}\n      className={cn(\"block pixelated\", className)}\n      style={{ width, height, ...style }}\n      {...props}\n    />\n  )\n}\n\nexport { DitherImage }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

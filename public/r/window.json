@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "window",
+  "title": "Window",
+  "description": "Draggable retro window with a striped title bar, close button and optional status bar.",
+  "dependencies": [
+    "cn"
+  ],
+  "registryDependencies": [
+    "@dither/button",
+    "@dither/eink",
+    "@dither/pixel-glyphs"
+  ],
+  "files": [
+    {
+      "path": "components/retro/window.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"cn\"\nimport * as React from \"react\"\n\nimport { Button } from \"@/components/ui/button\"\nimport { CloseGlyph } from \"@/components/ui/pixel-glyphs\"\nimport { type Point, useSteppedDrag } from \"@/lib/eink\"\n\ntype WindowProps = Omit<React.ComponentProps<\"section\">, \"title\"> & {\n  title: string\n  defaultPosition: Point\n  isActive?: boolean\n  statusBar?: React.ReactNode\n  onClose?: () => void\n  onActivate?: () => void\n}\n\nfunction stopPointerPropagation(event: React.PointerEvent) {\n  event.stopPropagation()\n}\n\nfunction Window({\n  title,\n  defaultPosition,\n  isActive = true,\n  statusBar,\n  onClose,\n  onActivate,\n  className,\n  style,\n  children,\n  ...props\n}: WindowProps) {\n  const windowRef = React.useRef<HTMLElement>(null)\n  const { position, isDragging, startDrag } = useSteppedDrag(\n    windowRef,\n    defaultPosition\n  )\n\n  return (\n    <section\n      ref={windowRef}\n      aria-label={title}\n      data-slot=\"window\"\n      data-active={isActive}\n      data-dragging={isDragging}\n      className={cn(\n        \"absolute flex flex-col pixel-border border-border bg-card text-card-foreground offset-shadow-3\",\n        className\n      )}\n      style={{ left: position.x, top: position.y, ...style }}\n      onPointerDownCapture={onActivate}\n      {...props}\n    >\n      <header\n        data-slot=\"window-titlebar\"\n        onPointerDown={startDrag}\n        className={cn(\n          \"flex h-8 shrink-0 cursor-grab touch-none items-center gap-3 border-b-(length:--pixel) border-border pr-1 pl-3 font-pixel text-[16px] leading-none uppercase select-none\",\n          isActive\n            ? \"bg-titlebar text-titlebar-foreground\"\n            : \"bg-card text-card-foreground\",\n          isDragging && \"cursor-grabbing\"\n        )}\n      >\n        <h2 className=\"truncate\">{title}</h2>\n        <span aria-hidden=\"true\" className=\"h-4 min-w-6 flex-1 stripes\" />\n        {onClose && (\n          <Button\n            variant=\"ghost\"\n            size=\"icon-xs\"\n            aria-label={`Close ${title}`}\n            className=\"text-current\"\n            onPointerDown={stopPointerPropagation}\n            onClick={onClose}\n          >\n            <CloseGlyph />\n          </Button>\n        )}\n      </header>\n      <div data-slot=\"window-body\" className=\"min-h-0 flex-1\">\n        {children}\n      </div>\n      {statusBar && (\n        <footer\n          data-slot=\"window-statusbar\"\n          className=\"flex h-7 shrink-0 items-center gap-2 border-t-(length:--pixel) border-border px-2 text-lg leading-none\"\n        >\n          {statusBar}\n        </footer>\n      )}\n    </section>\n  )\n}\n\nexport { Window, type WindowProps }\n",
+      "type": "registry:component",
+      "target": "@components/retro/window.tsx"
+    }
+  ],
+  "type": "registry:block"
+}
