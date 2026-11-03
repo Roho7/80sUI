@@ -6,7 +6,7 @@ export { createEinkEngine, type EinkEngine } from "./engine"
 export { EINK_INTENSITIES, INTENSITY_SETTINGS } from "./intensitySettings"
 export { observeTheme } from "./observeTheme"
 export { readFps, readInks, readPixel } from "./readTokens"
-export { readElementRect } from "./rects"
+export { readElementRect, readViewportRect } from "./rects"
 export {
   FULL_REFRESH_INTERVAL,
   REFRESH_EFFECTS,

@@ -11,6 +11,7 @@ export type RefreshScope = "rect" | "viewport"
 export type RefreshEffect = {
   scope: RefreshScope
   rank: number
+  coverage: number
   leavesGhost: boolean
   clearsGhosts: boolean
   countsTowardFull: boolean
@@ -20,6 +21,7 @@ export const REFRESH_EFFECTS: Record<RefreshKind, RefreshEffect> = {
   partial: {
     scope: "rect",
     rank: 0,
+    coverage: 0.5,
     leavesGhost: true,
     clearsGhosts: false,
     countsTowardFull: false,
@@ -27,6 +29,7 @@ export const REFRESH_EFFECTS: Record<RefreshKind, RefreshEffect> = {
   region: {
     scope: "rect",
     rank: 1,
+    coverage: 1,
     leavesGhost: false,
     clearsGhosts: true,
     countsTowardFull: true,
@@ -34,6 +37,7 @@ export const REFRESH_EFFECTS: Record<RefreshKind, RefreshEffect> = {
   full: {
     scope: "viewport",
     rank: 2,
+    coverage: 1,
     leavesGhost: false,
     clearsGhosts: true,
     countsTowardFull: false,

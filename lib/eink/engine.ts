@@ -67,7 +67,14 @@ function toOverlayDraws(
     const mode = PHASE_SHADER_MODES[phase]
     return mode === null
       ? []
-      : [{ rect: job.rect, mode, coverage: setting.coverage, seed }]
+      : [
+          {
+            rect: job.rect,
+            mode,
+            coverage: setting.coverage * REFRESH_EFFECTS[job.kind].coverage,
+            seed,
+          },
+        ]
   })
 }
 
