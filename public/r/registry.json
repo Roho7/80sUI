@@ -228,27 +228,6 @@
             "opacity": "0"
           }
         },
-        "@property --shine-frame": {
-          "syntax": "\"<integer>\"",
-          "inherits": "false",
-          "initial-value": "0"
-        },
-        "@utility animate-dither-shine": {
-          "--shine-stride": "round(up, calc((100cqw + var(--shine-width)) / 12), calc(var(--pixel) * 4))",
-          "transform": "translateX(calc(var(--shine-frame) * var(--shine-stride)))",
-          "animation": "dither-shine 2.4s linear infinite"
-        },
-        "@keyframes dither-shine": {
-          "0%": {
-            "--shine-frame": "0"
-          },
-          "50%": {
-            "--shine-frame": "12"
-          },
-          "100%": {
-            "--shine-frame": "12"
-          }
-        },
         "@layer base": {
           "*": {
             "@apply border-border outline-ring": {}

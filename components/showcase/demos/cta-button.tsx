@@ -37,13 +37,8 @@ export const demo: ShowcaseDemo = {
       ),
     },
     {
-      label: "still and disabled",
-      render: () => (
-        <div className="flex flex-wrap items-center gap-3">
-          <CtaButton isShining={false}>No shine</CtaButton>
-          <CtaButton disabled>Disabled</CtaButton>
-        </div>
-      ),
+      label: "disabled",
+      render: () => <CtaButton disabled>Disabled</CtaButton>,
     },
     {
       label: "as link",
