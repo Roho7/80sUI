@@ -21,10 +21,14 @@ function Slots({ from, count }: { from: number; count: number }) {
   )
 }
 
+function useSeed(seed: string) {
+  const [value, setValue] = React.useState(seed)
+  return { value, onChange: setValue }
+}
+
 function SixDigits() {
-  const [value, setValue] = React.useState("")
   return (
-    <InputOTP maxLength={6} value={value} onChange={setValue}>
+    <InputOTP maxLength={6} {...useSeed("")}>
       <Slots from={0} count={6} />
     </InputOTP>
   )
@@ -32,7 +36,7 @@ function SixDigits() {
 
 function Split() {
   return (
-    <InputOTP maxLength={6} defaultValue="640">
+    <InputOTP maxLength={6} {...useSeed("640")}>
       <Slots from={0} count={3} />
       <InputOTPSeparator />
       <Slots from={3} count={3} />
@@ -42,7 +46,7 @@ function Split() {
 
 function Disabled() {
   return (
-    <InputOTP maxLength={4} disabled defaultValue="1981">
+    <InputOTP maxLength={4} disabled {...useSeed("1981")}>
       <Slots from={0} count={4} />
     </InputOTP>
   )
@@ -50,7 +54,7 @@ function Disabled() {
 
 function Invalid() {
   return (
-    <InputOTP maxLength={4} aria-invalid defaultValue="404">
+    <InputOTP maxLength={4} aria-invalid {...useSeed("404")}>
       <Slots from={0} count={4} />
     </InputOTP>
   )
@@ -58,7 +62,7 @@ function Invalid() {
 
 function Alphanumeric() {
   return (
-    <InputOTP maxLength={4} pattern="^[a-zA-Z0-9]+$" defaultValue="A1">
+    <InputOTP maxLength={4} pattern="^[a-zA-Z0-9]+$" {...useSeed("A1")}>
       <Slots from={0} count={4} />
     </InputOTP>
   )
