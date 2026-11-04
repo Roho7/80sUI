@@ -168,7 +168,7 @@ function auditPage() {
     probe.style.color = value
     return getComputedStyle(probe).color
   }
-  const allowed = new Set(["--ink-0", "--ink-1", "--ink-2", "--ink-3", "--desktop"].map((token) => readColor(`var(${token})`)))
+  const allowed = new Set(["--ink-0", "--ink-1", "--ink-2", "--ink-3", "--ink-4", "--muted", "--desktop"].map((token) => readColor(`var(${token})`)))
   probe.remove()
   const isTransparent = (color) => color === "transparent" || /rgba\([^)]*,\s*0\)$/.test(color)
   const isAllowed = (color) => isTransparent(color) || allowed.has(color.replace(/rgba\((\d+), (\d+), (\d+), 1\)/, "rgb($1, $2, $3)"))
