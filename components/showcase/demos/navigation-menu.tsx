@@ -77,7 +77,7 @@ export const demo: ShowcaseDemo = {
     {
       label: "with viewport",
       render: () => (
-        <div className="h-72">
+        <div className="h-88">
           <MenuBar viewport />
         </div>
       ),
@@ -85,7 +85,7 @@ export const demo: ShowcaseDemo = {
     {
       label: "without viewport",
       render: () => (
-        <div className="h-72">
+        <div className="h-88">
           <MenuBar viewport={false} />
         </div>
       ),
