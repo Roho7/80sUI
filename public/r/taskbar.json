@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "taskbar",
+  "title": "Taskbar",
+  "description": "Beveled taskbar with a Start button, a start menu built on dropdown-menu, a task area and a clock slot.",
+  "dependencies": [
+    "cn"
+  ],
+  "registryDependencies": [
+    "@dither/theme",
+    "@dither/button",
+    "@dither/dropdown-menu"
+  ],
+  "files": [
+    {
+      "path": "components/retro/taskbar.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"cn\"\nimport * as React from \"react\"\n\nimport { Button } from \"@/components/ui/button\"\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuTrigger,\n} from \"@/components/ui/dropdown-menu\"\n\ntype TaskbarProps = React.ComponentProps<\"footer\"> & {\n  startMenu?: React.ReactNode\n  startLabel?: string\n  startMenuTitle?: string\n  clock?: React.ReactNode\n}\n\nconst CLOCK_REFRESH_MS = 5000\n\nfunction subscribeClock(onChange: () => void) {\n  const interval = window.setInterval(onChange, CLOCK_REFRESH_MS)\n  return () => window.clearInterval(interval)\n}\n\nfunction readClock() {\n  return new Date().toLocaleTimeString([], { hour: \"2-digit\", minute: \"2-digit\" })\n}\n\nfunction readServerClock() {\n  return \"--:--\"\n}\n\nfunction TaskbarClock({ className, ...props }: React.ComponentProps<\"span\">) {\n  const time = React.useSyncExternalStore(subscribeClock, readClock, readServerClock)\n\n  return (\n    <span\n      data-slot=\"taskbar-clock\"\n      className={cn(\"flex h-7 items-center bevel-sunken offset-shadow-none px-3 text-xl leading-none\", className)}\n      {...props}\n    >\n      <time>{time}</time>\n    </span>\n  )\n}\n\nfunction TaskbarStart({\n  label,\n  title,\n  children,\n}: {\n  label: string\n  title: string\n  children: React.ReactNode\n}) {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger asChild>\n        <Button data-slot=\"taskbar-start\" variant=\"secondary\" size=\"sm\">\n          {label}\n        </Button>\n      </DropdownMenuTrigger>\n      <DropdownMenuContent\n        side=\"top\"\n        align=\"start\"\n        sideOffset={6}\n        className=\"flex min-w-56 p-0\"\n      >\n        <span\n          aria-hidden=\"true\"\n          className=\"flex w-8 shrink-0 items-end justify-center bg-titlebar py-2 font-pixel text-[16px] leading-none text-titlebar-foreground uppercase [writing-mode:vertical-rl] rotate-180\"\n        >\n          {title}\n        </span>\n        <div className=\"flex min-w-0 flex-1 flex-col p-(--pixel)\">{children}</div>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  )\n}\n\nfunction Taskbar({\n  startMenu,\n  startLabel = \"Start\",\n  startMenuTitle = \"dither\",\n  clock = <TaskbarClock />,\n  className,\n  children,\n  ...props\n}: TaskbarProps) {\n  return (\n    <footer\n      data-slot=\"taskbar\"\n      className={cn(\n        \"flex h-11 items-center gap-2 border-t-(length:--pixel) border-border bg-secondary px-2 text-secondary-foreground bevel-raised offset-shadow-none\",\n        className\n      )}\n      {...props}\n    >\n      {startMenu !== undefined && (\n        <TaskbarStart label={startLabel} title={startMenuTitle}>\n          {startMenu}\n        </TaskbarStart>\n      )}\n      <div data-slot=\"taskbar-tasks\" className=\"flex min-w-0 flex-1 items-center gap-2\">\n        {children}\n      </div>\n      {clock}\n    </footer>\n  )\n}\n\nexport { Taskbar, TaskbarClock, type TaskbarProps }\n",
+      "type": "registry:component",
+      "target": "@components/retro/taskbar.tsx"
+    }
+  ],
+  "type": "registry:block"
+}

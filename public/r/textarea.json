@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "title": "Textarea",
+  "description": "shadcn textarea as a sunken 1-bit field that grows with its content.",
+  "dependencies": [
+    "cn"
+  ],
+  "registryDependencies": [
+    "@dither/theme"
+  ],
+  "files": [
+    {
+      "path": "components/ui/textarea.tsx",
+      "content": "import { cn } from \"cn\"\nimport * as React from \"react\"\n\nfunction Textarea({ className, ...props }: React.ComponentProps<\"textarea\">) {\n  return (\n    <textarea\n      data-slot=\"textarea\"\n      className={cn(\n        \"flex field-sizing-content min-h-24 w-full pixel-border border-input bg-card px-2 py-1.5 text-xl leading-tight text-card-foreground bevel-sunken offset-shadow-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground aria-invalid:border-dashed aria-invalid:border-destructive\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Textarea }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

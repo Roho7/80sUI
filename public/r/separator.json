@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator",
+  "title": "Separator",
+  "description": "shadcn separator as an etched line.",
+  "dependencies": [
+    "cn",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@dither/theme"
+  ],
+  "files": [
+    {
+      "path": "components/ui/separator.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"cn\"\nimport { Separator as SeparatorPrimitive } from \"radix-ui\"\nimport * as React from \"react\"\n\nfunction Separator({\n  className,\n  orientation = \"horizontal\",\n  decorative = true,\n  ...props\n}: React.ComponentProps<typeof SeparatorPrimitive.Root>) {\n  return (\n    <SeparatorPrimitive.Root\n      data-slot=\"separator\"\n      decorative={decorative}\n      orientation={orientation}\n      className={cn(\n        \"shrink-0 border-bevel-lo data-horizontal:w-full data-horizontal:border-t-(length:--pixel) data-horizontal:border-b-(length:--pixel) data-horizontal:border-b-bevel-hi data-vertical:self-stretch data-vertical:border-l-(length:--pixel) data-vertical:border-r-(length:--pixel) data-vertical:border-r-bevel-hi\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Separator }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

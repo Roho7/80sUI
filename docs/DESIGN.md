@@ -28,6 +28,14 @@ Themes are selected with `data-theme` on `<html>`: `phosphor` (olive monochrome)
 
 Shades between inks are dither, never a fifth color: `dither-25`, `dither-50`, `dither-75` utilities mask a Bayer tile over `background-color`.
 
+## Primitive conventions
+
+- No opacity, radius, fade, zoom or slide. Disabled is `muted-foreground` text or a dithered overlay, and overlays open in one frame.
+- Menus (`select`, `dropdown-menu`, `menubar`, the taskbar start menu) share one look: `popover` box with `offset-shadow-2`, items highlighted by a `foreground` bar with `popover` text, etched separators from `bevel-lo` over `bevel-hi`, indicators on the left from `pixel-glyphs`.
+- Fields are sunken (`bevel-sunken`), thumbs and toggles raised (`bevel-raised`). `--offset-shadow` inherits, so a beveled element inside a shadowed one adds `offset-shadow-none`.
+- Invalid fields and the destructive badge use a dashed border; destructive alerts and buttons invert. In both shipped palettes `destructive` equals `foreground`, so the border style carries the meaning.
+- Focus uses the global dashed `:focus-visible` outline in `--pixel`.
+
 ## Rendering
 
 - **`DitherImage`.** Draws the source into a small canvas, applies ordered Bayer (4x4 or 8x8) thresholds on the CPU, quantizes to the four inks and puts the result on its own canvas. A `MutationObserver` on `<html>` `class`, `data-theme` and `style` re-renders it when the inks change. `isAnimated` reseeds the matrix offset at 12 fps.
@@ -38,10 +46,10 @@ Shades between inks are dither, never a fifth color: `dither-25`, `dither-50`, `
 | Item | Type | Contents |
 |---|---|---|
 | `theme` | `registry:style` | Tokens, both themes, fonts, dither utilities |
-| `pixel-glyphs` | `registry:lib` | Check, minus, close and error glyphs shared by the primitives |
+| `pixel-glyphs` | `registry:lib` | Check, minus, close, chevron, arrow, dot, radio and error glyphs plus 16x16 folder, document and terminal icons |
 | `dither-image` | `registry:ui` | Image dithering component plus `lib/dither` |
-| `button`, `checkbox`, `slider`, `progress`, `dialog` | `registry:ui` | Layer 1 primitives |
-| `window`, `error-dialog` | `registry:block` | Layer 2 compositions. `window` ships `hooks/use-window-drag.ts` |
+| `button`, `checkbox`, `slider`, `progress`, `dialog`, `input`, `textarea`, `label`, `radio-group`, `switch`, `select`, `tabs`, `tooltip`, `dropdown-menu`, `menubar`, `scroll-area`, `separator`, `badge`, `alert`, `card`, `accordion` | `registry:ui` | Layer 1 primitives |
+| `window`, `error-dialog`, `terminal`, `taskbar`, `desktop-icon` | `registry:block` | Layer 2 compositions. `window` ships `hooks/use-window-drag.ts` |
 
 Each item's `registryDependencies` pull in what it needs, so `shadcn add @dither/window` brings in everything below it.
 

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-area",
+  "title": "Scroll area",
+  "description": "shadcn scroll area with a dithered track and a beveled thumb.",
+  "dependencies": [
+    "cn",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@dither/theme"
+  ],
+  "files": [
+    {
+      "path": "components/ui/scroll-area.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"cn\"\nimport { ScrollArea as ScrollAreaPrimitive } from \"radix-ui\"\nimport * as React from \"react\"\n\nfunction ScrollArea({\n  className,\n  children,\n  type = \"auto\",\n  ...props\n}: React.ComponentProps<typeof ScrollAreaPrimitive.Root>) {\n  return (\n    <ScrollAreaPrimitive.Root\n      data-slot=\"scroll-area\"\n      type={type}\n      className={cn(\"relative\", className)}\n      {...props}\n    >\n      <ScrollAreaPrimitive.Viewport\n        data-slot=\"scroll-area-viewport\"\n        className=\"size-full focus-visible:outline-offset-[calc(var(--pixel)*-2)]\"\n      >\n        {children}\n      </ScrollAreaPrimitive.Viewport>\n      <ScrollBar />\n      <ScrollAreaPrimitive.Corner className=\"bg-secondary\" />\n    </ScrollAreaPrimitive.Root>\n  )\n}\n\nfunction ScrollBar({\n  className,\n  orientation = \"vertical\",\n  ...props\n}: React.ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>) {\n  return (\n    <ScrollAreaPrimitive.ScrollAreaScrollbar\n      data-slot=\"scroll-area-scrollbar\"\n      data-orientation={orientation}\n      orientation={orientation}\n      className={cn(\n        \"flex touch-none border-border bg-card select-none data-horizontal:h-5 data-horizontal:flex-col data-horizontal:border-t-(length:--pixel) data-vertical:h-full data-vertical:w-5 data-vertical:border-l-(length:--pixel)\",\n        className\n      )}\n      {...props}\n    >\n      <span\n        aria-hidden=\"true\"\n        className=\"pointer-events-none absolute inset-0 bg-foreground dither-25\"\n      />\n      <ScrollAreaPrimitive.ScrollAreaThumb\n        data-slot=\"scroll-area-thumb\"\n        className=\"relative flex-1 pixel-border border-border bg-secondary bevel-raised offset-shadow-none\"\n      />\n    </ScrollAreaPrimitive.ScrollAreaScrollbar>\n  )\n}\n\nexport { ScrollArea, ScrollBar }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

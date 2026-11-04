@@ -260,7 +260,7 @@
       "name": "pixel-glyphs",
       "type": "registry:lib",
       "title": "Pixel glyphs",
-      "description": "Crisp pixel check, minus, close and error glyphs shared by the primitives.",
+      "description": "Crisp pixel glyphs shared by the primitives: check, minus, close, chevron, arrow, dot, radio, error and 16x16 folder, document and terminal icons.",
       "dependencies": [
         "cn"
       ],
@@ -412,6 +412,314 @@
       ]
     },
     {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "shadcn input as a sunken 1-bit field.",
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "files": [
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "shadcn textarea as a sunken 1-bit field that grows with its content.",
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "files": [
+        {
+          "path": "components/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "shadcn label set in the pixel font.",
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "files": [
+        {
+          "path": "components/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio group",
+      "description": "shadcn radio group with a pixel ring and dot.",
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/pixel-glyphs"
+      ],
+      "files": [
+        {
+          "path": "components/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "shadcn switch as a two-state pixel toggle with a dithered on side.",
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "files": [
+        {
+          "path": "components/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "shadcn select as a Win95 combo box that drops a menu with no animation.",
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/pixel-glyphs"
+      ],
+      "files": [
+        {
+          "path": "components/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "shadcn tabs as folder tabs or an underline.",
+      "dependencies": [
+        "cn",
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "shadcn tooltip as a cream box with a hard offset shadow.",
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown menu",
+      "description": "shadcn dropdown menu with Win95 inverted highlight, etched separators and pixel indicators.",
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/pixel-glyphs"
+      ],
+      "files": [
+        {
+          "path": "components/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "title": "Menubar",
+      "description": "shadcn menubar with Win95 menus.",
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/pixel-glyphs"
+      ],
+      "files": [
+        {
+          "path": "components/ui/menubar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll area",
+      "description": "shadcn scroll area with a dithered track and a beveled thumb.",
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "files": [
+        {
+          "path": "components/ui/scroll-area.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "shadcn separator as an etched line.",
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "files": [
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "shadcn badge as a pixel tag.",
+      "dependencies": [
+        "cn",
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "files": [
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "shadcn alert as a 1-bit message box.",
+      "dependencies": [
+        "cn",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "files": [
+        {
+          "path": "components/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "shadcn card as a pixel panel with an offset shadow.",
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "files": [
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "shadcn accordion with beveled chevron toggles and no easing.",
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/pixel-glyphs"
+      ],
+      "files": [
+        {
+          "path": "components/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "window",
       "type": "registry:block",
       "title": "Window",
@@ -452,6 +760,66 @@
           "path": "components/retro/error-dialog.tsx",
           "type": "registry:component",
           "target": "@components/retro/error-dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "terminal",
+      "type": "registry:block",
+      "title": "Terminal",
+      "description": "Terminal screen that types commands after a prompt, prints output and blinks a block cursor.",
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "files": [
+        {
+          "path": "components/retro/terminal.tsx",
+          "type": "registry:component",
+          "target": "@components/retro/terminal.tsx"
+        }
+      ]
+    },
+    {
+      "name": "taskbar",
+      "type": "registry:block",
+      "title": "Taskbar",
+      "description": "Beveled taskbar with a Start button, a start menu built on dropdown-menu, a task area and a clock slot.",
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/button",
+        "@dither/dropdown-menu"
+      ],
+      "files": [
+        {
+          "path": "components/retro/taskbar.tsx",
+          "type": "registry:component",
+          "target": "@components/retro/taskbar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "desktop-icon",
+      "type": "registry:block",
+      "title": "Desktop icon",
+      "description": "Selectable desktop icon with a pixel icon and label that opens on double click or Enter.",
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/pixel-glyphs"
+      ],
+      "files": [
+        {
+          "path": "components/retro/desktop-icon.tsx",
+          "type": "registry:component",
+          "target": "@components/retro/desktop-icon.tsx"
         }
       ]
     }
