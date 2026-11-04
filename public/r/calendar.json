@@ -1,0 +1,133 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar",
+  "title": "Calendar",
+  "description": "shadcn calendar reskinned for dither-ui.",
+  "dependencies": [
+    "cn",
+    "react-day-picker"
+  ],
+  "registryDependencies": [
+    "@dither/theme",
+    "@dither/button",
+    "@dither/pixel-glyphs"
+  ],
+  "files": [
+    {
+      "path": "components/ui/calendar.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"cn\"\nimport * as React from \"react\"\nimport {\n  type DayButton,\n  DayPicker,\n  getDefaultClassNames,\n  type Locale,\n} from \"react-day-picker\"\n\nimport { Button, buttonVariants } from \"@/components/ui/button\"\nimport { ChevronGlyph } from \"@/components/ui/pixel-glyphs\"\n\nfunction Calendar({\n  className,\n  classNames,\n  showOutsideDays = true,\n  captionLayout = \"label\",\n  buttonVariant = \"ghost\",\n  locale,\n  formatters,\n  components,\n  ...props\n}: React.ComponentProps<typeof DayPicker> & {\n  buttonVariant?: React.ComponentProps<typeof Button>[\"variant\"]\n}) {\n  const defaultClassNames = getDefaultClassNames()\n\n  return (\n    <DayPicker\n      showOutsideDays={showOutsideDays}\n      className={cn(\n        \"group/calendar w-fit pixel-border border-border bg-card p-2 bevel-raised offset-shadow-none [--cell-size:--spacing(9)] in-data-[slot=card-content]:border-transparent in-data-[slot=card-content]:bg-transparent in-data-[slot=card-content]:shadow-none in-data-[slot=popover-content]:border-transparent in-data-[slot=popover-content]:bg-transparent in-data-[slot=popover-content]:shadow-none\",\n        String.raw`rtl:**:[.rdp-button\\_next>svg]:rotate-180`,\n        String.raw`rtl:**:[.rdp-button\\_previous>svg]:rotate-180`,\n        className\n      )}\n      captionLayout={captionLayout}\n      locale={locale}\n      formatters={{\n        formatMonthDropdown: (date) =>\n          date.toLocaleString(locale?.code, { month: \"short\" }),\n        ...formatters,\n      }}\n      classNames={{\n        root: cn(\"w-fit\", defaultClassNames.root),\n        months: cn(\n          \"relative flex flex-col gap-4 min-[560px]:flex-row\",\n          defaultClassNames.months\n        ),\n        month: cn(\"flex w-full flex-col gap-2\", defaultClassNames.month),\n        nav: cn(\n          \"absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1\",\n          defaultClassNames.nav\n        ),\n        button_previous: cn(\n          buttonVariants({ variant: buttonVariant }),\n          \"size-(--cell-size) p-0 select-none aria-disabled:text-muted-foreground\",\n          defaultClassNames.button_previous\n        ),\n        button_next: cn(\n          buttonVariants({ variant: buttonVariant }),\n          \"size-(--cell-size) p-0 select-none aria-disabled:text-muted-foreground\",\n          defaultClassNames.button_next\n        ),\n        month_caption: cn(\n          \"flex h-(--cell-size) w-full items-center justify-center px-(--cell-size)\",\n          defaultClassNames.month_caption\n        ),\n        dropdowns: cn(\n          \"flex h-(--cell-size) w-full items-center justify-center gap-1.5\",\n          defaultClassNames.dropdowns\n        ),\n        dropdown_root: cn(\n          \"relative has-[select:disabled]:text-muted-foreground\",\n          defaultClassNames.dropdown_root\n        ),\n        dropdown: cn(\n          \"h-8 w-full min-w-0 appearance-none pixel-border border-border bg-input py-0.5 pr-7 pl-2 text-lg leading-none text-card-foreground bevel-sunken offset-shadow-none outline-none select-none\",\n          defaultClassNames.dropdown\n        ),\n        caption_label: cn(\n          \"font-pixel text-[16px] leading-none uppercase select-none\",\n          captionLayout === \"label\"\n            ? \"\"\n            : \"pointer-events-none absolute inset-y-0 right-2 flex items-center text-[0px] [&>svg]:size-4 [&>svg]:text-foreground\",\n          defaultClassNames.caption_label\n        ),\n        month_grid: cn(\"w-full border-collapse\", defaultClassNames.month_grid),\n        weekdays: cn(\"flex\", defaultClassNames.weekdays),\n        weekday: cn(\n          \"flex-1 font-pixel text-[16px] leading-none font-normal text-muted-foreground uppercase select-none\",\n          defaultClassNames.weekday\n        ),\n        week: cn(\"mt-1 flex w-full\", defaultClassNames.week),\n        week_number_header: cn(\n          \"w-(--cell-size) select-none\",\n          defaultClassNames.week_number_header\n        ),\n        week_number: cn(\n          \"font-pixel text-[16px] leading-none text-muted-foreground select-none\",\n          defaultClassNames.week_number\n        ),\n        day: cn(\n          \"group/day relative aspect-square h-full w-full p-0 text-center select-none\",\n          defaultClassNames.day\n        ),\n        range_start: cn(\"relative isolate z-0\", defaultClassNames.range_start),\n        range_middle: cn(defaultClassNames.range_middle),\n        range_end: cn(\"relative isolate z-0\", defaultClassNames.range_end),\n        today: cn(defaultClassNames.today),\n        outside: cn(\n          \"text-muted-foreground aria-selected:text-muted-foreground\",\n          defaultClassNames.outside\n        ),\n        disabled: cn(\"text-muted-foreground\", defaultClassNames.disabled),\n        hidden: cn(\"invisible\", defaultClassNames.hidden),\n        ...classNames,\n      }}\n      components={{\n        Root: ({ className, rootRef, ...props }) => {\n          return (\n            <div\n              data-slot=\"calendar\"\n              ref={rootRef}\n              className={cn(className)}\n              {...props}\n            />\n          )\n        },\n        Chevron: ({ className, orientation }) => {\n          if (orientation === \"left\") {\n            return (\n              <ChevronGlyph\n                direction=\"left\"\n                className={cn(\"size-4 rtl:rotate-180\", className)}\n              />\n            )\n          }\n\n          if (orientation === \"right\") {\n            return (\n              <ChevronGlyph\n                direction=\"right\"\n                className={cn(\"size-4 rtl:rotate-180\", className)}\n              />\n            )\n          }\n\n          return <ChevronGlyph className={cn(\"size-4\", className)} />\n        },\n        DayButton: ({ ...props }) => (\n          <CalendarDayButton locale={locale} {...props} />\n        ),\n        WeekNumber: ({ children, ...props }) => {\n          return (\n            <td {...props}>\n              <div className=\"flex size-(--cell-size) items-center justify-center text-center\">\n                {children}\n              </div>\n            </td>\n          )\n        },\n        ...components,\n      }}\n      {...props}\n    />\n  )\n}\n\nfunction CalendarDayButton({\n  className,\n  day,\n  modifiers,\n  locale,\n  ...props\n}: React.ComponentProps<typeof DayButton> & { locale?: Partial<Locale> }) {\n  const defaultClassNames = getDefaultClassNames()\n\n  const ref = React.useRef<HTMLButtonElement>(null)\n  React.useEffect(() => {\n    if (modifiers.focused) ref.current?.focus()\n  }, [modifiers.focused])\n\n  return (\n    <Button\n      ref={ref}\n      variant=\"ghost\"\n      size=\"icon\"\n      data-day={day.date.toLocaleDateString(locale?.code)}\n      data-selected-single={\n        modifiers.selected &&\n        !modifiers.range_start &&\n        !modifiers.range_end &&\n        !modifiers.range_middle\n      }\n      data-range-start={modifiers.range_start}\n      data-range-end={modifiers.range_end}\n      data-range-middle={modifiers.range_middle}\n      data-today={modifiers.today}\n      data-outside={modifiers.outside}\n      className={cn(\n        \"relative isolate z-10 flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 font-pixel text-[16px] leading-none font-normal uppercase group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 data-[outside=true]:text-muted-foreground data-[range-end=true]:bg-foreground data-[range-end=true]:text-background data-[range-middle=true]:text-foreground data-[range-middle=true]:before:absolute data-[range-middle=true]:before:-inset-(--pixel) data-[range-middle=true]:before:-z-10 data-[range-middle=true]:before:bg-foreground data-[range-middle=true]:before:dither-50 data-[range-middle=true]:before:content-[''] data-[range-middle=true]:after:absolute data-[range-middle=true]:after:inset-[22%] data-[range-middle=true]:after:-z-5 data-[range-middle=true]:after:bg-card data-[range-middle=true]:after:content-[''] data-[range-start=true]:bg-foreground data-[range-start=true]:text-background data-[selected-single=true]:bg-foreground data-[selected-single=true]:text-background data-[selected-single=true]:data-[outside=true]:text-background data-[today=true]:border-dashed data-[today=true]:border-foreground [&>span]:text-xs\",\n        defaultClassNames.day,\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Calendar, CalendarDayButton }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sounds": {
+      "button.press": {
+        "note": "Tactile switch: bandpassed noise bump plus a square click",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.006,
+            "gain": 0.6,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 3500,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 2200,
+            "attack": 0.0005,
+            "decay": 0.005,
+            "gain": 0.15
+          }
+        ],
+        "jitter": {
+          "cents": 100,
+          "gainDb": 6,
+          "decay": 0.12
+        }
+      },
+      "button.release": {
+        "note": "Lighter, higher tactile click",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.004,
+            "gain": 0.35,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 4200,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 2600,
+            "attack": 0.0005,
+            "decay": 0.004,
+            "gain": 0.08
+          }
+        ],
+        "jitter": {
+          "cents": 91,
+          "gainDb": 1.5,
+          "decay": 0.12
+        }
+      },
+      "small-button.press": {
+        "note": "Tactile, smaller switch: higher and shorter",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0002,
+            "decay": 0.003,
+            "gain": 0.45,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 4800,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 3200,
+            "attack": 0.0003,
+            "decay": 0.003,
+            "gain": 0.1
+          }
+        ]
+      },
+      "small-button.release": {
+        "note": "Barely there",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0002,
+            "decay": 0.0025,
+            "gain": 0.25,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 5500,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 3600,
+            "attack": 0.0003,
+            "decay": 0.0025,
+            "gain": 0.06
+          }
+        ]
+      }
+    }
+  },
+  "type": "registry:ui"
+}
