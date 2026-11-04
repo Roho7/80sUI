@@ -22,6 +22,10 @@
           "color-desktop": "var(--desktop)",
           "color-bevel-hi": "var(--bevel-hi)",
           "color-bevel-lo": "var(--bevel-lo)",
+          "color-well": "var(--well)",
+          "color-well-foreground": "var(--well-foreground)",
+          "color-well-muted": "var(--well-muted)",
+          "color-well-fill": "var(--well-fill)",
           "color-titlebar": "var(--titlebar)",
           "color-titlebar-foreground": "var(--titlebar-foreground)",
           "color-sidebar-ring": "var(--sidebar-ring)",
@@ -74,6 +78,13 @@
           "titlebar-foreground": "var(--ink-3)",
           "bevel-hi": "var(--ink-3)",
           "bevel-lo": "var(--ink-1)",
+          "bevel-glint": "var(--ink-4)",
+          "bevel-shade": "var(--ink-2)",
+          "well": "var(--ink-1)",
+          "well-foreground": "var(--ink-3)",
+          "well-muted": "var(--ink-2)",
+          "well-rim": "var(--ink-0)",
+          "well-fill": "var(--ink-4)",
           "keycap": "var(--ink-1)",
           "keycap-foreground": "var(--ink-3)",
           "keycap-wall-hi": "var(--ink-2)",
@@ -131,6 +142,13 @@
           "keycap-outline": "var(--ink-0)",
           "bevel-hi": "var(--ink-2)",
           "bevel-lo": "var(--ink-0)",
+          "bevel-glint": "var(--ink-3)",
+          "bevel-shade": "var(--ink-3)",
+          "well": "var(--ink-0)",
+          "well-foreground": "var(--ink-3)",
+          "well-muted": "var(--ink-2)",
+          "well-rim": "var(--ink-2)",
+          "well-fill": "var(--ink-3)",
           "background": "var(--desktop)",
           "foreground": "var(--ink-3)",
           "card": "var(--ink-0)",
@@ -174,6 +192,9 @@
           "--desktop": "#3493be",
           "--titlebar": "var(--3)",
           "--titlebar-foreground": "var(--ink-0)"
+        },
+        "[data-theme=\"cyan-pixel\"]:not(.dark)": {
+          "--bevel-shade": "var(--ink-4)"
         },
         ".dark[data-theme=\"cyan-pixel\"]": {
           "--ink-0": "#0a0d10",
@@ -238,12 +259,40 @@
           "border-width": "var(--pixel)"
         },
         "@utility bevel-raised": {
-          "--bevel-shadow": "inset calc(var(--pixel) * -1) calc(var(--pixel) * -1) 0 0 var(--bevel-lo), inset var(--pixel) var(--pixel) 0 0 var(--bevel-hi)",
+          "--bevel-shadow": "inset calc(var(--pixel) * -1) calc(var(--pixel) * -1) 0 0 var(--bevel-lo), inset var(--pixel) var(--pixel) 0 0 var(--bevel-glint)",
           "box-shadow": "var(--offset-shadow, 0 0 0 0 transparent), var(--bevel-shadow)"
         },
         "@utility bevel-sunken": {
-          "--bevel-shadow": "inset var(--pixel) var(--pixel) 0 0 var(--bevel-lo), inset calc(var(--pixel) * -1) calc(var(--pixel) * -1) 0 0 var(--bevel-hi)",
+          "--bevel-shadow": "inset var(--pixel) var(--pixel) 0 0 var(--bevel-lo), inset calc(var(--pixel) * -1) calc(var(--pixel) * -1) 0 0 var(--bevel-glint)",
           "box-shadow": "var(--offset-shadow, 0 0 0 0 transparent), var(--bevel-shadow)"
+        },
+        "@utility well": {
+          "background-color": "var(--well)",
+          "color": "var(--well-foreground)",
+          "box-shadow": "inset var(--pixel) var(--pixel) 0 0 var(--well-rim), var(--pixel) var(--pixel) 0 0 var(--bevel-shade)"
+        },
+        "@utility dither-shadow": {
+          "&::before": {
+            "content": "\"\"",
+            "position": "absolute",
+            "inset": "calc(var(--pixel) * -1)",
+            "translate": "calc(var(--pixel) * 3) calc(var(--pixel) * 3)",
+            "background-color": "var(--foreground)",
+            "mask-image": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='1' height='1'/%3E%3Crect x='2' y='0' width='1' height='1'/%3E%3Crect x='1' y='1' width='1' height='1'/%3E%3Crect x='3' y='1' width='1' height='1'/%3E%3Crect x='0' y='2' width='1' height='1'/%3E%3Crect x='2' y='2' width='1' height='1'/%3E%3Crect x='1' y='3' width='1' height='1'/%3E%3Crect x='3' y='3' width='1' height='1'/%3E%3C/svg%3E\")",
+            "mask-size": "calc(var(--pixel) * 4) calc(var(--pixel) * 4)",
+            "clip-path": "polygon(calc(100% - var(--pixel) * 3) 0, 100% 0, 100% 100%, 0 100%, 0 calc(100% - var(--pixel) * 3), calc(100% - var(--pixel) * 3) calc(100% - var(--pixel) * 3))",
+            "pointer-events": "none"
+          }
+        },
+        "@utility bevel-frame": {
+          "&::after": {
+            "content": "\"\"",
+            "position": "absolute",
+            "inset": "0",
+            "z-index": "1",
+            "box-shadow": "inset var(--pixel) var(--pixel) 0 0 var(--bevel-glint), inset calc(var(--pixel) * -1) calc(var(--pixel) * -1) 0 0 var(--bevel-lo)",
+            "pointer-events": "none"
+          }
         },
         "@utility offset-shadow-*": {
           "--offset-shadow": "calc(var(--pixel) * --value(integer)) calc(var(--pixel) * --value(integer)) 0 0 var(--foreground)",

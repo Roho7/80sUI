@@ -17,14 +17,14 @@ function Progress({
       data-slot="progress"
       value={value}
       className={cn(
-        "relative flex h-7 w-full items-center overflow-hidden pixel-border border-border bg-card p-(--pixel)",
+        "relative flex h-7 w-full items-center overflow-hidden pixel-border border-border well p-(--pixel)",
         className
       )}
       {...props}
     >
       <ProgressPrimitive.Indicator
         data-slot="progress-indicator"
-        className="h-full bg-foreground segments"
+        className="h-full bg-well-fill segments"
         style={{ width: `${percent}%` }}
       />
     </ProgressPrimitive.Root>

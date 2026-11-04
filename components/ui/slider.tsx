@@ -38,11 +38,11 @@ function Slider({
     >
       <SliderPrimitive.Track
         data-slot="slider-track"
-        className="relative grow overflow-hidden pixel-border border-border bg-card data-horizontal:h-4 data-horizontal:w-full data-vertical:h-full data-vertical:w-4"
+        className="relative grow overflow-hidden pixel-border border-border well data-horizontal:h-4 data-horizontal:w-full data-vertical:h-full data-vertical:w-4"
       >
         <SliderPrimitive.Range
           data-slot="slider-range"
-          className="absolute bg-foreground select-none dither-50 data-horizontal:h-full data-vertical:w-full"
+          className="absolute bg-well-fill select-none dither-50 data-horizontal:h-full data-vertical:w-full"
         />
       </SliderPrimitive.Track>
       {Array.from({ length: thumbValues.length }, (_, index) => (
