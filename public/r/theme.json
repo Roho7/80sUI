@@ -152,8 +152,8 @@
       "--ink-1": "#4a4a43",
       "--ink-2": "#a9a491",
       "--ink-3": "#efe8d5",
-      "--desktop": "#1ba5e6",
-      "--titlebar": "var(--ink-3)",
+      "--desktop": "#3493be",
+      "--titlebar": "var(--3)",
       "--titlebar-foreground": "var(--ink-0)"
     },
     ".dark[data-theme=\"cyan-pixel\"]": {
@@ -220,6 +220,27 @@
     "@keyframes blink": {
       "50%": {
         "opacity": "0"
+      }
+    },
+    "@property --shine-frame": {
+      "syntax": "\"<integer>\"",
+      "inherits": "false",
+      "initial-value": "0"
+    },
+    "@utility animate-dither-shine": {
+      "--shine-stride": "round(up, calc((100cqw + var(--shine-width)) / 12), calc(var(--pixel) * 4))",
+      "transform": "translateX(calc(var(--shine-frame) * var(--shine-stride)))",
+      "animation": "dither-shine 2.4s linear infinite"
+    },
+    "@keyframes dither-shine": {
+      "0%": {
+        "--shine-frame": "0"
+      },
+      "50%": {
+        "--shine-frame": "12"
+      },
+      "100%": {
+        "--shine-frame": "12"
       }
     },
     "@layer base": {

@@ -4,6 +4,7 @@ import { demo as badgeDemo } from "./demos/badge"
 import { demo as buttonDemo } from "./demos/button"
 import { demo as cardDemo } from "./demos/card"
 import { demo as checkboxDemo } from "./demos/checkbox"
+import { demo as ctaButtonDemo } from "./demos/cta-button"
 import { demo as desktopIconDemo } from "./demos/desktop-icon"
 import { demo as dialogDemo } from "./demos/dialog"
 import { demo as ditherImageDemo } from "./demos/dither-image"
@@ -39,6 +40,12 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
     title: "Button",
     description: "shadcn button reskinned with pixel borders and offset shadows.",
     demo: buttonDemo,
+  },
+  {
+    name: "cta-button",
+    title: "CTA Button",
+    description: "Call-to-action button with a dithered shine that sweeps across at a low frame rate.",
+    demo: ctaButtonDemo,
   },
   {
     name: "checkbox",
