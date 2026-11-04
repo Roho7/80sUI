@@ -31,12 +31,12 @@ function formatVariantCode(index: number): string {
 
 function VariantCell({ variant, index }: { variant: ShowcaseVariant; index: number }) {
   return (
-    <figure className="flex min-w-0 flex-col gap-3 bg-card p-3 shadow-[0_0_0_var(--pixel)_var(--color-border)]">
+    <figure className="flex max-w-full min-w-[min(100%,var(--cell-min))] flex-[1_1_content] flex-col gap-3 bg-card p-3 shadow-[0_0_0_var(--pixel)_var(--color-border)]">
       <figcaption className="flex items-center gap-2 font-pixel text-[8px] leading-none uppercase">
         <span className="bg-foreground px-1 py-0.5 text-card">{formatVariantCode(index)}</span>
         {variant.label}
       </figcaption>
-      <div className="flex flex-1 flex-col justify-center">{variant.render()}</div>
+      <div className="-mx-3 flex min-w-0 flex-1 flex-col justify-center overflow-x-auto px-3">{variant.render()}</div>
     </figure>
   )
 }
@@ -73,7 +73,7 @@ function ShowcaseCard({ entry, index }: ShowcaseCardProps) {
       </div>
       <div
         style={cellGridStyle}
-        className="grid flex-1 grid-cols-[repeat(auto-fit,minmax(min(100%,var(--cell-min)),1fr))] gap-(--pixel) overflow-hidden md:auto-rows-fr"
+        className="flex flex-1 flex-wrap gap-(--pixel) overflow-hidden"
       >
         {demo.variants.map((variant, variantIndex) => (
           <VariantCell key={variant.label} variant={variant} index={variantIndex} />

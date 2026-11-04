@@ -97,4 +97,5 @@ type ShowcaseDemo = { span: ShowcaseSpan; variants: readonly ShowcaseVariant[] }
 - `scripts/generate-showcase-index.mjs` writes `components/showcase/demos.generated.ts` in registry order. It fails, naming the file, when a showcased item has no demo or a demo has no showcased item. It runs in `predev`, `prebuild` and `registry:build`; run it by hand while `next dev` is already up. Commit the generated file.
 - A demo shows every exported variant, size and state. Overlays open from a trigger. Floating compositions render as static instances inside their card.
 - Spans: `single` 4 of 12 columns, `wide` 8, `tall` 4 by 2 rows, `large` 8 by 2 rows, packed with `grid-flow-row-dense`. One column under `md`.
+- Variant cells are sized by their content, never by a guessed column width: a wrapping flex row where each cell has `flex-basis: content`, grows to fill its line, and never shrinks below `min(100%, --cell-min)`. Only a component wider than the whole card scrolls, inside its own cell. Demos never need width hacks.
 - Helper items that are not user-facing components use `registry:lib` so they stay out of the catalogue.
