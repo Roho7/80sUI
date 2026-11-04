@@ -1,0 +1,84 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-dialog",
+  "title": "Alert Dialog",
+  "description": "Modal confirmation in the dialog chrome, with action and cancel buttons.",
+  "dependencies": [
+    "cn",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@dither/theme",
+    "@dither/button"
+  ],
+  "files": [
+    {
+      "path": "components/ui/alert-dialog.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"cn\"\nimport { AlertDialog as AlertDialogPrimitive } from \"radix-ui\"\nimport * as React from \"react\"\n\nimport { Button } from \"@/components/ui/button\"\n\nfunction AlertDialog({\n  ...props\n}: React.ComponentProps<typeof AlertDialogPrimitive.Root>) {\n  return <AlertDialogPrimitive.Root data-slot=\"alert-dialog\" {...props} />\n}\n\nfunction AlertDialogTrigger({\n  ...props\n}: React.ComponentProps<typeof AlertDialogPrimitive.Trigger>) {\n  return (\n    <AlertDialogPrimitive.Trigger data-slot=\"alert-dialog-trigger\" {...props} />\n  )\n}\n\nfunction AlertDialogPortal({\n  ...props\n}: React.ComponentProps<typeof AlertDialogPrimitive.Portal>) {\n  return (\n    <AlertDialogPrimitive.Portal data-slot=\"alert-dialog-portal\" {...props} />\n  )\n}\n\nfunction AlertDialogOverlay({\n  className,\n  ...props\n}: React.ComponentProps<typeof AlertDialogPrimitive.Overlay>) {\n  return (\n    <AlertDialogPrimitive.Overlay\n      data-slot=\"alert-dialog-overlay\"\n      className={cn(\n        \"fixed inset-0 isolate z-50 bg-ink-0 dither-25\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction AlertDialogContent({\n  className,\n  size = \"default\",\n  ...props\n}: React.ComponentProps<typeof AlertDialogPrimitive.Content> & {\n  size?: \"default\" | \"sm\"\n}) {\n  return (\n    <AlertDialogPortal>\n      <AlertDialogOverlay />\n      <AlertDialogPrimitive.Content\n        data-slot=\"alert-dialog-content\"\n        data-size={size}\n        className={cn(\n          \"group/alert-dialog-content fixed top-1/2 left-1/2 z-50 grid w-full -translate-x-1/2 -translate-y-1/2 gap-4 pixel-border border-border bg-popover p-4 text-popover-foreground offset-shadow-3 outline-none data-[size=default]:max-w-[calc(100%-2rem)] data-[size=sm]:max-w-xs data-[size=default]:sm:max-w-sm\",\n          className\n        )}\n        {...props}\n      />\n    </AlertDialogPortal>\n  )\n}\n\nfunction AlertDialogHeader({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-dialog-header\"\n      className={cn(\n        \"flex flex-col gap-3\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction AlertDialogFooter({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-dialog-footer\"\n      className={cn(\n        \"flex flex-col-reverse gap-3 pt-1 group-data-[size=sm]/alert-dialog-content:grid group-data-[size=sm]/alert-dialog-content:grid-cols-2 sm:flex-row sm:justify-end\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction AlertDialogMedia({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-dialog-media\"\n      className={cn(\n        \"inline-flex size-10 items-center justify-center pixel-border border-border bg-muted text-foreground *:[svg:not([class*='size-'])]:size-6\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction AlertDialogTitle({\n  className,\n  ...props\n}: React.ComponentProps<typeof AlertDialogPrimitive.Title>) {\n  return (\n    <AlertDialogPrimitive.Title\n      data-slot=\"alert-dialog-title\"\n      className={cn(\n        \"-mx-4 -mt-4 flex h-8 items-center gap-3 border-b-(length:--pixel) border-border bg-titlebar px-3 font-pixel text-[16px] leading-none text-titlebar-foreground uppercase after:h-4 after:min-w-6 after:flex-1 after:stripes after:content-['']\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction AlertDialogDescription({\n  className,\n  ...props\n}: React.ComponentProps<typeof AlertDialogPrimitive.Description>) {\n  return (\n    <AlertDialogPrimitive.Description\n      data-slot=\"alert-dialog-description\"\n      className={cn(\n        \"text-xl leading-tight text-popover-foreground *:[a]:underline *:[a]:underline-offset-3\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction AlertDialogAction({\n  className,\n  variant = \"default\",\n  size = \"default\",\n  ...props\n}: React.ComponentProps<typeof AlertDialogPrimitive.Action> &\n  Pick<React.ComponentProps<typeof Button>, \"variant\" | \"size\">) {\n  return (\n    <Button variant={variant} size={size} asChild>\n      <AlertDialogPrimitive.Action\n        data-slot=\"alert-dialog-action\"\n        className={cn(className)}\n        {...props}\n      />\n    </Button>\n  )\n}\n\nfunction AlertDialogCancel({\n  className,\n  variant = \"outline\",\n  size = \"default\",\n  ...props\n}: React.ComponentProps<typeof AlertDialogPrimitive.Cancel> &\n  Pick<React.ComponentProps<typeof Button>, \"variant\" | \"size\">) {\n  return (\n    <Button variant={variant} size={size} asChild>\n      <AlertDialogPrimitive.Cancel\n        data-slot=\"alert-dialog-cancel\"\n        className={cn(className)}\n        {...props}\n      />\n    </Button>\n  )\n}\n\nexport {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogMedia,\n  AlertDialogOverlay,\n  AlertDialogPortal,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sounds": {
+      "button.press": {
+        "note": "Tactile switch: bandpassed noise bump plus a square click",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.006,
+            "gain": 0.6,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 3500,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 2200,
+            "attack": 0.0005,
+            "decay": 0.005,
+            "gain": 0.15
+          }
+        ],
+        "jitter": {
+          "cents": 100,
+          "gainDb": 6,
+          "decay": 0.12
+        }
+      },
+      "button.release": {
+        "note": "Lighter, higher tactile click",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.004,
+            "gain": 0.35,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 4200,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 2600,
+            "attack": 0.0005,
+            "decay": 0.004,
+            "gain": 0.08
+          }
+        ],
+        "jitter": {
+          "cents": 91,
+          "gainDb": 1.5,
+          "decay": 0.12
+        }
+      }
+    }
+  },
+  "type": "registry:ui"
+}

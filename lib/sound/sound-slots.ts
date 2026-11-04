@@ -2,7 +2,7 @@ import type { SoundEngine, SoundLoopHandle } from "./sound-engine"
 
 export type SoundGesture = "press" | "toggle" | "select" | "menu" | "steps" | "drag"
 
-type SlotRule = { key: (element: Element) => string; gesture: SoundGesture }
+type SlotRule = { key: (element: Element) => string; gesture: SoundGesture | ((element: Element) => SoundGesture) }
 
 const SMALL_SIZES = new Set(["xs", "icon", "icon-xs", "icon-sm"])
 
@@ -22,12 +22,18 @@ export const soundSlots: Record<string, SlotRule> = {
   "menubar-checkbox-item": { key: fixed("menu"), gesture: "menu" },
   "menubar-radio-item": { key: fixed("menu"), gesture: "menu" },
   "select-item": { key: fixed("menu"), gesture: "menu" },
+  "context-menu-item": { key: fixed("menu"), gesture: "menu" },
+  "context-menu-checkbox-item": { key: fixed("menu"), gesture: "menu" },
+  "context-menu-radio-item": { key: fixed("menu"), gesture: "menu" },
+  toggle: { key: fixed("toggle"), gesture: "toggle" },
+  "toggle-group-item": { key: fixed("toggle"), gesture: (element) => (element.getAttribute("role") === "radio" ? "select" : "toggle") },
   slider: { key: fixed("slider"), gesture: "steps" },
   window: { key: fixed("drag"), gesture: "drag" },
 }
 
 type Target = { element: Element; key: string; gesture: SoundGesture }
 
+const BUTTON_LIKE_SUFFIXES = ["-trigger", "-action", "-cancel", "-close", "-link"]
 const RECENT_MS = 400
 const DISABLED = ":disabled, [aria-disabled='true'], [data-disabled]"
 
@@ -39,12 +45,13 @@ function resolveTarget(start: EventTarget | null): Target | null {
       return null
     }
     const slot = node.getAttribute("data-slot")
-    const rule = slot ? (soundSlots[slot] ?? (slot.endsWith("-trigger") ? soundSlots.button : undefined)) : undefined
+    const rule = slot ? (soundSlots[slot] ?? (BUTTON_LIKE_SUFFIXES.some((suffix) => slot.endsWith(suffix)) ? soundSlots.button : undefined)) : undefined
+    const gesture = typeof rule?.gesture === "function" ? rule.gesture(node) : rule?.gesture
     if (sound) {
-      return { element: node, key: sound, gesture: rule?.gesture ?? "press" }
+      return { element: node, key: sound, gesture: gesture ?? "press" }
     }
-    if (rule) {
-      return { element: node, key: rule.key(node), gesture: rule.gesture }
+    if (rule && gesture) {
+      return { element: node, key: rule.key(node), gesture }
     }
     node = node.parentElement
   }
@@ -53,6 +60,10 @@ function resolveTarget(start: EventTarget | null): Target | null {
 
 function isOn(element: Element, attribute: string): boolean {
   return element.getAttribute(attribute) === "true"
+}
+
+function toggleAttribute(element: Element): string {
+  return element.hasAttribute("aria-pressed") ? "aria-pressed" : "aria-checked"
 }
 
 export function attachSoundSlots(engine: SoundEngine, root: Document = document): () => void {
@@ -93,7 +104,7 @@ export function attachSoundSlots(engine: SoundEngine, root: Document = document)
       engine.play(`${key}.press`)
     } else if (gesture === "toggle") {
       markRecent(element)
-      engine.play(`${key}.${isOn(element, "aria-checked") ? "off" : "on"}`)
+      engine.play(`${key}.${isOn(element, toggleAttribute(element)) ? "off" : "on"}`)
     } else if (gesture === "select") {
       const attribute = element.hasAttribute("aria-selected") ? "aria-selected" : "aria-checked"
       if (!isOn(element, attribute)) {
@@ -174,9 +185,9 @@ export function attachSoundSlots(engine: SoundEngine, root: Document = document)
       if (target.element !== element && target.gesture !== "steps") {
         continue
       }
-      if (target.gesture === "toggle" && attribute === "aria-checked") {
+      if (target.gesture === "toggle" && attribute === toggleAttribute(element)) {
         if (!takeRecent(element)) {
-          engine.play(`${target.key}.${isOn(element, "aria-checked") ? "on" : "off"}`)
+          engine.play(`${target.key}.${isOn(element, attribute) ? "on" : "off"}`)
         }
       } else if (target.gesture === "select" && (attribute === "aria-checked" || attribute === "aria-selected")) {
         if (isOn(element, attribute) && !takeRecent(element)) {
@@ -213,7 +224,7 @@ export function attachSoundSlots(engine: SoundEngine, root: Document = document)
   observer.observe(root.documentElement, {
     subtree: true,
     attributes: true,
-    attributeFilter: ["aria-checked", "aria-selected", "aria-valuenow", "data-dragging"],
+    attributeFilter: ["aria-checked", "aria-pressed", "aria-selected", "aria-valuenow", "data-dragging"],
   })
   const options = { capture: true, passive: true }
   root.addEventListener("pointerdown", onPointerDown, options)

@@ -6,51 +6,51 @@ What dither-ui has shipped and what is left. A box is ticked when the component 
 
 Every `registry:ui` component in shadcn's `radix-nova` style (64 as of November 2026). Each ships as a drop-in reskin: same file name, exports and variant names.
 
-21 of 64 done.
+43 of 64 done.
 
 - [x] accordion
 - [x] alert
-- [ ] alert-dialog
-- [ ] aspect-ratio
+- [x] alert-dialog
+- [x] aspect-ratio
 - [ ] attachment
-- [ ] avatar
+- [x] avatar
 - [x] badge
-- [ ] breadcrumb
+- [x] breadcrumb
 - [ ] bubble
 - [x] button
-- [ ] button-group
+- [x] button-group
 - [ ] calendar
 - [x] card
 - [ ] carousel
 - [ ] chart
 - [x] checkbox
 - [ ] code-block
-- [ ] collapsible
+- [x] collapsible
 - [ ] combobox
 - [ ] command
-- [ ] context-menu
+- [x] context-menu
 - [x] dialog
 - [ ] direction
 - [ ] drawer
 - [x] dropdown-menu
-- [ ] empty
-- [ ] field
+- [x] empty
+- [x] field
 - [ ] form
-- [ ] hover-card
+- [x] hover-card
 - [x] input
-- [ ] input-group
+- [x] input-group
 - [ ] input-otp
-- [ ] item
-- [ ] kbd
+- [x] item
+- [x] kbd
 - [x] label
 - [ ] marker
 - [x] menubar
 - [ ] message
 - [ ] message-scroller
-- [ ] native-select
+- [x] native-select
 - [ ] navigation-menu
-- [ ] pagination
-- [ ] popover
+- [x] pagination
+- [x] popover
 - [x] progress
 - [ ] questionnaire
 - [x] radio-group
@@ -58,18 +58,18 @@ Every `registry:ui` component in shadcn's `radix-nova` style (64 as of November 
 - [x] scroll-area
 - [x] select
 - [x] separator
-- [ ] sheet
+- [x] sheet
 - [ ] sidebar
-- [ ] skeleton
+- [x] skeleton
 - [x] slider
 - [ ] sonner
-- [ ] spinner
+- [x] spinner
 - [x] switch
-- [ ] table
+- [x] table
 - [x] tabs
 - [x] textarea
-- [ ] toggle
-- [ ] toggle-group
+- [x] toggle
+- [x] toggle-group
 - [x] tooltip
 - [ ] trace
 

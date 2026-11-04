@@ -921,6 +921,485 @@
       ]
     },
     {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Keyboard keys as small bevelled pixel keycaps, alone or grouped.",
+      "files": [
+        {
+          "path": "components/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "dependencies": [
+        "cn"
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "shadcn toggle as a pixel button that stays sunk while pressed.",
+      "files": [
+        {
+          "path": "components/ui/toggle.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
+      ],
+      "meta": {
+        "sounds": [
+          "toggle.on",
+          "toggle.off"
+        ]
+      }
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "description": "A row of pixel toggles for one or many choices.",
+      "files": [
+        {
+          "path": "components/ui/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/toggle"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
+      ],
+      "meta": {
+        "sounds": [
+          "toggle.on",
+          "toggle.off",
+          "toggle.select"
+        ]
+      }
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "Unstyled show and hide region with a trigger, opening in one frame.",
+      "files": [
+        {
+          "path": "components/ui/collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "dependencies": [
+        "radix-ui"
+      ],
+      "meta": {
+        "sounds": [
+          "button.press",
+          "button.release"
+        ]
+      }
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Floating pixel panel with an offset shadow, opened from a trigger.",
+      "files": [
+        {
+          "path": "components/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ],
+      "meta": {
+        "sounds": [
+          "button.press",
+          "button.release"
+        ]
+      }
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "description": "Pixel preview card that appears on hover, with no fade.",
+      "files": [
+        {
+          "path": "components/ui/hover-card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "Modal confirmation in the dialog chrome, with action and cancel buttons.",
+      "files": [
+        {
+          "path": "components/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/button"
+      ],
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ],
+      "meta": {
+        "sounds": [
+          "button.press",
+          "button.release"
+        ]
+      }
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Edge panel from any side of the screen that opens in one frame.",
+      "files": [
+        {
+          "path": "components/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/button",
+        "@dither/pixel-glyphs"
+      ],
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ],
+      "meta": {
+        "sounds": [
+          "button.press",
+          "button.release"
+        ]
+      }
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "description": "Right-click menu with the shared menu look: foreground bar highlight, etched separators, left indicators.",
+      "files": [
+        {
+          "path": "components/ui/context-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/pixel-glyphs"
+      ],
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ],
+      "meta": {
+        "sounds": [
+          "menu.select"
+        ]
+      }
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Dithered placeholder block for loading content.",
+      "files": [
+        {
+          "path": "components/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "dependencies": [
+        "cn"
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Pixel spinner that steps at about 10 fps and holds still under reduced motion.",
+      "files": [
+        {
+          "path": "components/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "dependencies": [
+        "cn"
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "Square pixel avatar with an image or pixel-font initials.",
+      "files": [
+        {
+          "path": "components/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Path trail with pixel chevron separators.",
+      "files": [
+        {
+          "path": "components/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/pixel-glyphs"
+      ],
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Data table with pixel rules and a font-pixel header.",
+      "files": [
+        {
+          "path": "components/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "dependencies": [
+        "cn"
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Page links built from dither-ui buttons with pixel arrows.",
+      "files": [
+        {
+          "path": "components/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/button",
+        "@dither/pixel-glyphs"
+      ],
+      "dependencies": [
+        "cn"
+      ],
+      "meta": {
+        "sounds": [
+          "button.press",
+          "button.release"
+        ]
+      }
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "title": "Button Group",
+      "description": "Buttons joined edge to edge into one pixel-bordered strip.",
+      "files": [
+        {
+          "path": "components/ui/button-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/separator"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "Empty state with a pixel icon, title, description and actions.",
+      "files": [
+        {
+          "path": "components/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "cn"
+      ]
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "title": "Native Select",
+      "description": "A native select in the sunken field style with a pixel chevron.",
+      "files": [
+        {
+          "path": "components/ui/native-select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/pixel-glyphs"
+      ],
+      "dependencies": [
+        "cn"
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "title": "Aspect Ratio",
+      "description": "Keeps content at a fixed aspect ratio.",
+      "files": [
+        {
+          "path": "components/ui/aspect-ratio.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "dependencies": [
+        "cn",
+        "radix-ui"
+      ]
+    },
+    {
+      "name": "item",
+      "type": "registry:ui",
+      "title": "Item",
+      "description": "List row with media, title, description and actions on pixel borders.",
+      "files": [
+        {
+          "path": "components/ui/item.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/separator"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Form field layout: label, control, description and dashed-border errors.",
+      "files": [
+        {
+          "path": "components/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/label",
+        "@dither/separator"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "cn"
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "Input or textarea with pixel addons and buttons inside one sunken field.",
+      "files": [
+        {
+          "path": "components/ui/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/button",
+        "@dither/input",
+        "@dither/textarea"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "cn"
+      ]
+    },
+    {
       "name": "window",
       "type": "registry:block",
       "title": "Window",

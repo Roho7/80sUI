@@ -1,0 +1,83 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover",
+  "title": "Popover",
+  "description": "Floating pixel panel with an offset shadow, opened from a trigger.",
+  "dependencies": [
+    "cn",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@dither/theme"
+  ],
+  "files": [
+    {
+      "path": "components/ui/popover.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"cn\"\nimport { Popover as PopoverPrimitive } from \"radix-ui\"\nimport * as React from \"react\"\n\nfunction Popover({\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Root>) {\n  return <PopoverPrimitive.Root data-slot=\"popover\" {...props} />\n}\n\nfunction PopoverTrigger({\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Trigger>) {\n  return <PopoverPrimitive.Trigger data-slot=\"popover-trigger\" {...props} />\n}\n\nfunction PopoverContent({\n  className,\n  align = \"center\",\n  sideOffset = 4,\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Content>) {\n  return (\n    <PopoverPrimitive.Portal>\n      <PopoverPrimitive.Content\n        data-slot=\"popover-content\"\n        align={align}\n        sideOffset={sideOffset}\n        className={cn(\n          \"z-50 flex w-72 flex-col gap-2 pixel-border border-border bg-popover p-3 text-xl text-popover-foreground offset-shadow-2 outline-hidden\",\n          className\n        )}\n        {...props}\n      />\n    </PopoverPrimitive.Portal>\n  )\n}\n\nfunction PopoverAnchor({\n  ...props\n}: React.ComponentProps<typeof PopoverPrimitive.Anchor>) {\n  return <PopoverPrimitive.Anchor data-slot=\"popover-anchor\" {...props} />\n}\n\nfunction PopoverHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"popover-header\"\n      className={cn(\"flex flex-col gap-1\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction PopoverTitle({ className, ...props }: React.ComponentProps<\"h2\">) {\n  return (\n    <div\n      data-slot=\"popover-title\"\n      className={cn(\"font-pixel text-[12px] leading-none uppercase\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction PopoverDescription({\n  className,\n  ...props\n}: React.ComponentProps<\"p\">) {\n  return (\n    <p\n      data-slot=\"popover-description\"\n      className={cn(\"text-lg leading-tight text-muted-foreground\", className)}\n      {...props}\n    />\n  )\n}\n\nexport {\n  Popover,\n  PopoverAnchor,\n  PopoverContent,\n  PopoverDescription,\n  PopoverHeader,\n  PopoverTitle,\n  PopoverTrigger,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sounds": {
+      "button.press": {
+        "note": "Tactile switch: bandpassed noise bump plus a square click",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.006,
+            "gain": 0.6,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 3500,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 2200,
+            "attack": 0.0005,
+            "decay": 0.005,
+            "gain": 0.15
+          }
+        ],
+        "jitter": {
+          "cents": 100,
+          "gainDb": 6,
+          "decay": 0.12
+        }
+      },
+      "button.release": {
+        "note": "Lighter, higher tactile click",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.004,
+            "gain": 0.35,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 4200,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 2600,
+            "attack": 0.0005,
+            "decay": 0.004,
+            "gain": 0.08
+          }
+        ],
+        "jitter": {
+          "cents": 91,
+          "gainDb": 1.5,
+          "decay": 0.12
+        }
+      }
+    }
+  },
+  "type": "registry:ui"
+}

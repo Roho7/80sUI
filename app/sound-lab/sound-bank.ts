@@ -24,6 +24,7 @@ export const boardEntries: BoardEntry[] = [
   { id: "checkbox", name: "Checkbox", note: "On pointer down, predicting the new state; keyboard toggles play when aria-checked changes.", sounds: [{ key: "checkbox.on", label: "on" }, { key: "checkbox.off", label: "off" }], shipped: true },
   { id: "radio", name: "Radio group", note: "Plays when an item becomes checked.", sounds: [{ key: "radio.select", label: "select" }], shipped: true },
   { id: "switch", name: "Switch", note: "Latch on and off.", sounds: [{ key: "switch.on", label: "on" }, { key: "switch.off", label: "off" }], shipped: true },
+  { id: "toggle", name: "Toggle and toggle group", note: "Toggles latch with aria-pressed; a single-choice group plays select.", sounds: [{ key: "toggle.on", label: "on" }, { key: "toggle.off", label: "off" }, { key: "toggle.select", label: "select" }], shipped: true },
   { id: "slider", name: "Slider", note: "One tick per detent step of value units, read from aria-valuenow.", sounds: [{ key: "slider.tick", label: "tick" }], detent: { key: "slider.tick", range: { min: 1, max: 25, unit: "value" } }, shipped: true },
   { id: "drag", name: "Window drag", note: "Pick-up and drop when data-dragging flips, friction while it moves.", sounds: [{ key: "drag.pickup", label: "pick-up" }, { key: "drag.drop", label: "drop" }], loop: "drag.friction", shipped: true },
   { id: "pad", name: "Drag pad (lab only)", note: "Tick per step of travel.", sounds: [{ key: "pad.tick", label: "tick" }], detent: { key: "pad.tick", range: { min: 2, max: 64, unit: "px" } }, shipped: false },

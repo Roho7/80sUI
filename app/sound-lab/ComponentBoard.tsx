@@ -12,6 +12,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Toggle } from "@/components/ui/toggle"
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { SoundEngine } from "@/lib/sound/sound-engine"
 import { isSoundLoop, isSoundPatch, type SoundDetent, type SoundPatch } from "@/lib/sound/types"
 
@@ -122,6 +124,22 @@ function demoFor(entry: BoardEntry, detentStep: number): ReactNode {
       return <RadioDemo />
     case "switch":
       return <SwitchDemo />
+    case "toggle":
+      return (
+        <div className="flex flex-col gap-3">
+          <Toggle aria-label="Bold">B</Toggle>
+          <ToggleGroup type="multiple" aria-label="Style">
+            <ToggleGroupItem value="bold">B</ToggleGroupItem>
+            <ToggleGroupItem value="italic">I</ToggleGroupItem>
+            <ToggleGroupItem value="underline">U</ToggleGroupItem>
+          </ToggleGroup>
+          <ToggleGroup type="single" defaultValue="left" aria-label="Align">
+            <ToggleGroupItem value="left">L</ToggleGroupItem>
+            <ToggleGroupItem value="center">C</ToggleGroupItem>
+            <ToggleGroupItem value="right">R</ToggleGroupItem>
+          </ToggleGroup>
+        </div>
+      )
     case "slider":
       return <SliderDemo />
     case "drag":
