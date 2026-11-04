@@ -14,7 +14,7 @@ function HexBackdrop() {
   return (
     <pre
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 overflow-hidden p-6 text-xl leading-tight text-foreground opacity-40 select-none"
+      className="pointer-events-none absolute inset-0 overflow-hidden p-6 text-xl leading-tight text-(--ink-2) select-none dark:text-(--ink-1)"
     >
       {"*** STOP: 0x0000001E (0xC0000047,0x8013D1E2,0x00000000)\n"}
       {"Unhandled Kernel exception c0000047\n\n"}
