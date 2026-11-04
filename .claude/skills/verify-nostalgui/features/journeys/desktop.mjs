@@ -7,7 +7,7 @@ async function openStartMenu(page) {
 }
 
 export default async function verifyDesktop({ page, baseUrl, evidenceDir, expect }) {
-  await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" })
+  await page.goto(`${baseUrl}/desktop`, { waitUntil: "networkidle" })
   await page.screenshot({ path: join(evidenceDir, "desktop.png") })
 
   const terminal = page.getByRole("region", { name: "Terminal.exe" })

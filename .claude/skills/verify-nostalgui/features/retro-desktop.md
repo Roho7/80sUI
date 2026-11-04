@@ -13,7 +13,7 @@
 
 ## How to get to it (user POV)
 
-- Open `http://localhost:3000/` on a screen 1280px wide or wider.
+- Open `http://localhost:3000/desktop` on a screen 1280px wide or wider.
 
 ## Driving it with dither.mjs
 

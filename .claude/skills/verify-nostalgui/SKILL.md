@@ -1,6 +1,6 @@
 ---
 name: verify-nostalgui
-description: Verify the NOSTALGUI component registry (Next.js showcase at /components, retro desktop at /, shadcn registry at /r/*.json) against its locked 1-bit retro style. Use after adding or changing any component, demo, token or shader, before committing, when asked to "verify", "check the style", "prove it works", or when something looks off-palette, rounded, smooth-animated or overflowing.
+description: Verify the NOSTALGUI component registry (Next.js showcase at /components, retro desktop at /desktop, docs site at / and /docs, shadcn registry at /r/*.json) against its locked 1-bit retro style. Use after adding or changing any component, demo, token or shader, before committing, when asked to "verify", "check the style", "prove it works", or when something looks off-palette, rounded, smooth-animated or overflowing.
 ---
 
 # Verify NOSTALGUI
@@ -39,7 +39,7 @@ Read-only. Checks port 3000 is listening, its process runs from this repo, `/com
 node .claude/skills/verify-nostalgui/dither.mjs check
 ```
 
-Runs `npm run lint`, `npm run typecheck`, `npm run check:style` and the showcase index generator. `check:style` (`scripts/check-style.mjs`) is the style contract in code. Its rules are a table you extend when a new convention is agreed:
+Runs `npm run lint`, `npm run typecheck`, `npm run check:style` and the registry docs generator (`npm run docs:generate`). `check:style` (`scripts/check-style.mjs`) is the style contract in code. Its rules are a table you extend when a new convention is agreed:
 
 | Rule | Catches |
 |---|---|
@@ -73,7 +73,7 @@ Headless Chrome via `playwright-core` (channel `chrome`, no browser download). F
 - **overflow:** any variant cell whose content paints outside the cell or scrolls inside it, and any sideways page scroll.
 - **console errors** per route.
 
-Routes: `/components` at every width, `/` only at 1280px and wider (the desktop demo is desktop-only by design).
+Routes: `/`, `/docs`, `/components`, `/components/button`, `/components/window` and `/components/pixel-glyphs` at every width, `/desktop` only at 1280px and wider (the desktop demo is desktop-only by design). Routes with variant cells fail if they render none.
 
 ```bash
 node .claude/skills/verify-nostalgui/dither.mjs shot cta-button cyan-pixel-dark

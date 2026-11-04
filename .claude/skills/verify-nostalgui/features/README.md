@@ -29,5 +29,5 @@ This directory is the maintained source for verifying the user-facing behavior o
 | Component catalogue (`/components`) | [showcase-catalogue.md](showcase-catalogue.md) | `audit` |
 | Themes and palettes | [theme-switching.md](theme-switching.md) | `audit` |
 | CTA keycap button | [cta-button.md](cta-button.md) | `journey cta-button` |
-| Retro desktop (`/`) | [retro-desktop.md](retro-desktop.md) | `journey desktop` |
+| Retro desktop (`/desktop`) | [retro-desktop.md](retro-desktop.md) | `journey desktop` |
 | Registry install | [registry-install.md](registry-install.md) | `shadcn view` / `add` in a scratch project |

@@ -40,3 +40,6 @@ next-env.d.ts
 
 # verification state and evidence
 /.verify/
+
+# generated registry docs
+/lib/docs/registry-docs.generated.json
