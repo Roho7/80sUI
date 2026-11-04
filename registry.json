@@ -411,7 +411,7 @@
       "type": "registry:lib",
       "title": "Sound",
       "description": "Tactile synthesized sounds for NOSTALGUI components: one shared AudioContext, sounds configured in sounds.json, played by event delegation on each component's data-slot.",
-      "docs": "Render <DitherSounds /> once in your root layout. Sounds live in sounds.json next to components.json (in src/ if @/* maps to ./src/*). After adding NOSTALGUI components run: node scripts/dither-sounds.mjs sync. It adds only the sounds of installed components and keeps your edits. Silence one element with data-sound=\"none\", rename its sound with data-sound=\"my-key\", silence a sound with \"key\": false, or everything with \"enabled\": false.",
+      "docs": "Render <NostalguiSounds /> once in your root layout. Sounds live in sounds.json next to components.json (in src/ if @/* maps to ./src/*). After adding NOSTALGUI components run: node scripts/dither-sounds.mjs sync. It adds only the sounds of installed components and keeps your edits. Silence one element with data-sound=\"none\", rename its sound with data-sound=\"my-key\", silence a sound with \"key\": false, or everything with \"enabled\": false.",
       "files": [
         {
           "path": "lib/sound/types.ts",
@@ -443,7 +443,7 @@
           "type": "registry:hook"
         },
         {
-          "path": "components/ui/dither-sounds.tsx",
+          "path": "components/ui/nostalgui-sounds.tsx",
           "type": "registry:ui"
         },
         {

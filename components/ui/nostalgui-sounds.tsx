@@ -7,11 +7,11 @@ import { SoundEngine } from "@/lib/sound/sound-engine"
 import { attachSoundSlots } from "@/lib/sound/sound-slots"
 import type { SoundsConfig } from "@/lib/sound/types"
 
-type DitherSoundsProps = {
+type NostalguiSoundsProps = {
   config?: SoundsConfig
 }
 
-function DitherSounds({ config = soundsConfig }: DitherSoundsProps) {
+function NostalguiSounds({ config = soundsConfig }: NostalguiSoundsProps) {
   useEffect(() => {
     const engine = SoundEngine.get()
     if (!engine) {
@@ -23,4 +23,4 @@ function DitherSounds({ config = soundsConfig }: DitherSoundsProps) {
   return null
 }
 
-export { DitherSounds }
+export { NostalguiSounds }

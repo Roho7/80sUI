@@ -4,7 +4,7 @@ import type { Metadata } from "next"
 import { Silkscreen, VT323 } from "next/font/google"
 
 import { ThemeProvider } from "@/components/theme-provider"
-import { DitherSounds } from "@/components/ui/dither-sounds"
+import { NostalguiSounds } from "@/components/ui/nostalgui-sounds"
 import { cn } from "@/lib/utils"
 
 const fontPixel = Silkscreen({
@@ -39,7 +39,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider defaultTheme="light" enableSystem={false}>
           {children}
-          <DitherSounds />
+          <NostalguiSounds />
         </ThemeProvider>
       </body>
     </html>

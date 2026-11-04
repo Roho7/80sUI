@@ -40,8 +40,8 @@
       "type": "registry:hook"
     },
     {
-      "path": "components/ui/dither-sounds.tsx",
-      "content": "\"use client\"\n\nimport { useEffect } from \"react\"\n\nimport { soundsConfig } from \"@/lib/sound/config\"\nimport { SoundEngine } from \"@/lib/sound/sound-engine\"\nimport { attachSoundSlots } from \"@/lib/sound/sound-slots\"\nimport type { SoundsConfig } from \"@/lib/sound/types\"\n\ntype DitherSoundsProps = {\n  config?: SoundsConfig\n}\n\nfunction DitherSounds({ config = soundsConfig }: DitherSoundsProps) {\n  useEffect(() => {\n    const engine = SoundEngine.get()\n    if (!engine) {\n      return\n    }\n    engine.configure(config)\n    return attachSoundSlots(engine, document)\n  }, [config])\n  return null\n}\n\nexport { DitherSounds }\n",
+      "path": "components/ui/nostalgui-sounds.tsx",
+      "content": "\"use client\"\n\nimport { useEffect } from \"react\"\n\nimport { soundsConfig } from \"@/lib/sound/config\"\nimport { SoundEngine } from \"@/lib/sound/sound-engine\"\nimport { attachSoundSlots } from \"@/lib/sound/sound-slots\"\nimport type { SoundsConfig } from \"@/lib/sound/types\"\n\ntype NostalguiSoundsProps = {\n  config?: SoundsConfig\n}\n\nfunction NostalguiSounds({ config = soundsConfig }: NostalguiSoundsProps) {\n  useEffect(() => {\n    const engine = SoundEngine.get()\n    if (!engine) {\n      return\n    }\n    engine.configure(config)\n    return attachSoundSlots(engine, document)\n  }, [config])\n  return null\n}\n\nexport { NostalguiSounds }\n",
       "type": "registry:ui"
     },
     {
@@ -57,6 +57,6 @@
       "target": "~/scripts/dither-sounds.mjs"
     }
   ],
-  "docs": "Render <DitherSounds /> once in your root layout. Sounds live in sounds.json next to components.json (in src/ if @/* maps to ./src/*). After adding NOSTALGUI components run: node scripts/dither-sounds.mjs sync. It adds only the sounds of installed components and keeps your edits. Silence one element with data-sound=\"none\", rename its sound with data-sound=\"my-key\", silence a sound with \"key\": false, or everything with \"enabled\": false.",
+  "docs": "Render <NostalguiSounds /> once in your root layout. Sounds live in sounds.json next to components.json (in src/ if @/* maps to ./src/*). After adding NOSTALGUI components run: node scripts/dither-sounds.mjs sync. It adds only the sounds of installed components and keeps your edits. Silence one element with data-sound=\"none\", rename its sound with data-sound=\"my-key\", silence a sound with \"key\": false, or everything with \"enabled\": false.",
   "type": "registry:lib"
 }
