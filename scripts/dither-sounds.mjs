@@ -62,22 +62,23 @@ function resolveAlias(alias, aliasRoot) {
 }
 
 function readRegistryTemplate(componentsJson, override) {
+  const style = componentsJson.style ?? "radix-nova"
   if (override) {
-    return { url: override, headers: {} }
+    return { url: override, headers: {}, style }
   }
   const entry = componentsJson.registries?.["@nostalgui"]
   if (typeof entry === "string") {
-    return { url: entry, headers: {} }
+    return { url: entry, headers: {}, style }
   }
   if (entry && typeof entry.url === "string") {
     const headers = Object.fromEntries(Object.entries(entry.headers ?? {}).map(([key, value]) => [key, String(value).replace(/\$\{(\w+)\}/g, (_, name) => process.env[name] ?? "")]))
-    return { url: entry.url, headers }
+    return { url: entry.url, headers, style }
   }
-  fail('components.json has no registries["@nostalgui"]; pass --registry "https://host/r/{name}.json"')
+  fail('components.json has no registries["@nostalgui"]; pass --registry "https://host/r/{style}/{name}.json"')
 }
 
 async function fetchItem(registry, name) {
-  const url = registry.url.replace("{name}", name).replace("{style}", "")
+  const url = registry.url.replace("{name}", name).replace("{style}", registry.style)
   const response = await fetch(url, { headers: registry.headers })
   if (!response.ok) {
     fail(`GET ${url} answered ${response.status}`)

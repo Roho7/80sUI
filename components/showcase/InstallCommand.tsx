@@ -1,53 +1,35 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { usePackageManager } from "@/components/docs/use-package-manager"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { buildAddCommand, isPackageManagerName, PACKAGE_MANAGERS } from "@/lib/docs/package-managers"
 
-import { Button } from "@/components/ui/button"
-
-const COPIED_RESET_MS = 1500
+import { CopyCommand } from "./CopyCommand"
 
 type InstallCommandProps = {
   name: string
 }
 
 function InstallCommand({ name }: InstallCommandProps) {
-  const command = `npx shadcn add @nostalgui/${name}`
-  const [isCopied, setIsCopied] = useState(false)
-
-  useEffect(() => {
-    if (!isCopied) {
-      return
-    }
-    const timeout = window.setTimeout(() => setIsCopied(false), COPIED_RESET_MS)
-    return () => window.clearTimeout(timeout)
-  }, [isCopied])
-
-  function copyCommand() {
-    navigator.clipboard
-      .writeText(command)
-      .then(() => setIsCopied(true))
-      .catch(() => setIsCopied(false))
-  }
+  const [manager, chooseManager] = usePackageManager()
 
   return (
-    <div className="flex items-center gap-2 bg-foreground py-1 pr-1 pl-2 text-background">
-      <code className="min-w-0 flex-1 font-mono text-lg leading-tight break-all">
-        <span aria-hidden="true">$ </span>
-        {command}
-      </code>
-      <Button
-        size="xs"
-        variant="secondary"
-        className="min-w-16"
-        aria-label={`Copy install command for ${name}`}
-        onClick={copyCommand}
-      >
-        {isCopied ? "Copied" : "Copy"}
-      </Button>
-      <span aria-live="polite" className="sr-only">
-        {isCopied ? "Copied" : ""}
-      </span>
-    </div>
+    <Tabs
+      value={manager.name}
+      onValueChange={(value) => isPackageManagerName(value) && chooseManager(value)}
+      className="gap-1"
+    >
+      <TabsList variant="line" aria-label="Package manager">
+        {PACKAGE_MANAGERS.map(({ name: managerName }) => (
+          <TabsTrigger key={managerName} value={managerName}>
+            {managerName}
+          </TabsTrigger>
+        ))}
+      </TabsList>
+      <TabsContent value={manager.name} className="pt-0">
+        <CopyCommand command={buildAddCommand(manager, name)} label={`install command for ${name}`} />
+      </TabsContent>
+    </Tabs>
   )
 }
 

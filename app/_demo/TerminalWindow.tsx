@@ -1,32 +1,29 @@
 "use client"
 
 import { Terminal, type TerminalLine } from "@/components/retro/terminal"
-import { Window, type WindowProps } from "@/components/retro/window"
+import { Window } from "@/components/retro/window"
+import { registryItemUrl } from "@/lib/site"
 
-type TerminalWindowProps = Pick<WindowProps, "isActive" | "onActivate" | "style">
+import type { DesktopWindowProps } from "./types"
 
 const SCRIPT: readonly TerminalLine[] = [
-  { kind: "command", text: "scandisk /all" },
-  { kind: "output", text: "2bd49711 - ncrc710.sys ... ok" },
-  { kind: "output", text: "2bd4971a - atd.sys ....... ok" },
-  { kind: "output", text: "2bd49666 - Floppy.SYS .... FAIL" },
+  { kind: "command", text: "npx create-next-app@latest my-retro-app" },
+  { kind: "output", text: "Success! Created my-retro-app" },
+  { kind: "command", text: "cd my-retro-app && npx shadcn@latest init -b radix" },
+  { kind: "output", text: "Base: radix ................. OK" },
+  { kind: "output", text: "Writing components.json ..... OK" },
+  { kind: "command", text: `npx shadcn@latest add ${registryItemUrl("theme")}` },
+  { kind: "output", text: "Updating app/globals.css .... OK" },
+  { kind: "command", text: `npx shadcn@latest add ${registryItemUrl("terminal")}` },
+  { kind: "output", text: "Created components/retro/terminal.tsx" },
   { kind: "output", text: "" },
-  { kind: "output", text: "Warning : Your data has been stolen." },
-  { kind: "output", text: "There is nothing you can do now." },
-  { kind: "output", text: "Proceed With Caution." },
-  { kind: "output", text: "" },
+  { kind: "output", text: "NOSTALGUI installed. Welcome back to 1995." },
 ]
 
-function TerminalWindow(windowProps: TerminalWindowProps) {
+function TerminalWindow(windowProps: DesktopWindowProps) {
   return (
-    <Window
-      title="Terminal.exe"
-      defaultPosition={{ x: 32, y: 40 }}
-      className="w-[440px]"
-      statusBar={<span>{SCRIPT.length} lines</span>}
-      {...windowProps}
-    >
-      <Terminal lines={SCRIPT} isLooping className="h-64" />
+    <Window title="install.bat" statusBar={<span>{SCRIPT.length} lines</span>} {...windowProps}>
+      <Terminal lines={SCRIPT} isLooping className="h-60" />
     </Window>
   )
 }

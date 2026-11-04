@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from "react"
 
-import { Window, type WindowProps } from "@/components/retro/window"
+import { Window } from "@/components/retro/window"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 
-type ProblemsWindowProps = Pick<WindowProps, "isActive" | "onActivate" | "style"> & {
+import type { DesktopWindowProps } from "./types"
+
+type ProblemsWindowProps = DesktopWindowProps & {
   onCancel: () => void
 }
 
@@ -29,8 +31,6 @@ function ProblemsWindow({ onCancel, ...windowProps }: ProblemsWindowProps) {
   return (
     <Window
       title="Downloading"
-      defaultPosition={{ x: 56, y: 420 }}
-      className="w-[420px]"
       {...windowProps}
     >
       <div className="flex flex-col gap-3 p-4">

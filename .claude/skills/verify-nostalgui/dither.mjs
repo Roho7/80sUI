@@ -22,8 +22,12 @@ const THEMES = PALETTES.flatMap(({ slug, label }) => [
   { name: `${slug}-dark`, slug, palette: label, isDark: true },
 ])
 const ROUTES = [
-  { path: "/components", minWidth: 0 },
-  { path: "/", minWidth: 1280 },
+  { path: "/", minWidth: 0, label: "home", hasCells: false },
+  { path: "/docs", minWidth: 0, label: "docs", hasCells: false },
+  { path: "/components", minWidth: 0, label: "components", hasCells: true },
+  { path: "/components/button", minWidth: 0, label: "button", hasCells: true },
+  { path: "/components/window", minWidth: 0, label: "window", hasCells: true },
+  { path: "/components/pixel-glyphs", minWidth: 0, label: "pixel-glyphs", hasCells: false },
 ]
 
 function readPortOwnerDirectory() {
@@ -119,7 +123,7 @@ function stopServer() {
 }
 
 function runChecks() {
-  const commands = ["npm run lint", "npm run typecheck", "npm run check:style", "node scripts/generate-showcase-index.mjs"]
+  const commands = ["npm run lint", "npm run typecheck", "npm run check:style", "npm run docs:generate"]
   let isOk = true
   for (const command of commands) {
     try {
@@ -174,7 +178,7 @@ function auditPage() {
   const isAllowed = (color) => isTransparent(color) || allowed.has(color.replace(/rgba\((\d+), (\d+), (\d+), 1\)/, "rgb($1, $2, $3)"))
   const describe = (element) => {
     const slot = element.closest("[data-slot]")?.getAttribute("data-slot")
-    const card = element.closest("article")?.id
+    const card = element.closest("article, section[id]")?.id
     return [card, slot, element.tagName.toLowerCase()].filter(Boolean).join(" > ")
   }
   const findings = { offPalette: [], rounded: [], tweened: [], translucent: [], overflow: [] }
@@ -226,9 +230,9 @@ function auditPage() {
       push(findings.translucent, { where, what: `opacity ${style.opacity}` })
     }
   }
-  for (const figure of document.querySelectorAll("article figure")) {
+  for (const figure of document.querySelectorAll("figure")) {
     const bounds = figure.getBoundingClientRect()
-    const label = `${figure.closest("article")?.id} > ${figure.querySelector("figcaption")?.textContent}`
+    const label = `${figure.closest("article, section[id]")?.id} > ${figure.querySelector("figcaption")?.textContent}`
     const scroller = figure.querySelector(":scope > div")
     if (scroller && scroller.scrollWidth > scroller.clientWidth + 1) {
       push(findings.overflow, { where: label, what: `scrolls ${scroller.scrollWidth - scroller.clientWidth}px inside its cell` })
@@ -255,7 +259,7 @@ function auditPage() {
     push(findings.overflow, { where: "page", what: `scrolls sideways by ${pageOverflow}px` })
   }
   const summary = Object.fromEntries(Object.entries(findings).map(([key, list]) => [key, { count: list.length, examples: list.slice(0, MAX_EXAMPLES) }]))
-  return { allowedColors: [...allowed], cells: document.querySelectorAll("article figure").length, summary }
+  return { allowedColors: [...allowed], cells: document.querySelectorAll("figure").length, summary }
 }
 
 async function runAudit(widths) {
@@ -264,7 +268,7 @@ async function runAudit(widths) {
   const report = []
   try {
     for (const width of widths) {
-      for (const { path: route, minWidth } of ROUTES) {
+      for (const { path: route, minWidth, label, hasCells } of ROUTES) {
         if (width < minWidth) {
           console.log(`skip  ${route} @${width}: designed for ${minWidth}px and wider`)
           continue
@@ -282,8 +286,12 @@ async function runAudit(widths) {
         for (const theme of THEMES) {
           await applyTheme(page, theme)
           const result = await page.evaluate(auditPage)
-          const name = `${route === "/" ? "desktop" : "components"}-${width}-${theme.name}`
-          await page.screenshot({ path: join(evidenceDir, `${name}.png`), fullPage: route !== "/" })
+          if (hasCells && result.cells === 0) {
+            result.summary.overflow.count += 1
+            result.summary.overflow.examples.push({ where: route, what: "rendered no variant cells" })
+          }
+          const name = `${label}-${width}-${theme.name}`
+          await page.screenshot({ path: join(evidenceDir, `${name}.png`), fullPage: true })
           report.push({ route, width, theme: theme.name, ...result })
         }
         report.push({ route, width, theme: "all", consoleErrors })

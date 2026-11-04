@@ -1,5 +1,8 @@
 import { cn } from "cn"
+import Link from "next/link"
 import type { CSSProperties } from "react"
+
+import { docHref } from "@/lib/docs/routes"
 
 import { InstallCommand } from "./InstallCommand"
 import type { ShowcaseEntry, ShowcaseSpan, ShowcaseVariant } from "./types"
@@ -62,7 +65,9 @@ function ShowcaseCard({ entry, index }: ShowcaseCardProps) {
       <header className="flex h-8 shrink-0 items-center gap-3 border-b-(length:--pixel) border-border bg-titlebar px-3 font-pixel text-[16px] leading-none text-titlebar-foreground uppercase">
         <span aria-hidden="true">{formatCatalogueNumber(index)}</span>
         <h2 id={titleId} className="truncate">
-          {title}
+          <Link href={docHref(name)} className="hover:underline">
+            {title}
+          </Link>
         </h2>
         <span aria-hidden="true" className="h-4 min-w-6 flex-1 stripes" />
         <span className="shrink-0 text-sm">{demo.variants.length} var.</span>
@@ -83,4 +88,4 @@ function ShowcaseCard({ entry, index }: ShowcaseCardProps) {
   )
 }
 
-export { ShowcaseCard }
+export { ShowcaseCard, SPAN_LAYOUTS, VariantCell }

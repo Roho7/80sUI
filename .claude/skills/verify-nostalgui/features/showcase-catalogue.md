@@ -20,16 +20,16 @@
 Preconditions:
 
 - `doctor` is healthy.
-- `node scripts/generate-showcase-index.mjs` reports `<n> showcased item(s)` with the number of ui and block items in `registry.json`.
+- `npm run docs:generate` reports `<n> showcased item(s)` with the number of ui and block items in `registry.json`.
 
-- **Pickup.** Run `node scripts/generate-showcase-index.mjs`. It exits 0 and names the item count. A missing demo exits 1 naming `components/showcase/demos/<name>.tsx`.
+- **Pickup.** Run `npm run docs:generate`. It exits 0 and names the item count. A missing demo exits 1 naming `components/showcase/demos/<name>.tsx`.
 - **Cells, style, responsive.** Run `node .claude/skills/verify-nostalgui/dither.mjs audit 1440 900 375`. Every `/components` line reads `offPalette 0, rounded 0, tweened 0, translucent 0, overflow 0`, console errors are 0, and `audit.json` shows `cells` equal to the total variant count shown in the page header.
 - **One card by eye.** Run `node .claude/skills/verify-nostalgui/dither.mjs shot <name> phosphor-light` and the same with `cyan-pixel-dark`. Look at both PNGs: every variant visible, nothing clipped, labels legible.
 - **Copy.** The headless browser has no clipboard permission. Verify by hand in a real browser, or treat it as unverified and say so.
 
 ## Gotchas
 
-- While `next dev` is already running, adding a demo does not regenerate the index. Run `node scripts/generate-showcase-index.mjs` by hand; `predev`, `prebuild` and `registry:build` run it automatically.
+- While `next dev` is already running, adding a demo does not regenerate the index. Run `npm run docs:generate` by hand; `predev`, `prebuild` and `registry:build` run it automatically.
 - `cn` merges conflicting classes, so a drifting class in a component can render correctly and pass the audit. `npm run check:style` catches it in source. Run both.
 - `--radius` is 0 in every theme, so `rounded-md` renders square. Only the static check sees it.
 - A demo that renders a floating composition (error dialogs) portals into an inert frame inside its cell; it is static on purpose.

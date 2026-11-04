@@ -1,11 +1,12 @@
 "use client"
 
-import { Window, type WindowProps } from "@/components/retro/window"
+import { Window } from "@/components/retro/window"
 import { Button } from "@/components/ui/button"
 
 import { ThemeControls } from "../_site/ThemeControls"
+import type { DesktopWindowProps } from "./types"
 
-type ControlPanelWindowProps = Pick<WindowProps, "isActive" | "onActivate" | "style"> & {
+type ControlPanelWindowProps = DesktopWindowProps & {
   onSpawnError: () => void
 }
 
@@ -13,8 +14,6 @@ function ControlPanelWindow({ onSpawnError, ...windowProps }: ControlPanelWindow
   return (
     <Window
       title="Control Panel"
-      defaultPosition={{ x: 900, y: 470 }}
-      className="w-[340px]"
       {...windowProps}
     >
       <div className="flex flex-col gap-4 p-4">

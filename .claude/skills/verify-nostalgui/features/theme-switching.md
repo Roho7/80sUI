@@ -12,7 +12,7 @@ Two palettes, `phosphor` (olive monochrome) and `cyan-pixel` (cream, black, cyan
 ## How to get to it (user POV)
 
 - The header of `/components`: buttons `Phosphor`, `Cyan pixel` and checkbox `Dark mode`.
-- The `Control Panel` window on the desktop at `/`.
+- The `Control Panel` window on the desktop landing at `/`.
 
 ## Driving it with dither.mjs
 

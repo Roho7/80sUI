@@ -285,6 +285,6 @@
       }
     }
   },
-  "docs": "Load a pixel display font and a mono body font and expose them as --font-silkscreen and --font-vt323, for example with next/font/google Silkscreen and VT323. Set data-theme=\"phosphor\" or data-theme=\"cyan-pixel\" on <html>; add the dark class for the dark variant.",
+  "docs": "NOSTALGUI is built on Radix: start the project with npx shadcn@latest init -b radix (any radix-* style). Base UI projects are not supported yet. Load a pixel display font and a mono body font and expose them as --font-silkscreen and --font-vt323, for example with next/font/google Silkscreen and VT323. Set data-theme=\"phosphor\" or data-theme=\"cyan-pixel\" on <html>; add the dark class for the dark variant.",
   "type": "registry:style"
 }

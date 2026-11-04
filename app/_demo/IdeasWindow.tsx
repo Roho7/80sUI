@@ -1,9 +1,11 @@
 "use client"
 
-import { Window, type WindowProps } from "@/components/retro/window"
+import { Window } from "@/components/retro/window"
 import { Button } from "@/components/ui/button"
 
-type IdeasWindowProps = Pick<WindowProps, "isActive" | "onActivate" | "style"> & {
+import type { DesktopWindowProps } from "./types"
+
+type IdeasWindowProps = DesktopWindowProps & {
   onAcknowledge: () => void
 }
 
@@ -11,8 +13,6 @@ function IdeasWindow({ onAcknowledge, ...windowProps }: IdeasWindowProps) {
   return (
     <Window
       title="Error"
-      defaultPosition={{ x: 560, y: 500 }}
-      className="w-[300px]"
       {...windowProps}
     >
       <div className="flex flex-col items-center gap-5 px-4 py-6">

@@ -10,8 +10,8 @@ export default async function verifyDesktop({ page, baseUrl, evidenceDir, expect
   await page.goto(`${baseUrl}/`, { waitUntil: "networkidle" })
   await page.screenshot({ path: join(evidenceDir, "desktop.png") })
 
-  const terminal = page.getByRole("region", { name: "Terminal.exe" })
-  expect("Terminal.exe window is on the desktop", (await terminal.count()) === 1)
+  const terminal = page.getByRole("region", { name: "install.bat" })
+  expect("install.bat window is on the desktop", (await terminal.count()) === 1)
   const titlebar = terminal.locator("[data-slot=window-titlebar]")
   const before = await terminal.boundingBox()
   const handle = await titlebar.boundingBox()

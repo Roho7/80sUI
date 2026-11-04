@@ -18,14 +18,16 @@ import {
 } from "lucide-react"
 import { useState } from "react"
 
-import { Window, type WindowProps } from "@/components/retro/window"
+import { Window } from "@/components/retro/window"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { DitherImage } from "@/components/ui/dither-image"
 import { Slider } from "@/components/ui/slider"
 import type { BayerMatrixSize } from "@/lib/dither/bayer"
 
-type PaintWindowProps = Pick<WindowProps, "isActive" | "onActivate" | "style">
+import type { DesktopWindowProps } from "./types"
+
+type PaintWindowProps = DesktopWindowProps
 
 const MENU_ITEMS = ["File", "Edit", "View", "Image", "Options", "Help"] as const
 
@@ -68,8 +70,6 @@ function PaintWindow(windowProps: PaintWindowProps) {
   return (
     <Window
       title="untitled - Paint"
-      defaultPosition={{ x: 500, y: 28 }}
-      className="w-[580px]"
       statusBar={<span>For Help, click Help Topics on the Help Menu.</span>}
       {...windowProps}
     >
@@ -97,7 +97,7 @@ function PaintWindow(windowProps: PaintWindowProps) {
             </Button>
           ))}
         </div>
-        <div className="flex-1 overflow-hidden pixel-border border-border bg-muted p-2">
+        <div className="min-w-0 flex-1 overflow-hidden pixel-border border-border bg-muted p-2">
           <DitherImage
             src="/eye1.png"
             alt="A dithered close-up of an eye"
