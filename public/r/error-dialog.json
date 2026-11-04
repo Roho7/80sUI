@@ -4,6 +4,7 @@
   "title": "Error dialog",
   "description": "Stackable error dialogs that cascade diagonally.",
   "registryDependencies": [
+    "@dither/theme",
     "@dither/button",
     "@dither/dialog",
     "@dither/pixel-glyphs"

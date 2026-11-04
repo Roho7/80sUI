@@ -6,6 +6,9 @@
   "dependencies": [
     "cn"
   ],
+  "registryDependencies": [
+    "@dither/theme"
+  ],
   "files": [
     {
       "path": "components/ui/pixel-glyphs.tsx",

@@ -7,6 +7,9 @@
     "cn",
     "radix-ui"
   ],
+  "registryDependencies": [
+    "@dither/theme"
+  ],
   "files": [
     {
       "path": "components/ui/slider.tsx",

@@ -8,6 +8,9 @@
     "class-variance-authority",
     "radix-ui"
   ],
+  "registryDependencies": [
+    "@dither/theme"
+  ],
   "files": [
     {
       "path": "components/ui/button.tsx",

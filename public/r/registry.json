@@ -295,6 +295,9 @@
           "path": "components/ui/pixel-glyphs.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
       ]
     },
     {
@@ -350,6 +353,9 @@
           "path": "components/ui/button.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
       ]
     },
     {
@@ -362,6 +368,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
+        "@dither/theme",
         "@dither/pixel-glyphs"
       ],
       "files": [
@@ -385,6 +392,9 @@
           "path": "components/ui/slider.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
       ]
     },
     {
@@ -401,6 +411,9 @@
           "path": "components/ui/progress.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
       ]
     },
     {
@@ -413,6 +426,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
+        "@dither/theme",
         "@dither/button",
         "@dither/pixel-glyphs"
       ],
@@ -450,6 +464,7 @@
       "title": "Error dialog",
       "description": "Stackable error dialogs that cascade diagonally.",
       "registryDependencies": [
+        "@dither/theme",
         "@dither/button",
         "@dither/dialog",
         "@dither/pixel-glyphs"

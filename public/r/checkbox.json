@@ -8,6 +8,7 @@
     "radix-ui"
   ],
   "registryDependencies": [
+    "@dither/theme",
     "@dither/pixel-glyphs"
   ],
   "files": [
