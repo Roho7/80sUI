@@ -1427,6 +1427,171 @@
       ]
     },
     {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu",
+      "description": "shadcn navigation-menu reskinned for dither-ui.",
+      "files": [
+        {
+          "path": "components/ui/navigation-menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/pixel-glyphs"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
+      ],
+      "meta": {
+        "sounds": [
+          "button.press",
+          "button.release"
+        ]
+      }
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "Input Otp",
+      "description": "shadcn input-otp reskinned for dither-ui.",
+      "files": [
+        {
+          "path": "components/ui/input-otp.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/pixel-glyphs"
+      ],
+      "dependencies": [
+        "cn",
+        "input-otp"
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "shadcn command reskinned for dither-ui.",
+      "files": [
+        {
+          "path": "components/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/dialog",
+        "@dither/pixel-glyphs"
+      ],
+      "dependencies": [
+        "cmdk",
+        "cn"
+      ],
+      "meta": {
+        "sounds": [
+          "menu.select"
+        ]
+      }
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "shadcn resizable reskinned for dither-ui.",
+      "files": [
+        {
+          "path": "components/ui/resizable.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ],
+      "dependencies": [
+        "cn",
+        "react-resizable-panels"
+      ],
+      "meta": {
+        "sounds": [
+          "slider.tick"
+        ]
+      }
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "shadcn sidebar reskinned for dither-ui.",
+      "files": [
+        {
+          "path": "components/ui/sidebar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "hooks/use-mobile.ts",
+          "type": "registry:hook"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/button",
+        "@dither/input",
+        "@dither/pixel-glyphs",
+        "@dither/separator",
+        "@dither/sheet",
+        "@dither/skeleton",
+        "@dither/tooltip"
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
+      ],
+      "meta": {
+        "sounds": [
+          "button.press",
+          "button.release",
+          "small-button.press",
+          "small-button.release"
+        ]
+      }
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "shadcn calendar reskinned for dither-ui.",
+      "files": [
+        {
+          "path": "components/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/button",
+        "@dither/pixel-glyphs"
+      ],
+      "dependencies": [
+        "cn",
+        "react-day-picker"
+      ],
+      "meta": {
+        "sounds": [
+          "button.press",
+          "button.release",
+          "small-button.press",
+          "small-button.release"
+        ]
+      }
+    },
+    {
       "name": "window",
       "type": "registry:block",
       "title": "Window",

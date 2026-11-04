@@ -6,7 +6,7 @@ What dither-ui has shipped and what is left. A box is ticked when the component 
 
 Every `registry:ui` component in shadcn's `radix-nova` style (64 as of November 2026). Each ships as a drop-in reskin: same file name, exports and variant names.
 
-43 of 64 done.
+49 of 64 done.
 
 - [x] accordion
 - [x] alert
@@ -19,7 +19,7 @@ Every `registry:ui` component in shadcn's `radix-nova` style (64 as of November 
 - [ ] bubble
 - [x] button
 - [x] button-group
-- [ ] calendar
+- [x] calendar
 - [x] card
 - [ ] carousel
 - [ ] chart
@@ -27,7 +27,7 @@ Every `registry:ui` component in shadcn's `radix-nova` style (64 as of November 
 - [ ] code-block
 - [x] collapsible
 - [ ] combobox
-- [ ] command
+- [x] command
 - [x] context-menu
 - [x] dialog
 - [ ] direction
@@ -39,7 +39,7 @@ Every `registry:ui` component in shadcn's `radix-nova` style (64 as of November 
 - [x] hover-card
 - [x] input
 - [x] input-group
-- [ ] input-otp
+- [x] input-otp
 - [x] item
 - [x] kbd
 - [x] label
@@ -48,18 +48,18 @@ Every `registry:ui` component in shadcn's `radix-nova` style (64 as of November 
 - [ ] message
 - [ ] message-scroller
 - [x] native-select
-- [ ] navigation-menu
+- [x] navigation-menu
 - [x] pagination
 - [x] popover
 - [x] progress
 - [ ] questionnaire
 - [x] radio-group
-- [ ] resizable
+- [x] resizable
 - [x] scroll-area
 - [x] select
 - [x] separator
 - [x] sheet
-- [ ] sidebar
+- [x] sidebar
 - [x] skeleton
 - [x] slider
 - [ ] sonner
