@@ -23,7 +23,7 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { DitherImage } from "@/components/ui/dither-image"
 import { Slider } from "@/components/ui/slider"
-import type { BayerMatrixSize } from "@/lib/eink"
+import type { BayerMatrixSize } from "@/lib/dither/bayer"
 
 type PaintWindowProps = Pick<WindowProps, "isActive" | "onActivate" | "style">
 

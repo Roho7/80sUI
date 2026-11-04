@@ -1,7 +1,2 @@
-export { ditherOnCpu } from "./ditherOnCpu"
-export type { DitherRequest, DitherSource } from "./ditherRenderer"
-export { observeTheme } from "./observeTheme"
-export { readInks, readPixel } from "./readTokens"
-export type { BayerMatrixSize, InkPalette } from "./types"
-export { useInkVersion } from "./useInkVersion"
+export { readPixel } from "./readTokens"
 export { type Point, type SteppedDrag, useSteppedDrag } from "./useSteppedDrag"

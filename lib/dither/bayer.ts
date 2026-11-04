@@ -1,4 +1,4 @@
-import type { BayerMatrixSize } from "./types"
+export type BayerMatrixSize = 4 | 8
 
 function readBayer2(x: number, y: number): number {
   const value = (Math.floor(x) * 0.5 + Math.floor(y) * Math.floor(y) * 0.75) % 1

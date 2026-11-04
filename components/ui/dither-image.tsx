@@ -3,13 +3,10 @@
 import { cn } from "cn"
 import * as React from "react"
 
-import {
-  type BayerMatrixSize,
-  ditherOnCpu,
-  type DitherRequest,
-  readInks,
-  useInkVersion,
-} from "@/lib/eink"
+import type { BayerMatrixSize } from "@/lib/dither/bayer"
+import { ditherOnCpu, type DitherRequest } from "@/lib/dither/ditherOnCpu"
+import { readInks } from "@/lib/dither/inks"
+import { useInkVersion } from "@/lib/dither/useInkVersion"
 
 type DitherImageProps = Omit<
   React.ComponentProps<"canvas">,

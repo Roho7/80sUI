@@ -260,60 +260,20 @@
       "name": "eink",
       "type": "registry:lib",
       "title": "E-ink engine",
-      "description": "Ordered Bayer dithering, ink reading and useSteppedDrag.",
+      "description": "useSteppedDrag and pixel token reading.",
       "registryDependencies": [
         "@dither/theme"
       ],
       "files": [
-        {
-          "path": "lib/eink/bayer.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/bayer.ts"
-        },
-        {
-          "path": "lib/eink/ditherOnCpu.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/ditherOnCpu.ts"
-        },
-        {
-          "path": "lib/eink/ditherRenderer.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/ditherRenderer.ts"
-        },
-        {
-          "path": "lib/eink/glProgram.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/glProgram.ts"
-        },
         {
           "path": "lib/eink/index.ts",
           "type": "registry:lib",
           "target": "@lib/eink/index.ts"
         },
         {
-          "path": "lib/eink/observeTheme.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/observeTheme.ts"
-        },
-        {
           "path": "lib/eink/readTokens.ts",
           "type": "registry:lib",
           "target": "@lib/eink/readTokens.ts"
-        },
-        {
-          "path": "lib/eink/shaders.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/shaders.ts"
-        },
-        {
-          "path": "lib/eink/types.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/types.ts"
-        },
-        {
-          "path": "lib/eink/useInkVersion.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/useInkVersion.ts"
         },
         {
           "path": "lib/eink/useSteppedDrag.ts",
@@ -345,14 +305,34 @@
       "dependencies": [
         "cn"
       ],
-      "registryDependencies": [
-        "@dither/eink"
-      ],
       "files": [
         {
           "path": "components/ui/dither-image.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "lib/dither/bayer.ts",
+          "type": "registry:lib",
+          "target": "@lib/dither/bayer.ts"
+        },
+        {
+          "path": "lib/dither/ditherOnCpu.ts",
+          "type": "registry:lib",
+          "target": "@lib/dither/ditherOnCpu.ts"
+        },
+        {
+          "path": "lib/dither/inks.ts",
+          "type": "registry:lib",
+          "target": "@lib/dither/inks.ts"
+        },
+        {
+          "path": "lib/dither/useInkVersion.ts",
+          "type": "registry:lib",
+          "target": "@lib/dither/useInkVersion.ts"
         }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
       ]
     },
     {

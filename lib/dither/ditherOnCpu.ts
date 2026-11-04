@@ -1,8 +1,29 @@
-import { readBayerThreshold } from "./bayer"
-import { type DitherRequest, readSeedOffset } from "./ditherRenderer"
-import type { InkPalette } from "./types"
+import { type BayerMatrixSize, readBayerThreshold } from "./bayer"
+import type { InkPalette } from "./inks"
+
+export type DitherRequest = {
+  source: CanvasImageSource
+  width: number
+  height: number
+  matrixSize: BayerMatrixSize
+  contrast: number
+  seed: number
+}
+
+const SEED_OFFSETS = [
+  [0, 0],
+  [1, 2],
+  [3, 1],
+  [2, 3],
+  [5, 6],
+  [7, 4],
+] as const
 
 let sampleCanvas: HTMLCanvasElement | null = null
+
+function readSeedOffset(seed: number): readonly [number, number] {
+  return SEED_OFFSETS[Math.abs(Math.floor(seed)) % SEED_OFFSETS.length]
+}
 
 function readSampleContext(width: number, height: number) {
   sampleCanvas ??= document.createElement("canvas")
