@@ -95,6 +95,15 @@ Sound is opt-in: components never import it. Installing `@nostalgui/sound` and r
 
 Each item's `registryDependencies` pull in what it needs, so `shadcn add @nostalgui/window` brings in everything below it.
 
+### Bases
+
+Every primitive wraps `radix-ui`, so NOSTALGUI supports Radix projects only. Consumers register `@nostalgui=https://<site>/r/{style}/{name}.json`; the CLI fills `{style}` from their `components.json`, the same way shadcn serves `/r/styles/{style}/{name}.json`.
+
+- `app/r/[style]/[file]/route.ts` redirects any `radix-*` (or legacy Radix) style to the single build in `public/r/<file>`.
+- A `base-*` style gets a 404 whose JSON `message` tells the user to init with `-b radix`. The CLI prints that message, so a Base UI project fails before any file is written instead of failing typecheck after.
+- To add Base UI later, build a second tree (for example `public/r/base-nova/`) from `@base-ui/react` sources and let the route serve it. Consumers keep the same registry URL.
+- Pure CSS, canvas and WebGL items (`dither-shine`, `cta-button`, `dither-image`, `sound`) import no primitive and already work on either base; the refusal is per URL, not per item.
+
 ## Showcase
 
 `/components` is a bento catalogue of every `registry:ui` and `registry:block` item, generated from `registry.json`.
