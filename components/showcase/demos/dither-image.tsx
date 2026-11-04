@@ -25,10 +25,10 @@ export const demo: ShowcaseDemo = {
     label,
     render: () => (
       <DitherImage
-        src="/eye.png"
+        src="/eye1.png"
         alt={`Eye dithered with ${label}`}
         width={224}
-        height={140}
+        height={220}
         className="mx-auto max-w-full"
         {...setting}
       />

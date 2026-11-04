@@ -99,10 +99,10 @@ function PaintWindow(windowProps: PaintWindowProps) {
         </div>
         <div className="flex-1 overflow-hidden pixel-border border-border bg-muted p-2">
           <DitherImage
-            src="/eye.png"
+            src="/eye1.png"
             alt="A dithered close-up of an eye"
             width={448}
-            height={280}
+            height={220}
             matrixSize={matrixSize}
             contrast={contrast}
             isAnimated={isAnimated}

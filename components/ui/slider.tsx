@@ -49,7 +49,7 @@ function Slider({
         <SliderPrimitive.Thumb
           data-slot="slider-thumb"
           key={index}
-          className="relative block h-6 w-3 shrink-0 pixel-border border-border bg-secondary bevel-raised select-none after:absolute after:-inset-2 disabled:pointer-events-none data-vertical:h-3 data-vertical:w-6"
+          className="relative block h-6 w-3 shrink-0 pixel-border offset-shadow-none border-border bg-secondary bevel-raised select-none after:absolute after:-inset-2 disabled:pointer-events-none data-vertical:h-3 data-vertical:w-6"
         />
       ))}
     </SliderPrimitive.Root>
