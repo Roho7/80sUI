@@ -33,6 +33,7 @@ import { demo as menubarDemo } from "./demos/menubar"
 import { demo as nativeSelectDemo } from "./demos/native-select"
 import { demo as navigationMenuDemo } from "./demos/navigation-menu"
 import { demo as paginationDemo } from "./demos/pagination"
+import { demo as plateDemo } from "./demos/plate"
 import { demo as popoverDemo } from "./demos/popover"
 import { demo as progressDemo } from "./demos/progress"
 import { demo as radioGroupDemo } from "./demos/radio-group"
@@ -183,6 +184,12 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
     title: "Badge",
     description: "shadcn badge as a pixel tag.",
     demo: badgeDemo,
+  },
+  {
+    name: "plate",
+    title: "Plate",
+    description: "A surface for text that would otherwise sit on the desktop: a raised panel, a sunken readout or a title-bar caption tag.",
+    demo: plateDemo,
   },
   {
     name: "alert",

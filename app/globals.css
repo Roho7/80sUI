@@ -69,6 +69,8 @@
     --titlebar-foreground: var(--ink-3);
     --bevel-hi: var(--ink-3);
     --bevel-lo: var(--ink-1);
+    --bevel-glint: var(--ink-4);
+    --bevel-shade: var(--ink-2);
     --keycap: var(--ink-1);
     --keycap-foreground: var(--ink-3);
     --keycap-wall-hi: var(--ink-2);
@@ -127,6 +129,8 @@
     --keycap-outline: var(--ink-0);
     --bevel-hi: var(--ink-2);
     --bevel-lo: var(--ink-0);
+    --bevel-glint: var(--ink-3);
+    --bevel-shade: var(--ink-3);
     --background: var(--desktop);
     --foreground: var(--ink-3);
     --card: var(--ink-0);
@@ -169,6 +173,10 @@
     --desktop: #3493be;
     --titlebar: var(--3);
     --titlebar-foreground: var(--ink-0);
+}
+
+[data-theme="cyan-pixel"]:not(.dark) {
+    --bevel-shade: var(--ink-4);
 }
 
 .dark[data-theme="cyan-pixel"] {

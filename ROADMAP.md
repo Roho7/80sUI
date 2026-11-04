@@ -85,6 +85,7 @@ Shipped components with no shadcn counterpart.
 - [x] terminal
 - [x] taskbar
 - [x] desktop-icon
+- [x] plate
 
 ## Special components
 

@@ -890,6 +890,26 @@
       ]
     },
     {
+      "name": "plate",
+      "type": "registry:ui",
+      "title": "Plate",
+      "description": "A surface for text that would otherwise sit on the desktop: a raised panel, a sunken readout or a title-bar caption tag.",
+      "dependencies": [
+        "cn",
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@nostalgui/theme"
+      ],
+      "files": [
+        {
+          "path": "components/ui/plate.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
