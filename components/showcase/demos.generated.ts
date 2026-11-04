@@ -39,7 +39,7 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
   {
     name: "dither-shine",
     title: "Dither shine",
-    description: "A two-color Bayer-dithered band that sweeps corner to corner at a stepped frame rate, with a pointer spotlight.",
+    description: "A two-color Bayer-dithered band that sweeps corner to corner at a stepped frame rate.",
     demo: ditherShineDemo,
   },
   {
@@ -51,7 +51,7 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
   {
     name: "cta-button",
     title: "CTA Button",
-    description: "Call-to-action button over a WebGL dither shine that sweeps at 10 fps and follows the pointer on hover.",
+    description: "Call-to-action button over a WebGL dither shine that sweeps at 10 fps, with a stepped pixel tilt toward the pointer on hover.",
     demo: ctaButtonDemo,
   },
   {

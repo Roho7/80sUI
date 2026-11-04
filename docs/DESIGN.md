@@ -63,7 +63,7 @@ Where we differ from Paper:
 1. **Stepped time.** The mount draws only when a 1/`fps` step elapses (default 10 fps), advancing shader time by `speed / fps` per step. With `speed` 0 there is no `requestAnimationFrame`; a uniform, color or frame change schedules one draw on the next wall-clock step boundary. A resize draws immediately because it clears the canvas.
 2. **Theme colors.** Color params take a custom property name such as `"--primary"` or a literal color. The mount resolves them from the parent's computed style through the `lib/dither/inks.ts` probe into `vec4`s and re-resolves when `<html>` changes `class`, `data-theme` or `style`.
 3. **Pixel grid.** `u_pxSize` is the `--pixel` token in device pixels. Shaders compute their grid from `gl_FragCoord` measured from the top-left, so dither cells line up with every border.
-4. **Pointer.** Pointer position and hover are ordinary uniforms. `CtaButton` writes them through the mount's `setUniforms`, never React state, so they show on the next stepped frame and pointer moves never draw off the step cadence.
+4. **Hover is DOM, not shader.** `CtaButton` keeps the shine pointer-free. Hover is a pixel tilt in CSS: the pointer is quantized to 5 levels per axis and written as `--tilt-x` / `--tilt-y` on the button once per 1/`fps` step, which shifts the face up to 2 `--pixel`s and resizes the offset shadow on that side.
 
 ## Registry
 

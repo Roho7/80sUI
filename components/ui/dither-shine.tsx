@@ -25,23 +25,16 @@ const DitherShine = React.memo(function DitherShine({
   bandWidth = defaultPreset.params.bandWidth,
   sweepDuration = defaultPreset.params.sweepDuration,
   pauseDuration = defaultPreset.params.pauseDuration,
-  spotlightRadius = defaultPreset.params.spotlightRadius,
-  pointer = defaultPreset.params.pointer,
-  hover = defaultPreset.params.hover,
   ...props
 }: DitherShineProps) {
-  const [pointerX, pointerY] = pointer
   const uniforms = React.useMemo<DitherShineUniforms>(
     () => ({
       u_type: DitherShineTypes[type],
       u_bandWidth: bandWidth,
       u_sweepDuration: sweepDuration,
       u_pauseDuration: pauseDuration,
-      u_spotlightRadius: spotlightRadius,
-      u_pointer: [pointerX, pointerY],
-      u_hover: hover,
     }),
-    [type, bandWidth, sweepDuration, pauseDuration, spotlightRadius, pointerX, pointerY, hover]
+    [type, bandWidth, sweepDuration, pauseDuration]
   )
   const colors = React.useMemo<DitherShineColors>(
     () => ({ u_colorBack: colorBack, u_colorFront: colorFront }),

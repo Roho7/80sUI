@@ -12,9 +12,6 @@ uniform float u_type;
 uniform float u_bandWidth;
 uniform float u_sweepDuration;
 uniform float u_pauseDuration;
-uniform float u_spotlightRadius;
-uniform vec2 u_pointer;
-uniform float u_hover;
 
 out vec4 fragColor;
 
@@ -55,13 +52,6 @@ void main() {
   float center = mix(-0.5 * bandWidth, 1.0 + 1.125 * bandWidth, progress);
   float intensity = readBandProfile((diagonal - center) / bandWidth);
 
-  vec2 cellCenter = (cell + 0.5) * u_pxSize;
-  vec2 pointer = u_pointer * u_resolution;
-  float radius = max(u_spotlightRadius * min(u_resolution.x, u_resolution.y), 1.0);
-  float falloff = clamp(1.0 - length(cellCenter - pointer) / radius, 0.0, 1.0);
-  float spotlight = u_hover * falloff * falloff;
-  intensity = clamp(intensity + spotlight, 0.0, 1.0);
-
   vec4 color = intensity > readBayer(cell, u_type) ? u_colorFront : u_colorBack;
   fragColor = vec4(color.rgb * color.a, color.a);
 }
@@ -80,9 +70,6 @@ export type DitherShineUniforms = {
   u_bandWidth: number
   u_sweepDuration: number
   u_pauseDuration: number
-  u_spotlightRadius: number
-  u_pointer: readonly [number, number]
-  u_hover: number
 }
 
 export type DitherShineColors = {
@@ -97,9 +84,6 @@ export type DitherShineParams = Required<ShaderMotionParams> & {
   bandWidth: number
   sweepDuration: number
   pauseDuration: number
-  spotlightRadius: number
-  pointer: readonly [number, number]
-  hover: number
 }
 
 export const defaultPreset: ShaderPreset<DitherShineParams> = {
@@ -114,9 +98,6 @@ export const defaultPreset: ShaderPreset<DitherShineParams> = {
     bandWidth: 0.35,
     sweepDuration: 1.2,
     pauseDuration: 1.2,
-    spotlightRadius: 1,
-    pointer: [0.5, 0.5],
-    hover: 0,
   },
 }
 
