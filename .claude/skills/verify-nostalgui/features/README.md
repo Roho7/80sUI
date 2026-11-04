@@ -1,17 +1,17 @@
-# dither-ui verification map
+# NOSTALGUI verification map
 
-This directory is the maintained source for verifying the user-facing behavior of dither-ui. Read the index before driving the app, then use the matching feature file as the recipe. Journeys that need more than the audit live in `journeys/<name>.mjs` and run with `dither.mjs journey <name>`.
+This directory is the maintained source for verifying the user-facing behavior of NOSTALGUI. Read the index before driving the app, then use the matching feature file as the recipe. Journeys that need more than the audit live in `journeys/<name>.mjs` and run with `dither.mjs journey <name>`.
 
 ## Baseline preconditions
 
-- `node .claude/skills/verify-dither-ui/dither.mjs doctor` reports `doctor: healthy` against `http://localhost:3000`.
+- `node .claude/skills/verify-nostalgui/dither.mjs doctor` reports `doctor: healthy` against `http://localhost:3000`.
 - The dev server runs from this repo. Reuse the user's `next dev` when it is there; never start a second one in the same checkout.
 - There is no database, auth or seed data. State lives in the browser only (theme, palette).
 
 ## Driving conventions
 
 - Drive through `dither.mjs` (`audit`, `shot`, `journey`). It launches headless Google Chrome through `playwright-core`.
-- Prefer ARIA roles and accessible names (`button "Cyan pixel"`, `checkbox "Dark mode"`, `region "Terminal.exe"`, `menuitem "About dither-ui"`) and `data-slot` attributes over CSS classes or positions.
+- Prefer ARIA roles and accessible names (`button "Cyan pixel"`, `checkbox "Dark mode"`, `region "Terminal.exe"`, `menuitem "About NOSTALGUI"`) and `data-slot` attributes over CSS classes or positions.
 - Catalogue cards are `article#<registry-item-name>`; variant cells are `figure` elements inside them.
 - Change themes through the controls (`applyTheme`), never by writing `data-theme` yourself.
 

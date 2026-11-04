@@ -44,7 +44,7 @@ export const demo: ShowcaseDemo = {
       label: "bare",
       render: () => (
         <Window title="About" className="w-full">
-          <p className="p-3 text-xl">dither-ui v0.0.1</p>
+          <p className="p-3 text-xl">NOSTALGUI v0.0.1</p>
         </Window>
       ),
     },

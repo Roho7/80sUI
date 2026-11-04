@@ -19,6 +19,8 @@ const GLYPH_PATHS = {
     "M0 2h2v1H0zM5 2h2v1H5zM1 3h2v1H1zM4 3h2v1H4zM2 4h3v1H2zM3 5h1v1H3z",
   arrow: "M0 2h7v1H0zM1 3h5v1H1zM2 4h3v1H2zM3 5h1v1H3z",
   dot: "M2 1h3v1H2zM1 2h5v3H1zM2 5h3v1H2z",
+  search: "M1 0h3v1H1zM0 1h1v3H0zM4 1h1v3H4zM1 4h3v1H1zM4 4h1v1H4zM5 5h1v1H5zM6 6h1v1H6z",
+  panel: "M0 0h7v1H0zM0 1h1v5H0zM2 1h1v5H2zM6 1h1v5H6zM0 6h7v1H0z",
 } as const
 
 const RADIO_PATHS = {
@@ -81,6 +83,14 @@ function ArrowGlyph({ direction = "down", ...props }: DirectionalGlyphProps) {
 
 function DotGlyph(props: GlyphProps) {
   return renderGlyph(GLYPH_PATHS.dot, props)
+}
+
+function SearchGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.search, props)
+}
+
+function PanelGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.panel, props)
 }
 
 function RadioRingGlyph({ className, ...props }: GlyphProps) {
@@ -192,7 +202,9 @@ export {
   FolderGlyph,
   type GlyphDirection,
   MinusGlyph,
+  PanelGlyph,
   RadioDotGlyph,
   RadioRingGlyph,
+  SearchGlyph,
   TerminalGlyph,
 }

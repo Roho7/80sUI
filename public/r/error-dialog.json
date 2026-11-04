@@ -4,10 +4,10 @@
   "title": "Error dialog",
   "description": "Stackable error dialogs that cascade diagonally.",
   "registryDependencies": [
-    "@dither/theme",
-    "@dither/button",
-    "@dither/dialog",
-    "@dither/pixel-glyphs"
+    "@nostalgui/theme",
+    "@nostalgui/button",
+    "@nostalgui/dialog",
+    "@nostalgui/pixel-glyphs"
   ],
   "files": [
     {

@@ -8,9 +8,9 @@
     "radix-ui"
   ],
   "registryDependencies": [
-    "@dither/theme",
-    "@dither/button",
-    "@dither/pixel-glyphs"
+    "@nostalgui/theme",
+    "@nostalgui/button",
+    "@nostalgui/pixel-glyphs"
   ],
   "files": [
     {

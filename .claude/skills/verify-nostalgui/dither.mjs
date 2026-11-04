@@ -12,12 +12,15 @@ const PID_FILE = join(STATE_DIR, "dev.pid")
 const LOG_FILE = join(STATE_DIR, "dev.log")
 const PORT = Number(process.env.DITHER_PORT ?? 3000)
 const BASE_URL = `http://localhost:${PORT}`
-const THEMES = [
-  { name: "phosphor-light", palette: "Phosphor", isDark: false },
-  { name: "phosphor-dark", palette: "Phosphor", isDark: true },
-  { name: "cyan-pixel-light", palette: "Cyan pixel", isDark: false },
-  { name: "cyan-pixel-dark", palette: "Cyan pixel", isDark: true },
+const PALETTES = [
+  { slug: "phosphor", label: "Phosphor" },
+  { slug: "cyan-pixel", label: "Cyan pixel" },
+  { slug: "retro-candy", label: "Retro Candy" },
 ]
+const THEMES = PALETTES.flatMap(({ slug, label }) => [
+  { name: `${slug}-light`, slug, palette: label, isDark: false },
+  { name: `${slug}-dark`, slug, palette: label, isDark: true },
+])
 const ROUTES = [
   { path: "/components", minWidth: 0 },
   { path: "/", minWidth: 1280 },
@@ -52,7 +55,7 @@ async function runDoctor() {
   const checks = [
     { name: `port ${PORT} is listening`, isOk: owner !== null, detail: owner ? `pid ${owner.pid}` : "nothing listening; run up" },
     { name: "port owner runs from this repo", isOk: owner !== null && owner.cwd === ROOT, detail: owner?.cwd ?? "" },
-    { name: "/components renders the catalogue", isOk: components.status === 200 && components.body.includes("Components / dither-ui") && components.body.includes('id="button"'), detail: `HTTP ${components.status}` },
+    { name: "/components renders the catalogue", isOk: components.status === 200 && components.body.includes("Components / NOSTALGUI") && components.body.includes('id="button"'), detail: `HTTP ${components.status}` },
     { name: "registry serves /r/button.json", isOk: registryItem.status === 200 && registryItem.body.includes('"name": "button"'), detail: `HTTP ${registryItem.status}` },
     { name: "Google Chrome is installed", isOk: existsSync("/Applications/Google Chrome.app"), detail: "playwright-core drives the installed Chrome" },
   ]
@@ -152,7 +155,7 @@ async function applyTheme(page, theme) {
   await page.waitForFunction(
     ({ palette, isDark }) =>
       document.documentElement.dataset.theme === palette && document.documentElement.classList.contains("dark") === isDark,
-    { palette: theme.palette === "Phosphor" ? "phosphor" : "cyan-pixel", isDark: theme.isDark }
+    { palette: theme.slug, isDark: theme.isDark }
   )
   await page.waitForTimeout(400)
 }
@@ -165,7 +168,7 @@ function auditPage() {
     probe.style.color = value
     return getComputedStyle(probe).color
   }
-  const allowed = new Set(["--ink-0", "--ink-1", "--ink-2", "--ink-3", "--desktop"].map((token) => readColor(`var(${token})`)))
+  const allowed = new Set(["--ink-0", "--ink-1", "--ink-2", "--ink-3", "--ink-4", "--muted", "--desktop"].map((token) => readColor(`var(${token})`)))
   probe.remove()
   const isTransparent = (color) => color === "transparent" || /rgba\([^)]*,\s*0\)$/.test(color)
   const isAllowed = (color) => isTransparent(color) || allowed.has(color.replace(/rgba\((\d+), (\d+), (\d+), 1\)/, "rgb($1, $2, $3)"))
@@ -381,7 +384,7 @@ const COMMANDS = {
   journey: () => runJourney(args[0]),
 }
 if (!(command in COMMANDS)) {
-  console.log("usage: dither.mjs doctor | up | down | check | audit [widths...] | shot <item> [phosphor-light|phosphor-dark|cyan-pixel-light|cyan-pixel-dark] | journey <name>")
+  console.log(`usage: dither.mjs doctor | up | down | check | audit [widths...] | shot <item> [${THEMES.map((theme) => theme.name).join("|")}] | journey <name>`)
   process.exit(command ? 1 : 0)
 }
 const isOk = await COMMANDS[command]()

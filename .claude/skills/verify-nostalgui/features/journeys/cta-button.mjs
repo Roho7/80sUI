@@ -11,7 +11,7 @@ export default async function verifyCtaButton({ page, baseUrl, evidenceDir, expe
   await page.goto(`${baseUrl}/components`, { waitUntil: "networkidle" })
   const card = page.locator("article#cta-button")
   await card.scrollIntoViewIfNeeded()
-  const button = card.getByRole("button", { name: "Install dither-ui" })
+  const button = card.getByRole("button", { name: "Get NOSTALGUI" })
   const box = await button.boundingBox()
   expect("hero keycap renders", box !== null)
 

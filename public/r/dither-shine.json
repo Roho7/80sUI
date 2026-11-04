@@ -4,8 +4,8 @@
   "title": "Dither shine",
   "description": "A two-color Bayer-dithered band that sweeps corner to corner at a stepped frame rate.",
   "registryDependencies": [
-    "@dither/theme",
-    "@dither/shader-mount"
+    "@nostalgui/theme",
+    "@nostalgui/shader-mount"
   ],
   "files": [
     {

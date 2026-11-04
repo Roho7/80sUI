@@ -7,9 +7,11 @@ import { demo as badgeDemo } from "./demos/badge"
 import { demo as breadcrumbDemo } from "./demos/breadcrumb"
 import { demo as buttonDemo } from "./demos/button"
 import { demo as buttonGroupDemo } from "./demos/button-group"
+import { demo as calendarDemo } from "./demos/calendar"
 import { demo as cardDemo } from "./demos/card"
 import { demo as checkboxDemo } from "./demos/checkbox"
 import { demo as collapsibleDemo } from "./demos/collapsible"
+import { demo as commandDemo } from "./demos/command"
 import { demo as contextMenuDemo } from "./demos/context-menu"
 import { demo as ctaButtonDemo } from "./demos/cta-button"
 import { demo as desktopIconDemo } from "./demos/desktop-icon"
@@ -23,19 +25,23 @@ import { demo as fieldDemo } from "./demos/field"
 import { demo as hoverCardDemo } from "./demos/hover-card"
 import { demo as inputDemo } from "./demos/input"
 import { demo as inputGroupDemo } from "./demos/input-group"
+import { demo as inputOtpDemo } from "./demos/input-otp"
 import { demo as itemDemo } from "./demos/item"
 import { demo as kbdDemo } from "./demos/kbd"
 import { demo as labelDemo } from "./demos/label"
 import { demo as menubarDemo } from "./demos/menubar"
 import { demo as nativeSelectDemo } from "./demos/native-select"
+import { demo as navigationMenuDemo } from "./demos/navigation-menu"
 import { demo as paginationDemo } from "./demos/pagination"
 import { demo as popoverDemo } from "./demos/popover"
 import { demo as progressDemo } from "./demos/progress"
 import { demo as radioGroupDemo } from "./demos/radio-group"
+import { demo as resizableDemo } from "./demos/resizable"
 import { demo as scrollAreaDemo } from "./demos/scroll-area"
 import { demo as selectDemo } from "./demos/select"
 import { demo as separatorDemo } from "./demos/separator"
 import { demo as sheetDemo } from "./demos/sheet"
+import { demo as sidebarDemo } from "./demos/sidebar"
 import { demo as skeletonDemo } from "./demos/skeleton"
 import { demo as sliderDemo } from "./demos/slider"
 import { demo as spinnerDemo } from "./demos/spinner"
@@ -283,7 +289,7 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
   {
     name: "pagination",
     title: "Pagination",
-    description: "Page links built from dither-ui buttons with pixel arrows.",
+    description: "Page links built from NOSTALGUI buttons with pixel arrows.",
     demo: paginationDemo,
   },
   {
@@ -327,6 +333,42 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
     title: "Input Group",
     description: "Input or textarea with pixel addons and buttons inside one sunken field.",
     demo: inputGroupDemo,
+  },
+  {
+    name: "navigation-menu",
+    title: "Navigation Menu",
+    description: "shadcn navigation-menu reskinned for NOSTALGUI.",
+    demo: navigationMenuDemo,
+  },
+  {
+    name: "input-otp",
+    title: "Input Otp",
+    description: "shadcn input-otp reskinned for NOSTALGUI.",
+    demo: inputOtpDemo,
+  },
+  {
+    name: "command",
+    title: "Command",
+    description: "shadcn command reskinned for NOSTALGUI.",
+    demo: commandDemo,
+  },
+  {
+    name: "resizable",
+    title: "Resizable",
+    description: "shadcn resizable reskinned for NOSTALGUI.",
+    demo: resizableDemo,
+  },
+  {
+    name: "sidebar",
+    title: "Sidebar",
+    description: "shadcn sidebar reskinned for NOSTALGUI.",
+    demo: sidebarDemo,
+  },
+  {
+    name: "calendar",
+    title: "Calendar",
+    description: "shadcn calendar reskinned for NOSTALGUI.",
+    demo: calendarDemo,
   },
   {
     name: "window",

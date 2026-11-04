@@ -251,7 +251,7 @@ export function SoundLab() {
       }}
     >
       <header className="flex flex-col gap-4">
-        <p className="font-pixel text-[16px] uppercase">dither-ui / throwaway</p>
+        <p className="font-pixel text-[16px] uppercase">NOSTALGUI / throwaway</p>
         <h1 className="font-pixel text-[32px] leading-none uppercase md:text-[48px]">Sound lab</h1>
         <p className="max-w-3xl text-xl leading-tight">
           Every sound here is synthesized from sine, square and noise into a buffer on press: no audio files. The first press anywhere starts the AudioContext,

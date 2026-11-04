@@ -11,7 +11,7 @@ type InstallCommandProps = {
 }
 
 function InstallCommand({ name }: InstallCommandProps) {
-  const command = `npx shadcn add @dither/${name}`
+  const command = `npx shadcn add @nostalgui/${name}`
   const [isCopied, setIsCopied] = useState(false)
 
   useEffect(() => {

@@ -10,7 +10,7 @@ import {
 
 export type SoundPlayOptions = { when?: number; rate?: number }
 
-const ENABLED_KEY = "dither-ui:sound-enabled"
+const ENABLED_KEY = "nostalgui:sound-enabled"
 const VARIANTS = 6
 const MAX_VOICES = 12
 const DEFAULT_VOLUME = 0.6
@@ -322,7 +322,7 @@ export class SoundEngine {
       return
     }
     this.warned.add(key)
-    console.warn(`dither-ui sound "${key}" is not in sounds.json. Run: node scripts/dither-sounds.mjs sync`)
+    console.warn(`NOSTALGUI sound "${key}" is not in sounds.json. Run: node scripts/dither-sounds.mjs sync`)
   }
 
   private refresh() {

@@ -25,9 +25,13 @@ export const soundSlots: Record<string, SlotRule> = {
   "context-menu-item": { key: fixed("menu"), gesture: "menu" },
   "context-menu-checkbox-item": { key: fixed("menu"), gesture: "menu" },
   "context-menu-radio-item": { key: fixed("menu"), gesture: "menu" },
+  "command-item": { key: fixed("menu"), gesture: "menu" },
   toggle: { key: fixed("toggle"), gesture: "toggle" },
   "toggle-group-item": { key: fixed("toggle"), gesture: (element) => (element.getAttribute("role") === "radio" ? "select" : "toggle") },
   slider: { key: fixed("slider"), gesture: "steps" },
+  "resizable-handle": { key: fixed("slider"), gesture: "steps" },
+  "sidebar-menu-button": { key: (element) => (element.getAttribute("data-size") === "sm" ? "small-button" : "button"), gesture: "press" },
+  "sidebar-menu-sub-button": { key: fixed("small-button"), gesture: "press" },
   window: { key: fixed("drag"), gesture: "drag" },
 }
 

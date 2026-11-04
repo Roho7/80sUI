@@ -9,8 +9,8 @@
     "radix-ui"
   ],
   "registryDependencies": [
-    "@dither/theme",
-    "@dither/separator"
+    "@nostalgui/theme",
+    "@nostalgui/separator"
   ],
   "files": [
     {
