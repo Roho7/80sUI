@@ -275,6 +275,22 @@
       ]
     },
     {
+      "name": "dither-inks",
+      "type": "registry:lib",
+      "title": "Dither inks",
+      "description": "Reads theme colors through a canvas probe and observes <html> for theme changes.",
+      "files": [
+        {
+          "path": "lib/dither/inks.ts",
+          "type": "registry:lib",
+          "target": "@lib/dither/inks.ts"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme"
+      ]
+    },
+    {
       "name": "dither-image",
       "type": "registry:ui",
       "title": "Dither image",
@@ -298,18 +314,60 @@
           "target": "@lib/dither/ditherOnCpu.ts"
         },
         {
-          "path": "lib/dither/inks.ts",
-          "type": "registry:lib",
-          "target": "@lib/dither/inks.ts"
-        },
-        {
           "path": "lib/dither/useInkVersion.ts",
           "type": "registry:lib",
           "target": "@lib/dither/useInkVersion.ts"
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@dither/theme",
+        "@dither/dither-inks"
+      ]
+    },
+    {
+      "name": "shader-mount",
+      "type": "registry:lib",
+      "title": "Shader mount",
+      "description": "WebGL2 mount for fragment shaders with stepped time, theme color uniforms and the --pixel grid, plus its React wrapper.",
+      "files": [
+        {
+          "path": "lib/shaders/types.ts",
+          "type": "registry:lib",
+          "target": "@lib/shaders/types.ts"
+        },
+        {
+          "path": "lib/shaders/shader-mount.ts",
+          "type": "registry:lib",
+          "target": "@lib/shaders/shader-mount.ts"
+        },
+        {
+          "path": "components/ui/shader-mount.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/dither-inks"
+      ]
+    },
+    {
+      "name": "dither-shine",
+      "type": "registry:ui",
+      "title": "Dither shine",
+      "description": "A two-color Bayer-dithered band that sweeps corner to corner at a stepped frame rate, with a pointer spotlight.",
+      "files": [
+        {
+          "path": "lib/shaders/dither-shine.ts",
+          "type": "registry:lib",
+          "target": "@lib/shaders/dither-shine.ts"
+        },
+        {
+          "path": "components/ui/dither-shine.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@dither/theme",
+        "@dither/shader-mount"
       ]
     },
     {
@@ -336,7 +394,7 @@
       "name": "cta-button",
       "type": "registry:ui",
       "title": "CTA Button",
-      "description": "Call-to-action button with a dithered shine that sweeps across at a low frame rate.",
+      "description": "Call-to-action button over a WebGL dither shine that sweeps at 10 fps and follows the pointer on hover.",
       "dependencies": [
         "cn",
         "class-variance-authority",
@@ -344,7 +402,7 @@
       ],
       "registryDependencies": [
         "@dither/theme",
-        "@dither/button"
+        "@dither/dither-shine"
       ],
       "files": [
         {

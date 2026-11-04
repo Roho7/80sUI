@@ -1,0 +1,14 @@
+dither-ui
+
+The ShaderMount class and the one-module-per-shader layout in lib/shaders
+(fragment shader string, uniform and param types, enum maps and presets,
+plus a thin React mount and one memo component per shader) follow the
+pattern of Paper Shaders.
+
+Paper Shaders
+https://github.com/paper-design/shaders
+Copyright Paper Design
+Licensed under the Apache License, Version 2.0
+http://www.apache.org/licenses/LICENSE-2.0
+
+No Paper Shaders source code is included. The pattern is reimplemented here.

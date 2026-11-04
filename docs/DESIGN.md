@@ -5,7 +5,7 @@ A shadcn registry of retro, 1-bit, Win95-flavoured components. Web only. Install
 ## Decisions
 
 1. **Fixed structure, swappable palettes.** Every theme shares the same window chrome, 1-bit borders, pixel + mono fonts and dithered fills. Themes change colors only.
-2. **DOM only, no effects layer.** Components are real shadcn + Radix + Tailwind with no provider, overlay canvas or refresh animation. Dithering is CPU ordered Bayer: `DitherImage` quantizes to the inks in `lib/dither` and re-renders when the theme's inks change.
+2. **DOM only, except opt-in WebGL shader components.** Components are real shadcn + Radix + Tailwind with no provider, overlay canvas or refresh animation. Dithering is CPU ordered Bayer: `DitherImage` quantizes to the inks in `lib/dither` and re-renders when the theme's inks change. The exception is opt-in shader components such as `dither-shine`: each owns its own WebGL2 canvas. `cta-button` uses one over a solid CSS fill, which is all that shows under SSR, without WebGL, when disabled or with reduced motion.
 3. **Two layers.**
    - Layer 1 primitives are drop-in reskins of shadcn: same file names, exports and variant names.
    - Layer 2 compositions (`window`, `error-dialog`, ...) import only Layer 1, their own hooks and the tokens.
@@ -41,13 +41,41 @@ Shades between inks are dither, never a fifth color: `dither-25`, `dither-50`, `
 - **`DitherImage`.** Draws the source into a small canvas, applies ordered Bayer (4x4 or 8x8) thresholds on the CPU, quantizes to the four inks and puts the result on its own canvas. A `MutationObserver` on `<html>` `class`, `data-theme` and `style` re-renders it when the inks change. `isAnimated` reseeds the matrix offset at 12 fps.
 - **`Window`.** With `defaultPosition` it is absolutely positioned and its title bar drags it with `useWindowDrag`, snapped to `--pixel`. Without one it renders in flow and does not drag.
 
+## Shaders
+
+Shader components follow the structure of [Paper Shaders](https://github.com/paper-design/shaders) (Apache-2.0, credited in `NOTICE`). We copy the pattern, not the code or the package.
+
+```ts
+type ShaderMotionParams = { speed?: number; frame?: number; fps?: number }
+type ShaderColorParam = string
+type ShaderUniformValue = number | boolean | readonly number[]
+type ShaderMountUniforms = Record<string, ShaderUniformValue>
+type ShaderMountColors = Record<string, ShaderColorParam>
+type ShaderPreset<Params> = { name: string; params: Params }
+```
+
+- **`ShaderMount`** (`lib/shaders/shader-mount.ts`) is framework-agnostic. `ShaderMount.create(parent, fragmentShader, uniforms, colors, motion)` returns `null` instead of throwing when WebGL2 or the program is unavailable. Each mount owns one canvas and one WebGL2 context, draws a fullscreen triangle from `gl_VertexID`, sizes the canvas to the parent in device pixels with a `ResizeObserver`, and pauses on an `IntersectionObserver` and `document.hidden`. `setUniforms`, `setColors`, `setSpeed`, `setFps`, `setFrame` and `dispose`. Uniform writes are diffed. Built-in uniforms are `u_time` (seconds), `u_resolution`, `u_pixelRatio` and `u_pxSize`.
+- **One module per shader** in `lib/shaders/<name>.ts` exports `<name>FragmentShader`, `<Name>Uniforms` (GPU side), `<Name>Colors`, `<Name>Params` (user side), enum maps such as `DitherShineTypes`, `defaultPreset` and `<name>Presets`.
+- **React** has a thin `components/ui/shader-mount.tsx` that creates the mount in an effect and pushes only the uniforms and colors whose props changed, and one `memo` component per shader that maps params to uniforms with defaults from `defaultPreset`. `onMountChange` hands the vanilla mount to a parent that drives uniforms imperatively.
+
+Where we differ from Paper:
+
+1. **Stepped time.** The mount draws only when a 1/`fps` step elapses (default 10 fps), advancing shader time by `speed / fps` per step. With `speed` 0 there is no `requestAnimationFrame`; a uniform, color or frame change schedules one draw on the next wall-clock step boundary. A resize draws immediately because it clears the canvas.
+2. **Theme colors.** Color params take a custom property name such as `"--primary"` or a literal color. The mount resolves them from the parent's computed style through the `lib/dither/inks.ts` probe into `vec4`s and re-resolves when `<html>` changes `class`, `data-theme` or `style`.
+3. **Pixel grid.** `u_pxSize` is the `--pixel` token in device pixels. Shaders compute their grid from `gl_FragCoord` measured from the top-left, so dither cells line up with every border.
+4. **Pointer.** Pointer position and hover are ordinary uniforms. `CtaButton` writes them through the mount's `setUniforms`, never React state, so they show on the next stepped frame and pointer moves never draw off the step cadence.
+
 ## Registry
 
 | Item | Type | Contents |
 |---|---|---|
 | `theme` | `registry:style` | Tokens, both themes, fonts, dither utilities |
 | `pixel-glyphs` | `registry:lib` | Check, minus, close, chevron, arrow, dot, radio and error glyphs plus 16x16 folder, document and terminal icons |
-| `dither-image` | `registry:ui` | Image dithering component plus `lib/dither` |
+| `dither-inks` | `registry:lib` | `lib/dither/inks.ts`: the color probe and the theme observer |
+| `dither-image` | `registry:ui` | Image dithering component plus the rest of `lib/dither` |
+| `shader-mount` | `registry:lib` | `lib/shaders/types.ts`, `lib/shaders/shader-mount.ts` and `components/ui/shader-mount.tsx` |
+| `dither-shine` | `registry:ui` | `lib/shaders/dither-shine.ts` and its `DitherShine` component |
+| `cta-button` | `registry:ui` | Call-to-action button over `dither-shine` |
 | `button`, `checkbox`, `slider`, `progress`, `dialog`, `input`, `textarea`, `label`, `radio-group`, `switch`, `select`, `tabs`, `tooltip`, `dropdown-menu`, `menubar`, `scroll-area`, `separator`, `badge`, `alert`, `card`, `accordion` | `registry:ui` | Layer 1 primitives |
 | `window`, `error-dialog`, `terminal`, `taskbar`, `desktop-icon` | `registry:block` | Layer 2 compositions. `window` ships `hooks/use-window-drag.ts` |
 

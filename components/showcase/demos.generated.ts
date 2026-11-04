@@ -8,6 +8,7 @@ import { demo as ctaButtonDemo } from "./demos/cta-button"
 import { demo as desktopIconDemo } from "./demos/desktop-icon"
 import { demo as dialogDemo } from "./demos/dialog"
 import { demo as ditherImageDemo } from "./demos/dither-image"
+import { demo as ditherShineDemo } from "./demos/dither-shine"
 import { demo as dropdownMenuDemo } from "./demos/dropdown-menu"
 import { demo as errorDialogDemo } from "./demos/error-dialog"
 import { demo as inputDemo } from "./demos/input"
@@ -36,6 +37,12 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
     demo: ditherImageDemo,
   },
   {
+    name: "dither-shine",
+    title: "Dither shine",
+    description: "A two-color Bayer-dithered band that sweeps corner to corner at a stepped frame rate, with a pointer spotlight.",
+    demo: ditherShineDemo,
+  },
+  {
     name: "button",
     title: "Button",
     description: "shadcn button reskinned with pixel borders and offset shadows.",
@@ -44,7 +51,7 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
   {
     name: "cta-button",
     title: "CTA Button",
-    description: "Call-to-action button with a dithered shine that sweeps across at a low frame rate.",
+    description: "Call-to-action button over a WebGL dither shine that sweeps at 10 fps and follows the pointer on hover.",
     demo: ctaButtonDemo,
   },
   {

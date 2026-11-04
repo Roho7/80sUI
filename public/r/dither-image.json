@@ -7,7 +7,8 @@
     "cn"
   ],
   "registryDependencies": [
-    "@dither/theme"
+    "@dither/theme",
+    "@dither/dither-inks"
   ],
   "files": [
     {
@@ -28,14 +29,8 @@
       "target": "@lib/dither/ditherOnCpu.ts"
     },
     {
-      "path": "lib/dither/inks.ts",
-      "content": "export type Rgb = readonly [number, number, number]\n\nexport type InkPalette = readonly [Rgb, Rgb, Rgb, Rgb]\n\nconst INK_TOKENS = [\"--ink-0\", \"--ink-1\", \"--ink-2\", \"--ink-3\"] as const\n\nlet colorProbe: CanvasRenderingContext2D | null = null\n\nfunction readColorProbe(): CanvasRenderingContext2D | null {\n  if (colorProbe) {\n    return colorProbe\n  }\n  const canvas = document.createElement(\"canvas\")\n  canvas.width = 1\n  canvas.height = 1\n  colorProbe = canvas.getContext(\"2d\", { willReadFrequently: true })\n  return colorProbe\n}\n\nfunction parseCssColor(value: string): Rgb {\n  const probe = readColorProbe()\n  if (!probe || value === \"\") {\n    return [0, 0, 0]\n  }\n  probe.clearRect(0, 0, 1, 1)\n  probe.fillStyle = \"#000000\"\n  probe.fillStyle = value\n  probe.fillRect(0, 0, 1, 1)\n  const [red, green, blue] = probe.getImageData(0, 0, 1, 1).data\n  return [red, green, blue]\n}\n\nexport function readInks(root: Element): InkPalette {\n  const style = getComputedStyle(root)\n  const [ink0, ink1, ink2, ink3] = INK_TOKENS.map((token) =>\n    parseCssColor(style.getPropertyValue(token).trim())\n  )\n  return [ink0, ink1, ink2, ink3]\n}\n",
-      "type": "registry:lib",
-      "target": "@lib/dither/inks.ts"
-    },
-    {
       "path": "lib/dither/useInkVersion.ts",
-      "content": "\"use client\"\n\nimport { useEffect, useState } from \"react\"\n\nconst THEME_ATTRIBUTES = [\"class\", \"data-theme\", \"style\"]\n\nexport function useInkVersion(): number {\n  const [version, setVersion] = useState(0)\n\n  useEffect(() => {\n    const observer = new MutationObserver(() => setVersion((current) => current + 1))\n    observer.observe(document.documentElement, {\n      attributes: true,\n      attributeFilter: THEME_ATTRIBUTES,\n    })\n    return () => observer.disconnect()\n  }, [])\n\n  return version\n}\n",
+      "content": "\"use client\"\n\nimport { useEffect, useState } from \"react\"\n\nimport { observeInkChange } from \"./inks\"\n\nexport function useInkVersion(): number {\n  const [version, setVersion] = useState(0)\n\n  useEffect(() => observeInkChange(() => setVersion((current) => current + 1)), [])\n\n  return version\n}\n",
       "type": "registry:lib",
       "target": "@lib/dither/useInkVersion.ts"
     }
