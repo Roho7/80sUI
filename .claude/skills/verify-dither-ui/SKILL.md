@@ -52,6 +52,7 @@ Runs `npm run lint`, `npm run typecheck`, `npm run check:style` and the showcase
 | `no-literal-colors` | hex, `rgb()`, `hsl()`, `oklch()` in components and app |
 | `no-framer-or-gsap` | `framer-motion`, `motion/react`, `gsap`, `react-spring` imports |
 | `no-comments` | `//`, `/* */`, `{/* */}` in any source file, GLSL strings included |
+| `roadmap-matches-registry` | a ticked `ROADMAP.md` entry that is not a shipped ui/block item, or a shipped item left unticked |
 | `registry-*` | every component file ships in an item, every item file exists, every `@/` import is declared as a `@dither/*` registry dependency, every npm import is in the item's `dependencies`, every ui/block item depends on `@dither/theme` |
 
 The generator fails if a `registry:ui` or `registry:block` item has no demo, or a demo has no item.
@@ -106,7 +107,8 @@ When a component is added, all of these must hold before it is done. The tools e
 3. **Style:** square, `--pixel` borders, ink tokens only, dither for shades, `font-pixel` for labels and `font-mono` for body, offset shadows only on primary buttons and outer containers, bevels from `bevel-raised` / `bevel-sunken`, glyphs from `pixel-glyphs`. Drop-in shadcn reskins keep shadcn's file name, exports and variant names.
 4. **Motion:** stepped. CSS `steps()`, a `1000 / fps` timer, or the shader mount's clock. Respect `prefers-reduced-motion`.
 5. **Shaders** follow the Paper pattern in `docs/DESIGN.md` (one module in `lib/shaders/`, one thin React component, presets).
-6. **Run** `check`, then `audit`, then `shot <name>` in at least one light and one dark theme, and look at the screenshots.
+6. **Tick it** in `ROADMAP.md`; `check:style` fails until you do.
+7. **Run** `check`, then `audit`, then `shot <name>` in at least one light and one dark theme, and look at the screenshots.
 
 ## Cleanup
 

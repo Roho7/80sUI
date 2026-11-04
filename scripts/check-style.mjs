@@ -166,6 +166,29 @@ function findRegistryViolations() {
   return violations
 }
 
+function findRoadmapViolations() {
+  const roadmapPath = join(ROOT, "ROADMAP.md")
+  if (!existsSync(roadmapPath)) {
+    return []
+  }
+  const shipped = new Set(REGISTRY.items.filter((item) => item.type === "registry:ui" || item.type === "registry:block").map((item) => item.name))
+  const violations = []
+  readFileSync(roadmapPath, "utf8").split("\n").forEach((line, index) => {
+    const entry = line.match(/^- \[( |x)\] ([a-z0-9-]+)/)
+    if (entry === null) {
+      return
+    }
+    const [, mark, name] = entry
+    if (mark === "x" && !shipped.has(name)) {
+      violations.push({ path: "ROADMAP.md", line: index + 1, rule: "roadmap-matches-registry", found: name, why: "ticked but not a registry:ui or registry:block item" })
+    }
+    if (mark === " " && shipped.has(name)) {
+      violations.push({ path: "ROADMAP.md", line: index + 1, rule: "roadmap-matches-registry", found: name, why: "shipped in registry.json but not ticked" })
+    }
+  })
+  return violations
+}
+
 function checkStyle() {
   const violations = []
   for (const directory of SOURCE_DIRS) {
@@ -179,6 +202,7 @@ function checkStyle() {
     }
   }
   violations.push(...findRegistryViolations())
+  violations.push(...findRoadmapViolations())
   return violations
 }
 
