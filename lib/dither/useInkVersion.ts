@@ -2,19 +2,12 @@
 
 import { useEffect, useState } from "react"
 
-const THEME_ATTRIBUTES = ["class", "data-theme", "style"]
+import { observeInkChange } from "./inks"
 
 export function useInkVersion(): number {
   const [version, setVersion] = useState(0)
 
-  useEffect(() => {
-    const observer = new MutationObserver(() => setVersion((current) => current + 1))
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: THEME_ATTRIBUTES,
-    })
-    return () => observer.disconnect()
-  }, [])
+  useEffect(() => observeInkChange(() => setVersion((current) => current + 1)), [])
 
   return version
 }
