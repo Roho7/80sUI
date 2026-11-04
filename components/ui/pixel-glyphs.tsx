@@ -3,15 +3,49 @@ import type * as React from "react"
 
 type GlyphProps = React.ComponentProps<"svg">
 
+type GlyphDirection = "down" | "left" | "up" | "right"
+
+type DirectionalGlyphProps = GlyphProps & {
+  direction?: GlyphDirection
+}
+
 const GLYPH_PATHS = {
   check:
     "M6 1h1v1H6zM5 2h2v1H5zM0 3h1v1H0zM4 3h2v1H4zM0 4h2v1H0zM3 4h2v1H3zM1 5h3v1H1zM2 6h1v1H2z",
   minus: "M1 3h5v1H1z",
   close:
     "M0 0h2v1H0zM5 0h2v1H5zM1 1h2v1H1zM4 1h2v1H4zM2 2h3v1H2zM3 3h1v1H3zM2 4h3v1H2zM1 5h2v1H1zM4 5h2v1H4zM0 6h2v1H0zM5 6h2v1H5z",
+  chevron:
+    "M0 2h2v1H0zM5 2h2v1H5zM1 3h2v1H1zM4 3h2v1H4zM2 4h3v1H2zM3 5h1v1H3z",
+  arrow: "M0 2h7v1H0zM1 3h5v1H1zM2 4h3v1H2zM3 5h1v1H3z",
+  dot: "M2 1h3v1H2zM1 2h5v3H1zM2 5h3v1H2z",
 } as const
 
-function renderGlyph(path: string, { className, ...props }: GlyphProps) {
+const RADIO_PATHS = {
+  ring: "M3 0h4v1H3zM1 1h2v1H1zM7 1h2v1H7zM1 2h1v1H1zM8 2h1v1H8zM0 3h1v4H0zM9 3h1v4H9zM1 7h1v1H1zM8 7h1v1H8zM1 8h2v1H1zM7 8h2v1H7zM3 9h4v1H3z",
+  well: "M3 1h4v1H3zM2 2h6v1H2zM1 3h8v4H1zM2 7h6v1H2zM3 8h4v1H3z",
+  dot: "M4 3h2v1H4zM3 4h4v2H3zM4 6h2v1H4z",
+} as const
+
+const ICON_PATHS = {
+  folderInk: "M1 2h6v2H1zM0 4h16v11H0z",
+  folderPaper: "M2 3h4v1H2zM1 5h14v9H1z",
+  folderFlap: "M1 7h14v1H1z",
+  documentPaper: "M3 1h7v3H3zM3 4h10v11H3z",
+  documentInk:
+    "M2 0h9v1H2zM2 1h1v15H2zM13 3h1v13h-1zM3 15h10v1H3zM10 1h1v3h-1zM11 3h2v1h-2zM11 1h1v1h-1zM12 2h1v1h-1zM5 6h6v1H5zM5 8h6v1H5zM5 10h6v1H5zM5 12h4v1H5z",
+  terminalInk: "M0 1h16v11H0zM5 12h6v2H5zM3 14h10v1H3z",
+  terminalPaper: "M2 3h1v1H2zM3 4h1v1H3zM2 5h1v1H2zM5 5h3v1H5z",
+} as const
+
+const DIRECTION_ROTATIONS: Record<GlyphDirection, number> = {
+  down: 0,
+  left: 90,
+  up: 180,
+  right: 270,
+}
+
+function renderGlyph(path: string, { className, ...props }: GlyphProps, rotation = 0) {
   return (
     <svg
       viewBox="0 0 7 7"
@@ -20,7 +54,7 @@ function renderGlyph(path: string, { className, ...props }: GlyphProps) {
       className={cn("size-3.5 fill-current", className)}
       {...props}
     >
-      <path d={path} />
+      <path d={path} transform={rotation === 0 ? undefined : `rotate(${rotation} 3.5 3.5)`} />
     </svg>
   )
 }
@@ -35,6 +69,94 @@ function MinusGlyph(props: GlyphProps) {
 
 function CloseGlyph(props: GlyphProps) {
   return renderGlyph(GLYPH_PATHS.close, props)
+}
+
+function ChevronGlyph({ direction = "down", ...props }: DirectionalGlyphProps) {
+  return renderGlyph(GLYPH_PATHS.chevron, props, DIRECTION_ROTATIONS[direction])
+}
+
+function ArrowGlyph({ direction = "down", ...props }: DirectionalGlyphProps) {
+  return renderGlyph(GLYPH_PATHS.arrow, props, DIRECTION_ROTATIONS[direction])
+}
+
+function DotGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.dot, props)
+}
+
+function RadioRingGlyph({ className, ...props }: GlyphProps) {
+  return (
+    <svg
+      viewBox="0 0 10 10"
+      shapeRendering="crispEdges"
+      aria-hidden="true"
+      className={cn("size-5 shrink-0", className)}
+      {...props}
+    >
+      <path className="fill-card" d={RADIO_PATHS.well} />
+      <path className="fill-current" d={RADIO_PATHS.ring} />
+    </svg>
+  )
+}
+
+function RadioDotGlyph({ className, ...props }: GlyphProps) {
+  return (
+    <svg
+      viewBox="0 0 10 10"
+      shapeRendering="crispEdges"
+      aria-hidden="true"
+      className={cn("size-5 shrink-0 fill-current", className)}
+      {...props}
+    >
+      <path d={RADIO_PATHS.dot} />
+    </svg>
+  )
+}
+
+function renderIcon(paths: readonly { className: string; d: string }[], { className, ...props }: GlyphProps) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      shapeRendering="crispEdges"
+      aria-hidden="true"
+      className={cn("size-8 shrink-0", className)}
+      {...props}
+    >
+      {paths.map(({ className: pathClassName, d }) => (
+        <path key={d} className={pathClassName} d={d} />
+      ))}
+    </svg>
+  )
+}
+
+function FolderGlyph(props: GlyphProps) {
+  return renderIcon(
+    [
+      { className: "fill-foreground", d: ICON_PATHS.folderInk },
+      { className: "fill-card", d: ICON_PATHS.folderPaper },
+      { className: "fill-foreground", d: ICON_PATHS.folderFlap },
+    ],
+    props
+  )
+}
+
+function DocumentGlyph(props: GlyphProps) {
+  return renderIcon(
+    [
+      { className: "fill-card", d: ICON_PATHS.documentPaper },
+      { className: "fill-foreground", d: ICON_PATHS.documentInk },
+    ],
+    props
+  )
+}
+
+function TerminalGlyph(props: GlyphProps) {
+  return renderIcon(
+    [
+      { className: "fill-foreground", d: ICON_PATHS.terminalInk },
+      { className: "fill-card", d: ICON_PATHS.terminalPaper },
+    ],
+    props
+  )
 }
 
 function ErrorGlyph({ className, ...props }: GlyphProps) {
@@ -59,4 +181,18 @@ function ErrorGlyph({ className, ...props }: GlyphProps) {
   )
 }
 
-export { CheckGlyph, CloseGlyph, ErrorGlyph, MinusGlyph }
+export {
+  ArrowGlyph,
+  CheckGlyph,
+  ChevronGlyph,
+  CloseGlyph,
+  DocumentGlyph,
+  DotGlyph,
+  ErrorGlyph,
+  FolderGlyph,
+  type GlyphDirection,
+  MinusGlyph,
+  RadioDotGlyph,
+  RadioRingGlyph,
+  TerminalGlyph,
+}
