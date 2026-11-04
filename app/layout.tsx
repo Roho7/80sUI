@@ -5,6 +5,7 @@ import { Silkscreen, VT323 } from "next/font/google"
 
 import { ThemeProvider } from "@/components/theme-provider"
 import { NostalguiSounds } from "@/components/ui/nostalgui-sounds"
+import { SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
 const fontPixel = Silkscreen({
@@ -20,8 +21,10 @@ const fontMono = VT323({
 })
 
 export const metadata: Metadata = {
-  title: "NOSTALGUI",
-  description: "Retro components for shadcn",
+  metadataBase: new URL(SITE_URL),
+  title: { default: SITE_NAME, template: `%s / ${SITE_NAME}` },
+  description: SITE_TAGLINE,
+  openGraph: { siteName: SITE_NAME, type: "website" },
 }
 
 export default function RootLayout({

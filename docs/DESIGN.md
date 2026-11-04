@@ -115,8 +115,18 @@ type ShowcaseDemo = { span: ShowcaseSpan; variants: readonly ShowcaseVariant[] }
 ```
 
 - Adding a component means adding its registry item and `components/showcase/demos/<item-name>.tsx` exporting `demo: ShowcaseDemo`. Nothing else.
-- `scripts/generate-showcase-index.mjs` writes `components/showcase/demos.generated.ts` in registry order. It fails, naming the file, when a showcased item has no demo or a demo has no showcased item. It runs in `predev`, `prebuild` and `registry:build`; run it by hand while `next dev` is already up. Commit the generated file.
+- `scripts/generate-registry-docs.mjs` writes `components/showcase/demos.generated.ts` in registry order and `lib/docs/registry-docs.generated.json` (git-ignored), the data behind every docs page. It fails, naming the file, when a showcased item has no demo or a demo has no showcased item. It runs in `predev`, `prebuild`, `pretypecheck` and `registry:build`; `npm run docs:generate` runs it by hand while `next dev` is already up. Commit the generated `.ts` file.
 - A demo shows every exported variant, size and state. Overlays open from a trigger. Floating compositions render as static instances inside their card.
 - Spans: `single` 4 of 12 columns, `wide` 8, `tall` 4 by 2 rows, `large` 8 by 2 rows, packed with `grid-flow-row-dense`. One column under `md`.
 - Variant cells are sized by their content, never by a guessed column width: a wrapping flex row where each cell has `flex-basis: content`, grows to fill its line, and never shrinks below `min(100%, --cell-min)`. Only a component wider than the whole card scrolls, inside its own cell. Demos never need width hacks.
 - Helper items that are not user-facing components use `registry:lib` so they stay out of the catalogue.
+
+## Docs site
+
+Every page is generated from `registry.json` and the source files, so nothing is written per component.
+
+- `/` the retro desktop landing (About, Setup, Builder, install terminal and the toy windows), `/docs`, `/docs/installation` and `/docs/theming` the only hand-written prose, `/components` the catalogue, `/components/[name]` one page per item, plus `/llms.txt`, `/sitemap.xml` and `/robots.txt`.
+- The generator maps `registry:ui` to components, `registry:block` to blocks and `registry:lib` to utilities (`registry:style` is the theming guide). Props come from the TypeScript compiler API over the item files, defaults from the parameter destructuring or the cva `defaultVariants`.
+- `lib/docs/pages.ts` flattens the sidebar groups once; the sidebar, search, prev/next, sitemap and `llms.txt` all read that list.
+- Install commands use `npx shadcn@latest add ${SITE_URL}/r/<name>.json`, with `SITE_URL` from `NEXT_PUBLIC_SITE_URL` or Vercel's production host.
+- Code blocks are plain `<pre>` with a copy button; a syntax highlighter would emit literal colors.

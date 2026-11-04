@@ -4,16 +4,18 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "predev": "node scripts/generate-showcase-index.mjs",
+    "predev": "node scripts/generate-registry-docs.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/generate-showcase-index.mjs",
+    "prebuild": "node scripts/generate-registry-docs.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "docs:generate": "node scripts/generate-registry-docs.mjs",
+    "pretypecheck": "node scripts/generate-registry-docs.mjs",
     "typecheck": "tsc --noEmit",
     "lint:fix": "eslint . --fix",
-    "registry:build": "node scripts/generate-showcase-index.mjs && node scripts/build-theme-registry-item.mjs && shadcn build && node scripts/build-sound-meta.mjs",
+    "registry:build": "node scripts/generate-registry-docs.mjs && node scripts/build-theme-registry-item.mjs && shadcn build && node scripts/build-sound-meta.mjs",
     "check:style": "node scripts/check-style.mjs"
   },
   "dependencies": {
