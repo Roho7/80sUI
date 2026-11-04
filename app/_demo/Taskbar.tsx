@@ -1,8 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { useSyncExternalStore } from "react"
+import { useState } from "react"
 
+import { Taskbar as RetroTaskbar } from "@/components/retro/taskbar"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -11,33 +12,36 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
+import { DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
 
-function subscribeMinute(onChange: () => void) {
-  const interval = window.setInterval(onChange, 5000)
-  return () => window.clearInterval(interval)
+type TaskbarProps = {
+  onShutDown: () => void
 }
 
-function readClock() {
-  return new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-}
-
-function readServerClock() {
-  return "--:--"
-}
-
-function Taskbar() {
-  const clock = useSyncExternalStore(subscribeMinute, readClock, readServerClock)
+function Taskbar({ onShutDown }: TaskbarProps) {
+  const [isAboutOpen, setIsAboutOpen] = useState(false)
 
   return (
-    <footer className="absolute inset-x-0 bottom-0 z-30 flex h-11 items-center gap-2 border-t-(length:--pixel) border-border bg-secondary px-2 text-secondary-foreground bevel-raised">
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button variant="secondary" size="sm">
-            Start
-          </Button>
-        </DialogTrigger>
+    <>
+      <RetroTaskbar
+        className="absolute inset-x-0 bottom-0 z-30"
+        startMenu={
+          <>
+            <DropdownMenuItem onSelect={() => setIsAboutOpen(true)}>About dither-ui</DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/components">Components</Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onSelect={onShutDown}>Shut Down...</DropdownMenuItem>
+          </>
+        }
+      >
+        <Button asChild variant="secondary" size="sm">
+          <Link href="/components">Components</Link>
+        </Button>
+      </RetroTaskbar>
+      <Dialog open={isAboutOpen} onOpenChange={setIsAboutOpen}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>About dither-ui</DialogTitle>
@@ -49,12 +53,7 @@ function Taskbar() {
           <DialogFooter showCloseButton />
         </DialogContent>
       </Dialog>
-      <Button asChild variant="secondary" size="sm">
-        <Link href="/components">Components</Link>
-      </Button>
-      <span className="flex-1" />
-      <span className="flex h-7 items-center bevel-sunken px-3 text-xl">{clock}</span>
-    </footer>
+    </>
   )
 }
 

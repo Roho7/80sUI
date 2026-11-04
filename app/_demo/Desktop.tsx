@@ -73,7 +73,7 @@ function Desktop() {
       <IdeasWindow {...readWindowProps("ideas")} onAcknowledge={() => spawnErrors(4)} />
       <ControlPanelWindow {...readWindowProps("control")} onSpawnError={() => spawnErrors(1)} />
       <ErrorDialogStack errors={errors} onDismiss={dismissError} />
-      <Taskbar />
+      <Taskbar onShutDown={() => spawnErrors(1)} />
     </main>
   )
 }
