@@ -257,32 +257,6 @@
       }
     },
     {
-      "name": "eink",
-      "type": "registry:lib",
-      "title": "E-ink engine",
-      "description": "useSteppedDrag and pixel token reading.",
-      "registryDependencies": [
-        "@dither/theme"
-      ],
-      "files": [
-        {
-          "path": "lib/eink/index.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/index.ts"
-        },
-        {
-          "path": "lib/eink/readTokens.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/readTokens.ts"
-        },
-        {
-          "path": "lib/eink/useSteppedDrag.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/useSteppedDrag.ts"
-        }
-      ]
-    },
-    {
       "name": "pixel-glyphs",
       "type": "registry:ui",
       "title": "Pixel glyphs",
@@ -441,13 +415,13 @@
       "name": "window",
       "type": "registry:block",
       "title": "Window",
-      "description": "Draggable retro window with a striped title bar, close button and optional status bar.",
+      "description": "Draggable retro window with a striped title bar, close button and optional status bar. Drags snap to --pixel.",
       "dependencies": [
         "cn"
       ],
       "registryDependencies": [
+        "@dither/theme",
         "@dither/button",
-        "@dither/eink",
         "@dither/pixel-glyphs"
       ],
       "files": [
@@ -455,6 +429,10 @@
           "path": "components/retro/window.tsx",
           "type": "registry:component",
           "target": "@components/retro/window.tsx"
+        },
+        {
+          "path": "hooks/use-window-drag.ts",
+          "type": "registry:hook"
         }
       ]
     },

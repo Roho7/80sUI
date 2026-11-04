@@ -5,7 +5,7 @@ import * as React from "react"
 
 import { Button } from "@/components/ui/button"
 import { CloseGlyph } from "@/components/ui/pixel-glyphs"
-import { type Point, useSteppedDrag } from "@/lib/eink"
+import { type Point, useWindowDrag } from "@/hooks/use-window-drag"
 
 type WindowProps = Omit<React.ComponentProps<"section">, "title"> & {
   title: string
@@ -32,7 +32,7 @@ function Window({
   children,
   ...props
 }: WindowProps) {
-  const { position, isDragging, startDrag } = useSteppedDrag(defaultPosition)
+  const { position, isDragging, startDrag } = useWindowDrag(defaultPosition)
 
   return (
     <section

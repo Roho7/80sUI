@@ -8,24 +8,30 @@ import {
   useState,
 } from "react"
 
-import { readPixel } from "./readTokens"
-
 export type Point = {
   x: number
   y: number
 }
 
-export type SteppedDrag = {
+export type WindowDrag = {
   position: Point
   isDragging: boolean
   startDrag: (event: ReactPointerEvent<HTMLElement>) => void
+}
+
+const DEFAULT_PIXEL = 2
+
+function readPixel(): number {
+  const raw = getComputedStyle(document.documentElement).getPropertyValue("--pixel")
+  const pixel = Number.parseFloat(raw)
+  return Number.isFinite(pixel) && pixel > 0 ? pixel : DEFAULT_PIXEL
 }
 
 function snapToPixel(value: number, pixel: number): number {
   return Math.round(value / pixel) * pixel
 }
 
-export function useSteppedDrag(initialPosition: Point): SteppedDrag {
+export function useWindowDrag(initialPosition: Point): WindowDrag {
   const [position, setPosition] = useState(initialPosition)
   const [isDragging, setIsDragging] = useState(false)
   const positionRef = useRef(initialPosition)
@@ -39,7 +45,7 @@ export function useSteppedDrag(initialPosition: Point): SteppedDrag {
     }
     event.preventDefault()
     stopRef.current?.()
-    const pixel = readPixel(document.documentElement)
+    const pixel = readPixel()
     const grab = {
       x: event.clientX - positionRef.current.x,
       y: event.clientY - positionRef.current.y,
