@@ -32,15 +32,10 @@ function Window({
   children,
   ...props
 }: WindowProps) {
-  const windowRef = React.useRef<HTMLElement>(null)
-  const { position, isDragging, startDrag } = useSteppedDrag(
-    windowRef,
-    defaultPosition
-  )
+  const { position, isDragging, startDrag } = useSteppedDrag(defaultPosition)
 
   return (
     <section
-      ref={windowRef}
       aria-label={title}
       data-slot="window"
       data-active={isActive}

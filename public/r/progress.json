@@ -2,18 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "progress",
   "title": "Progress",
-  "description": "shadcn progress drawn as segmented blocks with partial refresh on change.",
+  "description": "shadcn progress drawn as segmented blocks.",
   "dependencies": [
     "cn",
     "radix-ui"
   ],
-  "registryDependencies": [
-    "@dither/eink"
-  ],
   "files": [
     {
       "path": "components/ui/progress.tsx",
-      "content": "\"use client\"\n\nimport { cn } from \"cn\"\nimport { Progress as ProgressPrimitive } from \"radix-ui\"\nimport * as React from \"react\"\n\nimport { useComposedRef } from \"@/lib/composeRefs\"\nimport { useEinkRefresh } from \"@/lib/eink\"\n\nfunction Progress({\n  className,\n  value,\n  ref,\n  ...props\n}: React.ComponentProps<typeof ProgressPrimitive.Root>) {\n  const progressRef = React.useRef<HTMLDivElement>(null)\n  const composedRef = useComposedRef(ref, progressRef)\n  const refresh = useEinkRefresh(progressRef, \"partial\")\n  const percent = Math.min(100, Math.max(0, value ?? 0))\n\n  React.useEffect(() => {\n    refresh()\n  }, [percent, refresh])\n\n  return (\n    <ProgressPrimitive.Root\n      ref={composedRef}\n      data-slot=\"progress\"\n      value={value}\n      className={cn(\n        \"relative flex h-7 w-full items-center overflow-hidden pixel-border border-border bg-card p-(--pixel)\",\n        className\n      )}\n      {...props}\n    >\n      <ProgressPrimitive.Indicator\n        data-slot=\"progress-indicator\"\n        className=\"h-full bg-foreground segments\"\n        style={{ width: `${percent}%` }}\n      />\n    </ProgressPrimitive.Root>\n  )\n}\n\nexport { Progress }\n",
+      "content": "\"use client\"\n\nimport { cn } from \"cn\"\nimport { Progress as ProgressPrimitive } from \"radix-ui\"\nimport * as React from \"react\"\n\n\nfunction Progress({\n  className,\n  value,\n  ...props\n}: React.ComponentProps<typeof ProgressPrimitive.Root>) {\n  const percent = Math.min(100, Math.max(0, value ?? 0))\n\n  return (\n    <ProgressPrimitive.Root\n      data-slot=\"progress\"\n      value={value}\n      className={cn(\n        \"relative flex h-7 w-full items-center overflow-hidden pixel-border border-border bg-card p-(--pixel)\",\n        className\n      )}\n      {...props}\n    >\n      <ProgressPrimitive.Indicator\n        data-slot=\"progress-indicator\"\n        className=\"h-full bg-foreground segments\"\n        style={{ width: `${percent}%` }}\n      />\n    </ProgressPrimitive.Root>\n  )\n}\n\nexport { Progress }\n",
       "type": "registry:ui"
     }
   ],

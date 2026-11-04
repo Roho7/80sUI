@@ -2,7 +2,6 @@ import type { InkPalette, Rgb } from "./types"
 
 const INK_TOKENS = ["--ink-0", "--ink-1", "--ink-2", "--ink-3"] as const
 
-const DEFAULT_FPS = 12
 const DEFAULT_PIXEL = 2
 
 let colorProbe: CanvasRenderingContext2D | null = null
@@ -47,16 +46,6 @@ function readPositiveNumber(raw: string, fallback: number): number {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback
 }
 
-export function readFps(root: Element): number {
-  return readPositiveNumber(readToken(root, "--eink-fps"), DEFAULT_FPS)
-}
-
 export function readPixel(root: Element): number {
   return readPositiveNumber(readToken(root, "--pixel"), DEFAULT_PIXEL)
-}
-
-export function areInksEqual(first: InkPalette, second: InkPalette): boolean {
-  return first.every((ink, inkIndex) =>
-    ink.every((channel, channelIndex) => channel === second[inkIndex][channelIndex])
-  )
 }

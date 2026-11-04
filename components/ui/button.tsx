@@ -5,9 +5,6 @@ import { cn } from "cn"
 import { Slot } from "radix-ui"
 import * as React from "react"
 
-import { useComposedRef } from "@/lib/composeRefs"
-import { useEinkRefresh } from "@/lib/eink"
-
 const buttonVariants = cva(
   "group/button relative inline-flex shrink-0 items-center justify-center pixel-border border-border font-pixel text-[16px] leading-none whitespace-nowrap uppercase outline-none select-none disabled:pointer-events-none disabled:text-muted-foreground aria-invalid:border-destructive [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
@@ -48,34 +45,18 @@ function Button({
   variant = "default",
   size = "default",
   asChild = false,
-  ref,
-  onClick,
-  onPointerEnter,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
   }) {
   const Comp = asChild ? Slot.Root : "button"
-  const buttonRef = React.useRef<HTMLButtonElement>(null)
-  const composedRef = useComposedRef(ref, buttonRef)
-  const refresh = useEinkRefresh(buttonRef, "partial")
-
   return (
     <Comp
-      ref={composedRef}
       data-slot="button"
       data-variant={variant}
       data-size={size}
       className={cn(buttonVariants({ variant, size, className }))}
-      onPointerEnter={(event: React.PointerEvent<HTMLButtonElement>) => {
-        refresh()
-        onPointerEnter?.(event)
-      }}
-      onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-        refresh()
-        onClick?.(event)
-      }}
       {...props}
     />
   )

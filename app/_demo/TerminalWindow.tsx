@@ -1,9 +1,8 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 
 import { Window, type WindowProps } from "@/components/retro/window"
-import { useEink, useEinkRefresh } from "@/lib/eink"
 
 type TerminalWindowProps = Pick<WindowProps, "isActive" | "onActivate" | "style">
 
@@ -22,31 +21,25 @@ const SCRIPT = [
 
 const PAUSE_CHARACTERS = 60
 
+const TYPING_FPS = 12
+
 function useTypedScript(): string {
-  const { engine } = useEink()
-  const fps = engine?.readFps() ?? 12
   const [cursor, setCursor] = useState(0)
 
   useEffect(() => {
     const interval = window.setInterval(
       () => setCursor((current) => (current + 1) % (SCRIPT.length + PAUSE_CHARACTERS)),
-      1000 / fps
+      1000 / TYPING_FPS
     )
     return () => window.clearInterval(interval)
-  }, [fps])
+  }, [])
 
   return SCRIPT.slice(0, cursor)
 }
 
 function TerminalWindow(windowProps: TerminalWindowProps) {
-  const screenRef = useRef<HTMLPreElement>(null)
-  const refresh = useEinkRefresh(screenRef, "partial")
   const typed = useTypedScript()
   const lineCount = typed.split("\n").length
-
-  useEffect(() => {
-    refresh()
-  }, [lineCount, refresh])
 
   return (
     <Window
@@ -57,7 +50,6 @@ function TerminalWindow(windowProps: TerminalWindowProps) {
       {...windowProps}
     >
       <pre
-        ref={screenRef}
         className="h-64 overflow-hidden bg-foreground p-3 text-xl leading-tight whitespace-pre-wrap text-background"
       >
         {typed}

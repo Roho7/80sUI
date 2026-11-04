@@ -8,7 +8,6 @@ import {
   ditherOnCpu,
   type DitherRequest,
   readInks,
-  useEink,
   useInkVersion,
 } from "@/lib/eink"
 
@@ -53,7 +52,9 @@ function useLoadedImage(src: string): HTMLImageElement | null {
   return image
 }
 
-function useReseed(isAnimated: boolean, fps: number): number {
+const RESEED_FPS = 12
+
+function useReseed(isAnimated: boolean): number {
   const [seed, setSeed] = React.useState(0)
 
   React.useEffect(() => {
@@ -62,10 +63,10 @@ function useReseed(isAnimated: boolean, fps: number): number {
     }
     const interval = window.setInterval(
       () => setSeed((current) => current + 1),
-      1000 / fps
+      1000 / RESEED_FPS
     )
     return () => window.clearInterval(interval)
-  }, [isAnimated, fps])
+  }, [isAnimated])
 
   return seed
 }
@@ -84,11 +85,9 @@ function DitherImage({
   ...props
 }: DitherImageProps) {
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
-  const { engine, intensity } = useEink()
   const image = useLoadedImage(src)
   const inkVersion = useInkVersion()
-  const fps = engine?.readFps() ?? 12
-  const seed = useReseed(isAnimated && intensity !== "off", fps)
+  const seed = useReseed(isAnimated)
   const outputWidth = Math.max(1, Math.round(width / pixelSize))
   const outputHeight = Math.max(1, Math.round(height / pixelSize))
 
@@ -105,13 +104,11 @@ function DitherImage({
       contrast,
       seed,
     }
-    const dithered =
-      engine?.renderDither(request) ??
-      ditherOnCpu(request, readInks(document.documentElement))
+    const dithered = ditherOnCpu(request, readInks(document.documentElement))
     if (dithered) {
       canvas.getContext("2d")?.putImageData(dithered, 0, 0)
     }
-  }, [engine, image, inkVersion, seed, outputWidth, outputHeight, matrixSize, contrast])
+  }, [image, inkVersion, seed, outputWidth, outputHeight, matrixSize, contrast])
 
   return (
     <canvas

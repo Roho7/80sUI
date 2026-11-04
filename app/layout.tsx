@@ -20,7 +20,7 @@ const fontMono = VT323({
 
 export const metadata: Metadata = {
   title: "dither-ui",
-  description: "Retro e-ink components for shadcn",
+  description: "Retro components for shadcn",
 }
 
 export default function RootLayout({

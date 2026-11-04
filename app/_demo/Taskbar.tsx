@@ -41,8 +41,8 @@ function Taskbar() {
           <DialogHeader>
             <DialogTitle>About dither-ui</DialogTitle>
             <DialogDescription>
-              Retro e-ink components for shadcn. The DOM is the truth. WebGL only adds the
-              refresh flashes, ghosts and dithering on top.
+              Retro components for shadcn. Real DOM, 1-bit borders, offset shadows and
+              ordered-dither images quantized to the theme inks.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter showCloseButton />

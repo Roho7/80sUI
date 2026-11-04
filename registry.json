@@ -74,7 +74,6 @@
           "bevel-hi": "var(--ink-3)",
           "bevel-lo": "var(--ink-1)",
           "pixel": "2px",
-          "eink-fps": "12",
           "font-pixel": "var(--font-silkscreen), \"Silkscreen\", ui-monospace, monospace",
           "font-mono": "var(--font-vt323), \"VT323\", ui-monospace, monospace",
           "background": "var(--desktop)",
@@ -229,12 +228,6 @@
             "opacity": "0"
           }
         },
-        ".eink-ghost": {
-          "pointer-events": "none",
-          "mask-image": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='1' height='1'/%3E%3Crect x='2' y='0' width='1' height='1'/%3E%3Crect x='0' y='2' width='1' height='1'/%3E%3Crect x='2' y='2' width='1' height='1'/%3E%3C/svg%3E\")",
-          "mask-size": "calc(var(--pixel) * 4) calc(var(--pixel) * 4)",
-          "mask-repeat": "repeat"
-        },
         "@layer base": {
           "*": {
             "@apply border-border outline-ring": {}
@@ -267,16 +260,11 @@
       "name": "eink",
       "type": "registry:lib",
       "title": "E-ink engine",
-      "description": "EinkProvider, table-driven refresh engine, useEinkRefresh and useSteppedDrag.",
+      "description": "Ordered Bayer dithering, ink reading and useSteppedDrag.",
       "registryDependencies": [
         "@dither/theme"
       ],
       "files": [
-        {
-          "path": "lib/eink/EinkProvider.tsx",
-          "type": "registry:lib",
-          "target": "@lib/eink/EinkProvider.tsx"
-        },
         {
           "path": "lib/eink/bayer.ts",
           "type": "registry:lib",
@@ -293,21 +281,6 @@
           "target": "@lib/eink/ditherRenderer.ts"
         },
         {
-          "path": "lib/eink/einkContext.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/einkContext.ts"
-        },
-        {
-          "path": "lib/eink/engine.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/engine.ts"
-        },
-        {
-          "path": "lib/eink/ghostLayer.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/ghostLayer.ts"
-        },
-        {
           "path": "lib/eink/glProgram.ts",
           "type": "registry:lib",
           "target": "@lib/eink/glProgram.ts"
@@ -318,49 +291,14 @@
           "target": "@lib/eink/index.ts"
         },
         {
-          "path": "lib/eink/intensitySettings.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/intensitySettings.ts"
-        },
-        {
           "path": "lib/eink/observeTheme.ts",
           "type": "registry:lib",
           "target": "@lib/eink/observeTheme.ts"
         },
         {
-          "path": "lib/eink/overlayCanvas.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/overlayCanvas.ts"
-        },
-        {
-          "path": "lib/eink/overlayRenderer.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/overlayRenderer.ts"
-        },
-        {
-          "path": "lib/eink/phaseStyles.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/phaseStyles.ts"
-        },
-        {
           "path": "lib/eink/readTokens.ts",
           "type": "registry:lib",
           "target": "@lib/eink/readTokens.ts"
-        },
-        {
-          "path": "lib/eink/rects.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/rects.ts"
-        },
-        {
-          "path": "lib/eink/refreshScheduler.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/refreshScheduler.ts"
-        },
-        {
-          "path": "lib/eink/refreshSequences.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/refreshSequences.ts"
         },
         {
           "path": "lib/eink/shaders.ts",
@@ -373,34 +311,14 @@
           "target": "@lib/eink/types.ts"
         },
         {
-          "path": "lib/eink/useEink.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/useEink.ts"
-        },
-        {
-          "path": "lib/eink/useEinkRefresh.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/useEinkRefresh.ts"
-        },
-        {
           "path": "lib/eink/useInkVersion.ts",
           "type": "registry:lib",
           "target": "@lib/eink/useInkVersion.ts"
         },
         {
-          "path": "lib/eink/usePrefersReducedMotion.ts",
-          "type": "registry:lib",
-          "target": "@lib/eink/usePrefersReducedMotion.ts"
-        },
-        {
           "path": "lib/eink/useSteppedDrag.ts",
           "type": "registry:lib",
           "target": "@lib/eink/useSteppedDrag.ts"
-        },
-        {
-          "path": "lib/composeRefs.ts",
-          "type": "registry:lib",
-          "target": "@lib/composeRefs.ts"
         }
       ]
     },
@@ -423,7 +341,7 @@
       "name": "dither-image",
       "type": "registry:ui",
       "title": "Dither image",
-      "description": "Ordered Bayer dithering quantized to the theme inks, rendered through the shared WebGL2 context.",
+      "description": "Ordered Bayer dithering quantized to the theme inks.",
       "dependencies": [
         "cn"
       ],
@@ -441,14 +359,11 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "shadcn button reskinned with pixel borders, offset shadows and partial refreshes.",
+      "description": "shadcn button reskinned with pixel borders and offset shadows.",
       "dependencies": [
         "cn",
         "class-variance-authority",
         "radix-ui"
-      ],
-      "registryDependencies": [
-        "@dither/eink"
       ],
       "files": [
         {
@@ -461,13 +376,12 @@
       "name": "checkbox",
       "type": "registry:ui",
       "title": "Checkbox",
-      "description": "shadcn checkbox with a pixel check and partial refresh on toggle.",
+      "description": "shadcn checkbox with a pixel check.",
       "dependencies": [
         "cn",
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/eink",
         "@dither/pixel-glyphs"
       ],
       "files": [
@@ -481,13 +395,10 @@
       "name": "slider",
       "type": "registry:ui",
       "title": "Slider",
-      "description": "shadcn slider with a dithered range and partial refresh while dragging.",
+      "description": "shadcn slider with a dithered range.",
       "dependencies": [
         "cn",
         "radix-ui"
-      ],
-      "registryDependencies": [
-        "@dither/eink"
       ],
       "files": [
         {
@@ -500,13 +411,10 @@
       "name": "progress",
       "type": "registry:ui",
       "title": "Progress",
-      "description": "shadcn progress drawn as segmented blocks with partial refresh on change.",
+      "description": "shadcn progress drawn as segmented blocks.",
       "dependencies": [
         "cn",
         "radix-ui"
-      ],
-      "registryDependencies": [
-        "@dither/eink"
       ],
       "files": [
         {
@@ -519,14 +427,13 @@
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
-      "description": "shadcn dialog with a striped title bar, dithered overlay and region refresh on open and close.",
+      "description": "shadcn dialog with a striped title bar and a dithered overlay.",
       "dependencies": [
         "cn",
         "radix-ui"
       ],
       "registryDependencies": [
         "@dither/button",
-        "@dither/eink",
         "@dither/pixel-glyphs"
       ],
       "files": [

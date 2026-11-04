@@ -2,16 +2,13 @@
 
 import {
   type PointerEvent as ReactPointerEvent,
-  type RefObject,
   useCallback,
   useEffect,
   useRef,
   useState,
 } from "react"
 
-import { readFps, readPixel } from "./readTokens"
-import { readElementRect, translateRect, uniteRects } from "./rects"
-import { useEink } from "./useEink"
+import { readPixel } from "./readTokens"
 
 export type Point = {
   x: number
@@ -28,11 +25,7 @@ function snapToPixel(value: number, pixel: number): number {
   return Math.round(value / pixel) * pixel
 }
 
-export function useSteppedDrag(
-  ref: RefObject<HTMLElement | null>,
-  initialPosition: Point
-): SteppedDrag {
-  const { engine } = useEink()
+export function useSteppedDrag(initialPosition: Point): SteppedDrag {
   const [position, setPosition] = useState(initialPosition)
   const [isDragging, setIsDragging] = useState(false)
   const positionRef = useRef(initialPosition)
@@ -40,73 +33,45 @@ export function useSteppedDrag(
 
   useEffect(() => () => stopRef.current?.(), [])
 
-  const startDrag = useCallback(
-    (event: ReactPointerEvent<HTMLElement>) => {
-      const element = ref.current
-      if (event.button !== 0 || element === null) {
-        return
-      }
-      const node: HTMLElement = element
-      event.preventDefault()
-      stopRef.current?.()
-      const root = document.documentElement
-      const pixel = readPixel(root)
-      const fps = engine?.readFps() ?? readFps(root)
-      const grab = {
-        x: event.clientX - positionRef.current.x,
-        y: event.clientY - positionRef.current.y,
-      }
-      let target = positionRef.current
-      let trail = readElementRect(node)
+  const startDrag = useCallback((event: ReactPointerEvent<HTMLElement>) => {
+    if (event.button !== 0) {
+      return
+    }
+    event.preventDefault()
+    stopRef.current?.()
+    const pixel = readPixel(document.documentElement)
+    const grab = {
+      x: event.clientX - positionRef.current.x,
+      y: event.clientY - positionRef.current.y,
+    }
 
-      function applyStep() {
-        const current = positionRef.current
-        if (target.x === current.x && target.y === current.y) {
-          return
-        }
-        engine?.captureGhost(node)
-        const moved = translateRect(
-          readElementRect(node),
-          target.x - current.x,
-          target.y - current.y
-        )
-        trail = uniteRects(trail, moved)
-        positionRef.current = target
-        setPosition(target)
+    function trackPointer(moveEvent: PointerEvent) {
+      const next = {
+        x: snapToPixel(moveEvent.clientX - grab.x, pixel),
+        y: snapToPixel(moveEvent.clientY - grab.y, pixel),
       }
+      positionRef.current = next
+      setPosition(next)
+    }
 
-      function trackPointer(moveEvent: PointerEvent) {
-        target = {
-          x: snapToPixel(moveEvent.clientX - grab.x, pixel),
-          y: snapToPixel(moveEvent.clientY - grab.y, pixel),
-        }
-      }
+    function stop() {
+      window.removeEventListener("pointermove", trackPointer)
+      window.removeEventListener("pointerup", drop)
+      window.removeEventListener("pointercancel", drop)
+      stopRef.current = null
+    }
 
-      const interval = window.setInterval(() => applyStep(), 1000 / fps)
+    function drop() {
+      stop()
+      setIsDragging(false)
+    }
 
-      function stop() {
-        window.clearInterval(interval)
-        window.removeEventListener("pointermove", trackPointer)
-        window.removeEventListener("pointerup", drop)
-        window.removeEventListener("pointercancel", drop)
-        stopRef.current = null
-      }
-
-      function drop() {
-        applyStep()
-        stop()
-        setIsDragging(false)
-        engine?.requestRefreshRect(trail, "region")
-      }
-
-      window.addEventListener("pointermove", trackPointer)
-      window.addEventListener("pointerup", drop)
-      window.addEventListener("pointercancel", drop)
-      stopRef.current = stop
-      setIsDragging(true)
-    },
-    [engine, ref]
-  )
+    window.addEventListener("pointermove", trackPointer)
+    window.addEventListener("pointerup", drop)
+    window.addEventListener("pointercancel", drop)
+    stopRef.current = stop
+    setIsDragging(true)
+  }, [])
 
   return { position, isDragging, startDrag }
 }

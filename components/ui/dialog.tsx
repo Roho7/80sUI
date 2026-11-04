@@ -6,8 +6,6 @@ import * as React from "react"
 
 import { Button } from "@/components/ui/button"
 import { CloseGlyph } from "@/components/ui/pixel-glyphs"
-import { useComposedRef } from "@/lib/composeRefs"
-import { readElementRect, useEink } from "@/lib/eink"
 
 function Dialog({
   ...props
@@ -46,38 +44,18 @@ function DialogOverlay({
   )
 }
 
-function useRegionRefreshOnPresence(ref: React.RefObject<HTMLElement | null>) {
-  const { engine } = useEink()
-
-  React.useLayoutEffect(() => {
-    const node = ref.current
-    if (!node || !engine) {
-      return
-    }
-    const rect = readElementRect(node)
-    engine.requestRefreshRect(rect, "region")
-    return () => engine.requestRefreshRect(rect, "region")
-  }, [engine, ref])
-}
-
 function DialogContent({
   className,
   children,
   showCloseButton = true,
-  ref,
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Content> & {
   showCloseButton?: boolean
 }) {
-  const contentRef = React.useRef<HTMLDivElement>(null)
-  const composedRef = useComposedRef(ref, contentRef)
-  useRegionRefreshOnPresence(contentRef)
-
   return (
     <DialogPortal>
       <DialogOverlay />
       <DialogPrimitive.Content
-        ref={composedRef}
         data-slot="dialog-content"
         className={cn(
           "fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 pixel-border border-border bg-popover p-4 text-popover-foreground offset-shadow-3 outline-none sm:max-w-sm",
