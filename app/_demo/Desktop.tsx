@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useCallback, useRef, useState } from "react"
 
 import { ErrorDialogStack,type ErrorEntry } from "@/components/retro/error-dialog"
 
@@ -8,7 +8,6 @@ import { ControlPanelWindow } from "./ControlPanelWindow"
 import { HexBackdrop } from "./HexBackdrop"
 import { IdeasWindow } from "./IdeasWindow"
 import { PaintWindow } from "./PaintWindow"
-import { type Palette } from "./palettes"
 import { ProblemsWindow } from "./ProblemsWindow"
 import { Taskbar } from "./Taskbar"
 import { TerminalWindow } from "./TerminalWindow"
@@ -65,12 +64,6 @@ function useErrorStack() {
 function Desktop() {
   const readWindowProps = useWindowOrder()
   const { errors, spawnErrors, dismissError } = useErrorStack()
-  const [palette, setPalette] = useState<Palette>("phosphor")
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = palette
-  }, [palette])
-
   return (
     <main className="relative h-svh min-h-[760px] w-full min-w-[1280px] overflow-hidden bg-desktop">
       <HexBackdrop />
@@ -78,12 +71,7 @@ function Desktop() {
       <PaintWindow {...readWindowProps("paint")} />
       <ProblemsWindow {...readWindowProps("problems")} onCancel={() => spawnErrors(1)} />
       <IdeasWindow {...readWindowProps("ideas")} onAcknowledge={() => spawnErrors(4)} />
-      <ControlPanelWindow
-        {...readWindowProps("control")}
-        palette={palette}
-        onPaletteChange={setPalette}
-        onSpawnError={() => spawnErrors(1)}
-      />
+      <ControlPanelWindow {...readWindowProps("control")} onSpawnError={() => spawnErrors(1)} />
       <ErrorDialogStack errors={errors} onDismiss={dismissError} />
       <Taskbar />
     </main>

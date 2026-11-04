@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useSyncExternalStore } from "react"
 
 import { Button } from "@/components/ui/button"
@@ -48,6 +49,9 @@ function Taskbar() {
           <DialogFooter showCloseButton />
         </DialogContent>
       </Dialog>
+      <Button asChild variant="secondary" size="sm">
+        <Link href="/components">Components</Link>
+      </Button>
       <span className="flex-1" />
       <span className="flex h-7 items-center bevel-sunken px-3 text-xl">{clock}</span>
     </footer>
