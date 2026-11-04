@@ -25,12 +25,15 @@ function Taskbar({ onShutDown }: TaskbarProps) {
   return (
     <>
       <RetroTaskbar
-        className="absolute inset-x-0 bottom-0 z-30"
+        className="fixed inset-x-0 bottom-0 z-30"
         startMenu={
           <>
             <DropdownMenuItem onSelect={() => setIsAboutOpen(true)}>About NOSTALGUI</DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Link href="/components">Components</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/docs">Docs</Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onSelect={onShutDown}>Shut Down...</DropdownMenuItem>
@@ -39,6 +42,9 @@ function Taskbar({ onShutDown }: TaskbarProps) {
       >
         <Button asChild variant="secondary" size="sm">
           <Link href="/components">Components</Link>
+        </Button>
+        <Button asChild variant="secondary" size="sm" className="max-sm:hidden">
+          <Link href="/docs">Docs</Link>
         </Button>
       </RetroTaskbar>
       <Dialog open={isAboutOpen} onOpenChange={setIsAboutOpen}>
