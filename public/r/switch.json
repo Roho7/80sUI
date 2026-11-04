@@ -17,5 +17,96 @@
       "type": "registry:ui"
     }
   ],
+  "meta": {
+    "sounds": {
+      "switch.on": {
+        "note": "Lowpassed noise snap, a stepped sub thump and a high sine click, held at 8 kHz",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0006,
+            "decay": 0.00535,
+            "gain": 0.32,
+            "filter": {
+              "type": "lowpass",
+              "frequency": 1130,
+              "q": 1.51
+            },
+            "curve": 4.4,
+            "delay": 0
+          },
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "frequencyEnd": 427,
+            "pitchTime": 0.072,
+            "attack": 0.0079,
+            "decay": 0.022,
+            "gain": 0.3,
+            "filter": {
+              "type": "lowpass",
+              "frequency": 127,
+              "q": 0.7
+            },
+            "pitchSteps": 7,
+            "curve": 2.3
+          },
+          {
+            "wave": "sine",
+            "frequency": 1370,
+            "attack": 0.0005,
+            "decay": 0.0055,
+            "gain": 0.4,
+            "pitchTime": 0.081,
+            "curve": 3,
+            "delay": 0,
+            "filter": {
+              "type": "highpass",
+              "frequency": 2000,
+              "q": 0.7
+            },
+            "frequencyEnd": 1060
+          }
+        ],
+        "crush": {
+          "sampleRate": 8000
+        }
+      },
+      "switch.off": {
+        "note": "Lowpassed noise snap 53 ms late over a faint low rumble",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.006,
+            "gain": 0.61,
+            "filter": {
+              "type": "lowpass",
+              "frequency": 2200,
+              "q": 1.21
+            },
+            "curve": 4.9,
+            "delay": 0.053
+          },
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "frequencyEnd": 170,
+            "pitchTime": 0.015,
+            "attack": 0.001,
+            "decay": 0.03,
+            "gain": 0.05,
+            "filter": {
+              "type": "lowpass",
+              "frequency": 2000,
+              "q": 0.7
+            }
+          }
+        ]
+      }
+    }
+  },
   "type": "registry:ui"
 }

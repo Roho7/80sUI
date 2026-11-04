@@ -18,5 +18,34 @@
       "type": "registry:ui"
     }
   ],
+  "meta": {
+    "sounds": {
+      "radio.select": {
+        "note": "0.2 / 2 ms pip, 4.4 kHz square through a 2 kHz bandpass, 8 gain steps",
+        "layers": [
+          {
+            "wave": "square",
+            "frequency": 4400,
+            "attack": 0.0002,
+            "decay": 0.002,
+            "gain": 0.25,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 2000,
+              "q": 0.7
+            }
+          }
+        ],
+        "crush": {
+          "gainSteps": 8
+        },
+        "jitter": {
+          "cents": 35,
+          "gainDb": 1.5,
+          "decay": 0.06
+        }
+      }
+    }
+  },
   "type": "registry:ui"
 }

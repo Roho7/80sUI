@@ -1,0 +1,85 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sheet",
+  "title": "Sheet",
+  "description": "Edge panel from any side of the screen that opens in one frame.",
+  "dependencies": [
+    "cn",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@dither/theme",
+    "@dither/button",
+    "@dither/pixel-glyphs"
+  ],
+  "files": [
+    {
+      "path": "components/ui/sheet.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"cn\"\nimport { Dialog as SheetPrimitive } from \"radix-ui\"\nimport * as React from \"react\"\n\nimport { Button } from \"@/components/ui/button\"\nimport { CloseGlyph } from \"@/components/ui/pixel-glyphs\"\n\nfunction Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {\n  return <SheetPrimitive.Root data-slot=\"sheet\" {...props} />\n}\n\nfunction SheetTrigger({\n  ...props\n}: React.ComponentProps<typeof SheetPrimitive.Trigger>) {\n  return <SheetPrimitive.Trigger data-slot=\"sheet-trigger\" {...props} />\n}\n\nfunction SheetClose({\n  ...props\n}: React.ComponentProps<typeof SheetPrimitive.Close>) {\n  return <SheetPrimitive.Close data-slot=\"sheet-close\" {...props} />\n}\n\nfunction SheetPortal({\n  ...props\n}: React.ComponentProps<typeof SheetPrimitive.Portal>) {\n  return <SheetPrimitive.Portal data-slot=\"sheet-portal\" {...props} />\n}\n\nfunction SheetOverlay({\n  className,\n  ...props\n}: React.ComponentProps<typeof SheetPrimitive.Overlay>) {\n  return (\n    <SheetPrimitive.Overlay\n      data-slot=\"sheet-overlay\"\n      className={cn(\n        \"fixed inset-0 isolate z-50 bg-ink-0 dither-25\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction SheetContent({\n  className,\n  children,\n  side = \"right\",\n  showCloseButton = true,\n  ...props\n}: React.ComponentProps<typeof SheetPrimitive.Content> & {\n  side?: \"top\" | \"right\" | \"bottom\" | \"left\"\n  showCloseButton?: boolean\n}) {\n  return (\n    <SheetPortal>\n      <SheetOverlay />\n      <SheetPrimitive.Content\n        data-slot=\"sheet-content\"\n        data-side={side}\n        className={cn(\n          \"fixed z-50 flex flex-col gap-4 border-border bg-popover text-popover-foreground offset-shadow-3 outline-none data-[side=bottom]:inset-x-0 data-[side=bottom]:bottom-0 data-[side=bottom]:h-auto data-[side=bottom]:border-t-(length:--pixel) data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:border-r-(length:--pixel) data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:border-l-(length:--pixel) data-[side=top]:inset-x-0 data-[side=top]:top-0 data-[side=top]:h-auto data-[side=top]:border-b-(length:--pixel) data-[side=left]:sm:max-w-sm data-[side=right]:sm:max-w-sm\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n        {showCloseButton && (\n          <SheetPrimitive.Close data-slot=\"sheet-close\" asChild>\n            <Button\n              variant=\"ghost\"\n              className=\"absolute top-1 right-1 text-titlebar-foreground\"\n              size=\"icon-xs\"\n            >\n              <CloseGlyph />\n              <span className=\"sr-only\">Close</span>\n            </Button>\n          </SheetPrimitive.Close>\n        )}\n      </SheetPrimitive.Content>\n    </SheetPortal>\n  )\n}\n\nfunction SheetHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"sheet-header\"\n      className={cn(\"flex flex-col gap-3\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction SheetFooter({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"sheet-footer\"\n      className={cn(\"mt-auto flex flex-col gap-3 p-4\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction SheetTitle({\n  className,\n  ...props\n}: React.ComponentProps<typeof SheetPrimitive.Title>) {\n  return (\n    <SheetPrimitive.Title\n      data-slot=\"sheet-title\"\n      className={cn(\n        \"flex h-8 items-center gap-3 border-b-(length:--pixel) border-border bg-titlebar pr-9 pl-3 font-pixel text-[16px] leading-none text-titlebar-foreground uppercase after:h-4 after:min-w-6 after:flex-1 after:stripes after:content-['']\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction SheetDescription({\n  className,\n  ...props\n}: React.ComponentProps<typeof SheetPrimitive.Description>) {\n  return (\n    <SheetPrimitive.Description\n      data-slot=\"sheet-description\"\n      className={cn(\"px-4 text-xl leading-tight text-popover-foreground\", className)}\n      {...props}\n    />\n  )\n}\n\nexport {\n  Sheet,\n  SheetClose,\n  SheetContent,\n  SheetDescription,\n  SheetFooter,\n  SheetHeader,\n  SheetTitle,\n  SheetTrigger,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "meta": {
+    "sounds": {
+      "button.press": {
+        "note": "Tactile switch: bandpassed noise bump plus a square click",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.006,
+            "gain": 0.6,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 3500,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 2200,
+            "attack": 0.0005,
+            "decay": 0.005,
+            "gain": 0.15
+          }
+        ],
+        "jitter": {
+          "cents": 100,
+          "gainDb": 6,
+          "decay": 0.12
+        }
+      },
+      "button.release": {
+        "note": "Lighter, higher tactile click",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.004,
+            "gain": 0.35,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 4200,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 2600,
+            "attack": 0.0005,
+            "decay": 0.004,
+            "gain": 0.08
+          }
+        ],
+        "jitter": {
+          "cents": 91,
+          "gainDb": 1.5,
+          "decay": 0.12
+        }
+      }
+    }
+  },
+  "type": "registry:ui"
+}

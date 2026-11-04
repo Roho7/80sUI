@@ -11,7 +11,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-card text-card-foreground offset-shadow-none bevel-raised hover:bg-foreground hover:text-card active:not-aria-[haspopup]:translate-x-[calc(var(--pixel)*2)] active:not-aria-[haspopup]:translate-y-[calc(var(--pixel)*2)] active:not-aria-[haspopup]:offset-shadow-none aria-expanded:bg-foreground aria-expanded:text-card",
+          "bg-card text-card-foreground offset-shadow-none bevel-raised hover:bg-foreground hover:text-card active:not-aria-[haspopup]:translate-x-[calc(var(--pixel)*1.2)] active:not-aria-[haspopup]:translate-y-[calc(var(--pixel)*1.2)] active:not-aria-[haspopup]:offset-shadow-none aria-expanded:bg-foreground aria-expanded:text-card",
         outline:
           "bg-transparent text-foreground hover:bg-muted aria-expanded:bg-muted",
         secondary:
@@ -19,7 +19,7 @@ const buttonVariants = cva(
         ghost:
           "border-transparent bg-transparent text-foreground hover:border-current aria-expanded:border-current",
         destructive:
-          "bg-foreground text-card offset-shadow-none hover:bg-card hover:text-card-foreground active:not-aria-[haspopup]:translate-x-[calc(var(--pixel)*2)] active:not-aria-[haspopup]:translate-y-[calc(var(--pixel)*2)] active:not-aria-[haspopup]:offset-shadow-none",
+          "bg-foreground text-card offset-shadow-none hover:bg-card hover:text-card-foreground active:not-aria-[haspopup]:translate-x-[calc(var(--pixel)*1.2)] active:not-aria-[haspopup]:translate-y-[calc(var(--pixel)*2)] active:not-aria-[haspopup]:offset-shadow-none",
         link: "border-transparent bg-transparent text-foreground decoration-[length:var(--pixel)] underline-offset-4 hover:underline",
       },
       size: {

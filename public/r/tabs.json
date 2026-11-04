@@ -18,5 +18,33 @@
       "type": "registry:ui"
     }
   ],
+  "meta": {
+    "sounds": {
+      "tab.select": {
+        "note": "Light tactile, press only",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.004,
+            "gain": 0.45,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 4000,
+              "q": 2.5
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 2600,
+            "attack": 0.0004,
+            "decay": 0.003,
+            "gain": 0.08
+          }
+        ]
+      }
+    }
+  },
   "type": "registry:ui"
 }

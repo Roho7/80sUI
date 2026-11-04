@@ -114,6 +114,9 @@ function findRegistryViolations() {
   for (const item of REGISTRY.items) {
     for (const file of item.files ?? []) {
       itemByFile.set(file.path, item.name)
+      if (file.target?.startsWith("~/")) {
+        itemByFile.set(file.target.slice(2), item.name)
+      }
       if (!existsSync(join(ROOT, file.path))) {
         violations.push({ path: "registry.json", line: 0, rule: "registry-file-exists", found: `${item.name}: ${file.path}`, why: "every registry file must exist" })
       }
@@ -140,7 +143,7 @@ function findRegistryViolations() {
       }
       for (const specifier of listImports(readFileSync(filePath, "utf8"))) {
         if (specifier.startsWith("@/")) {
-          const target = [".tsx", ".ts", "/index.ts"].map((extension) => `${specifier.slice(2)}${extension}`).find((candidate) => itemByFile.has(candidate))
+          const target = ["", ".tsx", ".ts", "/index.ts"].map((extension) => `${specifier.slice(2)}${extension}`).find((candidate) => itemByFile.has(candidate))
           const owner = target ? itemByFile.get(target) : undefined
           if (owner === undefined) {
             if (specifier !== "@/lib/utils") {

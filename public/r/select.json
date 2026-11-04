@@ -18,5 +18,91 @@
       "type": "registry:ui"
     }
   ],
+  "meta": {
+    "sounds": {
+      "button.press": {
+        "note": "Tactile switch: bandpassed noise bump plus a square click",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.006,
+            "gain": 0.6,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 3500,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 2200,
+            "attack": 0.0005,
+            "decay": 0.005,
+            "gain": 0.15
+          }
+        ],
+        "jitter": {
+          "cents": 100,
+          "gainDb": 6,
+          "decay": 0.12
+        }
+      },
+      "button.release": {
+        "note": "Lighter, higher tactile click",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.004,
+            "gain": 0.35,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 4200,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 2600,
+            "attack": 0.0005,
+            "decay": 0.004,
+            "gain": 0.08
+          }
+        ],
+        "jitter": {
+          "cents": 91,
+          "gainDb": 1.5,
+          "decay": 0.12
+        }
+      },
+      "menu.select": {
+        "note": "Light tactile on release, like letting go of a menu",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.0035,
+            "gain": 0.35,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 4500,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 3000,
+            "attack": 0.0003,
+            "decay": 0.003,
+            "gain": 0.08
+          }
+        ]
+      }
+    }
+  },
   "type": "registry:ui"
 }

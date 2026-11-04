@@ -1,0 +1,762 @@
+{
+  "$schema": "http://localhost:3000/schema/sounds.json",
+  "enabled": false,
+  "volume": 0.6,
+  "reducedMotion": "thin",
+  "sounds": {
+    "button.press": {
+      "note": "Tactile switch: bandpassed noise bump plus a square click",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0003,
+          "decay": 0.006,
+          "gain": 0.6,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 3500,
+            "q": 2
+          }
+        },
+        {
+          "wave": "square",
+          "frequency": 2200,
+          "attack": 0.0005,
+          "decay": 0.005,
+          "gain": 0.15
+        }
+      ],
+      "jitter": {
+        "cents": 100,
+        "gainDb": 6,
+        "decay": 0.12
+      }
+    },
+    "button.release": {
+      "note": "Lighter, higher tactile click",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0003,
+          "decay": 0.004,
+          "gain": 0.35,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 4200,
+            "q": 2
+          }
+        },
+        {
+          "wave": "square",
+          "frequency": 2600,
+          "attack": 0.0005,
+          "decay": 0.004,
+          "gain": 0.08
+        }
+      ],
+      "jitter": {
+        "cents": 91,
+        "gainDb": 1.5,
+        "decay": 0.12
+      }
+    },
+    "small-button.press": {
+      "note": "Tactile, smaller switch: higher and shorter",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0002,
+          "decay": 0.003,
+          "gain": 0.45,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 4800,
+            "q": 2
+          }
+        },
+        {
+          "wave": "square",
+          "frequency": 3200,
+          "attack": 0.0003,
+          "decay": 0.003,
+          "gain": 0.1
+        }
+      ]
+    },
+    "small-button.release": {
+      "note": "Barely there",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0002,
+          "decay": 0.0025,
+          "gain": 0.25,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 5500,
+            "q": 2
+          }
+        },
+        {
+          "wave": "square",
+          "frequency": 3600,
+          "attack": 0.0003,
+          "decay": 0.0025,
+          "gain": 0.06
+        }
+      ]
+    },
+    "keycap.press": {
+      "note": "Tactile, bigger switch: lower bump plus a little body",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0011,
+          "decay": 0.00138,
+          "gain": 0.12,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 1510,
+            "q": 0.3
+          },
+          "curve": 4.4
+        },
+        {
+          "wave": "square",
+          "frequency": 1880,
+          "attack": 0.0016,
+          "decay": 0.00331,
+          "gain": 0.11,
+          "curve": 3.9,
+          "frequencyEnd": 4690
+        },
+        {
+          "wave": "sine",
+          "frequency": 628,
+          "frequencyEnd": 963,
+          "pitchTime": 0.029,
+          "attack": 0.0072,
+          "decay": 0.00798,
+          "gain": 0.05,
+          "curve": 3.9,
+          "delay": 0
+        }
+      ]
+    },
+    "keycap.release": {
+      "note": "Tactile upstroke",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0003,
+          "decay": 0.0033,
+          "gain": 0.35,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 4780,
+            "q": 2
+          }
+        },
+        {
+          "wave": "square",
+          "frequency": 2120,
+          "attack": 0.0005,
+          "decay": 0.00233,
+          "gain": 0.13,
+          "frequencyEnd": 1690
+        }
+      ]
+    },
+    "tab.select": {
+      "note": "Light tactile, press only",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0003,
+          "decay": 0.004,
+          "gain": 0.45,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 4000,
+            "q": 2.5
+          }
+        },
+        {
+          "wave": "square",
+          "frequency": 2600,
+          "attack": 0.0004,
+          "decay": 0.003,
+          "gain": 0.08
+        }
+      ]
+    },
+    "menu.select": {
+      "note": "Light tactile on release, like letting go of a menu",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0003,
+          "decay": 0.0035,
+          "gain": 0.35,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 4500,
+            "q": 2
+          }
+        },
+        {
+          "wave": "square",
+          "frequency": 3000,
+          "attack": 0.0003,
+          "decay": 0.003,
+          "gain": 0.08
+        }
+      ]
+    },
+    "checkbox.on": {
+      "note": "0.2 / 2 ms pip, 2.25 kHz square",
+      "layers": [
+        {
+          "wave": "square",
+          "frequency": 2250,
+          "attack": 0.0002,
+          "decay": 0.002,
+          "gain": 0.15
+        }
+      ]
+    },
+    "checkbox.off": {
+      "note": "0.2 / 2 ms pip, 1.28 kHz square, quieter",
+      "layers": [
+        {
+          "wave": "square",
+          "frequency": 1280,
+          "attack": 0.0002,
+          "decay": 0.002,
+          "gain": 0.09
+        }
+      ]
+    },
+    "radio.select": {
+      "note": "0.2 / 2 ms pip, 4.4 kHz square through a 2 kHz bandpass, 8 gain steps",
+      "layers": [
+        {
+          "wave": "square",
+          "frequency": 4400,
+          "attack": 0.0002,
+          "decay": 0.002,
+          "gain": 0.25,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 2000,
+            "q": 0.7
+          }
+        }
+      ],
+      "crush": {
+        "gainSteps": 8
+      },
+      "jitter": {
+        "cents": 35,
+        "gainDb": 1.5,
+        "decay": 0.06
+      }
+    },
+    "switch.on": {
+      "note": "Lowpassed noise snap, a stepped sub thump and a high sine click, held at 8 kHz",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0006,
+          "decay": 0.00535,
+          "gain": 0.32,
+          "filter": {
+            "type": "lowpass",
+            "frequency": 1130,
+            "q": 1.51
+          },
+          "curve": 4.4,
+          "delay": 0
+        },
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "frequencyEnd": 427,
+          "pitchTime": 0.072,
+          "attack": 0.0079,
+          "decay": 0.022,
+          "gain": 0.3,
+          "filter": {
+            "type": "lowpass",
+            "frequency": 127,
+            "q": 0.7
+          },
+          "pitchSteps": 7,
+          "curve": 2.3
+        },
+        {
+          "wave": "sine",
+          "frequency": 1370,
+          "attack": 0.0005,
+          "decay": 0.0055,
+          "gain": 0.4,
+          "pitchTime": 0.081,
+          "curve": 3,
+          "delay": 0,
+          "filter": {
+            "type": "highpass",
+            "frequency": 2000,
+            "q": 0.7
+          },
+          "frequencyEnd": 1060
+        }
+      ],
+      "crush": {
+        "sampleRate": 8000
+      }
+    },
+    "switch.off": {
+      "note": "Lowpassed noise snap 53 ms late over a faint low rumble",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0003,
+          "decay": 0.006,
+          "gain": 0.61,
+          "filter": {
+            "type": "lowpass",
+            "frequency": 2200,
+            "q": 1.21
+          },
+          "curve": 4.9,
+          "delay": 0.053
+        },
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "frequencyEnd": 170,
+          "pitchTime": 0.015,
+          "attack": 0.001,
+          "decay": 0.03,
+          "gain": 0.05,
+          "filter": {
+            "type": "lowpass",
+            "frequency": 2000,
+            "q": 0.7
+          }
+        }
+      ]
+    },
+    "toggle.on": {
+      "note": "Toggle latched down. Starts as the button press; tune it in the lab",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0003,
+          "decay": 0.006,
+          "gain": 0.6,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 3500,
+            "q": 2
+          }
+        },
+        {
+          "wave": "square",
+          "frequency": 2200,
+          "attack": 0.0005,
+          "decay": 0.005,
+          "gain": 0.15
+        }
+      ],
+      "jitter": {
+        "cents": 100,
+        "gainDb": 6,
+        "decay": 0.12
+      }
+    },
+    "toggle.off": {
+      "note": "Toggle released. Starts as the button release; tune it in the lab",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0003,
+          "decay": 0.004,
+          "gain": 0.35,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 4200,
+            "q": 2
+          }
+        },
+        {
+          "wave": "square",
+          "frequency": 2600,
+          "attack": 0.0005,
+          "decay": 0.004,
+          "gain": 0.08
+        }
+      ],
+      "jitter": {
+        "cents": 91,
+        "gainDb": 1.5,
+        "decay": 0.12
+      }
+    },
+    "toggle.select": {
+      "note": "Picking one option in a single-choice toggle group",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0003,
+          "decay": 0.006,
+          "gain": 0.6,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 3500,
+            "q": 2
+          }
+        },
+        {
+          "wave": "square",
+          "frequency": 2200,
+          "attack": 0.0005,
+          "decay": 0.005,
+          "gain": 0.15
+        }
+      ],
+      "jitter": {
+        "cents": 100,
+        "gainDb": 6,
+        "decay": 0.12
+      }
+    },
+    "slider.tick": {
+      "note": "Sine 1.29 kHz falling to 303 Hz, 0.5 / 2.9 ms",
+      "layers": [
+        {
+          "wave": "sine",
+          "frequency": 1290,
+          "attack": 0.0005,
+          "decay": 0.00288,
+          "gain": 0.14,
+          "pitchTime": 0.044,
+          "frequencyEnd": 303
+        }
+      ],
+      "jitter": {
+        "cents": 30,
+        "gainDb": 1,
+        "decay": 0.1
+      },
+      "detent": {
+        "step": 5,
+        "minGap": 18,
+        "maxAhead": 60,
+        "policy": "spread",
+        "pitchFollow": 0
+      }
+    },
+    "drag.pickup": {
+      "note": "Small tactile click when the drag starts",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0066,
+          "decay": 0.004,
+          "gain": 0.4,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 4000,
+            "q": 2
+          }
+        },
+        {
+          "wave": "square",
+          "frequency": 254,
+          "attack": 0.0004,
+          "decay": 0.003,
+          "gain": 0
+        }
+      ]
+    },
+    "drag.drop": {
+      "note": "Lower tactile click when it lands",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0045,
+          "decay": 0.0064,
+          "gain": 0.5,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 234,
+            "q": 0.524
+          }
+        },
+        {
+          "wave": "square",
+          "frequency": 396,
+          "attack": 0.0005,
+          "decay": 0.00494,
+          "gain": 0,
+          "delay": 0.15
+        }
+      ]
+    },
+    "drag.friction": {
+      "note": "Filtered noise that opens up with drag speed, updated at a stepped rate",
+      "loop": {
+        "source": "noise",
+        "frequency": 90,
+        "filter": "highpass",
+        "filterLow": 55.8,
+        "filterHigh": 974,
+        "q": 0.421,
+        "levelMin": 0,
+        "levelMax": 0.11,
+        "fullSpeed": 3560,
+        "gate": 15,
+        "fps": 10,
+        "smoothing": 46.3,
+        "stopRamp": 15
+      }
+    },
+    "pad.tick": {
+      "note": "Sine 1.81 kHz falling to 270 Hz, 0.5 / 6 ms",
+      "layers": [
+        {
+          "wave": "sine",
+          "frequency": 1810,
+          "attack": 0.0005,
+          "decay": 0.00608,
+          "gain": 0.11,
+          "pitchTime": 0.048,
+          "frequencyEnd": 270
+        }
+      ],
+      "jitter": {
+        "cents": 30,
+        "gainDb": 1,
+        "decay": 0.1
+      },
+      "detent": {
+        "step": 16,
+        "minGap": 18,
+        "maxAhead": 60,
+        "policy": "spread",
+        "pitchFollow": 0
+      }
+    },
+    "dial.tick": {
+      "note": "Sine 861 Hz, 0.5 / 8 ms",
+      "layers": [
+        {
+          "wave": "sine",
+          "frequency": 861,
+          "attack": 0.0005,
+          "decay": 0.008,
+          "gain": 0.18,
+          "frequencyEnd": 461
+        }
+      ],
+      "jitter": {
+        "cents": 30,
+        "gainDb": 1,
+        "decay": 0.1
+      },
+      "detent": {
+        "step": 15,
+        "minGap": 18,
+        "maxAhead": 60,
+        "policy": "spread",
+        "pitchFollow": 0
+      }
+    },
+    "dial.end": {
+      "note": "Knock: bandpassed noise and a short square body, little bass",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0,
+          "decay": 0.01,
+          "gain": 0.6,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 1800,
+            "q": 1.5
+          }
+        },
+        {
+          "wave": "square",
+          "frequency": 949,
+          "frequencyEnd": 439,
+          "pitchTime": 0.01,
+          "attack": 0.0005,
+          "decay": 0.012,
+          "gain": 0.1
+        },
+        {
+          "wave": "sine",
+          "frequency": 260,
+          "frequencyEnd": 180,
+          "pitchTime": 0.015,
+          "attack": 0.001,
+          "decay": 0.025,
+          "gain": 0.25,
+          "filter": {
+            "type": "highpass",
+            "frequency": 2000,
+            "q": 0.7
+          }
+        }
+      ]
+    },
+    "lever.tick": {
+      "note": "Sine 700 Hz, 0.5 / 8 ms",
+      "layers": [
+        {
+          "wave": "sine",
+          "frequency": 700,
+          "attack": 0.0005,
+          "decay": 0.008,
+          "gain": 0.4
+        }
+      ],
+      "jitter": {
+        "cents": 30,
+        "gainDb": 1,
+        "decay": 0.1
+      },
+      "detent": {
+        "step": 10,
+        "minGap": 18,
+        "maxAhead": 60,
+        "policy": "spread",
+        "pitchFollow": 0
+      }
+    },
+    "lever.on": {
+      "note": "Knock then a delayed latch snap",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0003,
+          "decay": 0.014,
+          "gain": 0.6,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 1400,
+            "q": 1.5
+          }
+        },
+        {
+          "wave": "square",
+          "frequency": 700,
+          "frequencyEnd": 450,
+          "pitchTime": 0.012,
+          "attack": 0.0005,
+          "decay": 0.018,
+          "gain": 0.15,
+          "filter": {
+            "type": "lowpass",
+            "frequency": 2000,
+            "q": 0.8
+          }
+        },
+        {
+          "wave": "sine",
+          "frequency": 200,
+          "frequencyEnd": 150,
+          "pitchTime": 0.02,
+          "attack": 0.001,
+          "decay": 0.035,
+          "gain": 0.25
+        },
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0003,
+          "decay": 0.005,
+          "gain": 0.35,
+          "delay": 0.025,
+          "filter": {
+            "type": "highpass",
+            "frequency": 3000,
+            "q": 0.7
+          }
+        }
+      ]
+    },
+    "lever.off": {
+      "note": "Same knock, snap a step lower",
+      "layers": [
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0003,
+          "decay": 0.014,
+          "gain": 0.6,
+          "filter": {
+            "type": "bandpass",
+            "frequency": 1200,
+            "q": 1.5
+          }
+        },
+        {
+          "wave": "square",
+          "frequency": 600,
+          "frequencyEnd": 400,
+          "pitchTime": 0.012,
+          "attack": 0.0005,
+          "decay": 0.018,
+          "gain": 0.15,
+          "filter": {
+            "type": "lowpass",
+            "frequency": 1800,
+            "q": 0.8
+          }
+        },
+        {
+          "wave": "sine",
+          "frequency": 180,
+          "frequencyEnd": 140,
+          "pitchTime": 0.02,
+          "attack": 0.001,
+          "decay": 0.035,
+          "gain": 0.25
+        },
+        {
+          "wave": "noise",
+          "frequency": 0,
+          "attack": 0.0003,
+          "decay": 0.005,
+          "gain": 0.3,
+          "delay": 0.025,
+          "filter": {
+            "type": "highpass",
+            "frequency": 2200,
+            "q": 0.7
+          }
+        }
+      ]
+    }
+  }
+}

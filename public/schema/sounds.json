@@ -1,0 +1,341 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "dither-ui sounds.json",
+  "type": "object",
+  "required": [
+    "sounds"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Default on or off. A runtime choice made with setEnabled (for example a sound toggle in your UI) is stored in localStorage and wins over this."
+    },
+    "volume": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "reducedMotion": {
+      "enum": [
+        "thin",
+        "mute",
+        "ignore"
+      ],
+      "description": "thin: drag ticks collapse and loops stay silent under prefers-reduced-motion."
+    },
+    "sounds": {
+      "type": "object",
+      "description": "Keyed by sound name such as button.press. Set an entry to false to silence it.",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "const": false
+          },
+          {
+            "type": "object",
+            "required": [
+              "layers"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "note": {
+                "type": "string"
+              },
+              "layers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "wave",
+                    "frequency",
+                    "attack",
+                    "decay",
+                    "gain"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "wave": {
+                      "enum": [
+                        "sine",
+                        "square",
+                        "blend",
+                        "noise"
+                      ]
+                    },
+                    "frequency": {
+                      "type": "number",
+                      "minimum": 0,
+                      "description": "Start pitch in Hz. Ignored for noise."
+                    },
+                    "frequencyEnd": {
+                      "type": "number",
+                      "minimum": 0,
+                      "description": "End pitch in Hz, reached after pitchTime."
+                    },
+                    "pitchTime": {
+                      "type": "number",
+                      "minimum": 0,
+                      "description": "Seconds for the exponential pitch move."
+                    },
+                    "pitchSteps": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "description": "Quantize the pitch move into this many steps. 0 is smooth."
+                    },
+                    "sineShare": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "description": "Sine share of a blend, the rest is square."
+                    },
+                    "attack": {
+                      "type": "number",
+                      "minimum": 0,
+                      "description": "Seconds."
+                    },
+                    "decay": {
+                      "type": "number",
+                      "minimum": 0,
+                      "description": "Seconds; the envelope reaches exactly zero."
+                    },
+                    "curve": {
+                      "type": "number",
+                      "minimum": 0,
+                      "description": "Decay shape exponent, default 3."
+                    },
+                    "gain": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "delay": {
+                      "type": "number",
+                      "minimum": 0,
+                      "description": "Seconds before this layer starts."
+                    },
+                    "filter": {
+                      "type": "object",
+                      "required": [
+                        "type",
+                        "frequency",
+                        "q"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "type": {
+                          "enum": [
+                            "lowpass",
+                            "highpass",
+                            "bandpass"
+                          ]
+                        },
+                        "frequency": {
+                          "type": "number",
+                          "minimum": 1
+                        },
+                        "q": {
+                          "type": "number",
+                          "minimum": 0
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "gain": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Whole-sound volume, default 1."
+              },
+              "jitter": {
+                "type": "object",
+                "required": [
+                  "cents",
+                  "gainDb",
+                  "decay"
+                ],
+                "additionalProperties": false,
+                "description": "Random variation per play.",
+                "properties": {
+                  "cents": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "gainDb": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "decay": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              },
+              "crush": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "sampleRate": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "bits": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "gainSteps": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "oneBit": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "detent": {
+                "type": "object",
+                "required": [
+                  "step",
+                  "minGap",
+                  "maxAhead",
+                  "policy",
+                  "pitchFollow"
+                ],
+                "additionalProperties": false,
+                "description": "Only for .tick sounds.",
+                "properties": {
+                  "step": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "Value units, px or degrees per tick."
+                  },
+                  "minGap": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "Milliseconds."
+                  },
+                  "maxAhead": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "Milliseconds."
+                  },
+                  "policy": {
+                    "enum": [
+                      "spread",
+                      "collapse",
+                      "per-event"
+                    ]
+                  },
+                  "pitchFollow": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "loop"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "note": {
+                "type": "string"
+              },
+              "loop": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "source",
+                  "frequency",
+                  "filter",
+                  "filterLow",
+                  "filterHigh",
+                  "q",
+                  "levelMin",
+                  "levelMax",
+                  "fullSpeed",
+                  "gate",
+                  "fps",
+                  "smoothing",
+                  "stopRamp"
+                ],
+                "properties": {
+                  "source": {
+                    "enum": [
+                      "noise",
+                      "square",
+                      "sine"
+                    ]
+                  },
+                  "frequency": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "filter": {
+                    "enum": [
+                      "lowpass",
+                      "bandpass",
+                      "highpass"
+                    ]
+                  },
+                  "filterLow": {
+                    "type": "number",
+                    "minimum": 1
+                  },
+                  "filterHigh": {
+                    "type": "number",
+                    "minimum": 1
+                  },
+                  "q": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "levelMin": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "levelMax": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "fullSpeed": {
+                    "type": "number",
+                    "minimum": 1,
+                    "description": "px/s"
+                  },
+                  "gate": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "px/s"
+                  },
+                  "fps": {
+                    "type": "number",
+                    "minimum": 1
+                  },
+                  "smoothing": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "ms"
+                  },
+                  "stopRamp": {
+                    "type": "number",
+                    "minimum": 0,
+                    "description": "ms"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

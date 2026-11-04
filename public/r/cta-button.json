@@ -19,5 +19,72 @@
       "type": "registry:ui"
     }
   ],
+  "meta": {
+    "sounds": {
+      "keycap.press": {
+        "note": "Tactile, bigger switch: lower bump plus a little body",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0011,
+            "decay": 0.00138,
+            "gain": 0.12,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 1510,
+              "q": 0.3
+            },
+            "curve": 4.4
+          },
+          {
+            "wave": "square",
+            "frequency": 1880,
+            "attack": 0.0016,
+            "decay": 0.00331,
+            "gain": 0.11,
+            "curve": 3.9,
+            "frequencyEnd": 4690
+          },
+          {
+            "wave": "sine",
+            "frequency": 628,
+            "frequencyEnd": 963,
+            "pitchTime": 0.029,
+            "attack": 0.0072,
+            "decay": 0.00798,
+            "gain": 0.05,
+            "curve": 3.9,
+            "delay": 0
+          }
+        ]
+      },
+      "keycap.release": {
+        "note": "Tactile upstroke",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.0033,
+            "gain": 0.35,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 4780,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 2120,
+            "attack": 0.0005,
+            "decay": 0.00233,
+            "gain": 0.13,
+            "frequencyEnd": 1690
+          }
+        ]
+      }
+    }
+  },
   "type": "registry:ui"
 }

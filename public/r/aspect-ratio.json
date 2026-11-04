@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio",
+  "title": "Aspect Ratio",
+  "description": "Keeps content at a fixed aspect ratio.",
+  "dependencies": [
+    "cn",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@dither/theme"
+  ],
+  "files": [
+    {
+      "path": "components/ui/aspect-ratio.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"cn\"\nimport { AspectRatio as AspectRatioPrimitive } from \"radix-ui\"\nimport * as React from \"react\"\n\nfunction AspectRatio({\n  className,\n  ...props\n}: React.ComponentProps<typeof AspectRatioPrimitive.Root>) {\n  return (\n    <AspectRatioPrimitive.Root\n      data-slot=\"aspect-ratio\"\n      className={cn(\"pixel-border border-border bg-muted\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { AspectRatio }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -67,6 +67,17 @@ Where we differ from Paper:
 3. **Pixel grid.** `u_pxSize` is the `--pixel` token in device pixels. Shaders compute their grid from `gl_FragCoord` measured from the top-left, so dither cells line up with every border.
 4. **Hover is DOM, not shader.** `CtaButton` is a keycap: its face is the padding box (where the shine canvas sits) and its four walls are CSS borders in `--keycap-wall-hi` (top, left) and `--keycap-wall-lo` (right, bottom), which meet in mitred corners. The pointer is quantized to 5 levels per axis and written as `--tilt-x`, `--tilt-y` and `--tilt-lift` once per 1/`fps` step; wall widths move from one side to the opposite side, so the face slides toward the pointer while the outer size stays fixed.
 
+## Sound
+
+Sound is opt-in: components never import it. Installing `@dither/sound` and rendering `<DitherSounds />` once turns it on.
+
+- **`sounds.json`** in the project root (where `@/sounds.json` resolves) is the single place every sound is configured: `enabled`, `volume`, `reducedMotion` and a flat `sounds` map keyed like `button.press`. An entry is a patch (`layers` of sine, square, blend or noise with an envelope, pitch drop, optional filter, plus `jitter`, `crush` and, for `.tick` sounds, a `detent`), a `loop` for continuous drags, or `false` to silence it. `/schema/sounds.json` is its JSON Schema.
+- **Growing it.** `shadcn add` cannot merge JSON, so each component's registry item lists its sound keys in `meta.sounds`, and `npm run registry:build` embeds their data from the repo's `sounds.json` (`scripts/build-sound-meta.mjs`). In a user's project, `node scripts/dither-sounds.mjs sync` adds the entries of installed components only and never overwrites existing keys (`--overwrite` restores defaults).
+- **`SoundEngine`** (`lib/sound/sound-engine.ts`) is framework-agnostic: one shared AudioContext created on the first gesture, every patch rendered on the CPU (`lib/sound/render.ts`) into six jittered buffers played round-robin, envelopes that end at exactly zero, `step()` for detents (spread, collapse or per-event, with a minimum gap and a look-ahead cap), `startLoop()` for drags, and a runtime `setEnabled` stored in localStorage that wins over `enabled`.
+- **Event delegation, not props.** `attachSoundSlots` (`lib/sound/sound-slots.ts`) maps `data-slot` to a sound and a gesture: press and release for buttons and `*-trigger`s, on and off for checkbox and switch, select for radio items, tabs and menu items, ticks from `aria-valuenow` for sliders, pick-up, friction and drop from `data-dragging` for windows. Pointer gestures play on pointer down; keyboard changes play from the attribute mutation. `data-sound="key"` renames an element's sound and `data-sound="none"` silences it.
+- **React** has `<DitherSounds />`, `useSoundEnabled()` and `useSound(key)`. Under `prefers-reduced-motion`, `"thin"` collapses drag ticks and skips loops; `"mute"` silences everything.
+- `/sound-lab` is the sound designer: every component with its real sounds and knob editors. Under `next dev`, "save to sounds.json" (per sound or for every edit) posts to `app/sound-lab/save/route.ts`, which validates the entries and merges them into the repo's `sounds.json`; it refuses outside development and from other origins.
+
 ## Registry
 
 | Item | Type | Contents |
@@ -78,6 +89,7 @@ Where we differ from Paper:
 | `shader-mount` | `registry:lib` | `lib/shaders/types.ts`, `lib/shaders/shader-mount.ts` and `components/ui/shader-mount.tsx` |
 | `dither-shine` | `registry:ui` | `lib/shaders/dither-shine.ts` and its `DitherShine` component |
 | `cta-button` | `registry:ui` | Call-to-action button over `dither-shine` |
+| `sound` | `registry:lib` | `lib/sound/*`, `hooks/use-sound.ts`, `<DitherSounds />`, a starter `sounds.json` and `scripts/dither-sounds.mjs` |
 | `button`, `checkbox`, `slider`, `progress`, `dialog`, `input`, `textarea`, `label`, `radio-group`, `switch`, `select`, `tabs`, `tooltip`, `dropdown-menu`, `menubar`, `scroll-area`, `separator`, `badge`, `alert`, `card`, `accordion` | `registry:ui` | Layer 1 primitives |
 | `window`, `error-dialog`, `terminal`, `taskbar`, `desktop-icon` | `registry:block` | Layer 2 compositions. `window` ships `hooks/use-window-drag.ts` |
 
