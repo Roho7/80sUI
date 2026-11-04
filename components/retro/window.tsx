@@ -9,12 +9,14 @@ import { type Point, useWindowDrag } from "@/hooks/use-window-drag"
 
 type WindowProps = Omit<React.ComponentProps<"section">, "title"> & {
   title: string
-  defaultPosition: Point
+  defaultPosition?: Point
   isActive?: boolean
   statusBar?: React.ReactNode
   onClose?: () => void
   onActivate?: () => void
 }
+
+const ORIGIN: Point = { x: 0, y: 0 }
 
 function stopPointerPropagation(event: React.PointerEvent) {
   event.stopPropagation()
@@ -32,7 +34,8 @@ function Window({
   children,
   ...props
 }: WindowProps) {
-  const { position, isDragging, startDrag } = useWindowDrag(defaultPosition)
+  const isDraggable = defaultPosition !== undefined
+  const { position, isDragging, startDrag } = useWindowDrag(defaultPosition ?? ORIGIN)
 
   return (
     <section
@@ -41,21 +44,23 @@ function Window({
       data-active={isActive}
       data-dragging={isDragging}
       className={cn(
-        "absolute flex flex-col pixel-border border-border bg-card text-card-foreground offset-shadow-3",
+        "flex flex-col pixel-border border-border bg-card text-card-foreground offset-shadow-3",
+        isDraggable ? "absolute" : "relative",
         className
       )}
-      style={{ left: position.x, top: position.y, ...style }}
+      style={isDraggable ? { left: position.x, top: position.y, ...style } : style}
       onPointerDownCapture={onActivate}
       {...props}
     >
       <header
         data-slot="window-titlebar"
-        onPointerDown={startDrag}
+        onPointerDown={isDraggable ? startDrag : undefined}
         className={cn(
-          "flex h-8 shrink-0 cursor-grab touch-none items-center gap-3 border-b-(length:--pixel) border-border pr-1 pl-3 font-pixel text-[16px] leading-none uppercase select-none",
+          "flex h-8 shrink-0 items-center gap-3 border-b-(length:--pixel) border-border pr-1 pl-3 font-pixel text-[16px] leading-none uppercase select-none",
           isActive
             ? "bg-titlebar text-titlebar-foreground"
             : "bg-card text-card-foreground",
+          isDraggable && "cursor-grab touch-none",
           isDragging && "cursor-grabbing"
         )}
       >

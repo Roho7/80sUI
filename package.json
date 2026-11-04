@@ -4,14 +4,16 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "predev": "node scripts/generate-showcase-index.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/generate-showcase-index.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "lint:fix": "eslint . --fix",
-    "registry:build": "node scripts/build-theme-registry-item.mjs && shadcn build"
+    "registry:build": "node scripts/generate-showcase-index.mjs && node scripts/build-theme-registry-item.mjs && shadcn build"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

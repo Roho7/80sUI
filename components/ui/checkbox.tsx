@@ -4,7 +4,7 @@ import { cn } from "cn"
 import { Checkbox as CheckboxPrimitive } from "radix-ui"
 import * as React from "react"
 
-import { CheckGlyph } from "@/components/ui/pixel-glyphs"
+import { CheckGlyph, MinusGlyph } from "@/components/ui/pixel-glyphs"
 
 function Checkbox({
   className,
@@ -21,9 +21,10 @@ function Checkbox({
     >
       <CheckboxPrimitive.Indicator
         data-slot="checkbox-indicator"
-        className="grid place-content-center text-current"
+        className="group/indicator grid place-content-center text-current"
       >
-        <CheckGlyph />
+        <CheckGlyph className="group-data-[state=indeterminate]/indicator:hidden" />
+        <MinusGlyph className="hidden group-data-[state=indeterminate]/indicator:block" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   )

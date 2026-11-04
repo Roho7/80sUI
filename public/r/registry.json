@@ -258,9 +258,9 @@
     },
     {
       "name": "pixel-glyphs",
-      "type": "registry:ui",
+      "type": "registry:lib",
       "title": "Pixel glyphs",
-      "description": "Crisp pixel check, close and error glyphs shared by the primitives.",
+      "description": "Crisp pixel check, minus, close and error glyphs shared by the primitives.",
       "dependencies": [
         "cn"
       ],

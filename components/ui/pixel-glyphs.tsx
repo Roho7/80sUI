@@ -6,6 +6,7 @@ type GlyphProps = React.ComponentProps<"svg">
 const GLYPH_PATHS = {
   check:
     "M6 1h1v1H6zM5 2h2v1H5zM0 3h1v1H0zM4 3h2v1H4zM0 4h2v1H0zM3 4h2v1H3zM1 5h3v1H1zM2 6h1v1H2z",
+  minus: "M1 3h5v1H1z",
   close:
     "M0 0h2v1H0zM5 0h2v1H5zM1 1h2v1H1zM4 1h2v1H4zM2 2h3v1H2zM3 3h1v1H3zM2 4h3v1H2zM1 5h2v1H1zM4 5h2v1H4zM0 6h2v1H0zM5 6h2v1H5z",
 } as const
@@ -26,6 +27,10 @@ function renderGlyph(path: string, { className, ...props }: GlyphProps) {
 
 function CheckGlyph(props: GlyphProps) {
   return renderGlyph(GLYPH_PATHS.check, props)
+}
+
+function MinusGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.minus, props)
 }
 
 function CloseGlyph(props: GlyphProps) {
@@ -54,4 +59,4 @@ function ErrorGlyph({ className, ...props }: GlyphProps) {
   )
 }
 
-export { CheckGlyph, CloseGlyph, ErrorGlyph }
+export { CheckGlyph, CloseGlyph, ErrorGlyph, MinusGlyph }

@@ -20,6 +20,7 @@ type ErrorDialogProps = {
   cascadeIndex?: number
   open?: boolean
   onOpenChange?: (open: boolean) => void
+  container?: HTMLElement | null
 }
 
 type ErrorEntry = {
@@ -31,6 +32,7 @@ type ErrorEntry = {
 type ErrorDialogStackProps = {
   errors: readonly ErrorEntry[]
   onDismiss: (id: string) => void
+  container?: HTMLElement | null
 }
 
 const CASCADE_STEP_PIXELS = 12
@@ -51,11 +53,13 @@ function ErrorDialog({
   cascadeIndex = 0,
   open = true,
   onOpenChange,
+  container,
 }: ErrorDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange} modal={false}>
       <DialogContent
         data-slot="error-dialog"
+        container={container}
         className="w-80 gap-5 sm:max-w-80"
         style={{ translate: readCascadeTranslate(cascadeIndex) }}
         onInteractOutside={preventOutsideDismiss}
@@ -75,13 +79,14 @@ function ErrorDialog({
   )
 }
 
-function ErrorDialogStack({ errors, onDismiss }: ErrorDialogStackProps) {
+function ErrorDialogStack({ errors, onDismiss, container }: ErrorDialogStackProps) {
   return errors.map((error, index) => (
     <ErrorDialog
       key={error.id}
       title={error.title}
       message={error.message}
       cascadeIndex={index}
+      container={container}
       onOpenChange={(isOpen) => {
         if (!isOpen) {
           onDismiss(error.id)
