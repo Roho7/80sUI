@@ -10,12 +10,12 @@ import { defaultPreset, type DitherShineParams } from "@/lib/shaders/dither-shin
 
 const TILT_LEVELS = 2
 
-const TILT_REST = 1
+const TILT_REST = 0
 
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)"
 
 const ctaButtonVariants = cva(
-  "group/cta-button relative isolate inline-flex shrink-0 items-center justify-center overflow-hidden pixel-border border-border bg-primary font-pixel text-[16px] leading-none whitespace-nowrap text-primary-foreground uppercase outline-none select-none [--tilt-x:1] [--tilt-y:1] translate-x-[calc((var(--tilt-x)-1)*var(--pixel))] translate-y-[calc((var(--tilt-y)-1)*var(--pixel))] [box-shadow:calc((3-var(--tilt-x))*var(--pixel))_calc((3-var(--tilt-y))*var(--pixel))_0_0_var(--foreground)] focus-visible:outline-solid active:translate-x-[calc(var(--pixel)*2)] active:translate-y-[calc(var(--pixel)*2)] active:[box-shadow:none] disabled:pointer-events-none disabled:bg-muted disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/cta-button relative isolate inline-flex shrink-0 items-center justify-center overflow-hidden border-solid bg-(--keycap) font-pixel text-[16px] leading-none whitespace-nowrap text-(--keycap-foreground) uppercase outline-none select-none [--tilt-x:0] [--tilt-y:0] [--tilt-lift:0] [border-top-color:var(--keycap-wall-hi)] [border-left-color:var(--keycap-wall-hi)] [border-right-color:var(--keycap-wall-lo)] [border-bottom-color:var(--keycap-wall-lo)] [border-top-width:calc((1+var(--tilt-y)*0.5)*var(--pixel))] [border-bottom-width:calc((3+var(--tilt-lift)-var(--tilt-y)*1.5)*var(--pixel))] [border-left-width:calc((2.5+var(--tilt-x)*1.5)*var(--pixel))] [border-right-width:calc((2.5-var(--tilt-x)*1.5)*var(--pixel))] [box-shadow:0_0_0_var(--pixel)_var(--keycap-outline)] focus-visible:outline-solid focus-visible:outline-offset-[calc(var(--pixel)*2)] active:[border-top-width:calc(var(--pixel)*2)] active:[border-bottom-width:var(--pixel)] active:[border-left-width:calc(var(--pixel)*2.5)] active:[border-right-width:calc(var(--pixel)*2.5)] disabled:pointer-events-none disabled:bg-muted disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       size: {
@@ -30,7 +30,7 @@ const ctaButtonVariants = cva(
   }
 )
 
-type CtaButtonShine = Partial<DitherShineParams>
+type CtaButtonShine = Partial<Omit<DitherShineParams, "colorBack" | "colorFront">>
 
 type CtaButtonProps = React.ComponentProps<"button"> &
   VariantProps<typeof ctaButtonVariants> & {
@@ -43,6 +43,7 @@ type TiltTarget = {
   element: HTMLElement | null
   x: number
   y: number
+  lift: number
 }
 
 function subscribeReducedMotion(onChange: () => void) {
@@ -67,13 +68,14 @@ function quantizeTilt(value: number): number {
   return Math.round(Math.max(-1, Math.min(1, value)) * TILT_LEVELS) / TILT_LEVELS
 }
 
-function applyTilt(element: HTMLElement, x: number, y: number) {
+function applyTilt(element: HTMLElement, { x, y, lift }: Omit<TiltTarget, "element">) {
   element.style.setProperty("--tilt-x", String(x))
   element.style.setProperty("--tilt-y", String(y))
+  element.style.setProperty("--tilt-lift", String(lift))
 }
 
 function useSteppedTilt(fps: number) {
-  const targetRef = React.useRef<TiltTarget>({ element: null, x: TILT_REST, y: TILT_REST })
+  const targetRef = React.useRef<TiltTarget>({ element: null, x: TILT_REST, y: TILT_REST, lift: 0 })
   const timerRef = React.useRef(0)
 
   React.useEffect(() => () => window.clearInterval(timerRef.current), [])
@@ -87,8 +89,8 @@ function useSteppedTilt(fps: number) {
         if (target.element === null) {
           return
         }
-        applyTilt(target.element, target.x, target.y)
-        if (target.x === TILT_REST && target.y === TILT_REST) {
+        applyTilt(target.element, target)
+        if (target.x === TILT_REST && target.y === TILT_REST && target.lift === 0) {
           window.clearInterval(timerRef.current)
         }
       }, 1000 / fps)
@@ -103,11 +105,13 @@ function useSteppedTilt(fps: number) {
     }
     targetRef.current.x = quantizeTilt(((event.clientX - bounds.left) / bounds.width) * 2 - 1)
     targetRef.current.y = quantizeTilt(((event.clientY - bounds.top) / bounds.height) * 2 - 1)
+    targetRef.current.lift = 1
   }, [])
 
   const releaseTilt = React.useCallback(() => {
     targetRef.current.x = TILT_REST
     targetRef.current.y = TILT_REST
+    targetRef.current.lift = 0
   }, [])
 
   return { startTilt, aimTilt, releaseTilt }
@@ -159,12 +163,14 @@ function CtaButton({
       {...props}
     >
       {shouldShine && (
-        <DitherShine aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20" {...shine} />
+        <DitherShine
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10"
+          {...shine}
+          colorBack="--keycap"
+          colorFront="--keycap-foreground"
+        />
       )}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bevel-raised offset-shadow-none group-active/cta-button:bevel-sunken"
-      />
       <Slot.Slottable>{children}</Slot.Slottable>
     </Comp>
   )

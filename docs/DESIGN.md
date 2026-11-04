@@ -21,6 +21,8 @@ A shadcn registry of retro, 1-bit, Win95-flavoured components. Web only. Install
 | `--desktop` | Wallpaper or backdrop accent, the one color outside the inks. |
 | `--bevel-hi`, `--bevel-lo` | Raised and sunken edge colors. |
 | `--titlebar`, `--titlebar-foreground` | Active window title bar. |
+| `--keycap`, `--keycap-foreground` | Keycap face and label for `CtaButton`. |
+| `--keycap-wall-hi`, `--keycap-wall-lo`, `--keycap-outline` | Keycap top and left walls, right and bottom walls, and the outline. |
 | `--pixel` | Base pixel unit. Every border and offset shadow is a multiple of it, and window drags snap to it. |
 | `--font-pixel`, `--font-mono` | Display and body fonts. |
 
@@ -63,7 +65,7 @@ Where we differ from Paper:
 1. **Stepped time.** The mount draws only when a 1/`fps` step elapses (default 10 fps), advancing shader time by `speed / fps` per step. With `speed` 0 there is no `requestAnimationFrame`; a uniform, color or frame change schedules one draw on the next wall-clock step boundary. A resize draws immediately because it clears the canvas.
 2. **Theme colors.** Color params take a custom property name such as `"--primary"` or a literal color. The mount resolves them from the parent's computed style through the `lib/dither/inks.ts` probe into `vec4`s and re-resolves when `<html>` changes `class`, `data-theme` or `style`.
 3. **Pixel grid.** `u_pxSize` is the `--pixel` token in device pixels. Shaders compute their grid from `gl_FragCoord` measured from the top-left, so dither cells line up with every border.
-4. **Hover is DOM, not shader.** `CtaButton` keeps the shine pointer-free. Hover is a pixel tilt in CSS: the pointer is quantized to 5 levels per axis and written as `--tilt-x` / `--tilt-y` on the button once per 1/`fps` step, which shifts the face up to 2 `--pixel`s and resizes the offset shadow on that side.
+4. **Hover is DOM, not shader.** `CtaButton` is a keycap: its face is the padding box (where the shine canvas sits) and its four walls are CSS borders in `--keycap-wall-hi` (top, left) and `--keycap-wall-lo` (right, bottom), which meet in mitred corners. The pointer is quantized to 5 levels per axis and written as `--tilt-x`, `--tilt-y` and `--tilt-lift` once per 1/`fps` step; wall widths move from one side to the opposite side, so the face slides toward the pointer while the outer size stays fixed.
 
 ## Registry
 
