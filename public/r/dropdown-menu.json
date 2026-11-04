@@ -18,5 +18,33 @@
       "type": "registry:ui"
     }
   ],
+  "meta": {
+    "sounds": {
+      "menu.select": {
+        "note": "Light tactile on release, like letting go of a menu",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.0035,
+            "gain": 0.35,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 4500,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 3000,
+            "attack": 0.0003,
+            "decay": 0.003,
+            "gain": 0.08
+          }
+        ]
+      }
+    }
+  },
   "type": "registry:ui"
 }

@@ -381,6 +381,58 @@
       ]
     },
     {
+      "name": "sound",
+      "type": "registry:lib",
+      "title": "Sound",
+      "description": "Tactile synthesized sounds for dither-ui components: one shared AudioContext, sounds configured in sounds.json, played by event delegation on each component's data-slot.",
+      "docs": "Render <DitherSounds /> once in your root layout. Sounds live in sounds.json next to components.json (in src/ if @/* maps to ./src/*). After adding dither-ui components run: node scripts/dither-sounds.mjs sync. It adds only the sounds of installed components and keeps your edits. Silence one element with data-sound=\"none\", rename its sound with data-sound=\"my-key\", silence a sound with \"key\": false, or everything with \"enabled\": false.",
+      "files": [
+        {
+          "path": "lib/sound/types.ts",
+          "type": "registry:lib",
+          "target": "@lib/sound/types.ts"
+        },
+        {
+          "path": "lib/sound/render.ts",
+          "type": "registry:lib",
+          "target": "@lib/sound/render.ts"
+        },
+        {
+          "path": "lib/sound/sound-engine.ts",
+          "type": "registry:lib",
+          "target": "@lib/sound/sound-engine.ts"
+        },
+        {
+          "path": "lib/sound/sound-slots.ts",
+          "type": "registry:lib",
+          "target": "@lib/sound/sound-slots.ts"
+        },
+        {
+          "path": "lib/sound/config.ts",
+          "type": "registry:lib",
+          "target": "@lib/sound/config.ts"
+        },
+        {
+          "path": "hooks/use-sound.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "components/ui/dither-sounds.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "lib/sound/sounds.template.json",
+          "type": "registry:file",
+          "target": "~/sounds.json"
+        },
+        {
+          "path": "scripts/dither-sounds.mjs",
+          "type": "registry:file",
+          "target": "~/scripts/dither-sounds.mjs"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -398,7 +450,15 @@
       ],
       "registryDependencies": [
         "@dither/theme"
-      ]
+      ],
+      "meta": {
+        "sounds": [
+          "button.press",
+          "button.release",
+          "small-button.press",
+          "small-button.release"
+        ]
+      }
     },
     {
       "name": "cta-button",
@@ -419,7 +479,13 @@
           "path": "components/ui/cta-button.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "meta": {
+        "sounds": [
+          "keycap.press",
+          "keycap.release"
+        ]
+      }
     },
     {
       "name": "checkbox",
@@ -439,7 +505,13 @@
           "path": "components/ui/checkbox.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "meta": {
+        "sounds": [
+          "checkbox.on",
+          "checkbox.off"
+        ]
+      }
     },
     {
       "name": "slider",
@@ -458,7 +530,12 @@
       ],
       "registryDependencies": [
         "@dither/theme"
-      ]
+      ],
+      "meta": {
+        "sounds": [
+          "slider.tick"
+        ]
+      }
     },
     {
       "name": "progress",
@@ -573,7 +650,12 @@
           "path": "components/ui/radio-group.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "meta": {
+        "sounds": [
+          "radio.select"
+        ]
+      }
     },
     {
       "name": "switch",
@@ -592,7 +674,13 @@
           "path": "components/ui/switch.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "meta": {
+        "sounds": [
+          "switch.on",
+          "switch.off"
+        ]
+      }
     },
     {
       "name": "select",
@@ -612,7 +700,14 @@
           "path": "components/ui/select.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "meta": {
+        "sounds": [
+          "button.press",
+          "button.release",
+          "menu.select"
+        ]
+      }
     },
     {
       "name": "tabs",
@@ -632,7 +727,12 @@
           "path": "components/ui/tabs.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "meta": {
+        "sounds": [
+          "tab.select"
+        ]
+      }
     },
     {
       "name": "tooltip",
@@ -671,7 +771,12 @@
           "path": "components/ui/dropdown-menu.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "meta": {
+        "sounds": [
+          "menu.select"
+        ]
+      }
     },
     {
       "name": "menubar",
@@ -691,7 +796,14 @@
           "path": "components/ui/menubar.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "meta": {
+        "sounds": [
+          "button.press",
+          "button.release",
+          "menu.select"
+        ]
+      }
     },
     {
       "name": "scroll-area",
@@ -831,7 +943,14 @@
           "path": "hooks/use-window-drag.ts",
           "type": "registry:hook"
         }
-      ]
+      ],
+      "meta": {
+        "sounds": [
+          "drag.pickup",
+          "drag.drop",
+          "drag.friction"
+        ]
+      }
     },
     {
       "name": "error-dialog",

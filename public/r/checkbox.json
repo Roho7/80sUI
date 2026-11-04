@@ -18,5 +18,33 @@
       "type": "registry:ui"
     }
   ],
+  "meta": {
+    "sounds": {
+      "checkbox.on": {
+        "note": "0.2 / 2 ms pip, 2.25 kHz square",
+        "layers": [
+          {
+            "wave": "square",
+            "frequency": 2250,
+            "attack": 0.0002,
+            "decay": 0.002,
+            "gain": 0.15
+          }
+        ]
+      },
+      "checkbox.off": {
+        "note": "0.2 / 2 ms pip, 1.28 kHz square, quieter",
+        "layers": [
+          {
+            "wave": "square",
+            "frequency": 1280,
+            "attack": 0.0002,
+            "decay": 0.002,
+            "gain": 0.09
+          }
+        ]
+      }
+    }
+  },
   "type": "registry:ui"
 }

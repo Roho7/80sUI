@@ -17,5 +17,35 @@
       "type": "registry:ui"
     }
   ],
+  "meta": {
+    "sounds": {
+      "slider.tick": {
+        "note": "Sine 1.29 kHz falling to 303 Hz, 0.5 / 2.9 ms",
+        "layers": [
+          {
+            "wave": "sine",
+            "frequency": 1290,
+            "attack": 0.0005,
+            "decay": 0.00288,
+            "gain": 0.14,
+            "pitchTime": 0.044,
+            "frequencyEnd": 303
+          }
+        ],
+        "jitter": {
+          "cents": 30,
+          "gainDb": 1,
+          "decay": 0.1
+        },
+        "detent": {
+          "step": 5,
+          "minGap": 18,
+          "maxAhead": 60,
+          "policy": "spread",
+          "pitchFollow": 0
+        }
+      }
+    }
+  },
   "type": "registry:ui"
 }

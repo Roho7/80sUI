@@ -5,6 +5,7 @@ import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
+import { useSoundEnabled } from "@/hooks/use-sound"
 
 import { PALETTES } from "./palettes"
 import { useIsHydrated } from "./useIsHydrated"
@@ -19,6 +20,7 @@ function ThemeControls({ className }: ThemeControlsProps) {
   const { resolvedTheme, setTheme } = useTheme()
   const isHydrated = useIsHydrated()
   const isDark = isHydrated && resolvedTheme === "dark"
+  const [isSoundOn, setSoundOn] = useSoundEnabled()
 
   return (
     <div className={cn("flex flex-wrap items-center gap-3", className)}>
@@ -39,6 +41,10 @@ function ThemeControls({ className }: ThemeControlsProps) {
           onCheckedChange={(checked) => setTheme(checked === true ? "dark" : "light")}
         />
         Dark mode
+      </label>
+      <label className="flex items-center gap-2 text-lg">
+        <Checkbox checked={isSoundOn} onCheckedChange={(checked) => setSoundOn(checked === true)} />
+        Sound
       </label>
     </div>
   )

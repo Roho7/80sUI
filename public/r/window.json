@@ -24,5 +24,76 @@
       "type": "registry:hook"
     }
   ],
+  "meta": {
+    "sounds": {
+      "drag.pickup": {
+        "note": "Small tactile click when the drag starts",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0066,
+            "decay": 0.004,
+            "gain": 0.4,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 4000,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 254,
+            "attack": 0.0004,
+            "decay": 0.003,
+            "gain": 0
+          }
+        ]
+      },
+      "drag.drop": {
+        "note": "Lower tactile click when it lands",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0045,
+            "decay": 0.0064,
+            "gain": 0.5,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 234,
+              "q": 0.524
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 396,
+            "attack": 0.0005,
+            "decay": 0.00494,
+            "gain": 0,
+            "delay": 0.15
+          }
+        ]
+      },
+      "drag.friction": {
+        "note": "Filtered noise that opens up with drag speed, updated at a stepped rate",
+        "loop": {
+          "source": "noise",
+          "frequency": 90,
+          "filter": "highpass",
+          "filterLow": 55.8,
+          "filterHigh": 974,
+          "q": 0.421,
+          "levelMin": 0,
+          "levelMax": 0.11,
+          "fullSpeed": 3560,
+          "gate": 15,
+          "fps": 10,
+          "smoothing": 46.3,
+          "stopRamp": 15
+        }
+      }
+    }
+  },
   "type": "registry:block"
 }
