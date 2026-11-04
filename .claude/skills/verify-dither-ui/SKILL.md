@@ -64,7 +64,7 @@ node .claude/skills/verify-dither-ui/dither.mjs audit            # 1440 and 375
 node .claude/skills/verify-dither-ui/dither.mjs audit 1440 900 375
 ```
 
-Headless Chrome via `playwright-core` (channel `chrome`, no browser download). For each width and route it loads the page, then switches theme the way a user does: clicks the `Phosphor` / `Cyan pixel` buttons and the `Dark mode` checkbox (ARIA names from `app/_site/ThemeControls.tsx`), waits for `<html data-theme>` and the `dark` class to match, and inspects every rendered element:
+Headless Chrome via `playwright-core` (channel `chrome`, no browser download). For each width and route it loads the page, then switches theme the way a user does: clicks the `Phosphor` / `Cyan pixel` / `Retro Candy` buttons and the `Dark mode` checkbox (ARIA names from `app/_site/ThemeControls.tsx`), waits for `<html data-theme>` and the `dark` class to match, and inspects every rendered element:
 
 - **offPalette:** text, background, border, outline, box-shadow and SVG shape fill colors must resolve to `--ink-0..3`, `--desktop` or transparent in that theme.
 - **rounded:** any non-zero computed corner radius.
