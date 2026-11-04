@@ -289,7 +289,7 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
   {
     name: "pagination",
     title: "Pagination",
-    description: "Page links built from dither-ui buttons with pixel arrows.",
+    description: "Page links built from NOSTALGUI buttons with pixel arrows.",
     demo: paginationDemo,
   },
   {
@@ -337,37 +337,37 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
   {
     name: "navigation-menu",
     title: "Navigation Menu",
-    description: "shadcn navigation-menu reskinned for dither-ui.",
+    description: "shadcn navigation-menu reskinned for NOSTALGUI.",
     demo: navigationMenuDemo,
   },
   {
     name: "input-otp",
     title: "Input Otp",
-    description: "shadcn input-otp reskinned for dither-ui.",
+    description: "shadcn input-otp reskinned for NOSTALGUI.",
     demo: inputOtpDemo,
   },
   {
     name: "command",
     title: "Command",
-    description: "shadcn command reskinned for dither-ui.",
+    description: "shadcn command reskinned for NOSTALGUI.",
     demo: commandDemo,
   },
   {
     name: "resizable",
     title: "Resizable",
-    description: "shadcn resizable reskinned for dither-ui.",
+    description: "shadcn resizable reskinned for NOSTALGUI.",
     demo: resizableDemo,
   },
   {
     name: "sidebar",
     title: "Sidebar",
-    description: "shadcn sidebar reskinned for dither-ui.",
+    description: "shadcn sidebar reskinned for NOSTALGUI.",
     demo: sidebarDemo,
   },
   {
     name: "calendar",
     title: "Calendar",
-    description: "shadcn calendar reskinned for dither-ui.",
+    description: "shadcn calendar reskinned for NOSTALGUI.",
     demo: calendarDemo,
   },
   {

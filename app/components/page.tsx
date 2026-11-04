@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/button"
 import { ThemeControls } from "../_site/ThemeControls"
 
 export const metadata: Metadata = {
-  title: "Components / dither-ui",
-  description: "Every dither-ui registry component and variant, ready to install with shadcn.",
+  title: "Components / NOSTALGUI",
+  description: "Every NOSTALGUI registry component and variant, ready to install with shadcn.",
 }
 
 export default function ComponentsPage() {
@@ -23,12 +23,12 @@ export default function ComponentsPage() {
             </Link>
           </Button>
           <div className="flex flex-col gap-3">
-            <p className="font-pixel text-[16px] leading-none uppercase">dither-ui</p>
+            <p className="font-pixel text-[16px] leading-none uppercase">NOSTALGUI</p>
             <h1 className="font-pixel text-[32px] leading-none uppercase md:text-[48px]">
               Components
             </h1>
             <p className="max-w-xl text-xl leading-tight">
-              Every item in the @dither registry with every variant it ships. Pick one, copy the
+              Every item in the @nostalgui registry with every variant it ships. Pick one, copy the
               command, own the code.
             </p>
           </div>

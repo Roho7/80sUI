@@ -1,6 +1,6 @@
 # Roadmap
 
-What dither-ui has shipped and what is left. A box is ticked when the component is a registry item in `registry.json` with a showcase demo. `npm run check:style` fails if a tick here disagrees with the registry.
+What NOSTALGUI has shipped and what is left. A box is ticked when the component is a registry item in `registry.json` with a showcase demo. `npm run check:style` fails if a tick here disagrees with the registry.
 
 ## shadcn components
 
@@ -73,7 +73,7 @@ Every `registry:ui` component in shadcn's `radix-nova` style (64 as of November 
 - [x] tooltip
 - [ ] trace
 
-## dither-ui originals
+## NOSTALGUI originals
 
 Shipped components with no shadcn counterpart.
 

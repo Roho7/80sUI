@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "dither-ui sounds.json",
+  "title": "NOSTALGUI sounds.json",
   "type": "object",
   "required": [
     "sounds"

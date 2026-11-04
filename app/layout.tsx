@@ -20,7 +20,7 @@ const fontMono = VT323({
 })
 
 export const metadata: Metadata = {
-  title: "dither-ui",
+  title: "NOSTALGUI",
   description: "Retro components for shadcn",
 }
 

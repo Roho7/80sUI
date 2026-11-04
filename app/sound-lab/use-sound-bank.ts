@@ -6,7 +6,7 @@ import type { SoundEntry, SoundsConfig } from "@/lib/sound/types"
 
 import { defaultBank } from "./sound-bank"
 
-const STORAGE_KEY = "dither-ui:sound-lab:bank:v2"
+const STORAGE_KEY = "nostalgui:sound-lab:bank:v2"
 
 function readStored(): SoundsConfig {
   try {

@@ -1,6 +1,6 @@
-# dither-ui design
+# NOSTALGUI design
 
-A shadcn registry of retro, 1-bit, Win95-flavoured components. Web only. Installed like beui: `npx shadcn add @dither/window`.
+A shadcn registry of retro, 1-bit, Win95-flavoured components. Web only. Installed like beui: `npx shadcn add @nostalgui/window`.
 
 ## Decisions
 
@@ -69,7 +69,7 @@ Where we differ from Paper:
 
 ## Sound
 
-Sound is opt-in: components never import it. Installing `@dither/sound` and rendering `<DitherSounds />` once turns it on.
+Sound is opt-in: components never import it. Installing `@nostalgui/sound` and rendering `<DitherSounds />` once turns it on.
 
 - **`sounds.json`** in the project root (where `@/sounds.json` resolves) is the single place every sound is configured: `enabled`, `volume`, `reducedMotion` and a flat `sounds` map keyed like `button.press`. An entry is a patch (`layers` of sine, square, blend or noise with an envelope, pitch drop, optional filter, plus `jitter`, `crush` and, for `.tick` sounds, a `detent`), a `loop` for continuous drags, or `false` to silence it. `/schema/sounds.json` is its JSON Schema.
 - **Growing it.** `shadcn add` cannot merge JSON, so each component's registry item lists its sound keys in `meta.sounds`, and `npm run registry:build` embeds their data from the repo's `sounds.json` (`scripts/build-sound-meta.mjs`). In a user's project, `node scripts/dither-sounds.mjs sync` adds the entries of installed components only and never overwrites existing keys (`--overwrite` restores defaults).
@@ -93,7 +93,7 @@ Sound is opt-in: components never import it. Installing `@dither/sound` and rend
 | `button`, `checkbox`, `slider`, `progress`, `dialog`, `input`, `textarea`, `label`, `radio-group`, `switch`, `select`, `tabs`, `tooltip`, `dropdown-menu`, `menubar`, `scroll-area`, `separator`, `badge`, `alert`, `card`, `accordion` | `registry:ui` | Layer 1 primitives |
 | `window`, `error-dialog`, `terminal`, `taskbar`, `desktop-icon` | `registry:block` | Layer 2 compositions. `window` ships `hooks/use-window-drag.ts` |
 
-Each item's `registryDependencies` pull in what it needs, so `shadcn add @dither/window` brings in everything below it.
+Each item's `registryDependencies` pull in what it needs, so `shadcn add @nostalgui/window` brings in everything below it.
 
 ## Showcase
 

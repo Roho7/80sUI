@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "dither",
+  "name": "nostalgui",
   "homepage": "http://localhost:3000",
   "items": [
     {
@@ -307,7 +307,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ]
     },
     {
@@ -323,7 +323,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ]
     },
     {
@@ -356,8 +356,8 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/dither-inks"
+        "@nostalgui/theme",
+        "@nostalgui/dither-inks"
       ]
     },
     {
@@ -382,7 +382,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/dither-inks"
+        "@nostalgui/dither-inks"
       ]
     },
     {
@@ -402,16 +402,16 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/shader-mount"
+        "@nostalgui/theme",
+        "@nostalgui/shader-mount"
       ]
     },
     {
       "name": "sound",
       "type": "registry:lib",
       "title": "Sound",
-      "description": "Tactile synthesized sounds for dither-ui components: one shared AudioContext, sounds configured in sounds.json, played by event delegation on each component's data-slot.",
-      "docs": "Render <DitherSounds /> once in your root layout. Sounds live in sounds.json next to components.json (in src/ if @/* maps to ./src/*). After adding dither-ui components run: node scripts/dither-sounds.mjs sync. It adds only the sounds of installed components and keeps your edits. Silence one element with data-sound=\"none\", rename its sound with data-sound=\"my-key\", silence a sound with \"key\": false, or everything with \"enabled\": false.",
+      "description": "Tactile synthesized sounds for NOSTALGUI components: one shared AudioContext, sounds configured in sounds.json, played by event delegation on each component's data-slot.",
+      "docs": "Render <DitherSounds /> once in your root layout. Sounds live in sounds.json next to components.json (in src/ if @/* maps to ./src/*). After adding NOSTALGUI components run: node scripts/dither-sounds.mjs sync. It adds only the sounds of installed components and keeps your edits. Silence one element with data-sound=\"none\", rename its sound with data-sound=\"my-key\", silence a sound with \"key\": false, or everything with \"enabled\": false.",
       "files": [
         {
           "path": "lib/sound/types.ts",
@@ -475,7 +475,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "meta": {
         "sounds": [
@@ -497,8 +497,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/dither-shine"
+        "@nostalgui/theme",
+        "@nostalgui/dither-shine"
       ],
       "files": [
         {
@@ -523,8 +523,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/pixel-glyphs"
       ],
       "files": [
         {
@@ -555,7 +555,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "meta": {
         "sounds": [
@@ -579,7 +579,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ]
     },
     {
@@ -592,9 +592,9 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/button",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/button",
+        "@nostalgui/pixel-glyphs"
       ],
       "files": [
         {
@@ -612,7 +612,7 @@
         "cn"
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "files": [
         {
@@ -630,7 +630,7 @@
         "cn"
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "files": [
         {
@@ -649,7 +649,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "files": [
         {
@@ -668,8 +668,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/pixel-glyphs"
       ],
       "files": [
         {
@@ -693,7 +693,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "files": [
         {
@@ -718,8 +718,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/pixel-glyphs"
       ],
       "files": [
         {
@@ -746,7 +746,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "files": [
         {
@@ -770,7 +770,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "files": [
         {
@@ -789,8 +789,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/pixel-glyphs"
       ],
       "files": [
         {
@@ -814,8 +814,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/pixel-glyphs"
       ],
       "files": [
         {
@@ -841,7 +841,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "files": [
         {
@@ -860,7 +860,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "files": [
         {
@@ -880,7 +880,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "files": [
         {
@@ -899,7 +899,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "files": [
         {
@@ -917,7 +917,7 @@
         "cn"
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "files": [
         {
@@ -936,8 +936,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/pixel-glyphs"
       ],
       "files": [
         {
@@ -958,7 +958,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "dependencies": [
         "cn"
@@ -976,7 +976,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1002,8 +1002,8 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/toggle"
+        "@nostalgui/theme",
+        "@nostalgui/toggle"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1030,7 +1030,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "dependencies": [
         "radix-ui"
@@ -1054,7 +1054,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "dependencies": [
         "cn",
@@ -1079,7 +1079,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "dependencies": [
         "cn",
@@ -1098,8 +1098,8 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/button"
+        "@nostalgui/theme",
+        "@nostalgui/button"
       ],
       "dependencies": [
         "cn",
@@ -1124,9 +1124,9 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/button",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/button",
+        "@nostalgui/pixel-glyphs"
       ],
       "dependencies": [
         "cn",
@@ -1151,8 +1151,8 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/pixel-glyphs"
       ],
       "dependencies": [
         "cn",
@@ -1176,8 +1176,8 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/dither-inks"
+        "@nostalgui/theme",
+        "@nostalgui/dither-inks"
       ],
       "dependencies": [
         "cn"
@@ -1195,7 +1195,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "dependencies": [
         "cn"
@@ -1213,7 +1213,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "dependencies": [
         "cn",
@@ -1232,8 +1232,8 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/pixel-glyphs"
       ],
       "dependencies": [
         "cn",
@@ -1252,7 +1252,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "dependencies": [
         "cn"
@@ -1262,7 +1262,7 @@
       "name": "pagination",
       "type": "registry:ui",
       "title": "Pagination",
-      "description": "Page links built from dither-ui buttons with pixel arrows.",
+      "description": "Page links built from NOSTALGUI buttons with pixel arrows.",
       "files": [
         {
           "path": "components/ui/pagination.tsx",
@@ -1270,9 +1270,9 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/button",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/button",
+        "@nostalgui/pixel-glyphs"
       ],
       "dependencies": [
         "cn"
@@ -1296,8 +1296,8 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/separator"
+        "@nostalgui/theme",
+        "@nostalgui/separator"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1317,7 +1317,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1336,8 +1336,8 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/pixel-glyphs"
       ],
       "dependencies": [
         "cn"
@@ -1355,7 +1355,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "dependencies": [
         "cn",
@@ -1374,8 +1374,8 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/separator"
+        "@nostalgui/theme",
+        "@nostalgui/separator"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1395,9 +1395,9 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/label",
-        "@dither/separator"
+        "@nostalgui/theme",
+        "@nostalgui/label",
+        "@nostalgui/separator"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1416,10 +1416,10 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/button",
-        "@dither/input",
-        "@dither/textarea"
+        "@nostalgui/theme",
+        "@nostalgui/button",
+        "@nostalgui/input",
+        "@nostalgui/textarea"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1430,7 +1430,7 @@
       "name": "navigation-menu",
       "type": "registry:ui",
       "title": "Navigation Menu",
-      "description": "shadcn navigation-menu reskinned for dither-ui.",
+      "description": "shadcn navigation-menu reskinned for NOSTALGUI.",
       "files": [
         {
           "path": "components/ui/navigation-menu.tsx",
@@ -1438,8 +1438,8 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/pixel-glyphs"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1457,7 +1457,7 @@
       "name": "input-otp",
       "type": "registry:ui",
       "title": "Input Otp",
-      "description": "shadcn input-otp reskinned for dither-ui.",
+      "description": "shadcn input-otp reskinned for NOSTALGUI.",
       "files": [
         {
           "path": "components/ui/input-otp.tsx",
@@ -1465,8 +1465,8 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/pixel-glyphs"
       ],
       "dependencies": [
         "cn",
@@ -1477,7 +1477,7 @@
       "name": "command",
       "type": "registry:ui",
       "title": "Command",
-      "description": "shadcn command reskinned for dither-ui.",
+      "description": "shadcn command reskinned for NOSTALGUI.",
       "files": [
         {
           "path": "components/ui/command.tsx",
@@ -1485,9 +1485,9 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/dialog",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/dialog",
+        "@nostalgui/pixel-glyphs"
       ],
       "dependencies": [
         "cmdk",
@@ -1503,7 +1503,7 @@
       "name": "resizable",
       "type": "registry:ui",
       "title": "Resizable",
-      "description": "shadcn resizable reskinned for dither-ui.",
+      "description": "shadcn resizable reskinned for NOSTALGUI.",
       "files": [
         {
           "path": "components/ui/resizable.tsx",
@@ -1511,7 +1511,7 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "dependencies": [
         "cn",
@@ -1527,7 +1527,7 @@
       "name": "sidebar",
       "type": "registry:ui",
       "title": "Sidebar",
-      "description": "shadcn sidebar reskinned for dither-ui.",
+      "description": "shadcn sidebar reskinned for NOSTALGUI.",
       "files": [
         {
           "path": "components/ui/sidebar.tsx",
@@ -1539,14 +1539,14 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/button",
-        "@dither/input",
-        "@dither/pixel-glyphs",
-        "@dither/separator",
-        "@dither/sheet",
-        "@dither/skeleton",
-        "@dither/tooltip"
+        "@nostalgui/theme",
+        "@nostalgui/button",
+        "@nostalgui/input",
+        "@nostalgui/pixel-glyphs",
+        "@nostalgui/separator",
+        "@nostalgui/sheet",
+        "@nostalgui/skeleton",
+        "@nostalgui/tooltip"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1566,7 +1566,7 @@
       "name": "calendar",
       "type": "registry:ui",
       "title": "Calendar",
-      "description": "shadcn calendar reskinned for dither-ui.",
+      "description": "shadcn calendar reskinned for NOSTALGUI.",
       "files": [
         {
           "path": "components/ui/calendar.tsx",
@@ -1574,9 +1574,9 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/button",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/button",
+        "@nostalgui/pixel-glyphs"
       ],
       "dependencies": [
         "cn",
@@ -1600,9 +1600,9 @@
         "cn"
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/button",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/button",
+        "@nostalgui/pixel-glyphs"
       ],
       "files": [
         {
@@ -1629,10 +1629,10 @@
       "title": "Error dialog",
       "description": "Stackable error dialogs that cascade diagonally.",
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/button",
-        "@dither/dialog",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/button",
+        "@nostalgui/dialog",
+        "@nostalgui/pixel-glyphs"
       ],
       "files": [
         {
@@ -1651,7 +1651,7 @@
         "cn"
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@nostalgui/theme"
       ],
       "files": [
         {
@@ -1670,9 +1670,9 @@
         "cn"
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/button",
-        "@dither/dropdown-menu"
+        "@nostalgui/theme",
+        "@nostalgui/button",
+        "@nostalgui/dropdown-menu"
       ],
       "files": [
         {
@@ -1691,8 +1691,8 @@
         "cn"
       ],
       "registryDependencies": [
-        "@dither/theme",
-        "@dither/pixel-glyphs"
+        "@nostalgui/theme",
+        "@nostalgui/pixel-glyphs"
       ],
       "files": [
         {

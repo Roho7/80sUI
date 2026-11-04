@@ -55,7 +55,7 @@ async function runDoctor() {
   const checks = [
     { name: `port ${PORT} is listening`, isOk: owner !== null, detail: owner ? `pid ${owner.pid}` : "nothing listening; run up" },
     { name: "port owner runs from this repo", isOk: owner !== null && owner.cwd === ROOT, detail: owner?.cwd ?? "" },
-    { name: "/components renders the catalogue", isOk: components.status === 200 && components.body.includes("Components / dither-ui") && components.body.includes('id="button"'), detail: `HTTP ${components.status}` },
+    { name: "/components renders the catalogue", isOk: components.status === 200 && components.body.includes("Components / NOSTALGUI") && components.body.includes('id="button"'), detail: `HTTP ${components.status}` },
     { name: "registry serves /r/button.json", isOk: registryItem.status === 200 && registryItem.body.includes('"name": "button"'), detail: `HTTP ${registryItem.status}` },
     { name: "Google Chrome is installed", isOk: existsSync("/Applications/Google Chrome.app"), detail: "playwright-core drives the installed Chrome" },
   ]

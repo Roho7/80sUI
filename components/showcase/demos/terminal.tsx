@@ -22,7 +22,7 @@ export const demo: ShowcaseDemo = {
     { label: "static", render: () => <Terminal lines={BOOT} isAnimated={false} className="h-40" /> },
     {
       label: "custom prompt",
-      render: () => <Terminal lines={SHELL} prompt="guest@dither:~$" isAnimated={false} className="h-40" />,
+      render: () => <Terminal lines={SHELL} prompt="guest@nostalgui:~$" isAnimated={false} className="h-40" />,
     },
   ],
 }

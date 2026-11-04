@@ -83,7 +83,7 @@ function TaskbarStart({
 function Taskbar({
   startMenu,
   startLabel = "Start",
-  startMenuTitle = "dither",
+  startMenuTitle = "nostalgui",
   clock = <TaskbarClock />,
   className,
   children,

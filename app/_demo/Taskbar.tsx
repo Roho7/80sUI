@@ -28,7 +28,7 @@ function Taskbar({ onShutDown }: TaskbarProps) {
         className="absolute inset-x-0 bottom-0 z-30"
         startMenu={
           <>
-            <DropdownMenuItem onSelect={() => setIsAboutOpen(true)}>About dither-ui</DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => setIsAboutOpen(true)}>About NOSTALGUI</DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Link href="/components">Components</Link>
             </DropdownMenuItem>
@@ -44,7 +44,7 @@ function Taskbar({ onShutDown }: TaskbarProps) {
       <Dialog open={isAboutOpen} onOpenChange={setIsAboutOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>About dither-ui</DialogTitle>
+            <DialogTitle>About NOSTALGUI</DialogTitle>
             <DialogDescription>
               Retro components for shadcn. Real DOM, 1-bit borders, offset shadows and
               ordered-dither images quantized to the theme inks.
