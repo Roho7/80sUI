@@ -20,8 +20,43 @@ const UPSTREAM_ALIASES = [
   ["@/registry/radix-nova/hooks/", "@/hooks/"],
 ]
 
+const ICON_GLYPHS = {
+  CheckIcon: ["CheckGlyph", ""],
+  MinusIcon: ["MinusGlyph", ""],
+  XIcon: ["CloseGlyph", ""],
+  SearchIcon: ["SearchGlyph", ""],
+  PanelLeftIcon: ["PanelGlyph", ""],
+  CircleIcon: ["DotGlyph", ""],
+  ChevronDownIcon: ["ChevronGlyph", ""],
+  ChevronUpIcon: ["ChevronGlyph", ' direction="up"'],
+  ChevronLeftIcon: ["ChevronGlyph", ' direction="left"'],
+  ChevronRightIcon: ["ChevronGlyph", ' direction="right"'],
+  ArrowLeftIcon: ["ArrowGlyph", ' direction="left"'],
+  ArrowRightIcon: ["ArrowGlyph", ' direction="right"'],
+}
+const ICON_PLACEHOLDER = /<IconPlaceholder\s([^>]*?)\/>/g
+const ICON_PLACEHOLDER_IMPORT = /^import \{ IconPlaceholder \} from "[^"]+"\n/m
+
+function rewriteIcons(source) {
+  const used = new Set()
+  const replaced = source.replace(ICON_PLACEHOLDER, (element, attributes) => {
+    const lucide = attributes.match(/lucide="(\w+)"/)?.[1]
+    const glyph = ICON_GLYPHS[lucide]
+    if (!glyph) {
+      throw new Error(`no pixel glyph for lucide ${lucide}; add one to ICON_GLYPHS`)
+    }
+    used.add(glyph[0])
+    const className = attributes.match(/className=(\{[^}]*\}|"[^"]*")/)?.[0]
+    return `<${glyph[0]}${glyph[1]}${className ? ` ${className}` : ""} />`
+  })
+  if (used.size === 0) {
+    return replaced
+  }
+  return replaced.replace(ICON_PLACEHOLDER_IMPORT, `import { ${[...used].sort().join(", ")} } from "@/components/ui/pixel-glyphs"\n`)
+}
+
 function rewriteImports(source) {
-  return UPSTREAM_ALIASES.reduce((text, [from, to]) => text.replaceAll(from, to), source)
+  return rewriteIcons(UPSTREAM_ALIASES.reduce((text, [from, to]) => text.replaceAll(from, to), source))
 }
 
 function readJson(path) {
