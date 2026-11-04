@@ -7,8 +7,8 @@
     "cn"
   ],
   "registryDependencies": [
-    "@dither/theme",
-    "@dither/pixel-glyphs"
+    "@nostalgui/theme",
+    "@nostalgui/pixel-glyphs"
   ],
   "files": [
     {

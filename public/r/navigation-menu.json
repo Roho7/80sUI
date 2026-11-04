@@ -2,15 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "navigation-menu",
   "title": "Navigation Menu",
-  "description": "shadcn navigation-menu reskinned for dither-ui.",
+  "description": "shadcn navigation-menu reskinned for NOSTALGUI.",
   "dependencies": [
     "class-variance-authority",
     "cn",
     "radix-ui"
   ],
   "registryDependencies": [
-    "@dither/theme",
-    "@dither/pixel-glyphs"
+    "@nostalgui/theme",
+    "@nostalgui/pixel-glyphs"
   ],
   "files": [
     {

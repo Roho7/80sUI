@@ -2,21 +2,21 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "sidebar",
   "title": "Sidebar",
-  "description": "shadcn sidebar reskinned for dither-ui.",
+  "description": "shadcn sidebar reskinned for NOSTALGUI.",
   "dependencies": [
     "class-variance-authority",
     "cn",
     "radix-ui"
   ],
   "registryDependencies": [
-    "@dither/theme",
-    "@dither/button",
-    "@dither/input",
-    "@dither/pixel-glyphs",
-    "@dither/separator",
-    "@dither/sheet",
-    "@dither/skeleton",
-    "@dither/tooltip"
+    "@nostalgui/theme",
+    "@nostalgui/button",
+    "@nostalgui/input",
+    "@nostalgui/pixel-glyphs",
+    "@nostalgui/separator",
+    "@nostalgui/sheet",
+    "@nostalgui/skeleton",
+    "@nostalgui/tooltip"
   ],
   "files": [
     {

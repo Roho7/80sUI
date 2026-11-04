@@ -7,8 +7,8 @@
     "cn"
   ],
   "registryDependencies": [
-    "@dither/theme",
-    "@dither/dither-inks"
+    "@nostalgui/theme",
+    "@nostalgui/dither-inks"
   ],
   "files": [
     {

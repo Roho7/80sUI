@@ -2,15 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "calendar",
   "title": "Calendar",
-  "description": "shadcn calendar reskinned for dither-ui.",
+  "description": "shadcn calendar reskinned for NOSTALGUI.",
   "dependencies": [
     "cn",
     "react-day-picker"
   ],
   "registryDependencies": [
-    "@dither/theme",
-    "@dither/button",
-    "@dither/pixel-glyphs"
+    "@nostalgui/theme",
+    "@nostalgui/button",
+    "@nostalgui/pixel-glyphs"
   ],
   "files": [
     {

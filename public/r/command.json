@@ -2,15 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "command",
   "title": "Command",
-  "description": "shadcn command reskinned for dither-ui.",
+  "description": "shadcn command reskinned for NOSTALGUI.",
   "dependencies": [
     "cmdk",
     "cn"
   ],
   "registryDependencies": [
-    "@dither/theme",
-    "@dither/dialog",
-    "@dither/pixel-glyphs"
+    "@nostalgui/theme",
+    "@nostalgui/dialog",
+    "@nostalgui/pixel-glyphs"
   ],
   "files": [
     {

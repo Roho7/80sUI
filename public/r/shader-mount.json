@@ -4,7 +4,7 @@
   "title": "Shader mount",
   "description": "WebGL2 mount for fragment shaders with stepped time, theme color uniforms and the --pixel grid, plus its React wrapper.",
   "registryDependencies": [
-    "@dither/dither-inks"
+    "@nostalgui/dither-inks"
   ],
   "files": [
     {

@@ -2,13 +2,13 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "resizable",
   "title": "Resizable",
-  "description": "shadcn resizable reskinned for dither-ui.",
+  "description": "shadcn resizable reskinned for NOSTALGUI.",
   "dependencies": [
     "cn",
     "react-resizable-panels"
   ],
   "registryDependencies": [
-    "@dither/theme"
+    "@nostalgui/theme"
   ],
   "files": [
     {

@@ -8,10 +8,10 @@
     "cn"
   ],
   "registryDependencies": [
-    "@dither/theme",
-    "@dither/button",
-    "@dither/input",
-    "@dither/textarea"
+    "@nostalgui/theme",
+    "@nostalgui/button",
+    "@nostalgui/input",
+    "@nostalgui/textarea"
   ],
   "files": [
     {

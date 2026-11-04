@@ -8,7 +8,7 @@
     "class-variance-authority"
   ],
   "registryDependencies": [
-    "@dither/theme"
+    "@nostalgui/theme"
   ],
   "files": [
     {
