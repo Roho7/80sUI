@@ -1,29 +1,13 @@
 import { CtaButton } from "@/components/ui/cta-button"
+import { glintPreset } from "@/lib/shaders/dither-shine"
 
 import type { ShowcaseDemo } from "../types"
 
-const VARIANTS = ["default", "secondary", "destructive", "outline", "ghost", "link"] as const
 const SIZES = ["sm", "default", "lg"] as const
 
 export const demo: ShowcaseDemo = {
   span: "wide",
   variants: [
-    {
-      label: "hero",
-      render: () => <CtaButton variant="destructive">Install dither-ui</CtaButton>,
-    },
-    {
-      label: "variants",
-      render: () => (
-        <div className="flex flex-wrap items-center gap-3">
-          {VARIANTS.map((variant) => (
-            <CtaButton key={variant} variant={variant} size="default">
-              {variant}
-            </CtaButton>
-          ))}
-        </div>
-      ),
-    },
     {
       label: "sizes",
       render: () => (
@@ -38,14 +22,30 @@ export const demo: ShowcaseDemo = {
     },
     {
       label: "disabled",
-      render: () => <CtaButton disabled>Disabled</CtaButton>,
+      render: () => (
+        <div className="flex">
+          <CtaButton disabled>Disabled</CtaButton>
+        </div>
+      ),
     },
     {
       label: "as link",
       render: () => (
-        <CtaButton asChild variant="destructive">
-          <a href="#showcase-cta-button">Get started</a>
-        </CtaButton>
+        <div className="flex">
+          <CtaButton asChild size="lg">
+            <a href="#cta-button">Get started</a>
+          </CtaButton>
+        </div>
+      ),
+    },
+    {
+      label: "glint preset",
+      render: () => (
+        <div className="flex">
+          <CtaButton size="lg" shine={glintPreset.params}>
+            Install dither-ui
+          </CtaButton>
+        </div>
       ),
     },
   ],
