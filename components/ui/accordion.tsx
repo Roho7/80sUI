@@ -13,7 +13,7 @@ function Accordion({
   return (
     <AccordionPrimitive.Root
       data-slot="accordion"
-      className={cn("flex w-full flex-col", className)}
+      className={cn("flex w-full flex-col gap-2", className)}
       {...props}
     />
   )
@@ -26,7 +26,7 @@ function AccordionItem({
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
-      className={cn("border-border not-last:border-b-(length:--pixel)", className)}
+      className={cn("pixel-border border-border bg-card text-card-foreground bevel-raised offset-shadow-none", className)}
       {...props}
     />
   )
@@ -42,7 +42,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group/accordion-trigger relative flex flex-1 items-center justify-between gap-3 py-3 text-left font-pixel text-[16px] leading-none uppercase hover:underline hover:decoration-(length:--pixel) hover:underline-offset-4 disabled:pointer-events-none disabled:text-muted-foreground **:data-[slot=accordion-trigger-icon]:ml-auto",
+          "group/accordion-trigger relative flex flex-1 items-center justify-between gap-3 px-3 py-3 text-left font-pixel text-[16px] leading-none uppercase hover:underline hover:decoration-(length:--pixel) hover:underline-offset-4 disabled:pointer-events-none disabled:text-muted-foreground **:data-[slot=accordion-trigger-icon]:ml-auto",
           className
         )}
         {...props}
@@ -73,7 +73,7 @@ function AccordionContent({
     >
       <div
         className={cn(
-          "pt-0 pb-3 [&_a]:underline [&_a]:decoration-(length:--pixel) [&_a]:underline-offset-3 [&_p:not(:last-child)]:mb-4",
+          "px-3 pt-0 pb-3 [&_a]:underline [&_a]:decoration-(length:--pixel) [&_a]:underline-offset-3 [&_p:not(:last-child)]:mb-4",
           className
         )}
       >

@@ -21,7 +21,7 @@ import type { ShowcaseDemo } from "../types"
 
 function renderTrigger() {
   return (
-    <ContextMenuTrigger className="flex h-16 w-full items-center justify-center pixel-border border-border bg-card font-pixel text-[8px] uppercase">
+    <ContextMenuTrigger className="flex h-16 w-full items-center justify-center pixel-border border-border bg-card font-pixel text-sm uppercase">
       Right click here
     </ContextMenuTrigger>
   )

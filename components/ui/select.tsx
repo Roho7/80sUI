@@ -44,7 +44,7 @@ function SelectTrigger({
       data-slot="select-trigger"
       data-size={size}
       className={cn(
-        "group/select-trigger flex w-fit min-w-40 items-stretch justify-between gap-2 pixel-border border-input bg-card pl-2 text-xl leading-none whitespace-nowrap text-card-foreground bevel-sunken offset-shadow-none select-none disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground aria-invalid:border-dashed aria-invalid:border-destructive data-placeholder:text-muted-foreground data-[size=default]:h-10 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 *:data-[slot=select-value]:self-center [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "group/select-trigger flex w-fit min-w-40 items-stretch justify-between gap-2 pixel-border border-border bg-input pl-2 text-xl leading-none whitespace-nowrap text-card-foreground bevel-sunken offset-shadow-none select-none disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground aria-invalid:border-dashed aria-invalid:border-destructive data-placeholder:text-muted-foreground data-[size=default]:h-10 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 *:data-[slot=select-value]:self-center [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       {...props}
@@ -100,7 +100,7 @@ function SelectLabel({
     <SelectPrimitive.Label
       data-slot="select-label"
       className={cn(
-        "px-2 pt-2 pb-1 font-pixel text-[8px] leading-none text-muted-foreground uppercase",
+        "px-2 pt-2 pb-1 font-pixel text-sm leading-none text-muted-foreground uppercase",
         className
       )}
       {...props}

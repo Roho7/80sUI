@@ -139,7 +139,7 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
   {
     name: "tabs",
     title: "Tabs",
-    description: "shadcn tabs as folder tabs or an underline.",
+    description: "shadcn tabs as raised bevelled folder tabs joined to a bevelled panel, or an underline.",
     demo: tabsDemo,
   },
   {
@@ -187,13 +187,13 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
   {
     name: "card",
     title: "Card",
-    description: "shadcn card as a pixel panel with an offset shadow.",
+    description: "shadcn card as a raised bevelled pixel panel.",
     demo: cardDemo,
   },
   {
     name: "accordion",
     title: "Accordion",
-    description: "shadcn accordion with beveled chevron toggles and no easing.",
+    description: "shadcn accordion where each item is a raised bevelled box, with beveled chevron toggles and no easing.",
     demo: accordionDemo,
   },
   {
@@ -253,7 +253,7 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
   {
     name: "skeleton",
     title: "Skeleton",
-    description: "Dithered placeholder block for loading content.",
+    description: "Placeholder block filled with a flowing dithered noise field that steps at 10 fps, shares one timer across every skeleton and holds still under reduced motion.",
     demo: skeletonDemo,
   },
   {
@@ -265,7 +265,7 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
   {
     name: "avatar",
     title: "Avatar",
-    description: "Square pixel avatar with an image or pixel-font initials.",
+    description: "Pixel-stepped circle avatar with a 1px ring, a dithered drop shadow, and an image or pixel-font initials.",
     demo: avatarDemo,
   },
   {

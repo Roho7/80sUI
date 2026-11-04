@@ -4,7 +4,7 @@ import { Slot } from "radix-ui"
 import * as React from "react"
 
 const badgeVariants = cva(
-  "group/badge inline-flex h-6 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden pixel-border px-1.5 font-pixel text-[8px] leading-none whitespace-nowrap uppercase has-data-[icon=inline-end]:pr-1 has-data-[icon=inline-start]:pl-1 aria-invalid:border-dashed [&>svg]:pointer-events-none [&>svg]:size-3!",
+  "group/badge inline-flex h-6 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden pixel-border px-1.5 font-pixel text-sm leading-none whitespace-nowrap uppercase has-data-[icon=inline-end]:pr-1 has-data-[icon=inline-start]:pl-1 aria-invalid:border-dashed [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
     variants: {
       variant: {

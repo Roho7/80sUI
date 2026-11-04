@@ -61,7 +61,7 @@ function DesktopIcon({
           className="pointer-events-none absolute inset-0 hidden bg-background dither-50 group-disabled/desktop-icon:block"
         />
       </span>
-      <span className="max-w-full px-1 py-0.5 font-pixel text-[8px] leading-tight break-words uppercase group-data-[selected=true]/desktop-icon:bg-foreground group-data-[selected=true]/desktop-icon:text-background">
+      <span className="max-w-full px-1 py-0.5 font-pixel text-sm leading-tight break-words uppercase group-data-[selected=true]/desktop-icon:bg-foreground group-data-[selected=true]/desktop-icon:text-background">
         {label}
       </span>
     </button>

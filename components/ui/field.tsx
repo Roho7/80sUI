@@ -30,7 +30,7 @@ function FieldLegend({
       data-slot="field-legend"
       data-variant={variant}
       className={cn(
-        "mb-1.5 font-pixel leading-none uppercase data-[variant=label]:text-[8px] data-[variant=legend]:text-[16px]",
+        "mb-1.5 font-pixel leading-none uppercase data-[variant=label]:text-sm data-[variant=legend]:text-[16px]",
         className
       )}
       {...props}
@@ -163,7 +163,7 @@ function FieldSeparator({
       <Separator className="absolute inset-0 top-1/2" />
       {children && (
         <span
-          className="relative mx-auto block w-fit bg-background px-2 font-pixel text-[8px] uppercase text-muted-foreground"
+          className="relative mx-auto block w-fit bg-background px-2 font-pixel text-sm uppercase text-muted-foreground"
           data-slot="field-separator-content"
         >
           {children}

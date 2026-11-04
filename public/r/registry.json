@@ -68,6 +68,7 @@
           "ink-1": "#4b5036",
           "ink-2": "#888c62",
           "ink-3": "#c4c79d",
+          "ink-4": "#eeefc8",
           "desktop": "#a7ab7f",
           "titlebar": "var(--ink-0)",
           "titlebar-foreground": "var(--ink-3)",
@@ -97,7 +98,7 @@
           "accent-foreground": "var(--ink-3)",
           "destructive": "var(--ink-0)",
           "border": "var(--ink-0)",
-          "input": "var(--ink-0)",
+          "input": "var(--ink-4)",
           "ring": "var(--ink-0)",
           "chart-1": "var(--ink-0)",
           "chart-2": "var(--ink-1)",
@@ -119,6 +120,7 @@
           "ink-1": "#2c301f",
           "ink-2": "#6a714a",
           "ink-3": "#b5bc87",
+          "ink-4": "#474830",
           "desktop": "#1a1d12",
           "titlebar": "var(--ink-2)",
           "titlebar-foreground": "var(--ink-0)",
@@ -145,7 +147,7 @@
           "accent-foreground": "var(--ink-0)",
           "destructive": "var(--ink-3)",
           "border": "var(--ink-3)",
-          "input": "var(--ink-3)",
+          "input": "var(--ink-4)",
           "ring": "var(--ink-3)",
           "chart-1": "var(--ink-3)",
           "chart-2": "var(--ink-2)",
@@ -168,6 +170,7 @@
           "--ink-1": "#4a4a43",
           "--ink-2": "#a9a491",
           "--ink-3": "#efe8d5",
+          "--ink-4": "rgb(187, 181, 164)",
           "--desktop": "#3493be",
           "--titlebar": "var(--3)",
           "--titlebar-foreground": "var(--ink-0)"
@@ -177,9 +180,32 @@
           "--ink-1": "#243139",
           "--ink-2": "#7b8e95",
           "--ink-3": "#e5eee7",
+          "--ink-4": "#455b64",
           "--desktop": "#0b4d70",
           "--titlebar": "var(--ink-3)",
           "--titlebar-foreground": "var(--ink-0)"
+        },
+        "[data-theme=\"retro-candy\"]": {
+          "--ink-0": "#231A21",
+          "--ink-1": "#50364A",
+          "--ink-2": "#e597b4",
+          "--ink-3": "#f1cfdf",
+          "--ink-4": "#fdf3f8",
+          "--desktop": "#daf7c7",
+          "--titlebar": "var(--ink-2)",
+          "--titlebar-foreground": "var(--ink-0)",
+          "--muted": "#caaebb"
+        },
+        ".dark[data-theme=\"retro-candy\"]": {
+          "--ink-0": "#1c1219",
+          "--ink-1": "#3d2636",
+          "--ink-2": "#b8668a",
+          "--ink-3": "#f1cfdf",
+          "--ink-4": "#643f59",
+          "--desktop": "#142218",
+          "--titlebar": "var(--ink-2)",
+          "--titlebar-foreground": "var(--ink-0)",
+          "--muted": "var(--ink-1)"
         },
         "@utility dither-25": {
           "mask-image": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='1' height='1'/%3E%3Crect x='2' y='0' width='1' height='1'/%3E%3Crect x='0' y='2' width='1' height='1'/%3E%3Crect x='2' y='2' width='1' height='1'/%3E%3C/svg%3E\")",
@@ -713,7 +739,7 @@
       "name": "tabs",
       "type": "registry:ui",
       "title": "Tabs",
-      "description": "shadcn tabs as folder tabs or an underline.",
+      "description": "shadcn tabs as raised bevelled folder tabs joined to a bevelled panel, or an underline.",
       "dependencies": [
         "cn",
         "class-variance-authority",
@@ -886,7 +912,7 @@
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
-      "description": "shadcn card as a pixel panel with an offset shadow.",
+      "description": "shadcn card as a raised bevelled pixel panel.",
       "dependencies": [
         "cn"
       ],
@@ -904,7 +930,7 @@
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",
-      "description": "shadcn accordion with beveled chevron toggles and no easing.",
+      "description": "shadcn accordion where each item is a raised bevelled box, with beveled chevron toggles and no easing.",
       "dependencies": [
         "cn",
         "radix-ui"
@@ -1142,7 +1168,7 @@
       "name": "skeleton",
       "type": "registry:ui",
       "title": "Skeleton",
-      "description": "Dithered placeholder block for loading content.",
+      "description": "Placeholder block filled with a flowing dithered noise field that steps at 10 fps, shares one timer across every skeleton and holds still under reduced motion.",
       "files": [
         {
           "path": "components/ui/skeleton.tsx",
@@ -1150,7 +1176,8 @@
         }
       ],
       "registryDependencies": [
-        "@dither/theme"
+        "@dither/theme",
+        "@dither/dither-inks"
       ],
       "dependencies": [
         "cn"
@@ -1178,7 +1205,7 @@
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
-      "description": "Square pixel avatar with an image or pixel-font initials.",
+      "description": "Pixel-stepped circle avatar with a 1px ring, a dithered drop shadow, and an image or pixel-font initials.",
       "files": [
         {
           "path": "components/ui/avatar.tsx",

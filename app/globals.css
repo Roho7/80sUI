@@ -63,6 +63,7 @@
     --ink-1: #4b5036;
     --ink-2: #888c62;
     --ink-3: #c4c79d;
+    --ink-4: #eeefc8;
     --desktop: #a7ab7f;
     --titlebar: var(--ink-0);
     --titlebar-foreground: var(--ink-3);
@@ -92,7 +93,7 @@
     --accent-foreground: var(--ink-3);
     --destructive: var(--ink-0);
     --border: var(--ink-0);
-    --input: var(--ink-0);
+    --input: var(--ink-4);
     --ring: var(--ink-0);
     --chart-1: var(--ink-0);
     --chart-2: var(--ink-1);
@@ -115,6 +116,7 @@
     --ink-1: #2c301f;
     --ink-2: #6a714a;
     --ink-3: #b5bc87;
+    --ink-4: #474830;
     --desktop: #1a1d12;
     --titlebar: var(--ink-2);
     --titlebar-foreground: var(--ink-0);
@@ -141,7 +143,7 @@
     --accent-foreground: var(--ink-0);
     --destructive: var(--ink-3);
     --border: var(--ink-3);
-    --input: var(--ink-3);
+    --input: var(--ink-4);
     --ring: var(--ink-3);
     --chart-1: var(--ink-3);
     --chart-2: var(--ink-2);
@@ -163,6 +165,7 @@
     --ink-1: #4a4a43;
     --ink-2: #a9a491;
     --ink-3: #efe8d5;
+    --ink-4: rgb(187, 181, 164);
     --desktop: #3493be;
     --titlebar: var(--3);
     --titlebar-foreground: var(--ink-0);
@@ -173,10 +176,44 @@
     --ink-1: #243139;
     --ink-2: #7b8e95;
     --ink-3: #e5eee7;
+    --ink-4: #455b64;
     --desktop: #0b4d70;
     --titlebar: var(--ink-3);
     --titlebar-foreground: var(--ink-0);
 }
+
+/* [data-theme="retro-candy"] {
+    --ink-0: #231A21;
+    --ink-1: #50364A;
+    --ink-2: #f1cfe9;
+    --ink-3: #C79DBD;
+    --desktop: #D6FFBD;
+    --titlebar: var(--ink-2);
+    --titlebar-foreground: var(--ink-0);
+} */
+[data-theme="retro-candy"] {
+    --ink-0: #231A21;
+    --ink-1: #50364A;
+    --ink-2: #e597b4;
+    --ink-3: #f1cfdf;
+    --ink-4: #fdf3f8;
+    --desktop: #daf7c7;
+    --titlebar: var(--ink-2);
+    --titlebar-foreground: var(--ink-0);
+    --muted: #caaebb;
+}
+.dark[data-theme="retro-candy"] {
+    --ink-0: #1c1219;
+    --ink-1: #3d2636;
+    --ink-2: #b8668a;
+    --ink-3: #f1cfdf;
+    --ink-4: #643f59;
+    --desktop: #142218;
+    --titlebar: var(--ink-2);
+    --titlebar-foreground: var(--ink-0);
+    --muted: var(--ink-1);
+}
+
 
 @utility dither-25 {
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='1' height='1'/%3E%3Crect x='2' y='0' width='1' height='1'/%3E%3Crect x='0' y='2' width='1' height='1'/%3E%3Crect x='2' y='2' width='1' height='1'/%3E%3C/svg%3E");

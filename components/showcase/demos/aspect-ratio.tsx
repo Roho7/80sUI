@@ -17,7 +17,7 @@ export const demo: ShowcaseDemo = {
       label,
       render: () => (
         <div className="w-40">
-          <AspectRatio ratio={ratio} className="flex items-center justify-center font-pixel text-[8px] uppercase">
+          <AspectRatio ratio={ratio} className="flex items-center justify-center font-pixel text-sm uppercase">
             {label}
           </AspectRatio>
         </div>

@@ -14,7 +14,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="input-group"
       role="group"
       className={cn(
-        "group/input-group relative flex h-10 w-full min-w-0 items-center pixel-border border-input bg-card text-card-foreground bevel-sunken offset-shadow-none outline-none has-disabled:bg-muted has-disabled:text-muted-foreground has-[[data-slot][aria-invalid=true]]:border-dashed has-[[data-slot][aria-invalid=true]]:border-destructive has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>textarea]:h-auto has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=inline-end]]:[&>input]:pr-1.5 has-[>[data-align=inline-start]]:[&>input]:pl-1.5",
+        "group/input-group relative flex h-10 w-full min-w-0 items-center pixel-border border-border bg-input text-card-foreground bevel-sunken offset-shadow-none outline-none has-disabled:bg-muted has-disabled:text-muted-foreground has-[[data-slot][aria-invalid=true]]:border-dashed has-[[data-slot][aria-invalid=true]]:border-destructive has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>textarea]:h-auto has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=inline-end]]:[&>input]:pr-1.5 has-[>[data-align=inline-start]]:[&>input]:pl-1.5",
         className
       )}
       {...props}
@@ -70,7 +70,7 @@ const inputGroupButtonVariants = cva(
   {
     variants: {
       size: {
-        xs: "h-6 gap-1 px-1.5 text-[8px] [&>svg:not([class*='size-'])]:size-3.5",
+        xs: "h-6 gap-1 px-1.5 text-sm [&>svg:not([class*='size-'])]:size-3.5",
         sm: "",
         "icon-xs": "size-6 p-0 has-[>svg]:p-0",
         "icon-sm": "size-8 p-0 has-[>svg]:p-0",

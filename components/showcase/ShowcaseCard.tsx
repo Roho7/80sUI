@@ -32,7 +32,7 @@ function formatVariantCode(index: number): string {
 function VariantCell({ variant, index }: { variant: ShowcaseVariant; index: number }) {
   return (
     <figure className="flex max-w-full min-w-[min(100%,var(--cell-min))] flex-[1_1_content] flex-col gap-3 bg-card p-3 shadow-[0_0_0_var(--pixel)_var(--color-border)]">
-      <figcaption className="flex items-center gap-2 font-pixel text-[8px] leading-none uppercase">
+      <figcaption className="flex items-center gap-2 font-pixel text-sm leading-none uppercase">
         <span className="bg-foreground px-1 py-0.5 text-card">{formatVariantCode(index)}</span>
         {variant.label}
       </figcaption>
@@ -65,7 +65,7 @@ function ShowcaseCard({ entry, index }: ShowcaseCardProps) {
           {title}
         </h2>
         <span aria-hidden="true" className="h-4 min-w-6 flex-1 stripes" />
-        <span className="shrink-0 text-[8px]">{demo.variants.length} var.</span>
+        <span className="shrink-0 text-sm">{demo.variants.length} var.</span>
       </header>
       <div className="flex flex-col gap-3 border-b-(length:--pixel) border-border p-3">
         <p className="text-xl leading-tight">{description}</p>

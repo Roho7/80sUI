@@ -172,7 +172,7 @@ export function Knob(props: KnobProps) {
           <div className="absolute top-0.5 left-1/2 h-3 w-1 -translate-x-1/2 bg-foreground" />
         </div>
       </div>
-      <span className="font-pixel text-[8px] leading-none uppercase">{label}</span>
+      <span className="font-pixel text-sm leading-none uppercase">{label}</span>
       <span className="text-base leading-none">{format(value)}</span>
     </div>
   )
@@ -334,7 +334,7 @@ export function PatchEditor({
         <Knob label="bits" value={crush.bits ?? 0} min={0} max={8} step={1} format={formatOff("")} onChange={(bits) => update({ ...latest.current, crush: { ...crush, bits: bits || undefined } })} onCommit={commit} />
         <Knob label="g.steps" value={crush.gainSteps ?? 0} min={0} max={8} step={1} format={formatOff("")} onChange={(gainSteps) => update({ ...latest.current, crush: { ...crush, gainSteps: gainSteps || undefined } })} onCommit={commit} />
         <div className="flex flex-col items-center gap-1">
-          <span className="font-pixel text-[8px] uppercase">1-bit</span>
+          <span className="font-pixel text-sm uppercase">1-bit</span>
           <Choice
             options={["off", "on"] as const}
             value={crush.oneBit ? "on" : "off"}
