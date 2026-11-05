@@ -18,6 +18,8 @@ export const soundSlots: Record<string, SlotRule> = {
   "dropdown-menu-item": { key: fixed("menu"), gesture: "menu" },
   "dropdown-menu-checkbox-item": { key: fixed("menu"), gesture: "menu" },
   "dropdown-menu-radio-item": { key: fixed("menu"), gesture: "menu" },
+  "menubar-trigger": { key: fixed("menu"), gesture: "menu" },
+  "menubar-sub-trigger": { key: fixed("menu"), gesture: "menu" },
   "menubar-item": { key: fixed("menu"), gesture: "menu" },
   "menubar-checkbox-item": { key: fixed("menu"), gesture: "menu" },
   "menubar-radio-item": { key: fixed("menu"), gesture: "menu" },

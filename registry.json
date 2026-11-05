@@ -884,8 +884,6 @@
       ],
       "meta": {
         "sounds": [
-          "button.press",
-          "button.release",
           "menu.select"
         ]
       }
