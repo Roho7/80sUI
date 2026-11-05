@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/docs/PageHeader"
 import { PageNeighbors } from "@/components/docs/PageNeighbors"
 import { ProseLink } from "@/components/docs/ProseLink"
 import { HighlightedText } from "@/components/ui/highlighted-text"
+import { Plate } from "@/components/ui/plate"
 import { GUIDE_PAGES } from "@/lib/docs/pages"
 
 const PAGE = GUIDE_PAGES[0]
@@ -46,6 +47,12 @@ export default function IntroductionPage() {
         <p className="max-w-3xl text-xl leading-tight">
           Some components use WEBGL shaders, especially the special ones. You&apos;ll only be downloading the shaders if you use these components.
         </p>
+
+        <Plate variant="raised">
+          <h3 className="font-bold">NOTICE!</h3>
+          The whole project is still a WIP but the dark mode is especially so. I do not like the high contrast look, I might change it.
+          I suggest using the themes only in light mode as they look far better, imo.
+        </Plate>
       </DocSection>
       <DocSection id="start" title="Start here">
         <ul className="flex flex-wrap gap-x-4 gap-y-1 text-xl leading-tight">

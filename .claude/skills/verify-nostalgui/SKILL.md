@@ -39,7 +39,7 @@ Read-only. Checks port 3000 is listening, its process runs from this repo, `/com
 node .claude/skills/verify-nostalgui/dither.mjs check
 ```
 
-Runs `npm run lint`, `npm run typecheck`, `npm run check:style` and the registry docs generator (`npm run docs:generate`). `check:style` (`scripts/check-style.mjs`) is the style contract in code. Its rules are a table you extend when a new convention is agreed:
+Runs `npm run verify`: `npm run lint`, `npm run typecheck`, `npm run check:style` and the registry docs generator (`npm run docs:generate`). `check:style` (`scripts/check-style.mjs`) is the style contract in code. Its rules are a table you extend when a new convention is agreed:
 
 | Rule | Catches |
 |---|---|

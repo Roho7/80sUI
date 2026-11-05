@@ -1,6 +1,6 @@
 {
   "$schema": "http://localhost:3000/schema/sounds.json",
-  "enabled": false,
+  "enabled": true,
   "volume": 0.6,
   "reducedMotion": "thin",
   "sounds": {
