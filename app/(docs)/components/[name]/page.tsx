@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 
 import { ApiTable } from "@/components/docs/ApiTable"
 import { CodeBlock } from "@/components/docs/CodeBlock"
+import { CopyPageButton } from "@/components/docs/CopyPageButton"
 import { DemoVariants } from "@/components/docs/DemoPreview"
 import { DependencyInstall } from "@/components/docs/DependencyInstall"
 import { DocSection } from "@/components/docs/DocSection"
@@ -20,6 +21,7 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { formatUpdatedAt } from "@/lib/docs/format"
+import { registryDocToMarkdown } from "@/lib/docs/markdown"
 import { findDoc, REGISTRY_DOCS, SECTION_LABELS } from "@/lib/docs/registry-docs"
 import { docHref } from "@/lib/docs/routes"
 import type { RegistryDoc } from "@/lib/docs/types"
@@ -131,7 +133,10 @@ export default async function ItemPage({ params }: ItemPageProps) {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <h1 className="font-pixel text-[32px] leading-none uppercase md:text-[48px]">{doc.title}</h1>
+        <div className="flex items-start justify-between gap-3">
+          <h1 className="font-pixel text-[32px] leading-none uppercase md:text-[48px]">{doc.title}</h1>
+          <CopyPageButton markdown={registryDocToMarkdown(doc)} />
+        </div>
         <p className="max-w-2xl text-xl leading-tight">{doc.description}</p>
       </header>
       {doc.hasDemo && doc.demoSource !== null && (
