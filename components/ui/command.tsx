@@ -64,12 +64,12 @@ function CommandInput({
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
     <div data-slot="command-input-wrapper" className="p-1 pb-0">
-      <div className="flex h-10 items-center gap-2 pixel-border border-border bg-input px-2 bevel-sunken offset-shadow-none">
-        <SearchGlyph className="size-4 shrink-0 text-muted-foreground" />
+      <div className="flex h-10 items-center gap-2 pixel-border border-border well px-2">
+        <SearchGlyph className="size-4 shrink-0 text-well-muted" />
         <CommandPrimitive.Input
           data-slot="command-input"
           className={cn(
-            "h-full w-full min-w-0 bg-transparent text-xl leading-none text-card-foreground outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:text-muted-foreground",
+            "h-full w-full min-w-0 bg-transparent text-xl leading-none text-current outline-hidden placeholder:text-well-muted disabled:cursor-not-allowed disabled:text-muted-foreground",
             className
           )}
           {...props}

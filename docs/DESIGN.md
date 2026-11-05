@@ -30,6 +30,17 @@ Themes are selected with `data-theme` on `<html>`: `phosphor` (olive monochrome)
 
 Shades between inks are dither, never a fifth color: `dither-25`, `dither-50`, `dither-75` utilities mask a Bayer tile over `background-color`.
 
+## Depth
+
+Light comes from the top-left. Depth is drawn with the inks, never with alpha, blur or gradients.
+
+- Raised surfaces use `bevel-raised`: a `--bevel-glint` line top-left and a `--bevel-lo` line bottom-right. Buttons that have a face add a solid 1-pixel `offset-shadow-1`; ghost and link stay flat.
+- Anything you type into, read from or fill (input, textarea, select trigger, native select, input group, OTP slot, command input, calendar dropdowns, checkbox, progress, slider track) is a `well`: a dark recessed screen with a `--well-rim` inside top-left and a `--bevel-shade` lip outside bottom-right. Text in a well uses `text-well-foreground` and `text-well-muted`; fills use `bg-well-fill`.
+- Windows use `dither-shadow` (a 50% dithered drop shadow clipped to the area outside the window) and `bevel-frame` (the glint and lowlight drawn above the title bar). In dark mode the window face is `--ink-1`, one step above the ground.
+- `--bevel-glint` is the lightest ink in light mode and `--ink-3` in dark. `--bevel-shade` is the palette's midtone: `--ink-2`, except Cyan Pixel light, whose `--ink-4` is its grey.
+- No dithering on buttons. Dither is for windows, ranges and images.
+- Text never sits straight on the desktop. Put it on a `Plate`: `raised` for running text, `sunken` for status readouts, `tag` for headings.
+
 ## Primitive conventions
 
 - No opacity, radius, fade, zoom or slide. Disabled is `muted-foreground` text or a dithered overlay, and overlays open in one frame.

@@ -33,7 +33,7 @@ const PLACEMENTS: Record<WindowId, WindowPlacement> = {
   terminal: { position: { x: 890, y: 372 }, width: "xl:w-[380px]" },
   paint: { position: { x: 330, y: 400 }, width: "xl:w-[580px]" },
   problems: { position: { x: 24, y: 520 }, width: "xl:w-[380px]" },
-  ideas: { position: { x: 612, y: 384 }, width: "xl:w-[300px]" },
+  ideas: { position: { x: 588, y: 384 }, width: "xl:w-[300px]" },
   control: { position: { x: 840, y: 650 }, width: "xl:w-[420px]" },
 }
 

@@ -197,7 +197,10 @@ function auditPage() {
       continue
     }
     const where = describe(element)
-    const colors = [["color", style.color], ["background", style.backgroundColor]]
+    const colors = [["color", style.color]]
+    if (!element.hasAttribute("data-palette-swatch")) {
+      colors.push(["background", style.backgroundColor])
+    }
     for (const side of ["Top", "Right", "Bottom", "Left"]) {
       if (parseFloat(style[`border${side}Width`]) > 0 && style[`border${side}Style`] !== "none") {
         colors.push([`border-${side.toLowerCase()}`, style[`border${side}Color`]])

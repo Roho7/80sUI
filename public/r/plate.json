@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "plate",
+  "title": "Plate",
+  "description": "A surface for text that would otherwise sit on the desktop: a raised panel, a sunken readout or a title-bar caption tag.",
+  "dependencies": [
+    "cn",
+    "class-variance-authority",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@nostalgui/theme"
+  ],
+  "files": [
+    {
+      "path": "components/ui/plate.tsx",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"cn\"\nimport { Slot } from \"radix-ui\"\nimport * as React from \"react\"\n\nconst plateVariants = cva(\"pixel-border border-border\", {\n  variants: {\n    variant: {\n      raised:\n        \"bg-card px-3 py-2 text-card-foreground shadow-[inset_var(--pixel)_var(--pixel)_0_0_var(--bevel-glint),inset_calc(var(--pixel)*-1)_calc(var(--pixel)*-1)_0_0_var(--bevel-lo),var(--pixel)_var(--pixel)_0_0_var(--foreground)]\",\n      sunken:\n        \"bg-(--ink-1) px-3 py-2 text-(--ink-3) shadow-[inset_var(--pixel)_var(--pixel)_0_0_var(--ink-0),var(--pixel)_var(--pixel)_0_0_var(--bevel-shade)] dark:bg-(--ink-0) dark:shadow-[inset_var(--pixel)_var(--pixel)_0_0_var(--ink-2),var(--pixel)_var(--pixel)_0_0_var(--bevel-shade)]\",\n      tag: \"bg-titlebar px-2 py-1 font-pixel text-[16px] leading-none text-titlebar-foreground uppercase\",\n    },\n  },\n  defaultVariants: {\n    variant: \"raised\",\n  },\n})\n\nfunction Plate({\n  className,\n  variant = \"raised\",\n  asChild = false,\n  ...props\n}: React.ComponentProps<\"div\"> &\n  VariantProps<typeof plateVariants> & {\n    asChild?: boolean\n  }) {\n  const Comp = asChild ? Slot.Root : \"div\"\n  return (\n    <Comp\n      data-slot=\"plate\"\n      data-variant={variant}\n      className={cn(plateVariants({ variant, className }))}\n      {...props}\n    />\n  )\n}\n\nexport { Plate, plateVariants }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

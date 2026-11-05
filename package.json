@@ -16,7 +16,8 @@
     "typecheck": "tsc --noEmit",
     "lint:fix": "eslint . --fix",
     "registry:build": "node scripts/generate-registry-docs.mjs && node scripts/build-theme-registry-item.mjs && shadcn build && node scripts/build-sound-meta.mjs",
-    "check:style": "node scripts/check-style.mjs"
+    "check:style": "node scripts/check-style.mjs",
+    "stars:bake": "node scripts/bake-twinkle-star.mjs --write"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

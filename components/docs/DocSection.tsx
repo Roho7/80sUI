@@ -1,6 +1,8 @@
 import { cn } from "cn"
 import type * as React from "react"
 
+import { Plate } from "../ui/plate"
+
 type DocSectionProps = {
   id: string
   title: string
@@ -16,8 +18,10 @@ function DocSection({ id, title, children, className }: DocSectionProps) {
         id={headingId}
         className="flex items-center gap-3 font-pixel text-[20px] leading-none uppercase"
       >
-        <span>{title}</span>
-        <span aria-hidden="true" className="h-4 min-w-6 flex-1 stripes" />
+        <Plate variant="tag" className="flex w-full items-center gap-3">
+          {title}
+          <span aria-hidden="true" className="h-4 min-w-6 flex-1 stripes" />
+        </Plate>
       </h2>
       {children}
     </section>

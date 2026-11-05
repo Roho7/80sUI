@@ -44,7 +44,7 @@ function Window({
       data-active={isActive}
       data-dragging={isDragging}
       className={cn(
-        "flex flex-col pixel-border border-border bg-card text-card-foreground offset-shadow-3",
+        "flex flex-col pixel-border border-border bg-card text-card-foreground dither-shadow bevel-frame dark:bg-(--ink-1)",
         isDraggable ? "absolute" : "relative",
         className
       )}

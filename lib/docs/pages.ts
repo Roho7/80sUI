@@ -22,12 +22,12 @@ export const GUIDE_PAGES: DocPage[] = [
   {
     href: "/docs/installation",
     title: "Installation",
-    description: "Prerequisites, the theme, the registry namespace and the CLI for each package manager.",
+    description: "How to make your app look like this.",
   },
   {
     href: "/docs/theming",
     title: "Theming",
-    description: "Palettes, dark mode, tokens and fonts.",
+    description: "There are different kinds of retro vibes.",
   },
 ]
 
