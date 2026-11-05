@@ -8,6 +8,7 @@ import { CopyPageButton } from "@/components/docs/CopyPageButton"
 import { DemoVariants } from "@/components/docs/DemoPreview"
 import { DependencyInstall } from "@/components/docs/DependencyInstall"
 import { DocSection } from "@/components/docs/DocSection"
+import { JsonLd } from "@/components/docs/JsonLd"
 import { PageNeighbors } from "@/components/docs/PageNeighbors"
 import { ProseLink } from "@/components/docs/ProseLink"
 import { InstallCommand } from "@/components/showcase/InstallCommand"
@@ -25,7 +26,7 @@ import { registryDocToMarkdown } from "@/lib/docs/markdown"
 import { findDoc, REGISTRY_DOCS, SECTION_LABELS } from "@/lib/docs/registry-docs"
 import { docHref } from "@/lib/docs/routes"
 import type { RegistryDoc } from "@/lib/docs/types"
-import { absoluteUrl } from "@/lib/site"
+import { articleJsonLd, pageMetadata } from "@/lib/seo"
 
 type ItemPageProps = {
   params: Promise<{ name: string }>
@@ -43,13 +44,7 @@ export async function generateMetadata({ params }: ItemPageProps): Promise<Metad
   if (!doc) {
     return {}
   }
-  const url = absoluteUrl(docHref(doc.name))
-  return {
-    title: doc.title,
-    description: doc.description,
-    alternates: { canonical: url },
-    openGraph: { title: doc.title, description: doc.description, url, type: "article" },
-  }
+  return pageMetadata({ title: doc.title, description: doc.description, path: docHref(doc.name) })
 }
 
 function ItemLinks({ names }: { names: readonly string[] }) {
@@ -113,6 +108,19 @@ export default async function ItemPage({ params }: ItemPageProps) {
 
   return (
     <>
+      <JsonLd
+        data={articleJsonLd({
+          title: doc.title,
+          description: doc.description,
+          path: href,
+          updatedAt: doc.updatedAt ?? undefined,
+          crumbs: [
+            { name: "Components", path: "/components" },
+            { name: SECTION_LABELS[doc.section], path: "/components" },
+            { name: doc.title, path: href },
+          ],
+        })}
+      />
       <header className="flex flex-col gap-3">
         <Breadcrumb>
           <BreadcrumbList>

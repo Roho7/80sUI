@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 import { CodeBlock } from "@/components/docs/CodeBlock"
 import { DocSection } from "@/components/docs/DocSection"
+import { JsonLd } from "@/components/docs/JsonLd"
 import { PageHeader } from "@/components/docs/PageHeader"
 import { PageNeighbors } from "@/components/docs/PageNeighbors"
 import { ProseLink } from "@/components/docs/ProseLink"
@@ -10,19 +11,28 @@ import { InstallCommand } from "@/components/showcase/InstallCommand"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { PACKAGE_MANAGERS } from "@/lib/docs/package-managers"
 import { GUIDE_PAGES } from "@/lib/docs/pages"
+import { articleJsonLd, pageMetadata } from "@/lib/seo"
 
 const PAGE = GUIDE_PAGES[1]
 
 const REGISTRIES_SNIPPET = JSON.stringify({ registries: { "@nostalgui": REGISTRY_URL } }, null, 2)
 
-export const metadata: Metadata = {
-  title: PAGE.title,
-  description: PAGE.description,
-}
+export const metadata: Metadata = pageMetadata({ title: PAGE.title, description: PAGE.description, path: PAGE.href })
 
 export default function InstallationPage() {
   return (
     <>
+      <JsonLd
+        data={articleJsonLd({
+          title: PAGE.title,
+          description: PAGE.description,
+          path: PAGE.href,
+          crumbs: [
+            { name: "Docs", path: "/docs" },
+            { name: PAGE.title, path: PAGE.href },
+          ],
+        })}
+      />
       <PageHeader title={PAGE.title} description={PAGE.description} />
       <DocSection id="prerequisites" title="Prerequisites">
         <p className="max-w-3xl text-xl leading-tight">

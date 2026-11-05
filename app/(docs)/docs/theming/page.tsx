@@ -3,6 +3,7 @@ import Link from "next/link"
 
 import { CodeBlock } from "@/components/docs/CodeBlock"
 import { DocSection } from "@/components/docs/DocSection"
+import { JsonLd } from "@/components/docs/JsonLd"
 import { PageHeader } from "@/components/docs/PageHeader"
 import { PageNeighbors } from "@/components/docs/PageNeighbors"
 import { ProseLink } from "@/components/docs/ProseLink"
@@ -23,14 +24,12 @@ import {
   readTokenGroups,
   type ThemeToken,
 } from "@/lib/docs/theme"
+import { articleJsonLd, pageMetadata } from "@/lib/seo"
 
 const PAGE = GUIDE_PAGES[2]
 const USED_BY_LIMIT = 5
 
-export const metadata: Metadata = {
-  title: PAGE.title,
-  description: PAGE.description,
-}
+export const metadata: Metadata = pageMetadata({ title: PAGE.title, description: PAGE.description, path: PAGE.href })
 
 const FONT_SETUP = `import { Silkscreen, VT323 } from "next/font/google"
 
@@ -172,6 +171,17 @@ export default function ThemingPage() {
 
   return (
     <>
+      <JsonLd
+        data={articleJsonLd({
+          title: PAGE.title,
+          description: PAGE.description,
+          path: PAGE.href,
+          crumbs: [
+            { name: "Docs", path: "/docs" },
+            { name: PAGE.title, path: PAGE.href },
+          ],
+        })}
+      />
       <PageHeader title={PAGE.title} description={PAGE.description} />
       <DocSection id="css-variables" title="CSS variables">
         <Prose>

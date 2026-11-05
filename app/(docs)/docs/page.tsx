@@ -1,23 +1,33 @@
 import type { Metadata } from "next"
 
 import { DocSection } from "@/components/docs/DocSection"
+import { JsonLd } from "@/components/docs/JsonLd"
 import { PageHeader } from "@/components/docs/PageHeader"
 import { PageNeighbors } from "@/components/docs/PageNeighbors"
 import { ProseLink } from "@/components/docs/ProseLink"
 import { HighlightedText } from "@/components/ui/highlighted-text"
 import { Plate } from "@/components/ui/plate"
 import { GUIDE_PAGES } from "@/lib/docs/pages"
+import { articleJsonLd, pageMetadata } from "@/lib/seo"
 
 const PAGE = GUIDE_PAGES[0]
 
-export const metadata: Metadata = {
-  title: PAGE.title,
-  description: PAGE.description,
-}
+export const metadata: Metadata = pageMetadata({ title: PAGE.title, description: PAGE.description, path: PAGE.href })
 
 export default function IntroductionPage() {
   return (
     <>
+      <JsonLd
+        data={articleJsonLd({
+          title: PAGE.title,
+          description: PAGE.description,
+          path: PAGE.href,
+          crumbs: [
+            { name: "Docs", path: "/docs" },
+            { name: PAGE.title, path: PAGE.href },
+          ],
+        })}
+      />
       <PageHeader
         title={PAGE.title}
         description="Why? How? What?"

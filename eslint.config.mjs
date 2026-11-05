@@ -18,6 +18,10 @@ const eslintConfig = defineConfig([
       "unused-imports/no-unused-imports": "error",
     },
   },
+  {
+    files: ["lib/og/**", "app/**/icon.tsx", "app/**/apple-icon.tsx", "app/**/opengraph-image.tsx"],
+    rules: { "@next/next/no-img-element": "off" },
+  },
   globalIgnores([".next/**", "out/**", "build/**", "public/r/**", "next-env.d.ts"]),
 ]);
 

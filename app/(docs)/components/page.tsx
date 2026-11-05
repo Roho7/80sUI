@@ -3,11 +3,14 @@ import type { Metadata } from "next"
 import { DocSection } from "@/components/docs/DocSection"
 import { RegistrySetup } from "@/components/docs/RegistrySetup"
 import { ShowcaseCatalogue } from "@/components/showcase/ShowcaseCatalogue"
+import { pageMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Components",
   description: "Every NOSTALGUI registry component and variant, ready to install with shadcn.",
-}
+  path: "/components",
+  type: "website",
+})
 
 export default function ComponentsPage() {
   return (

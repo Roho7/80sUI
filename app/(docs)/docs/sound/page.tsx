@@ -2,17 +2,16 @@ import type { Metadata } from "next"
 
 import { CodeBlock } from "@/components/docs/CodeBlock"
 import { DocSection } from "@/components/docs/DocSection"
+import { JsonLd } from "@/components/docs/JsonLd"
 import { PageHeader } from "@/components/docs/PageHeader"
 import { PageNeighbors } from "@/components/docs/PageNeighbors"
 import { InstallCommand } from "@/components/showcase/InstallCommand"
 import { GUIDE_PAGES } from "@/lib/docs/pages"
+import { articleJsonLd, pageMetadata } from "@/lib/seo"
 
 const PAGE = GUIDE_PAGES[3]
 
-export const metadata: Metadata = {
-  title: PAGE.title,
-  description: PAGE.description,
-}
+export const metadata: Metadata = pageMetadata({ title: PAGE.title, description: PAGE.description, path: PAGE.href })
 
 const LAYOUT_SNIPPET = `import { NostalguiSounds } from "@/components/ui/nostalgui-sounds"
 
@@ -77,6 +76,17 @@ function Subheading({ children }: { children: React.ReactNode }) {
 export default function SoundPage() {
   return (
     <>
+      <JsonLd
+        data={articleJsonLd({
+          title: PAGE.title,
+          description: PAGE.description,
+          path: PAGE.href,
+          crumbs: [
+            { name: "Docs", path: "/docs" },
+            { name: PAGE.title, path: PAGE.href },
+          ],
+        })}
+      />
       <PageHeader title={PAGE.title} description={PAGE.description} />
       <DocSection id="add-sound" title="Adding sound to your app">
         <Prose>
