@@ -34,7 +34,8 @@ const Toaster = ({ ...props }: ToasterProps) => {
         unstyled: true,
         classNames: {
           toast:
-            "flex w-(--width) items-start gap-3 pixel-border border-border bg-popover p-3 text-popover-foreground offset-shadow-2 [&_[data-icon]]:mt-0.5 [&_[data-icon]]:flex [&_[data-icon]]:shrink-0",
+            "flex w-(--width) items-start gap-3 pixel-border border-border bg-popover p-3 text-popover-foreground offset-shadow-2",
+          icon: "relative mt-0.5 flex size-4 shrink-0 items-center justify-center",
           content: "flex min-w-0 flex-1 flex-col gap-1",
           title: "font-pixel text-[16px] leading-none uppercase",
           description: "text-lg leading-tight",
