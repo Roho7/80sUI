@@ -12,12 +12,12 @@ import { AboutWindow } from "./AboutWindow"
 import { BuilderWindow } from "./BuilderWindow"
 import { ControlPanelWindow } from "./ControlPanelWindow"
 import { DesktopIcon } from "./DesktopIcon"
-import { HexBackdrop } from "./HexBackdrop"
 import { IdeasWindow } from "./IdeasWindow"
 import { InstallWindow } from "./InstallWindow"
 import { PaintWindow } from "./PaintWindow"
 import { ProblemsWindow } from "./ProblemsWindow"
 import { TerminalWindow } from "./TerminalWindow"
+import { Wallpaper } from "./Wallpaper"
 
 type WindowId = "about" | "install" | "builder" | "terminal" | "paint" | "problems" | "ideas" | "control"
 
@@ -228,7 +228,7 @@ function Desktop({ itemCount }: DesktopProps) {
   const { errors, spawnErrors, dismissError } = useErrorStack()
   return (
     <main className="relative min-h-svh w-full overflow-hidden bg-desktop xl:h-svh xl:min-h-[920px]">
-      <HexBackdrop />
+      <Wallpaper />
       <div className="relative flex flex-col gap-6 px-4 pt-4 pb-24 xl:mx-auto xl:block xl:h-full xl:w-[1280px] xl:p-0">
         <DesktopIcons />
         <AboutWindow itemCount={itemCount} {...readWindowProps("about")} />
