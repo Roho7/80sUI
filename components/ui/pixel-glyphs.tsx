@@ -21,6 +21,12 @@ const GLYPH_PATHS = {
   dot: "M2 1h3v1H2zM1 2h5v3H1zM2 5h3v1H2z",
   search: "M1 0h3v1H1zM0 1h1v3H0zM4 1h1v3H4zM1 4h3v1H1zM4 4h1v1H4zM5 5h1v1H5zM6 6h1v1H6z",
   panel: "M0 0h7v1H0zM0 1h1v5H0zM2 1h1v5H2zM6 1h1v5H6zM0 6h7v1H0z",
+  sun: "M3 0h1v1H3zM1 1h1v1H1zM5 1h1v1H5zM2 2h3v3H2zM0 3h1v1H0zM6 3h1v1H6zM1 5h1v1H1zM5 5h1v1H5zM3 6h1v1H3z",
+  moon: "M2 0h3v1H2zM1 1h2v1H1zM0 2h2v3H0zM1 5h2v1H1zM2 6h3v1H2z",
+  speaker:
+    "M2 0h1v1H2zM1 1h2v1H1zM0 2h3v3H0zM1 5h2v1H1zM2 6h1v1H2zM4 1h1v1H4zM5 2h1v3H5zM4 5h1v1H4z",
+  speakerMuted:
+    "M2 0h1v1H2zM1 1h2v1H1zM0 2h3v3H0zM1 5h2v1H1zM2 6h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM5 3h1v1H5zM4 4h1v1H4zM6 4h1v1H6z",
 } as const
 
 const RADIO_PATHS = {
@@ -91,6 +97,22 @@ function SearchGlyph(props: GlyphProps) {
 
 function PanelGlyph(props: GlyphProps) {
   return renderGlyph(GLYPH_PATHS.panel, props)
+}
+
+function SunGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.sun, props)
+}
+
+function MoonGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.moon, props)
+}
+
+function SpeakerGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.speaker, props)
+}
+
+function SpeakerMutedGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.speakerMuted, props)
 }
 
 function RadioRingGlyph({ className, ...props }: GlyphProps) {
@@ -202,9 +224,13 @@ export {
   FolderGlyph,
   type GlyphDirection,
   MinusGlyph,
+  MoonGlyph,
   PanelGlyph,
   RadioDotGlyph,
   RadioRingGlyph,
   SearchGlyph,
+  SpeakerGlyph,
+  SpeakerMutedGlyph,
+  SunGlyph,
   TerminalGlyph,
 }
