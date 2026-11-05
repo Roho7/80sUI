@@ -9,6 +9,7 @@ import { type Point, useWindowDrag } from "@/hooks/use-window-drag"
 
 type WindowProps = Omit<React.ComponentProps<"section">, "title"> & {
   title: string
+  titleIcon?: React.ReactNode
   defaultPosition?: Point
   isActive?: boolean
   statusBar?: React.ReactNode
@@ -50,6 +51,7 @@ function TitleBarButton({
 
 function Window({
   title,
+  titleIcon,
   defaultPosition,
   isActive = true,
   statusBar,
@@ -93,6 +95,7 @@ function Window({
           isDragging && "cursor-grabbing"
         )}
       >
+        {titleIcon}
         <h2 className="truncate">{title}</h2>
         <span aria-hidden="true" className="h-4 min-w-6 flex-1 stripes" />
         {hasFullControls && (
