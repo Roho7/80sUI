@@ -95,12 +95,14 @@ function Carousel({
 
   React.useEffect(() => {
     if (!api) return
-    onSelect(api)
+    const frame = requestAnimationFrame(() => onSelect(api))
     api.on("reInit", onSelect)
     api.on("select", onSelect)
 
     return () => {
-      api?.off("select", onSelect)
+      cancelAnimationFrame(frame)
+      api.off("reInit", onSelect)
+      api.off("select", onSelect)
     }
   }, [api, onSelect])
 
@@ -188,14 +190,17 @@ function CarouselPrevious({
         "absolute touch-manipulation",
         orientation === "horizontal"
           ? "inset-y-0 -left-12 my-auto"
-          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+          : "inset-x-0 -top-12 mx-auto",
         className
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
-      <ChevronGlyph direction="left" className="cn-rtl-flip" />
+      <ChevronGlyph
+        direction={orientation === "horizontal" ? "left" : "up"}
+        className={orientation === "horizontal" ? "cn-rtl-flip" : undefined}
+      />
       <span className="sr-only">Previous slide</span>
     </Button>
   )
@@ -218,14 +223,17 @@ function CarouselNext({
         "absolute touch-manipulation",
         orientation === "horizontal"
           ? "inset-y-0 -right-12 my-auto"
-          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+          : "inset-x-0 -bottom-12 mx-auto",
         className
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
     >
-      <ChevronGlyph direction="right" className="cn-rtl-flip" />
+      <ChevronGlyph
+        direction={orientation === "horizontal" ? "right" : "down"}
+        className={orientation === "horizontal" ? "cn-rtl-flip" : undefined}
+      />
       <span className="sr-only">Next slide</span>
     </Button>
   )

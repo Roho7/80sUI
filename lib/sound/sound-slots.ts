@@ -28,6 +28,8 @@ export const soundSlots: Record<string, SlotRule> = {
   "command-item": { key: fixed("menu"), gesture: "menu" },
   toggle: { key: fixed("toggle"), gesture: "toggle" },
   "toggle-group-item": { key: fixed("toggle"), gesture: (element) => (element.getAttribute("role") === "radio" ? "select" : "toggle") },
+  "carousel-previous": { key: (element) => (SMALL_SIZES.has(element.getAttribute("data-size") ?? "") ? "small-button" : "button"), gesture: "press" },
+  "carousel-next": { key: (element) => (SMALL_SIZES.has(element.getAttribute("data-size") ?? "") ? "small-button" : "button"), gesture: "press" },
   slider: { key: fixed("slider"), gesture: "steps" },
   "resizable-handle": { key: fixed("slider"), gesture: "steps" },
   "sidebar-menu-button": { key: (element) => (element.getAttribute("data-size") === "sm" ? "small-button" : "button"), gesture: "press" },
