@@ -1769,26 +1769,6 @@
           "target": "@components/retro/taskbar.tsx"
         }
       ]
-    },
-    {
-      "name": "desktop-icon",
-      "type": "registry:block",
-      "title": "Desktop icon",
-      "description": "Selectable desktop icon with a pixel icon and label that opens on double click or Enter.",
-      "dependencies": [
-        "cn"
-      ],
-      "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/pixel-glyphs"
-      ],
-      "files": [
-        {
-          "path": "components/retro/desktop-icon.tsx",
-          "type": "registry:component",
-          "target": "@components/retro/desktop-icon.tsx"
-        }
-      ]
     }
   ]
 }

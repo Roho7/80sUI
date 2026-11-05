@@ -1,6 +1,6 @@
 # Retro desktop
 
-`/` is a Win95-style desktop built only from registry components: draggable `Window`s (README.TXT with the page's h1, Setup.exe with the install command, Roho7.vcf, install.bat, untitled - Paint, Downloading, Error, Control Panel), desktop icons, a hex backdrop, cascading `ErrorDialog`s, and a `Taskbar` whose Start menu opens About, Components, Docs and Shut Down.
+`/` is a Win95-style desktop built from registry components plus site-only desktop icons: draggable `Window`s (README.TXT with the page's h1, Setup.exe with the install command, Roho7.vcf, install.bat, untitled - Paint, Downloading, Error, Control Panel), a hex backdrop, cascading `ErrorDialog`s, and a `Taskbar` whose Start menu opens About, Components, Docs and Shut Down.
 
 ## Sub-features
 

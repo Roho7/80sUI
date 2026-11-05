@@ -4,7 +4,7 @@ import { FileAlt, Folder, Github } from "@nsmr/pixelart-react"
 import { useRouter } from "next/navigation"
 import { useCallback, useEffect, useReducer, useRef, useState } from "react"
 
-import { DesktopIcon } from "@/components/retro/desktop-icon"
+import { DesktopIcon } from "./DesktopIcon"
 import { ErrorDialogStack, type ErrorEntry } from "@/components/retro/error-dialog"
 import type { Point } from "@/hooks/use-window-drag"
 

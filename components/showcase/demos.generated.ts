@@ -14,7 +14,6 @@ import { demo as collapsibleDemo } from "./demos/collapsible"
 import { demo as commandDemo } from "./demos/command"
 import { demo as contextMenuDemo } from "./demos/context-menu"
 import { demo as ctaButtonDemo } from "./demos/cta-button"
-import { demo as desktopIconDemo } from "./demos/desktop-icon"
 import { demo as dialogDemo } from "./demos/dialog"
 import { demo as ditherImageDemo } from "./demos/dither-image"
 import { demo as ditherShineDemo } from "./demos/dither-shine"
@@ -407,11 +406,5 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
     title: "Taskbar",
     description: "Beveled taskbar with a Start button, a start menu built on dropdown-menu, a task area and a clock slot.",
     demo: taskbarDemo,
-  },
-  {
-    name: "desktop-icon",
-    title: "Desktop icon",
-    description: "Selectable desktop icon with a pixel icon and label that opens on double click or Enter.",
-    demo: desktopIconDemo,
   },
 ]

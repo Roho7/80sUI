@@ -84,7 +84,6 @@ Shipped components with no shadcn counterpart.
 - [x] error-dialog
 - [x] terminal
 - [x] taskbar
-- [x] desktop-icon
 - [x] plate
 - [x] highlighted-text
 
