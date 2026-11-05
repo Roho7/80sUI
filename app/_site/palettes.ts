@@ -1,9 +1,10 @@
-export type Palette = "phosphor" | "cyan-pixel" | "retro-candy"
+export type Palette = "phosphor" | "cyan-pixel" | "retro-candy" | "soul-green"
 
 export const PALETTES: readonly { value: Palette; label: string }[] = [
   { value: "phosphor", label: "Phosphor" },
-  { value: "cyan-pixel", label: "Cyan pixel" },
+  { value: "cyan-pixel", label: "Cyan Pixel" },
   { value: "retro-candy", label: "Retro Candy" },
+  { value: "soul-green", label: "Soul Green" },
 ]
 
 export const DEFAULT_PALETTE: Palette = "phosphor"

@@ -10,8 +10,7 @@ export const demo: ShowcaseDemo = {
       label: "inline",
       render: () => (
         <p className="text-xl leading-loose">
-          Every window here is <HighlightedText>built from the registry</HighlightedText>, so the
-          code is yours.
+          <HighlightedText>Vintage Core</HighlightedText> is back baby! Never go back to boring, plain UI. Old is gold.
         </p>
       ),
     },

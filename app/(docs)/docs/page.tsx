@@ -34,8 +34,8 @@ export default function IntroductionPage() {
       </DocSection>
       <DocSection id="who-is-it-for" title="Who is it for?">
         <p className="max-w-3xl text-xl leading-tight">
-          I don&apos;t know. You know that. Does this speak to you? Then it is for you.
-          You could make your entire CRM look like an 80s software or just build a cool game with it.
+          I don&apos;t know. Does this speak to you? Then it is for you.
+          You could make your entire CRM look like an 80s software or just build a cool mystery game with it.
         </p>
       </DocSection>
       <DocSection id="principle" title="Design Principle">
@@ -60,6 +60,44 @@ export default function IntroductionPage() {
           </li>
           <li>
             <ProseLink href="/">Boot the desktop</ProseLink>
+          </li>
+        </ul>
+      </DocSection>
+      <DocSection id="roadmap" title="Roadmap">
+        <p className="max-w-3xl text-xl leading-tight">A lot more fun components planned ahead:</p>
+        <ul className="gap-x-4 gap-y-1 text-xl leading-tight">
+          <li>
+            CRT Screen
+          </li>
+          <li>
+            Notepad
+          </li>
+          <li>
+            Hold To speak Microphone
+          </li>
+          <li>
+            Rotating Dial
+          </li>
+          <li>
+            Radial Meter
+          </li>
+          <li>
+            Graphs and Charts
+          </li>
+          <li>
+            A Red Button
+          </li>
+          <li>
+            Tape recorder buttons
+          </li>
+          <li>
+            Lever Switches
+          </li>
+          <li>
+            A functional Paint
+          </li>
+          <li>
+            A Virtual Mechanical Keyboard
           </li>
         </ul>
       </DocSection>

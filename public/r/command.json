@@ -34,16 +34,19 @@
               "type": "bandpass",
               "frequency": 4500,
               "q": 2
-            }
+            },
+            "delay": 0
           },
           {
             "wave": "square",
-            "frequency": 3000,
+            "frequency": 2210,
             "attack": 0.0003,
             "decay": 0.003,
-            "gain": 0.08
+            "gain": 0.1
           }
-        ]
+        ],
+        "gain": 1.29,
+        "crush": {}
       }
     }
   },
