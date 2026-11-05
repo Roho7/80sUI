@@ -9,7 +9,7 @@ const START = { x: 16, y: 16 }
 const WINDOW_WIDTH = "w-60"
 
 function Desk({ children }: { children: React.ReactNode }) {
-  return <div className="relative h-96 w-full overflow-hidden bg-desktop">{children}</div>
+  return <div className="relative h-72 w-full overflow-hidden bg-desktop">{children}</div>
 }
 
 function ClosableWindow() {
