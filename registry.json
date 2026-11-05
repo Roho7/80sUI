@@ -1839,7 +1839,13 @@
           "type": "registry:component",
           "target": "@components/retro/taskbar.tsx"
         }
-      ]
+      ],
+      "meta": {
+        "sounds": [
+          "taskbar.press",
+          "taskbar.release"
+        ]
+      }
     }
   ]
 }
