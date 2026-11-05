@@ -6,6 +6,8 @@ export const SITE_URL =
 
 export const SITE_NAME = "NOSTALGUI"
 
+export const SOURCE_URL = "https://github.com/Roho7/nostalgui"
+
 export const SITE_TAGLINE = "Retro, 1-bit components for shadcn."
 
 export function registryItemUrl(name: string): string {

@@ -7,6 +7,7 @@ import { useCallback, useEffect, useReducer, useRef, useState } from "react"
 import { ErrorDialogStack, type ErrorEntry } from "@/components/retro/error-dialog"
 import { TaskbarTask } from "@/components/retro/taskbar"
 import type { Point } from "@/hooks/use-window-drag"
+import { SOURCE_URL } from "@/lib/site"
 
 import { Taskbar } from "../_site/Taskbar"
 import { AboutWindow } from "./AboutWindow"
@@ -75,7 +76,7 @@ const ERROR_MESSAGES = [
 const ICONS = [
   { label: "Components", href: "/components", icon: <Folder size={36} className="fill-current" aria-hidden="true" /> },
   { label: "Docs", href: "/docs", icon: <FileAlt size={36} className="fill-current" aria-hidden="true" /> },
-  { label: "Source", href: "https://github.com/Roho7/80sUI", icon: <Github size={36} className="fill-current" aria-hidden="true" /> },
+  { label: "Source", href: SOURCE_URL, icon: <Github size={36} className="fill-current" aria-hidden="true" /> },
 ] as const
 
 type DesktopState = {

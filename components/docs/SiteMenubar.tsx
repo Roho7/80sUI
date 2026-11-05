@@ -14,8 +14,7 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar"
 import type { DocGroup } from "@/lib/docs/pages"
-
-const SOURCE_URL = "https://github.com/Roho7/80sUI"
+import { SOURCE_URL } from "@/lib/site"
 
 type SiteMenubarProps = {
   guides: DocGroup
