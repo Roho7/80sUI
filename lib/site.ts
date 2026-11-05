@@ -6,10 +6,10 @@ export const SITE_NAME = "NOSTALGUI"
 
 export const SOURCE_URL = "https://github.com/Roho7/nostalgui"
 
-export const SITE_TAGLINE = "Retro, 1-bit components for shadcn."
+export const SITE_TAGLINE = "Retro components for shadcn."
 
 export const SITE_DESCRIPTION =
-  "NOSTALGUI is a shadcn registry of retro, 1-bit, Windows 95 style React components: square corners, four inks, stepped motion, ordered dither and synthesized click sounds. Install them with the shadcn CLI and own the code."
+  "NOSTALGUI is a shadcn registry of retro, Windows 95 style React components: square corners, four inks, stepped motion, ordered dither and synthesized click sounds. Install them with the shadcn CLI and own the code."
 
 export const SITE_KEYWORDS = [
   "shadcn",

@@ -1,6 +1,6 @@
 # NOSTALGUI
 
-Retro, 1-bit, Win95-flavoured components for shadcn. Square corners, four inks, stepped motion and ordered dither. Install them with the shadcn CLI and the code is yours to change.
+Retro, 1-bit, Win95-flavoured components for shadcn.
 
 ![The NOSTALGUI desktop: draggable windows, a dithered eye in Paint and a Win95 taskbar](docs/images/desktop.png)
 
