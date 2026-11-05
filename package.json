@@ -20,6 +20,7 @@
     "stars:bake": "node scripts/bake-twinkle-star.mjs --write"
   },
   "dependencies": {
+    "@nsmr/pixelart-react": "^2.0.0",
     "class-variance-authority": "^0.7.1",
     "cmdk": "^1.1.1",
     "cn": "^0.5.2",

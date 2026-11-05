@@ -14,7 +14,7 @@ function Menubar({
     <MenubarPrimitive.Root
       data-slot="menubar"
       className={cn(
-        "flex h-9 items-stretch gap-(--pixel) pixel-border border-border bg-card p-(--pixel) text-card-foreground",
+        "flex h-9 items-stretch gap-2 border-b-(length:--pixel) border-border bg-card px-2 py-(--pixel) text-card-foreground",
         className
       )}
       {...props}
@@ -56,7 +56,7 @@ function MenubarTrigger({
     <MenubarPrimitive.Trigger
       data-slot="menubar-trigger"
       className={cn(
-        "flex items-center px-2 text-xl leading-none outline-hidden select-none hover:bg-foreground hover:text-card focus-visible:bg-foreground focus-visible:text-card disabled:text-muted-foreground data-[state=open]:bg-foreground data-[state=open]:text-card",
+        "block content-center px-2 text-xl leading-none outline-hidden select-none first-letter:underline first-letter:decoration-(length:--pixel) first-letter:underline-offset-2 hover:bg-foreground hover:text-card focus-visible:bg-foreground focus-visible:text-card disabled:text-muted-foreground data-[state=open]:bg-foreground data-[state=open]:text-card",
         className
       )}
       {...props}

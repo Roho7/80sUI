@@ -1,27 +1,35 @@
 "use client"
 
 import {
-  Brush,
+  ArtText,
   Circle,
-  Eraser,
-  Lasso,
+  ColorsSwatch,
+  Delete,
+  DragAndDrop,
+  Drop,
+  Edit,
+  Frame,
+  Minus,
   PaintBucket,
-  Pencil,
-  Pipette,
-  Slash,
-  Spline,
-  SprayCan,
-  Square,
-  SquareDashed,
-  Type,
+  Section,
+  Timeline,
+  Wind,
   ZoomIn,
-} from "lucide-react"
+} from "@nsmr/pixelart-react"
 import { useState } from "react"
 
 import { Window } from "@/components/retro/window"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { DitherImage } from "@/components/ui/dither-image"
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@/components/ui/menubar"
 import { Slider } from "@/components/ui/slider"
 import type { BayerMatrixSize } from "@/lib/dither/bayer"
 
@@ -29,22 +37,46 @@ import type { DesktopWindowProps } from "./types"
 
 type PaintWindowProps = DesktopWindowProps
 
-const MENU_ITEMS = ["File", "Edit", "View", "Image", "Options", "Help"] as const
+type MenuItem = { label: string; shortcut?: string }
+
+const MENUS: readonly { label: string; items: readonly MenuItem[] }[] = [
+  {
+    label: "File",
+    items: [
+      { label: "New", shortcut: "Ctrl+N" },
+      { label: "Open...", shortcut: "Ctrl+O" },
+      { label: "Save", shortcut: "Ctrl+S" },
+      { label: "Exit" },
+    ],
+  },
+  {
+    label: "Edit",
+    items: [
+      { label: "Undo", shortcut: "Ctrl+Z" },
+      { label: "Repeat", shortcut: "F4" },
+      { label: "Select All", shortcut: "Ctrl+L" },
+    ],
+  },
+  { label: "View", items: [{ label: "Tool Box" }, { label: "Color Box" }, { label: "Status Bar" }] },
+  { label: "Image", items: [{ label: "Flip/Rotate..." }, { label: "Invert Colors" }, { label: "Clear Image" }] },
+  { label: "Options", items: [{ label: "Edit Colors..." }, { label: "Draw Opaque" }] },
+  { label: "Help", items: [{ label: "Help Topics" }, { label: "About Paint" }] },
+]
 
 const TOOLS = [
-  { label: "Free select", icon: Lasso },
-  { label: "Select", icon: SquareDashed },
-  { label: "Eraser", icon: Eraser },
+  { label: "Free select", icon: DragAndDrop },
+  { label: "Select", icon: Section },
+  { label: "Eraser", icon: Delete },
   { label: "Fill", icon: PaintBucket },
-  { label: "Pick color", icon: Pipette },
+  { label: "Pick color", icon: ColorsSwatch },
   { label: "Magnify", icon: ZoomIn },
-  { label: "Pencil", icon: Pencil },
-  { label: "Brush", icon: Brush },
-  { label: "Airbrush", icon: SprayCan },
-  { label: "Text", icon: Type },
-  { label: "Line", icon: Slash },
-  { label: "Curve", icon: Spline },
-  { label: "Rectangle", icon: Square },
+  { label: "Pencil", icon: Edit },
+  { label: "Brush", icon: Drop },
+  { label: "Airbrush", icon: Wind },
+  { label: "Text", icon: ArtText },
+  { label: "Line", icon: Minus },
+  { label: "Curve", icon: Timeline },
+  { label: "Rectangle", icon: Frame },
   { label: "Ellipse", icon: Circle },
 ] as const
 
@@ -73,27 +105,34 @@ function PaintWindow(windowProps: PaintWindowProps) {
       statusBar={<span>For Help, click Help Topics on the Help Menu.</span>}
       {...windowProps}
     >
-      <nav className="flex gap-4 border-b-(length:--pixel) border-border px-3 py-1 text-xl leading-none">
-        {MENU_ITEMS.map((item) => (
-          <span key={item}>
-            <span className="underline decoration-[length:var(--pixel)]">{item[0]}</span>
-            {item.slice(1)}
-          </span>
+      <Menubar>
+        {MENUS.map(({ label, items }) => (
+          <MenubarMenu key={label}>
+            <MenubarTrigger>{label}</MenubarTrigger>
+            <MenubarContent>
+              {items.map(({ label: itemLabel, shortcut }) => (
+                <MenubarItem key={itemLabel}>
+                  {itemLabel}
+                  {shortcut && <MenubarShortcut>{shortcut}</MenubarShortcut>}
+                </MenubarItem>
+              ))}
+            </MenubarContent>
+          </MenubarMenu>
         ))}
-      </nav>
+      </Menubar>
       <div className="flex gap-2 p-2">
         <div className="grid h-fit grid-cols-2 gap-(--pixel) pixel-border border-border p-(--pixel)">
           {TOOLS.map(({ label, icon: Icon }) => (
             <Button
               key={label}
               variant="secondary"
-              size="icon-sm"
+              size="icon"
               aria-label={label}
               aria-pressed={activeTool === label}
               className="aria-pressed:bevel-sunken aria-pressed:bg-muted"
               onClick={() => setActiveTool(label)}
             >
-              <Icon shapeRendering="crispEdges" strokeWidth={2} />
+              <Icon className="size-6 fill-current" aria-hidden="true" />
             </Button>
           ))}
         </div>
@@ -102,7 +141,7 @@ function PaintWindow(windowProps: PaintWindowProps) {
             src="/eye1.png"
             alt="A dithered close-up of an eye"
             width={448}
-            height={220}
+            height={350}
             matrixSize={matrixSize}
             contrast={contrast}
             isAnimated={isAnimated}

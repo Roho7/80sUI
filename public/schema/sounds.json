@@ -211,7 +211,7 @@
                   "step": {
                     "type": "number",
                     "minimum": 0,
-                    "description": "Value units, px or degrees per tick."
+                    "description": "Percent of a slider's range, px or degrees per tick."
                   },
                   "minGap": {
                     "type": "number",

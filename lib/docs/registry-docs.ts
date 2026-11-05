@@ -18,5 +18,7 @@ export function findDoc(name: string): RegistryDoc | undefined {
 }
 
 export function listDocsInSection(section: DocSection): RegistryDoc[] {
-  return REGISTRY_DOCS.filter((doc) => doc.section === section)
+  return REGISTRY_DOCS.filter((doc) => doc.section === section).sort((a, b) =>
+    a.title.localeCompare(b.title)
+  )
 }

@@ -45,6 +45,18 @@ export default function InstallationPage() {
         </p>
         <InstallCommand name="button" />
       </DocSection>
+      <DocSection id="icons" title="Icons">
+        <p className="max-w-3xl text-xl leading-tight">
+          No icon pack ships with the theme. We recommend{" "}
+          <ProseLink href="https://github.com/gitntg/pixelarticons-react">pixelarticons-react</ProseLink>
+          . Its icons sit on the same pixel grid, and this site uses it too.
+        </p>
+        <CodeBlock title="Terminal" code="npm install @nsmr/pixelart-react" />
+        <CodeBlock
+          title="Example"
+          code={`import { Moon } from "@nsmr/pixelart-react"\n\n<Moon size={24} />`}
+        />
+      </DocSection>
       <DocSection id="namespace" title="Use the @nostalgui namespace">
         <p className="max-w-3xl text-xl leading-tight">
           Register the namespace once and install by name. The CLI fills {"{style}"} from your

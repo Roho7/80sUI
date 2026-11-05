@@ -205,12 +205,14 @@ export function attachSoundSlots(engine: SoundEngine, root: Document = document)
           continue
         }
         const tickKey = `${target.key}.tick`
-        const units = Math.abs(value - previous.value) / Math.max(engine.detent(tickKey).step, 1e-6) + previous.carry
-        const steps = Math.floor(units + 1e-9)
-        values.set(element, { value, carry: units - steps })
         const min = Number(element.getAttribute("aria-valuemin") ?? 0)
         const max = Number(element.getAttribute("aria-valuemax") ?? 100)
-        engine.step(tickKey, steps, max > min ? (value - min) / (max - min) : 0.5)
+        const range = max > min ? max - min : 100
+        const percent = (Math.abs(value - previous.value) / range) * 100
+        const units = percent / Math.max(engine.detent(tickKey).step, 1e-6) + previous.carry
+        const steps = Math.floor(units + 1e-9)
+        values.set(element, { value, carry: units - steps })
+        engine.step(tickKey, steps, max > min ? (value - min) / range : 0.5)
       }
     }
   }

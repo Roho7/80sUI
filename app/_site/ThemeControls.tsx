@@ -1,14 +1,9 @@
 "use client"
 
+import { Moon, Sun, Volume3, VolumeX } from "@nsmr/pixelart-react"
 import { cn } from "cn"
 import { useTheme } from "next-themes"
 
-import {
-  MoonGlyph,
-  SpeakerGlyph,
-  SpeakerMutedGlyph,
-  SunGlyph,
-} from "@/components/ui/pixel-glyphs"
 import {
   Select,
   SelectContent,
@@ -33,8 +28,8 @@ function ThemeControls({ className }: ThemeControlsProps) {
   const isHydrated = useIsHydrated()
   const isDark = isHydrated && resolvedTheme === "dark"
   const [isSoundOn, setSoundOn] = useSoundEnabled()
-  const ThemeGlyph = isDark ? MoonGlyph : SunGlyph
-  const SoundGlyph = isSoundOn ? SpeakerGlyph : SpeakerMutedGlyph
+  const ThemeIcon = isDark ? Moon : Sun
+  const SoundIcon = isSoundOn ? Volume3 : VolumeX
 
   return (
     <div className={cn("flex flex-wrap items-center gap-4", className)}>
@@ -56,7 +51,7 @@ function ThemeControls({ className }: ThemeControlsProps) {
         </SelectContent>
       </Select>
       <label className="flex items-center gap-2" title={isDark ? "Dark mode" : "Light mode"}>
-        <ThemeGlyph className="size-4" />
+        <ThemeIcon size={20} className="fill-current" aria-hidden="true" />
         <Switch
           aria-label="Dark mode"
           checked={isDark}
@@ -64,7 +59,7 @@ function ThemeControls({ className }: ThemeControlsProps) {
         />
       </label>
       <label className="flex items-center gap-2" title={isSoundOn ? "Sound on" : "Sound off"}>
-        <SoundGlyph className="size-4" />
+        <SoundIcon size={20} className="fill-current" aria-hidden="true" />
         <Switch aria-label="Sound" checked={isSoundOn} onCheckedChange={setSoundOn} />
       </label>
     </div>
