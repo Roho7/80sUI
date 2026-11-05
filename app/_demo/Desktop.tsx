@@ -49,7 +49,7 @@ const PLACEMENTS: Record<WindowId, WindowPlacement> = {
   paint: { position: { x: 330, y: 400 }, width: "xl:w-[580px]" },
   problems: { position: { x: 24, y: 520 }, width: "xl:w-[380px]" },
   ideas: { position: { x: 588, y: 384 }, width: "xl:w-[300px]" },
-  control: { position: { x: 840, y: 650 }, width: "xl:w-[420px]" },
+  control: { position: { x: 840, y: 540 }, width: "xl:w-[420px]" },
 }
 
 const INITIAL_ORDER: readonly WindowId[] = [
@@ -203,7 +203,7 @@ function DesktopIcons() {
   return (
     <nav
       aria-label="Desktop shortcuts"
-      className="flex gap-2 self-start bg-desktop p-1 xl:absolute xl:top-4 xl:left-4 xl:flex-col"
+      className="flex gap-2 self-start p-1 xl:absolute xl:top-4 xl:left-4 xl:flex-col"
     >
       {ICONS.map(({ label, href, icon }) => (
         <DesktopIcon
@@ -227,7 +227,7 @@ function Desktop({ itemCount }: DesktopProps) {
   const { readWindowProps, readTaskButtons } = useDesktopWindows()
   const { errors, spawnErrors, dismissError } = useErrorStack()
   return (
-    <main className="relative min-h-svh w-full overflow-hidden bg-desktop xl:h-svh xl:min-h-[920px]">
+    <main className="relative min-h-svh w-full overflow-hidden bg-desktop xl:h-svh">
       <Wallpaper />
       <div className="relative flex flex-col gap-6 px-4 pt-4 pb-24 xl:mx-auto xl:block xl:h-full xl:w-[1280px] xl:p-0">
         <DesktopIcons />
