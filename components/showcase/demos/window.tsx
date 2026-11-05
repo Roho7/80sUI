@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import type { ShowcaseDemo } from "../types"
 
 const START = { x: 16, y: 16 }
-const WINDOW_WIDTH = "w-60"
+const WINDOW_WIDTH = "w-80"
 
 function Desk({ children }: { children: React.ReactNode }) {
   return <div className="relative h-72 w-full overflow-hidden bg-desktop">{children}</div>
@@ -79,7 +79,7 @@ export const demo: ShowcaseDemo = {
       label: "page variant, scrolling body",
       render: () => (
         <Desk>
-          <Window title="Readme.txt" variant="page" defaultPosition={START} className={`h-40 ${WINDOW_WIDTH}`}>
+          <Window title="Readme.txt" variant="page" defaultPosition={START} className={`h-52 ${WINDOW_WIDTH}`}>
             <div className="flex flex-col gap-2 p-3 text-xl">
               {Array.from({ length: 8 }, (_, index) => (
                 <p key={index}>Line {index + 1}. Long files scroll inside the window.</p>
