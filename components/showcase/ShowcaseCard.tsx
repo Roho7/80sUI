@@ -17,7 +17,7 @@ const SPAN_LAYOUTS: Record<ShowcaseSpan, SpanLayout> = {
   wide: { className: "md:col-span-8", cellMinWidth: "16rem" },
   tall: { className: "md:col-span-4 md:row-span-2", cellMinWidth: "10rem" },
   large: { className: "md:col-span-8 md:row-span-2", cellMinWidth: "16rem" },
-  full: { className: "md:col-span-12", cellMinWidth: "26rem" },
+  full: { className: "md:col-span-12", cellMinWidth: "30rem" },
 }
 
 type ShowcaseCardProps = {
