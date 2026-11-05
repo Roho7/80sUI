@@ -86,8 +86,8 @@
     --keycap-wall-lo: var(--ink-0);
     --keycap-outline: var(--ink-0);
     --pixel: 2px;
-    --font-pixel: var(--font-silkscreen), "Silkscreen", ui-monospace, monospace;
-    --font-mono: var(--font-vt323), "VT323", ui-monospace, monospace;
+    --font-pixel: var(--font-display), "Silkscreen", ui-monospace, monospace;
+    --font-mono: var(--font-body), "VT323", ui-monospace, monospace;
     --background: var(--desktop);
     --foreground: var(--ink-0);
     --card: var(--ink-3);
@@ -184,8 +184,8 @@
     --ink-2: #a9a491;
     --ink-3: #efe8d5;
     --ink-4: rgb(187, 181, 164);
-    --desktop: #3493be;
-    --titlebar: var(--3);
+    --desktop: #8ed5f6;
+    --titlebar: var(--ink-3);
     --titlebar-foreground: var(--ink-0);
 }
 
@@ -204,15 +204,6 @@
     --titlebar-foreground: var(--ink-0);
 }
 
-/* [data-theme="retro-candy"] {
-    --ink-0: #231A21;
-    --ink-1: #50364A;
-    --ink-2: #f1cfe9;
-    --ink-3: #C79DBD;
-    --desktop: #D6FFBD;
-    --titlebar: var(--ink-2);
-    --titlebar-foreground: var(--ink-0);
-} */
 [data-theme="retro-candy"] {
     --ink-0: #231A21;
     --ink-1: #50364A;
@@ -225,12 +216,12 @@
     --muted: #caaebb;
 }
 .dark[data-theme="retro-candy"] {
-    --ink-0: #1c1219;
-    --ink-1: #3d2636;
+    --ink-0: #1c1217;
+    --ink-1: #3d2631;
     --ink-2: #b8668a;
     --ink-3: #f1cfdf;
-    --ink-4: #643f59;
-    --desktop: #142218;
+    --ink-4: #643f53;
+    --desktop: #253024;
     --titlebar: var(--ink-2);
     --titlebar-foreground: var(--ink-0);
     --muted: var(--ink-1);

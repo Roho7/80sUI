@@ -8,7 +8,7 @@
       "type": "registry:style",
       "title": "Dither theme",
       "description": "Retro tokens, phosphor and cyan-pixel palettes, dither, bevel and offset-shadow utilities.",
-      "docs": "NOSTALGUI is built on Radix: start the project with npx shadcn@latest init -b radix (any radix-* style). Base UI projects are not supported yet. Load a pixel display font and a mono body font and expose them as --font-silkscreen and --font-vt323, for example with next/font/google Silkscreen and VT323. Set data-theme=\"phosphor\" or data-theme=\"cyan-pixel\" on <html>; add the dark class for the dark variant.",
+      "docs": "The default look pairs Silkscreen for titles and labels with VT323 for body text, both free on Google Fonts. Load those, or any pixel display font and monospace body font you prefer, and expose them as --font-display and --font-body (with next/font/google, pass them as the variable option). The data-theme attribute on <html> picks the palette, and the dark class switches it to dark mode.",
       "cssVars": {
         "theme": {
           "font-heading": "var(--font-pixel)",
@@ -91,8 +91,8 @@
           "keycap-wall-lo": "var(--ink-0)",
           "keycap-outline": "var(--ink-0)",
           "pixel": "2px",
-          "font-pixel": "var(--font-silkscreen), \"Silkscreen\", ui-monospace, monospace",
-          "font-mono": "var(--font-vt323), \"VT323\", ui-monospace, monospace",
+          "font-pixel": "var(--font-display), \"Silkscreen\", ui-monospace, monospace",
+          "font-mono": "var(--font-body), \"VT323\", ui-monospace, monospace",
           "background": "var(--desktop)",
           "foreground": "var(--ink-0)",
           "card": "var(--ink-3)",
@@ -189,8 +189,8 @@
           "--ink-2": "#a9a491",
           "--ink-3": "#efe8d5",
           "--ink-4": "rgb(187, 181, 164)",
-          "--desktop": "#3493be",
-          "--titlebar": "var(--3)",
+          "--desktop": "#8ed5f6",
+          "--titlebar": "var(--ink-3)",
           "--titlebar-foreground": "var(--ink-0)"
         },
         "[data-theme=\"cyan-pixel\"]:not(.dark)": {
@@ -218,12 +218,12 @@
           "--muted": "#caaebb"
         },
         ".dark[data-theme=\"retro-candy\"]": {
-          "--ink-0": "#1c1219",
-          "--ink-1": "#3d2636",
+          "--ink-0": "#1c1217",
+          "--ink-1": "#3d2631",
           "--ink-2": "#b8668a",
           "--ink-3": "#f1cfdf",
-          "--ink-4": "#643f59",
-          "--desktop": "#142218",
+          "--ink-4": "#643f53",
+          "--desktop": "#253024",
           "--titlebar": "var(--ink-2)",
           "--titlebar-foreground": "var(--ink-0)",
           "--muted": "var(--ink-1)"
@@ -954,6 +954,24 @@
       "files": [
         {
           "path": "components/ui/plate.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "highlighted-text",
+      "type": "registry:ui",
+      "title": "Highlighted text",
+      "description": "Text with dithered pixel stars that twinkle on its corners in stepped frames, each corner on its own beat.",
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "@nostalgui/theme"
+      ],
+      "files": [
+        {
+          "path": "components/ui/highlighted-text.tsx",
           "type": "registry:ui"
         }
       ]

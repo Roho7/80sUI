@@ -26,7 +26,7 @@ export default function InstallationPage() {
       <PageHeader title={PAGE.title} description={PAGE.description} />
       <DocSection id="prerequisites" title="Prerequisites">
         <p className="max-w-3xl text-xl leading-tight">
-          A React project with Tailwind CSS 4 and shadcn set up on Radix. Base UI projects are not
+          You need a React project with Tailwind CSS 4 and shadcn set up on Radix. Base UI projects are not
           supported yet. Start one if you have none.
         </p>
         <CodeBlock title="Terminal" code="npx shadcn@latest init -b radix" />

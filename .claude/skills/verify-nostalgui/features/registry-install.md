@@ -31,5 +31,5 @@ Preconditions:
 
 - Consumers must init with Radix (`-b radix`). Base UI is refused at the registry URL. A consumer who registered the old `/r/{name}.json` URL bypasses the refusal; on shadcn's Base UI default the CLI then rewrites `asChild` to `render` and typecheck fails.
 - Until the site is deployed the registry URL is `localhost:3000`; nothing outside this machine can install.
-- The theme item asks consumers to load Silkscreen and VT323 themselves; a registry item cannot edit their layout.
+- The theme item asks consumers to load a pixel display font and a monospace body font (Silkscreen and VT323 by default) as `--font-display` and `--font-body`; a registry item cannot edit their layout.
 - The full install takes minutes (it creates a Next app). Use the `view` check for routine verification and the full install before a release.

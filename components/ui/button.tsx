@@ -13,9 +13,9 @@ const buttonVariants = cva(
         default:
           "bg-card text-card-foreground offset-shadow-1 bevel-raised hover:bg-foreground hover:text-card active:not-aria-[haspopup]:translate-x-[calc(var(--pixel)*1.2)] active:not-aria-[haspopup]:translate-y-[calc(var(--pixel)*1.2)] active:not-aria-[haspopup]:offset-shadow-none aria-expanded:bg-foreground aria-expanded:text-card",
         outline:
-          "bg-transparent text-foreground offset-shadow-1 hover:bg-muted aria-expanded:bg-muted",
+          "bg-transparent text-foreground offset-shadow-1 hover:bg-muted aria-expanded:bg-muted active:not-aria-[haspopup]:translate-x-[calc(var(--pixel)*1.2)] active:not-aria-[haspopup]:translate-y-[calc(var(--pixel)*1.2)] active:not-aria-[haspopup]:offset-shadow-none",
         secondary:
-          "bg-secondary text-secondary-foreground bevel-raised offset-shadow-1 active:not-aria-[haspopup]:offset-shadow-none active:not-aria-[haspopup]:bevel-sunken aria-expanded:bevel-sunken",
+          "bg-secondary text-secondary-foreground bevel-raised offset-shadow-1 active:not-aria-[haspopup]:translate-x-[calc(var(--pixel)*1.2)] active:not-aria-[haspopup]:translate-y-[calc(var(--pixel)*1.2)] active:not-aria-[haspopup]:offset-shadow-none active:not-aria-[haspopup]:bevel-sunken aria-expanded:bevel-sunken",
         ghost:
           "border-transparent bg-transparent text-foreground hover:border-current aria-expanded:border-current",
         destructive:

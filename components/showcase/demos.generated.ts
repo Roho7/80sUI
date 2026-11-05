@@ -22,6 +22,7 @@ import { demo as dropdownMenuDemo } from "./demos/dropdown-menu"
 import { demo as emptyDemo } from "./demos/empty"
 import { demo as errorDialogDemo } from "./demos/error-dialog"
 import { demo as fieldDemo } from "./demos/field"
+import { demo as highlightedTextDemo } from "./demos/highlighted-text"
 import { demo as hoverCardDemo } from "./demos/hover-card"
 import { demo as inputDemo } from "./demos/input"
 import { demo as inputGroupDemo } from "./demos/input-group"
@@ -190,6 +191,12 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
     title: "Plate",
     description: "A surface for text that would otherwise sit on the desktop: a raised panel, a sunken readout or a title-bar caption tag.",
     demo: plateDemo,
+  },
+  {
+    name: "highlighted-text",
+    title: "Highlighted text",
+    description: "Text with dithered pixel stars that twinkle on its corners in stepped frames, each corner on its own beat.",
+    demo: highlightedTextDemo,
   },
   {
     name: "alert",

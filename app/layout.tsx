@@ -11,13 +11,13 @@ import { cn } from "@/lib/utils"
 const fontPixel = Silkscreen({
   subsets: ["latin"],
   weight: ["400", "700"],
-  variable: "--font-silkscreen",
+  variable: "--font-display",
 })
 
 const fontMono = VT323({
   subsets: ["latin"],
   weight: "400",
-  variable: "--font-vt323",
+  variable: "--font-body",
 })
 
 export const metadata: Metadata = {
