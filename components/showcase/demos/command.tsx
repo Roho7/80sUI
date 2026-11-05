@@ -66,6 +66,35 @@ function Palette({ initial = "" }: { initial?: string }) {
   )
 }
 
+function MountWhenFullyVisible({ height, children }: { height: number; children: React.ReactNode }) {
+  const ref = React.useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = React.useState(false)
+
+  React.useEffect(() => {
+    const element = ref.current
+    if (!element) {
+      return
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setIsVisible(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 1 }
+    )
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div ref={ref} style={isVisible ? undefined : { height }}>
+      {isVisible && children}
+    </div>
+  )
+}
+
 function DialogPalette() {
   const [open, setOpen] = React.useState(false)
   return (
@@ -97,7 +126,14 @@ function DialogPalette() {
 export const demo: ShowcaseDemo = {
   span: "wide",
   variants: [
-    { label: "palette", render: () => <Palette /> },
+    {
+      label: "palette",
+      render: () => (
+        <MountWhenFullyVisible height={296}>
+          <Palette />
+        </MountWhenFullyVisible>
+      ),
+    },
     { label: "empty", render: () => <Palette initial="zzz" /> },
     { label: "dialog", render: () => <DialogPalette /> },
   ],
