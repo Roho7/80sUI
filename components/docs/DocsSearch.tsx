@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import {
+  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
@@ -51,7 +52,8 @@ function DocsSearch({ groups }: DocsSearchProps) {
         title="Search documentation"
         description="Find a guide or component page."
       >
-        <CommandInput placeholder="Search pages" />
+        <Command>
+          <CommandInput placeholder="Search pages" />
         <CommandList>
           <CommandEmpty>No pages found.</CommandEmpty>
           {groups.map((group) => (
@@ -69,6 +71,7 @@ function DocsSearch({ groups }: DocsSearchProps) {
             </CommandGroup>
           ))}
         </CommandList>
+        </Command>
       </CommandDialog>
     </>
   )
