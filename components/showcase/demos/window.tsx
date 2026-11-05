@@ -60,6 +60,18 @@ export const demo: ShowcaseDemo = {
       ),
     },
     {
+      label: "page variant, scrolling body",
+      render: () => (
+        <Window title="Readme.txt" variant="page" className="h-40 w-full">
+          <div className="flex flex-col gap-2 p-3 text-xl">
+            {Array.from({ length: 8 }, (_, index) => (
+              <p key={index}>Line {index + 1}. Long files scroll inside the window.</p>
+            ))}
+          </div>
+        </Window>
+      ),
+    },
+    {
       label: "bare",
       render: () => (
         <Window title="About" className="w-full">

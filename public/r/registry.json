@@ -1689,7 +1689,8 @@
       "registryDependencies": [
         "@nostalgui/theme",
         "@nostalgui/button",
-        "@nostalgui/pixel-glyphs"
+        "@nostalgui/pixel-glyphs",
+        "@nostalgui/scroll-area"
       ],
       "files": [
         {

@@ -5,10 +5,19 @@ import * as React from "react"
 
 import { Button } from "@/components/ui/button"
 import { CloseGlyph, MaximizeGlyph, MinimizeGlyph } from "@/components/ui/pixel-glyphs"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { type Point, useWindowDrag } from "@/hooks/use-window-drag"
+
+type WindowVariant = "card" | "page"
+
+const VARIANT_SURFACES: Record<WindowVariant, { body: string; inactiveTitlebar: string }> = {
+  card: { body: "bg-card text-card-foreground dark:bg-(--ink-1)", inactiveTitlebar: "bg-card text-card-foreground" },
+  page: { body: "bg-background text-foreground", inactiveTitlebar: "bg-background text-foreground" },
+}
 
 type WindowProps = Omit<React.ComponentProps<"section">, "title"> & {
   title: string
+  variant?: WindowVariant
   titleIcon?: React.ReactNode
   defaultPosition?: Point
   isActive?: boolean
@@ -51,6 +60,7 @@ function TitleBarButton({
 
 function Window({
   title,
+  variant = "card",
   titleIcon,
   defaultPosition,
   isActive = true,
@@ -72,10 +82,12 @@ function Window({
     <section
       aria-label={title}
       data-slot="window"
+      data-variant={variant}
       data-active={isActive}
       data-dragging={isDragging}
       className={cn(
-        "flex flex-col pixel-border border-border bg-card text-card-foreground dither-shadow bevel-frame dark:bg-(--ink-1)",
+        "flex flex-col pixel-border border-border dither-shadow bevel-frame",
+        VARIANT_SURFACES[variant].body,
         isDraggable ? "absolute" : "relative",
         className
       )}
@@ -90,7 +102,7 @@ function Window({
           "flex h-8 shrink-0 items-center gap-3 border-b-(length:--pixel) border-border pr-1 pl-3 font-pixel text-[16px] leading-none uppercase select-none",
           isActive
             ? "bg-titlebar text-titlebar-foreground"
-            : "bg-card text-card-foreground",
+            : VARIANT_SURFACES[variant].inactiveTitlebar,
           isDraggable && "cursor-grab touch-none",
           isDragging && "cursor-grabbing"
         )}
@@ -114,9 +126,12 @@ function Window({
           </TitleBarButton>
         )}
       </header>
-      <div data-slot="window-body" className="min-h-0 flex-1">
+      <ScrollArea
+        data-slot="window-body"
+        className="min-h-0 flex-1 [&>[data-slot=scroll-area-viewport]>div]:relative [&>[data-slot=scroll-area-viewport]>div]:min-h-full"
+      >
         {children}
-      </div>
+      </ScrollArea>
       {statusBar && (
         <footer
           data-slot="window-statusbar"
@@ -129,4 +144,4 @@ function Window({
   )
 }
 
-export { Window, type WindowProps }
+export { Window, type WindowProps, type WindowVariant }
