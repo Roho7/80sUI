@@ -16,11 +16,11 @@ function BuilderWindow(windowProps: DesktopWindowProps) {
     <Window {...windowProps}>
       <div className="flex flex-col gap-3 p-4">
         <div className="flex items-center gap-3">
-          <DitherImage src="/eye1.png" alt="Dithered eye" width={64} height={63} pixelSize={2} />
+          <DitherImage src="/roho.png" alt="Dithered eye" width={40} height={73} pixelSize={0.4} contrast={1.2} />
           <p className="font-pixel text-[24px] leading-none uppercase">Roho7</p>
         </div>
         <p className="text-xl leading-tight">
-          Designer & Developer. Misses the simple times.
+          Creator. Misses simpler times.
         </p>
         <ul className="flex flex-col gap-1 text-xl leading-tight">
           {LINKS.map(({ href, label }) => (

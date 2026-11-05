@@ -19,6 +19,8 @@ const SEED_OFFSETS = [
   [7, 4],
 ] as const
 
+const OPAQUE_FROM_ALPHA = 128
+
 let sampleCanvas: HTMLCanvasElement | null = null
 
 function readSeedOffset(seed: number): readonly [number, number] {
@@ -47,6 +49,10 @@ export function ditherOnCpu(
   for (let y = 0; y < height; y += 1) {
     for (let x = 0; x < width; x += 1) {
       const offset = (y * width + x) * 4
+      if (image.data[offset + 3] < OPAQUE_FROM_ALPHA) {
+        image.data[offset + 3] = 0
+        continue
+      }
       const luminance =
         (image.data[offset] * 0.2126 +
           image.data[offset + 1] * 0.7152 +
