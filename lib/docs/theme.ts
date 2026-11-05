@@ -1,7 +1,5 @@
-import { readFileSync } from "node:fs"
-import { join } from "node:path"
-
 import { PALETTES } from "@/app/_site/palettes"
+import { findDoc } from "@/lib/docs/registry-docs"
 import registry from "@/registry.json"
 
 type CssDeclarations = Record<string, string>
@@ -154,7 +152,7 @@ function readComponentSources(): { name: string; source: string }[] {
     .filter((item) => item.type === "registry:ui" || item.type === "registry:block")
     .map((item) => ({
       name: item.name,
-      source: (item.files ?? []).map((file) => readFileSync(join(process.cwd(), file.path), "utf8")).join("\n"),
+      source: (findDoc(item.name)?.files ?? []).map((file) => file.source).join("\n"),
     }))
 }
 
