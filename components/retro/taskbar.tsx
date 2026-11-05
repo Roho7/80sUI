@@ -12,6 +12,7 @@ import {
 
 type TaskbarProps = React.ComponentProps<"footer"> & {
   startMenu?: React.ReactNode
+  startIcon?: React.ReactNode
   startLabel?: string
   startMenuTitle?: string
   clock?: React.ReactNode
@@ -47,10 +48,12 @@ function TaskbarClock({ className, ...props }: React.ComponentProps<"span">) {
 }
 
 function TaskbarStart({
+  icon,
   label,
   title,
   children,
 }: {
+  icon?: React.ReactNode
   label: string
   title: string
   children: React.ReactNode
@@ -58,7 +61,8 @@ function TaskbarStart({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button data-slot="taskbar-start" variant="secondary" size="sm">
+        <Button data-slot="taskbar-start" variant="default" size="sm">
+          {icon}
           {label}
         </Button>
       </DropdownMenuTrigger>
@@ -82,6 +86,7 @@ function TaskbarStart({
 
 function Taskbar({
   startMenu,
+  startIcon,
   startLabel = "Start",
   startMenuTitle = "nostalgui",
   clock = <TaskbarClock />,
@@ -99,7 +104,7 @@ function Taskbar({
       {...props}
     >
       {startMenu !== undefined && (
-        <TaskbarStart label={startLabel} title={startMenuTitle}>
+        <TaskbarStart icon={startIcon} label={startLabel} title={startMenuTitle}>
           {startMenu}
         </TaskbarStart>
       )}

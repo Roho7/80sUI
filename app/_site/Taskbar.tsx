@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/dialog"
 import { DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
 
+import { StartLogoGlyph } from "./LogoGlyph"
+
 type TaskButtonProps = {
   label: string
   isPressed: boolean
@@ -49,6 +51,7 @@ function Taskbar({ onShutDown, children }: TaskbarProps) {
     <>
       <RetroTaskbar
         className="fixed inset-x-0 bottom-0 z-30"
+        startIcon={<StartLogoGlyph />}
         startMenu={
           <>
             <DropdownMenuItem onSelect={() => setIsAboutOpen(true)}>About NOSTALGUI</DropdownMenuItem>
