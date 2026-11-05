@@ -5,9 +5,10 @@ import { useRouter } from "next/navigation"
 import { useCallback, useEffect, useReducer, useRef, useState } from "react"
 
 import { ErrorDialogStack, type ErrorEntry } from "@/components/retro/error-dialog"
+import { TaskbarTask } from "@/components/retro/taskbar"
 import type { Point } from "@/hooks/use-window-drag"
 
-import { Taskbar, TaskButton } from "../_site/Taskbar"
+import { Taskbar } from "../_site/Taskbar"
 import { AboutWindow } from "./AboutWindow"
 import { BuilderWindow } from "./BuilderWindow"
 import { ControlPanelWindow } from "./ControlPanelWindow"
@@ -165,13 +166,14 @@ function useDesktopWindows() {
     INITIAL_ORDER.map((id) => {
       const isPressed = topOpenId === id
       return (
-        <TaskButton
+        <TaskbarTask
           key={id}
-          label={WINDOW_TITLES[id]}
-          isPressed={isPressed}
+          isActive={isPressed}
           className="max-xl:hidden"
           onClick={() => dispatch({ type: isPressed ? "minimize" : "restore", id })}
-        />
+        >
+          {WINDOW_TITLES[id]}
+        </TaskbarTask>
       )
     })
   return { readWindowProps, readTaskButtons }
