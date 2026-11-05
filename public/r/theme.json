@@ -327,6 +327,12 @@
       "canvas,\n  img": {
         "image-rendering": "pixelated"
       },
+      ":where(button, select, summary, label[for], [role=\"button\"], [role=\"tab\"], [role=\"checkbox\"], [role=\"radio\"], [role=\"switch\"], [role=\"slider\"], [role=\"option\"], [role=\"menuitem\"], [role=\"menuitemcheckbox\"], [role=\"menuitemradio\"], input:is([type=\"checkbox\"], [type=\"radio\"], [type=\"range\"], [type=\"file\"], [type=\"color\"], [type=\"submit\"], [type=\"button\"], [type=\"reset\"]))": {
+        "cursor": "pointer"
+      },
+      ":where(button, select, input, [role]):where(:disabled, [aria-disabled=\"true\"], [data-disabled])": {
+        "cursor": "default"
+      },
       ":focus-visible": {
         "outline-style": "dashed",
         "outline-width": "var(--pixel)",
