@@ -22,6 +22,7 @@ const GLYPH_PATHS = {
   arrow: "M0 2h7v1H0zM1 3h5v1H1zM2 4h3v1H2zM3 5h1v1H3z",
   dot: "M2 1h3v1H2zM1 2h5v3H1zM2 5h3v1H2z",
   search: "M1 0h3v1H1zM0 1h1v3H0zM4 1h1v3H4zM1 4h3v1H1zM4 4h1v1H4zM5 5h1v1H5zM6 6h1v1H6z",
+  slash: "M5 0h1v1H5zM4 1h1v2H4zM3 3h1v1H3zM2 4h1v2H2zM1 6h1v1H1z",
   panel: "M0 0h7v1H0zM0 1h1v5H0zM2 1h1v5H2zM6 1h1v5H6zM0 6h7v1H0z",
 } as const
 
@@ -97,6 +98,10 @@ function DotGlyph(props: GlyphProps) {
 
 function SearchGlyph(props: GlyphProps) {
   return renderGlyph(GLYPH_PATHS.search, props)
+}
+
+function SlashGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.slash, props)
 }
 
 function PanelGlyph(props: GlyphProps) {
@@ -218,5 +223,6 @@ export {
   RadioDotGlyph,
   RadioRingGlyph,
   SearchGlyph,
+  SlashGlyph,
   TerminalGlyph,
 }
