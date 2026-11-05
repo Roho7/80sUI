@@ -14,10 +14,75 @@
   "files": [
     {
       "path": "components/retro/taskbar.tsx",
-      "content": "\"use client\"\n\nimport { cn } from \"cn\"\nimport * as React from \"react\"\n\nimport { Button } from \"@/components/ui/button\"\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuTrigger,\n} from \"@/components/ui/dropdown-menu\"\n\ntype TaskbarProps = React.ComponentProps<\"footer\"> & {\n  startMenu?: React.ReactNode\n  startIcon?: React.ReactNode\n  startLabel?: string\n  startMenuTitle?: string\n  clock?: React.ReactNode\n}\n\nconst CLOCK_REFRESH_MS = 5000\n\nfunction subscribeClock(onChange: () => void) {\n  const interval = window.setInterval(onChange, CLOCK_REFRESH_MS)\n  return () => window.clearInterval(interval)\n}\n\nfunction readClock() {\n  return new Date().toLocaleTimeString([], { hour: \"2-digit\", minute: \"2-digit\" })\n}\n\nfunction readServerClock() {\n  return \"--:--\"\n}\n\nfunction TaskbarClock({ className, ...props }: React.ComponentProps<\"span\">) {\n  const time = React.useSyncExternalStore(subscribeClock, readClock, readServerClock)\n\n  return (\n    <span\n      data-slot=\"taskbar-clock\"\n      className={cn(\"flex h-7 items-center bevel-sunken offset-shadow-none px-3 text-xl leading-none\", className)}\n      {...props}\n    >\n      <time>{time}</time>\n    </span>\n  )\n}\n\nfunction TaskbarStart({\n  icon,\n  label,\n  title,\n  children,\n}: {\n  icon?: React.ReactNode\n  label: string\n  title: string\n  children: React.ReactNode\n}) {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger asChild>\n        <Button data-slot=\"taskbar-start\" variant=\"default\" size=\"sm\">\n          {icon}\n          {label}\n        </Button>\n      </DropdownMenuTrigger>\n      <DropdownMenuContent\n        side=\"top\"\n        align=\"start\"\n        sideOffset={6}\n        className=\"flex min-w-56 p-0\"\n      >\n        <span\n          aria-hidden=\"true\"\n          className=\"flex w-8 shrink-0 items-end justify-center bg-titlebar py-2 font-pixel text-[16px] leading-none text-titlebar-foreground uppercase [writing-mode:vertical-rl] rotate-180\"\n        >\n          {title}\n        </span>\n        <div className=\"flex min-w-0 flex-1 flex-col p-(--pixel)\">{children}</div>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  )\n}\n\nfunction Taskbar({\n  startMenu,\n  startIcon,\n  startLabel = \"Start\",\n  startMenuTitle = \"nostalgui\",\n  clock = <TaskbarClock />,\n  className,\n  children,\n  ...props\n}: TaskbarProps) {\n  return (\n    <footer\n      data-slot=\"taskbar\"\n      className={cn(\n        \"flex h-11 items-center gap-2 border-t-(length:--pixel) border-border bg-secondary px-2 text-secondary-foreground bevel-raised offset-shadow-none\",\n        className\n      )}\n      {...props}\n    >\n      {startMenu !== undefined && (\n        <TaskbarStart icon={startIcon} label={startLabel} title={startMenuTitle}>\n          {startMenu}\n        </TaskbarStart>\n      )}\n      <div data-slot=\"taskbar-tasks\" className=\"flex min-w-0 flex-1 items-center gap-2\">\n        {children}\n      </div>\n      {clock}\n    </footer>\n  )\n}\n\nexport { Taskbar, TaskbarClock, type TaskbarProps }\n",
+      "content": "\"use client\"\n\nimport { cn } from \"cn\"\nimport * as React from \"react\"\n\nimport { Button } from \"@/components/ui/button\"\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuTrigger,\n} from \"@/components/ui/dropdown-menu\"\n\ntype TaskbarProps = React.ComponentProps<\"footer\"> & {\n  startMenu?: React.ReactNode\n  startIcon?: React.ReactNode\n  startLabel?: string\n  startMenuTitle?: string\n  clock?: React.ReactNode\n  maxVisibleTasks?: number\n}\n\nconst DEFAULT_MAX_VISIBLE_TASKS = 6\n\nconst CLOCK_REFRESH_MS = 5000\n\nfunction subscribeClock(onChange: () => void) {\n  const interval = window.setInterval(onChange, CLOCK_REFRESH_MS)\n  return () => window.clearInterval(interval)\n}\n\nfunction readClock() {\n  return new Date().toLocaleTimeString([], { hour: \"2-digit\", minute: \"2-digit\" })\n}\n\nfunction readServerClock() {\n  return \"--:--\"\n}\n\nfunction TaskbarClock({ className, ...props }: React.ComponentProps<\"span\">) {\n  const time = React.useSyncExternalStore(subscribeClock, readClock, readServerClock)\n\n  return (\n    <span\n      data-slot=\"taskbar-clock\"\n      className={cn(\"flex h-7 items-center bevel-sunken offset-shadow-none px-3 text-xl leading-none\", className)}\n      {...props}\n    >\n      <time>{time}</time>\n    </span>\n  )\n}\n\nfunction TaskbarStart({\n  icon,\n  label,\n  title,\n  children,\n}: {\n  icon?: React.ReactNode\n  label: string\n  title: string\n  children: React.ReactNode\n}) {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger asChild>\n        <Button data-slot=\"taskbar-start\" variant=\"default\" size=\"sm\">\n          {icon}\n          {label}\n        </Button>\n      </DropdownMenuTrigger>\n      <DropdownMenuContent\n        side=\"top\"\n        align=\"start\"\n        sideOffset={6}\n        className=\"flex min-w-56 p-0\"\n      >\n        <span\n          aria-hidden=\"true\"\n          className=\"flex w-8 shrink-0 items-end justify-center bg-titlebar py-2 font-pixel text-[16px] leading-none text-titlebar-foreground uppercase [writing-mode:vertical-rl] rotate-180\"\n        >\n          {title}\n        </span>\n        <div className=\"flex min-w-0 flex-1 flex-col p-(--pixel)\">{children}</div>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  )\n}\n\ntype TaskbarTaskProps = React.ComponentProps<\"button\"> & {\n  isActive?: boolean\n  icon?: React.ReactNode\n}\n\nfunction TaskbarTask({ isActive = false, icon, className, children, ...props }: TaskbarTaskProps) {\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"taskbar-task\"\n      data-active={isActive}\n      aria-pressed={isActive}\n      className={cn(\n        \"relative flex h-8 min-w-0 shrink-0 basis-[calc((100%-(var(--taskbar-tasks)-1)*var(--pixel)*2)/var(--taskbar-tasks))] items-center gap-2 pixel-border border-border bg-secondary px-2 text-left text-xl leading-none text-secondary-foreground bevel-raised offset-shadow-none select-none data-[active=true]:bevel-sunken [&_svg]:shrink-0\",\n        className\n      )}\n      {...props}\n    >\n      {isActive && (\n        <span aria-hidden=\"true\" className=\"pointer-events-none absolute inset-(--pixel) bg-card dither-50\" />\n      )}\n      {icon && <span className=\"relative flex\">{icon}</span>}\n      <span className=\"relative truncate\">{children}</span>\n    </button>\n  )\n}\n\nfunction scrollTasksSideways(event: React.WheelEvent<HTMLDivElement>) {\n  if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {\n    event.currentTarget.scrollLeft += event.deltaY\n  }\n}\n\nfunction Taskbar({\n  startMenu,\n  startIcon,\n  startLabel = \"Start\",\n  startMenuTitle = \"nostalgui\",\n  clock = <TaskbarClock />,\n  maxVisibleTasks = DEFAULT_MAX_VISIBLE_TASKS,\n  className,\n  children,\n  ...props\n}: TaskbarProps) {\n  return (\n    <footer\n      data-slot=\"taskbar\"\n      className={cn(\n        \"flex h-11 items-center gap-2 border-t-(length:--pixel) border-border bg-secondary px-2 text-secondary-foreground bevel-raised offset-shadow-none\",\n        className\n      )}\n      {...props}\n    >\n      {startMenu !== undefined && (\n        <TaskbarStart icon={startIcon} label={startLabel} title={startMenuTitle}>\n          {startMenu}\n        </TaskbarStart>\n      )}\n      <div\n        data-slot=\"taskbar-tasks\"\n        style={{ \"--taskbar-tasks\": maxVisibleTasks } as React.CSSProperties}\n        className=\"flex min-w-0 flex-1 items-center gap-[calc(var(--pixel)*2)] overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden\"\n        onWheel={scrollTasksSideways}\n      >\n        {children}\n      </div>\n      {clock}\n    </footer>\n  )\n}\n\nexport { Taskbar, TaskbarClock, type TaskbarProps, TaskbarTask, type TaskbarTaskProps }\n",
       "type": "registry:component",
       "target": "@components/retro/taskbar.tsx"
     }
   ],
+  "meta": {
+    "sounds": {
+      "taskbar.press": {
+        "note": "Tactile switch: bandpassed noise bump plus a square click",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.006,
+            "gain": 0.6,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 3500,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 74.4,
+            "attack": 0,
+            "decay": 0.00158,
+            "gain": 0.07,
+            "frequencyEnd": 375,
+            "pitchTime": 0.1,
+            "curve": 2
+          }
+        ],
+        "jitter": {
+          "cents": 100,
+          "gainDb": 6,
+          "decay": 0.12
+        }
+      },
+      "taskbar.release": {
+        "note": "Lighter, higher tactile click",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.004,
+            "gain": 0.35,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 4200,
+              "q": 2
+            }
+          },
+          {
+            "wave": "square",
+            "frequency": 557,
+            "attack": 0.0005,
+            "decay": 0.00292,
+            "gain": 0.08
+          }
+        ],
+        "jitter": {
+          "cents": 91,
+          "gainDb": 1.5,
+          "decay": 0.12
+        }
+      }
+    }
+  },
   "type": "registry:block"
 }

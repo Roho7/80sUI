@@ -16,7 +16,10 @@ type TaskbarProps = React.ComponentProps<"footer"> & {
   startLabel?: string
   startMenuTitle?: string
   clock?: React.ReactNode
+  maxVisibleTasks?: number
 }
+
+const DEFAULT_MAX_VISIBLE_TASKS = 6
 
 const CLOCK_REFRESH_MS = 5000
 
@@ -84,12 +87,46 @@ function TaskbarStart({
   )
 }
 
+type TaskbarTaskProps = React.ComponentProps<"button"> & {
+  isActive?: boolean
+  icon?: React.ReactNode
+}
+
+function TaskbarTask({ isActive = false, icon, className, children, ...props }: TaskbarTaskProps) {
+  return (
+    <button
+      type="button"
+      data-slot="taskbar-task"
+      data-active={isActive}
+      aria-pressed={isActive}
+      className={cn(
+        "relative flex h-8 min-w-0 shrink-0 basis-[calc((100%-(var(--taskbar-tasks)-1)*var(--pixel)*2)/var(--taskbar-tasks))] items-center gap-2 pixel-border border-border bg-secondary px-2 text-left text-xl leading-none text-secondary-foreground bevel-raised offset-shadow-none select-none data-[active=true]:bevel-sunken [&_svg]:shrink-0",
+        className
+      )}
+      {...props}
+    >
+      {isActive && (
+        <span aria-hidden="true" className="pointer-events-none absolute inset-(--pixel) bg-card dither-50" />
+      )}
+      {icon && <span className="relative flex">{icon}</span>}
+      <span className="relative truncate">{children}</span>
+    </button>
+  )
+}
+
+function scrollTasksSideways(event: React.WheelEvent<HTMLDivElement>) {
+  if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
+    event.currentTarget.scrollLeft += event.deltaY
+  }
+}
+
 function Taskbar({
   startMenu,
   startIcon,
   startLabel = "Start",
   startMenuTitle = "nostalgui",
   clock = <TaskbarClock />,
+  maxVisibleTasks = DEFAULT_MAX_VISIBLE_TASKS,
   className,
   children,
   ...props
@@ -108,7 +145,12 @@ function Taskbar({
           {startMenu}
         </TaskbarStart>
       )}
-      <div data-slot="taskbar-tasks" className="flex min-w-0 flex-1 items-center gap-2">
+      <div
+        data-slot="taskbar-tasks"
+        style={{ "--taskbar-tasks": maxVisibleTasks } as React.CSSProperties}
+        className="flex min-w-0 flex-1 items-center gap-[calc(var(--pixel)*2)] overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        onWheel={scrollTasksSideways}
+      >
         {children}
       </div>
       {clock}
@@ -116,4 +158,4 @@ function Taskbar({
   )
 }
 
-export { Taskbar, TaskbarClock, type TaskbarProps }
+export { Taskbar, TaskbarClock, type TaskbarProps, TaskbarTask, type TaskbarTaskProps }

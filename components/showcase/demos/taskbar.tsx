@@ -1,5 +1,4 @@
-import { Taskbar, TaskbarClock } from "@/components/retro/taskbar"
-import { Button } from "@/components/ui/button"
+import { Taskbar, TaskbarClock, TaskbarTask } from "@/components/retro/taskbar"
 import {
   DropdownMenuItem,
   DropdownMenuSeparator,
@@ -28,17 +27,14 @@ function renderStartMenu() {
   )
 }
 
-function renderTasks() {
-  return (
-    <>
-      <Button variant="secondary" size="sm" aria-pressed className="min-w-0 bevel-sunken">
-        <span className="truncate">Paint</span>
-      </Button>
-      <Button variant="secondary" size="sm" className="min-w-0">
-        <span className="truncate">Terminal</span>
-      </Button>
-    </>
-  )
+const PROGRAMS = ["Paint", "Terminal", "Notepad", "Minesweeper", "Calculator", "Solitaire"] as const
+
+function renderTasks(count: number) {
+  return PROGRAMS.slice(0, count).map((program, index) => (
+    <TaskbarTask key={program} isActive={index === 0}>
+      {program}
+    </TaskbarTask>
+  ))
 }
 
 export const demo: ShowcaseDemo = {
@@ -46,13 +42,21 @@ export const demo: ShowcaseDemo = {
   variants: [
     {
       label: "start menu, tasks, clock",
-      render: () => <Taskbar startMenu={renderStartMenu()}>{renderTasks()}</Taskbar>,
+      render: () => <Taskbar startMenu={renderStartMenu()}>{renderTasks(2)}</Taskbar>,
+    },
+    {
+      label: "3 visible tasks, rest scroll under the clock",
+      render: () => (
+        <Taskbar startMenu={renderStartMenu()} maxVisibleTasks={3}>
+          {renderTasks(6)}
+        </Taskbar>
+      ),
     },
     {
       label: "custom start, no clock",
       render: () => (
         <Taskbar startMenu={renderStartMenu()} startLabel="Menu" startMenuTitle="guest" clock={null}>
-          {renderTasks()}
+          {renderTasks(2)}
         </Taskbar>
       ),
     },

@@ -1,11 +1,9 @@
 "use client"
 
-import { cn } from "cn"
 import Link from "next/link"
 import { useState } from "react"
 
 import { Taskbar as RetroTaskbar } from "@/components/retro/taskbar"
-import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -18,33 +16,13 @@ import { DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdow
 
 import { StartLogoGlyph } from "./LogoGlyph"
 
-type TaskButtonProps = {
-  label: string
-  isPressed: boolean
-  onClick?: () => void
-  className?: string
-}
-
-function TaskButton({ label, isPressed, onClick, className }: TaskButtonProps) {
-  return (
-    <Button
-      variant="secondary"
-      size="sm"
-      aria-pressed={isPressed}
-      onClick={onClick}
-      className={cn("min-w-0 max-w-40 justify-start truncate aria-pressed:bevel-sunken aria-pressed:bg-muted", className)}
-    >
-      <span className="truncate">{label}</span>
-    </Button>
-  )
-}
-
 type TaskbarProps = {
   onShutDown: () => void
+  maxVisibleTasks?: number
   children?: React.ReactNode
 }
 
-function Taskbar({ onShutDown, children }: TaskbarProps) {
+function Taskbar({ onShutDown, maxVisibleTasks, children }: TaskbarProps) {
   const [isAboutOpen, setIsAboutOpen] = useState(false)
 
   return (
@@ -52,6 +30,7 @@ function Taskbar({ onShutDown, children }: TaskbarProps) {
       <RetroTaskbar
         className="fixed inset-x-0 bottom-0 z-30"
         startIcon={<StartLogoGlyph />}
+        maxVisibleTasks={maxVisibleTasks}
         startMenu={
           <>
             <DropdownMenuItem onSelect={() => setIsAboutOpen(true)}>About NOSTALGUI</DropdownMenuItem>
@@ -84,4 +63,4 @@ function Taskbar({ onShutDown, children }: TaskbarProps) {
   )
 }
 
-export { Taskbar, TaskButton }
+export { Taskbar }
