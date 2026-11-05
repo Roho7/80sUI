@@ -12,7 +12,7 @@
 
 ## How to get to it (user POV)
 
-- Open `http://localhost:3000/components`.
+- Open `/components` on the dev server.
 - From the desktop, Start > `Components`, or the `Components` link on the taskbar.
 
 ## Driving it with dither.mjs

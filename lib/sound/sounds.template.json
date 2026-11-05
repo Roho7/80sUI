@@ -1,5 +1,5 @@
 {
-  "$schema": "http://localhost:3000/schema/sounds.json",
+  "$schema": "https://nostalgui.vercel.app/schema/sounds.json",
   "enabled": true,
   "volume": 0.6,
   "reducedMotion": "thin",

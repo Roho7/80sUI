@@ -46,7 +46,7 @@
     },
     {
       "path": "lib/sound/sounds.template.json",
-      "content": "{\n  \"$schema\": \"http://localhost:3000/schema/sounds.json\",\n  \"enabled\": true,\n  \"volume\": 0.6,\n  \"reducedMotion\": \"thin\",\n  \"sounds\": {}\n}\n\n\n",
+      "content": "{\n  \"$schema\": \"https://nostalgui.vercel.app/schema/sounds.json\",\n  \"enabled\": true,\n  \"volume\": 0.6,\n  \"reducedMotion\": \"thin\",\n  \"sounds\": {}\n}\n\n\n",
       "type": "registry:file",
       "target": "~/sounds.json"
     },

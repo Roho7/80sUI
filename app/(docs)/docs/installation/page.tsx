@@ -47,7 +47,7 @@ export default function InstallationPage() {
       </DocSection>
       <DocSection id="icons" title="Icons">
         <p className="max-w-3xl text-xl leading-tight">
-          No icon pack ships with the theme. We recommend{" "}
+          No icon pack ships with the theme. I recommend{" "}
           <ProseLink href="https://github.com/gitntg/pixelarticons-react">pixelarticons-react</ProseLink>
           . Its icons sit on the same pixel grid, and this site uses it too.
         </p>

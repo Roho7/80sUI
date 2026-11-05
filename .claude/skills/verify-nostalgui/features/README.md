@@ -4,7 +4,7 @@ This directory is the maintained source for verifying the user-facing behavior o
 
 ## Baseline preconditions
 
-- `node .claude/skills/verify-nostalgui/dither.mjs doctor` reports `doctor: healthy` against `http://localhost:3000`.
+- `node .claude/skills/verify-nostalgui/dither.mjs doctor` reports `doctor: healthy` against the dev server on port 3000.
 - The dev server runs from this repo. Reuse the user's `next dev` when it is there; never start a second one in the same checkout.
 - There is no database, auth or seed data. State lives in the browser only (theme, palette).
 

@@ -1,8 +1,6 @@
-const PRODUCTION_HOST = process.env.VERCEL_PROJECT_PRODUCTION_URL
+const PRODUCTION_HOST = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? "nostalgui.vercel.app"
 
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (PRODUCTION_HOST ? `https://${PRODUCTION_HOST}` : "http://localhost:3000")
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? `https://${PRODUCTION_HOST}`
 
 export const SITE_NAME = "NOSTALGUI"
 

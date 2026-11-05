@@ -316,8 +316,8 @@ export default function ThemingPage() {
       </DocSection>
       <DocSection id="sound" title="Sound">
         <Prose>
-          Sound is opt-in. Add the <ProseLink href="/components/sound">sound item</ProseLink> and
-          render NostalguiSounds once.
+          Sound is opt-in. The <ProseLink href="/docs/sound">sound guide</ProseLink> covers how it
+          works and how to add it.
         </Prose>
       </DocSection>
       <PageNeighbors href={PAGE.href} />

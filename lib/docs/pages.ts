@@ -29,6 +29,11 @@ export const GUIDE_PAGES: DocPage[] = [
     title: "Theming",
     description: "There are different kinds of retro vibes.",
   },
+  {
+    href: "/docs/sound",
+    title: "Sound",
+    description: "Synthesized clicks for every control, and how to add them.",
+  },
 ]
 
 export const DOC_GROUPS: DocGroup[] = [

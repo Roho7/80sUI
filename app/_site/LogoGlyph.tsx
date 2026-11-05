@@ -28,7 +28,7 @@ function StartLogoGlyph({ className, ...props }: React.ComponentProps<"svg">) {
       height={10}
       shapeRendering="crispEdges"
       aria-hidden="true"
-      className={cn("size-auto shrink-0 fill-current", className)}
+      className={cn("size-auto shrink-0 translate-y-px fill-current", className)}
       {...props}
     >
       <path d={START_LOGO_PATH} />

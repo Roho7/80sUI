@@ -28,7 +28,7 @@ The CLI fills `{style}` from your `components.json`. No icon pack ships with the
 
 ### Sounds
 
-Every button, switch, menu and slider can click like real hardware. Sound is opt-in.
+Every button, switch, menu and slider can click like real hardware. Sound is opt-in. The [Sound guide](https://nostalgui.vercel.app/docs/sound) explains how the clicks are made and how to tune them.
 
 ```bash
 npx shadcn@latest add @nostalgui/sound

@@ -22,7 +22,7 @@ export const demo: ShowcaseDemo = {
         <Field orientation="horizontal">
           <FieldContent>
             <FieldLabel htmlFor="field-mail">Email</FieldLabel>
-            <FieldDescription>We never spam.</FieldDescription>
+            <FieldDescription>I never spam.</FieldDescription>
           </FieldContent>
           <Input id="field-mail" placeholder="ada@x.dev" />
         </Field>

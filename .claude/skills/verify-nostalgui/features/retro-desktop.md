@@ -13,7 +13,7 @@
 
 ## How to get to it (user POV)
 
-- Open `http://localhost:3000/` on a screen 1280px wide or wider (below that the windows stack).
+- Open `/` on the dev server, on a screen 1280px wide or wider (below that the windows stack).
 
 ## Driving it with dither.mjs
 

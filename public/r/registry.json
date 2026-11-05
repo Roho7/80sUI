@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "nostalgui",
-  "homepage": "http://localhost:3000",
+  "homepage": "https://nostalgui.vercel.app",
   "items": [
     {
       "name": "theme",
