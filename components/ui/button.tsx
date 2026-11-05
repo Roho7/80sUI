@@ -6,7 +6,7 @@ import { Slot } from "radix-ui"
 import * as React from "react"
 
 const buttonVariants = cva(
-  "group/button relative inline-flex shrink-0 items-center justify-center pixel-border border-border font-pixel text-[16px] leading-none whitespace-nowrap uppercase outline-none select-none disabled:pointer-events-none disabled:text-muted-foreground aria-invalid:border-destructive [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button relative inline-flex shrink-0 items-center justify-center pixel-border border-border font-pixel text-[16px] leading-none whitespace-nowrap uppercase outline-none select-none disabled:pointer-events-none disabled:text-muted-foreground disabled:offset-shadow-none disabled:dither-50 aria-invalid:border-destructive [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
