@@ -102,7 +102,7 @@ Sound is opt-in: components never import it. Installing `@nostalgui/sound` and r
 | `cta-button` | `registry:ui` | Call-to-action button over `dither-shine` |
 | `sound` | `registry:lib` | `lib/sound/*`, `hooks/use-sound.ts`, `<NostalguiSounds />`, a starter `sounds.json` and `scripts/dither-sounds.mjs` |
 | `button`, `checkbox`, `slider`, `progress`, `dialog`, `input`, `textarea`, `label`, `radio-group`, `switch`, `select`, `tabs`, `tooltip`, `dropdown-menu`, `menubar`, `scroll-area`, `separator`, `badge`, `alert`, `card`, `accordion` | `registry:ui` | Layer 1 primitives |
-| `window`, `error-dialog`, `terminal`, `taskbar`, `desktop-icon` | `registry:block` | Layer 2 compositions. `window` ships `hooks/use-window-drag.ts` |
+| `window`, `error-dialog`, `terminal`, `taskbar` | `registry:block` | Layer 2 compositions. `window` ships `hooks/use-window-drag.ts` |
 
 Each item's `registryDependencies` pull in what it needs, so `shadcn add @nostalgui/window` brings in everything below it.
 

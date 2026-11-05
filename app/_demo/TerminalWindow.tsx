@@ -22,7 +22,7 @@ const SCRIPT: readonly TerminalLine[] = [
 
 function TerminalWindow(windowProps: DesktopWindowProps) {
   return (
-    <Window title="install.bat" statusBar={<span>{SCRIPT.length} lines</span>} {...windowProps}>
+    <Window statusBar={<span>{SCRIPT.length} lines</span>} {...windowProps}>
       <Terminal lines={SCRIPT} isLooping className="h-60" />
     </Window>
   )

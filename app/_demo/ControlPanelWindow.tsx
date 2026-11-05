@@ -1,19 +1,15 @@
 "use client"
 
 import { Window } from "@/components/retro/window"
-import { Button } from "@/components/ui/button"
 
 import { ThemeControls } from "../_site/ThemeControls"
 import type { DesktopWindowProps } from "./types"
 
-type ControlPanelWindowProps = DesktopWindowProps & {
-  onSpawnError: () => void
-}
+type ControlPanelWindowProps = DesktopWindowProps
 
-function ControlPanelWindow({ onSpawnError, ...windowProps }: ControlPanelWindowProps) {
+function ControlPanelWindow({ ...windowProps }: ControlPanelWindowProps) {
   return (
     <Window
-      title="Control Panel"
       {...windowProps}
     >
       <div className="flex flex-col gap-4 p-4">
@@ -21,9 +17,6 @@ function ControlPanelWindow({ onSpawnError, ...windowProps }: ControlPanelWindow
           <legend className="mb-2 font-pixel text-[16px] uppercase">Theme</legend>
           <ThemeControls />
         </fieldset>
-        <Button variant="destructive" size="sm" className="self-start" onClick={onSpawnError}>
-          Spawn error
-        </Button>
       </div>
     </Window>
   )

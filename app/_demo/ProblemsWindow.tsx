@@ -30,7 +30,6 @@ function ProblemsWindow({ onCancel, ...windowProps }: ProblemsWindowProps) {
 
   return (
     <Window
-      title="Downloading"
       {...windowProps}
     >
       <div className="flex flex-col gap-3 p-4">

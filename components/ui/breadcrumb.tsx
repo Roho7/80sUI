@@ -2,7 +2,7 @@ import { cn } from "cn"
 import { Slot } from "radix-ui"
 import * as React from "react"
 
-import { ChevronGlyph } from "@/components/ui/pixel-glyphs"
+import { SlashGlyph } from "@/components/ui/pixel-glyphs"
 
 function Breadcrumb({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -83,7 +83,7 @@ function BreadcrumbSeparator({
       {...props}
     >
       {children ?? (
-        <ChevronGlyph direction="right" className="cn-rtl-flip" />
+        <SlashGlyph className="cn-rtl-flip" />
       )}
     </li>
   )

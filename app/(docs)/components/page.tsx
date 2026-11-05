@@ -19,10 +19,9 @@ export default function ComponentsPage() {
           command, own the code.
         </p>
       </header>
-      <DocSection id="setup" title="Setup" className="bg-muted p-3">
+      <DocSection id="setup" title="Setup" className="p-3">
         <p className="text-xl leading-tight">
-          NOSTALGUI is built on Radix. Start a Radix project, add the registry once, then add any
-          component below. Base UI projects are not supported yet.
+          NOSTALGUI is built on Shadcn and Radix. Base UI is not supported yet.
         </p>
         <RegistrySetup />
       </DocSection>

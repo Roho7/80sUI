@@ -1,22 +1,25 @@
+import { DocsTaskbar } from "@/app/_site/DocsTaskbar"
+import { ProgramMain, ProgramWindow } from "@/app/_site/ProgramWindow"
 import { SidebarNav } from "@/components/docs/SidebarNav"
-import { SiteFooter } from "@/components/docs/SiteFooter"
-import { SiteHeader } from "@/components/docs/SiteHeader"
+import { SiteMenuRow } from "@/components/docs/SiteMenuRow"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { DOC_GROUPS } from "@/lib/docs/pages"
 
 export default function DocsLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className="flex min-h-svh flex-col">
-      <SiteHeader />
-      <div className="flex w-full max-w-[1440px] flex-1 items-start">
-        <aside className="sticky top-0 hidden h-svh w-64 shrink-0 border-r-(length:--pixel) border-border lg:block">
-          <ScrollArea className="h-full ">
-            <SidebarNav groups={DOC_GROUPS} />
-          </ScrollArea>
-        </aside>
-        <main className="flex min-w-0 flex-1 flex-col gap-8 px-4 py-6 md:px-8 md:py-10">{children}</main>
-      </div>
-      <SiteFooter />
-    </div>
+    <>
+      <ProgramWindow>
+        <SiteMenuRow />
+        <div className="flex min-h-0 flex-1">
+          <aside className="hidden h-full w-64 shrink-0 border-r-(length:--pixel) border-border lg:block">
+            <ScrollArea className="h-full">
+              <SidebarNav groups={DOC_GROUPS} />
+            </ScrollArea>
+          </aside>
+          <ProgramMain>{children}</ProgramMain>
+        </div>
+      </ProgramWindow>
+      <DocsTaskbar />
+    </>
   )
 }

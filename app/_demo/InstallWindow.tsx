@@ -10,7 +10,7 @@ import type { DesktopWindowProps } from "./types"
 
 function InstallWindow(windowProps: DesktopWindowProps) {
   return (
-    <Window title="Setup.exe" {...windowProps}>
+    <Window {...windowProps}>
       <div className="flex flex-col gap-3 p-4">
         <p className="text-xl leading-tight">
           NOSTALGUI is built on Radix. Start a Radix project; Base UI is not supported yet.

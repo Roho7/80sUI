@@ -13,6 +13,8 @@ const GLYPH_PATHS = {
   check:
     "M6 1h1v1H6zM5 2h2v1H5zM0 3h1v1H0zM4 3h2v1H4zM0 4h2v1H0zM3 4h2v1H3zM1 5h3v1H1zM2 6h1v1H2z",
   minus: "M1 3h5v1H1z",
+  minimize: "M1 5h5v2H1z",
+  maximize: "M0 0h7v2H0zM0 2h1v5H0zM6 2h1v5H6zM1 6h5v1H1z",
   close:
     "M0 0h2v1H0zM5 0h2v1H5zM1 1h2v1H1zM4 1h2v1H4zM2 2h3v1H2zM3 3h1v1H3zM2 4h3v1H2zM1 5h2v1H1zM4 5h2v1H4zM0 6h2v1H0zM5 6h2v1H5z",
   chevron:
@@ -20,13 +22,10 @@ const GLYPH_PATHS = {
   arrow: "M0 2h7v1H0zM1 3h5v1H1zM2 4h3v1H2zM3 5h1v1H3z",
   dot: "M2 1h3v1H2zM1 2h5v3H1zM2 5h3v1H2z",
   search: "M1 0h3v1H1zM0 1h1v3H0zM4 1h1v3H4zM1 4h3v1H1zM4 4h1v1H4zM5 5h1v1H5zM6 6h1v1H6z",
+  info: "M3 0h1v1H3zM2 2h2v1H2zM3 3h1v3H3zM2 6h3v1H2z",
+  alert: "M3 0h1v5H3zM3 6h1v1H3z",
+  slash: "M5 0h1v1H5zM4 1h1v2H4zM3 3h1v1H3zM2 4h1v2H2zM1 6h1v1H1z",
   panel: "M0 0h7v1H0zM0 1h1v5H0zM2 1h1v5H2zM6 1h1v5H6zM0 6h7v1H0z",
-  sun: "M3 0h1v1H3zM1 1h1v1H1zM5 1h1v1H5zM2 2h3v3H2zM0 3h1v1H0zM6 3h1v1H6zM1 5h1v1H1zM5 5h1v1H5zM3 6h1v1H3z",
-  moon: "M2 0h3v1H2zM1 1h2v1H1zM0 2h2v3H0zM1 5h2v1H1zM2 6h3v1H2z",
-  speaker:
-    "M2 0h1v1H2zM1 1h2v1H1zM0 2h3v3H0zM1 5h2v1H1zM2 6h1v1H2zM4 1h1v1H4zM5 2h1v3H5zM4 5h1v1H4z",
-  speakerMuted:
-    "M2 0h1v1H2zM1 1h2v1H1zM0 2h3v3H0zM1 5h2v1H1zM2 6h1v1H2zM4 2h1v1H4zM6 2h1v1H6zM5 3h1v1H5zM4 4h1v1H4zM6 4h1v1H6z",
 } as const
 
 const RADIO_PATHS = {
@@ -75,6 +74,14 @@ function MinusGlyph(props: GlyphProps) {
   return renderGlyph(GLYPH_PATHS.minus, props)
 }
 
+function MinimizeGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.minimize, props)
+}
+
+function MaximizeGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.maximize, props)
+}
+
 function CloseGlyph(props: GlyphProps) {
   return renderGlyph(GLYPH_PATHS.close, props)
 }
@@ -95,24 +102,20 @@ function SearchGlyph(props: GlyphProps) {
   return renderGlyph(GLYPH_PATHS.search, props)
 }
 
+function InfoGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.info, props)
+}
+
+function AlertGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.alert, props)
+}
+
+function SlashGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.slash, props)
+}
+
 function PanelGlyph(props: GlyphProps) {
   return renderGlyph(GLYPH_PATHS.panel, props)
-}
-
-function SunGlyph(props: GlyphProps) {
-  return renderGlyph(GLYPH_PATHS.sun, props)
-}
-
-function MoonGlyph(props: GlyphProps) {
-  return renderGlyph(GLYPH_PATHS.moon, props)
-}
-
-function SpeakerGlyph(props: GlyphProps) {
-  return renderGlyph(GLYPH_PATHS.speaker, props)
-}
-
-function SpeakerMutedGlyph(props: GlyphProps) {
-  return renderGlyph(GLYPH_PATHS.speakerMuted, props)
 }
 
 function RadioRingGlyph({ className, ...props }: GlyphProps) {
@@ -214,6 +217,7 @@ function ErrorGlyph({ className, ...props }: GlyphProps) {
 }
 
 export {
+  AlertGlyph,
   ArrowGlyph,
   CheckGlyph,
   ChevronGlyph,
@@ -223,14 +227,14 @@ export {
   ErrorGlyph,
   FolderGlyph,
   type GlyphDirection,
+  InfoGlyph,
+  MaximizeGlyph,
+  MinimizeGlyph,
   MinusGlyph,
-  MoonGlyph,
   PanelGlyph,
   RadioDotGlyph,
   RadioRingGlyph,
   SearchGlyph,
-  SpeakerGlyph,
-  SpeakerMutedGlyph,
-  SunGlyph,
+  SlashGlyph,
   TerminalGlyph,
 }

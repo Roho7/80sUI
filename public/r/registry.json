@@ -333,6 +333,16 @@
           "canvas,\n  img": {
             "image-rendering": "pixelated"
           },
+          ":where(button, select, summary, label[for], [role=\"button\"], [role=\"tab\"], [role=\"checkbox\"], [role=\"radio\"], [role=\"switch\"], [role=\"slider\"], [role=\"option\"], [role=\"menuitem\"], [role=\"menuitemcheckbox\"], [role=\"menuitemradio\"], input:is([type=\"checkbox\"], [type=\"radio\"], [type=\"range\"], [type=\"file\"], [type=\"color\"], [type=\"submit\"], [type=\"button\"], [type=\"reset\"]))": {
+            "cursor": "pointer"
+          },
+          ":where(button, select, input, [role]):where(:disabled, [aria-disabled=\"true\"], [data-disabled])": {
+            "cursor": "default"
+          },
+          "[data-vaul-drawer],\n  [data-vaul-overlay],\n  [data-sonner-toast]": {
+            "transition": "none",
+            "animation": "none"
+          },
           ":focus-visible": {
             "outline-style": "dashed",
             "outline-width": "var(--pixel)",
@@ -1679,6 +1689,67 @@
       }
     },
     {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "Sonner",
+      "description": "shadcn sonner reskinned for NOSTALGUI.",
+      "files": [
+        {
+          "path": "components/ui/sonner.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@nostalgui/theme",
+        "@nostalgui/pixel-glyphs",
+        "@nostalgui/spinner"
+      ],
+      "dependencies": [
+        "next-themes",
+        "sonner"
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "shadcn drawer reskinned for NOSTALGUI.",
+      "files": [
+        {
+          "path": "components/ui/drawer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@nostalgui/theme"
+      ],
+      "dependencies": [
+        "cn",
+        "vaul"
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "description": "shadcn carousel reskinned for NOSTALGUI.",
+      "files": [
+        {
+          "path": "components/ui/carousel.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@nostalgui/theme",
+        "@nostalgui/button",
+        "@nostalgui/pixel-glyphs"
+      ],
+      "dependencies": [
+        "cn",
+        "embla-carousel-react"
+      ]
+    },
+    {
       "name": "window",
       "type": "registry:block",
       "title": "Window",
@@ -1689,7 +1760,8 @@
       "registryDependencies": [
         "@nostalgui/theme",
         "@nostalgui/button",
-        "@nostalgui/pixel-glyphs"
+        "@nostalgui/pixel-glyphs",
+        "@nostalgui/scroll-area"
       ],
       "files": [
         {
@@ -1766,26 +1838,6 @@
           "path": "components/retro/taskbar.tsx",
           "type": "registry:component",
           "target": "@components/retro/taskbar.tsx"
-        }
-      ]
-    },
-    {
-      "name": "desktop-icon",
-      "type": "registry:block",
-      "title": "Desktop icon",
-      "description": "Selectable desktop icon with a pixel icon and label that opens on double click or Enter.",
-      "dependencies": [
-        "cn"
-      ],
-      "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/pixel-glyphs"
-      ],
-      "files": [
-        {
-          "path": "components/retro/desktop-icon.tsx",
-          "type": "registry:component",
-          "target": "@components/retro/desktop-icon.tsx"
         }
       ]
     }

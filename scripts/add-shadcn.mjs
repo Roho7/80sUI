@@ -33,26 +33,36 @@ const ICON_GLYPHS = {
   ChevronRightIcon: ["ChevronGlyph", ' direction="right"'],
   ArrowLeftIcon: ["ArrowGlyph", ' direction="left"'],
   ArrowRightIcon: ["ArrowGlyph", ' direction="right"'],
+  CircleCheckIcon: ["CheckGlyph", ""],
+  InfoIcon: ["InfoGlyph", ""],
+  TriangleAlertIcon: ["AlertGlyph", ""],
+  OctagonXIcon: ["CloseGlyph", ""],
+  Loader2Icon: ["Spinner", "", "@/components/ui/spinner"],
 }
+const GLYPH_MODULE = "@/components/ui/pixel-glyphs"
 const ICON_PLACEHOLDER = /<IconPlaceholder\s([^>]*?)\/>/g
 const ICON_PLACEHOLDER_IMPORT = /^import \{ IconPlaceholder \} from "[^"]+"\n/m
 
 function rewriteIcons(source) {
-  const used = new Set()
+  const used = new Map()
   const replaced = source.replace(ICON_PLACEHOLDER, (element, attributes) => {
     const lucide = attributes.match(/lucide="(\w+)"/)?.[1]
     const glyph = ICON_GLYPHS[lucide]
     if (!glyph) {
       throw new Error(`no pixel glyph for lucide ${lucide}; add one to ICON_GLYPHS`)
     }
-    used.add(glyph[0])
+    const importPath = glyph[2] ?? GLYPH_MODULE
+    used.set(importPath, (used.get(importPath) ?? new Set()).add(glyph[0]))
     const className = attributes.match(/className=(\{[^}]*\}|"[^"]*")/)?.[0]
     return `<${glyph[0]}${glyph[1]}${className ? ` ${className}` : ""} />`
   })
   if (used.size === 0) {
     return replaced
   }
-  return replaced.replace(ICON_PLACEHOLDER_IMPORT, `import { ${[...used].sort().join(", ")} } from "@/components/ui/pixel-glyphs"\n`)
+  const imports = [...used]
+    .map(([module, names]) => `import { ${[...names].sort().join(", ")} } from "${module}"\n`)
+    .join("")
+  return replaced.replace(ICON_PLACEHOLDER_IMPORT, imports)
 }
 
 function rewriteImports(source) {

@@ -14,7 +14,7 @@ function Menubar({
     <MenubarPrimitive.Root
       data-slot="menubar"
       className={cn(
-        "flex h-9 items-stretch gap-(--pixel) pixel-border border-border bg-card p-(--pixel) text-card-foreground",
+        "flex h-9 items-stretch gap-2 border-b-(length:--pixel) border-border bg-card px-2 py-(--pixel) text-card-foreground",
         className
       )}
       {...props}
@@ -56,7 +56,7 @@ function MenubarTrigger({
     <MenubarPrimitive.Trigger
       data-slot="menubar-trigger"
       className={cn(
-        "flex items-center px-2 text-xl leading-none outline-hidden select-none hover:bg-foreground hover:text-card focus-visible:bg-foreground focus-visible:text-card disabled:text-muted-foreground data-[state=open]:bg-foreground data-[state=open]:text-card",
+        "block content-center px-2 text-xl leading-none outline-hidden select-none first-letter:underline first-letter:decoration-(length:--pixel) first-letter:underline-offset-2 hover:bg-foreground hover:text-card focus-visible:bg-foreground focus-visible:text-card disabled:text-muted-foreground data-[state=open]:bg-foreground data-[state=open]:text-card",
         className
       )}
       {...props}
@@ -103,7 +103,7 @@ function MenubarItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "group/menubar-item relative flex h-8 cursor-default items-center gap-2 px-2 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-inset:pl-7 data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive data-[variant=destructive]:focus:text-popover data-disabled:pointer-events-none data-disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5",
+        "group/menubar-item relative flex h-8 items-center gap-2 px-2 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-inset:pl-7 data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive data-[variant=destructive]:focus:text-popover data-disabled:pointer-events-none data-disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5",
         className
       )}
       {...props}
@@ -125,7 +125,7 @@ function MenubarCheckboxItem({
       data-slot="menubar-checkbox-item"
       data-inset={inset}
       className={cn(
-        "relative flex h-8 cursor-default items-center gap-2 pr-2 pl-7 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-disabled:pointer-events-none data-disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "relative flex h-8 items-center gap-2 pr-2 pl-7 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-disabled:pointer-events-none data-disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       checked={checked}
@@ -154,7 +154,7 @@ function MenubarRadioItem({
       data-slot="menubar-radio-item"
       data-inset={inset}
       className={cn(
-        "relative flex h-8 cursor-default items-center gap-2 pr-2 pl-7 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-disabled:pointer-events-none data-disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "relative flex h-8 items-center gap-2 pr-2 pl-7 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-disabled:pointer-events-none data-disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       {...props}
@@ -240,7 +240,7 @@ function MenubarSubTrigger({
       data-slot="menubar-sub-trigger"
       data-inset={inset}
       className={cn(
-        "flex h-8 cursor-default items-center gap-2 px-2 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-inset:pl-7 data-open:bg-foreground data-open:text-popover [&_svg:not([class*='size-'])]:size-3.5",
+        "flex h-8 items-center gap-2 px-2 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-inset:pl-7 data-open:bg-foreground data-open:text-popover [&_svg:not([class*='size-'])]:size-3.5",
         className
       )}
       {...props}

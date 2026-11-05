@@ -1,30 +1,45 @@
 "use client"
 
+import { FileAlt, Folder, Github } from "@nsmr/pixelart-react"
 import { useRouter } from "next/navigation"
-import { useCallback, useRef, useState } from "react"
+import { useCallback, useEffect, useReducer, useRef, useState } from "react"
 
-import { DesktopIcon } from "@/components/retro/desktop-icon"
 import { ErrorDialogStack, type ErrorEntry } from "@/components/retro/error-dialog"
-import { DocumentGlyph, FolderGlyph, TerminalGlyph } from "@/components/ui/pixel-glyphs"
 import type { Point } from "@/hooks/use-window-drag"
 
+import { Taskbar, TaskButton } from "../_site/Taskbar"
 import { AboutWindow } from "./AboutWindow"
 import { BuilderWindow } from "./BuilderWindow"
 import { ControlPanelWindow } from "./ControlPanelWindow"
+import { DesktopIcon } from "./DesktopIcon"
 import { HexBackdrop } from "./HexBackdrop"
 import { IdeasWindow } from "./IdeasWindow"
 import { InstallWindow } from "./InstallWindow"
 import { PaintWindow } from "./PaintWindow"
 import { ProblemsWindow } from "./ProblemsWindow"
-import { Taskbar } from "./Taskbar"
 import { TerminalWindow } from "./TerminalWindow"
 
 type WindowId = "about" | "install" | "builder" | "terminal" | "paint" | "problems" | "ideas" | "control"
+
+type WindowStatus = "open" | "minimized" | "closed"
 
 type WindowPlacement = {
   position: Point
   width: string
 }
+
+const WINDOW_TITLES: Record<WindowId, string> = {
+  about: "README.TXT",
+  install: "Setup.exe",
+  builder: "Roho7.vcf",
+  terminal: "install.bat",
+  paint: "untitled - Paint",
+  problems: "Downloading",
+  ideas: "INFO",
+  control: "Control Panel",
+}
+
+const REOPEN_DELAY_MS = 3000
 
 const PLACEMENTS: Record<WindowId, WindowPlacement> = {
   about: { position: { x: 120, y: 24 }, width: "xl:w-[470px]" },
@@ -57,28 +72,109 @@ const ERROR_MESSAGES = [
 ] as const
 
 const ICONS = [
-  { label: "Components", href: "/components", icon: <FolderGlyph /> },
-  { label: "Docs", href: "/docs", icon: <DocumentGlyph /> },
-  { label: "Source", href: "https://github.com/Roho7/80sUI", icon: <TerminalGlyph /> },
+  { label: "Components", href: "/components", icon: <Folder size={36} className="fill-current" aria-hidden="true" /> },
+  { label: "Docs", href: "/docs", icon: <FileAlt size={36} className="fill-current" aria-hidden="true" /> },
+  { label: "Source", href: "https://github.com/Roho7/80sUI", icon: <Github size={36} className="fill-current" aria-hidden="true" /> },
 ] as const
 
-function useWindowOrder() {
-  const [order, setOrder] = useState<readonly WindowId[]>(INITIAL_ORDER)
-  const raise = useCallback((id: WindowId) => {
-    setOrder((current) =>
-      current[current.length - 1] === id
-        ? current
-        : [...current.filter((existing) => existing !== id), id]
-    )
+type DesktopState = {
+  status: Record<WindowId, WindowStatus>
+  order: readonly WindowId[]
+}
+
+type DesktopEvent =
+  | { type: "raise"; id: WindowId }
+  | { type: "minimize"; id: WindowId }
+  | { type: "close"; id: WindowId }
+  | { type: "restore"; id: WindowId }
+
+const INITIAL_STATE: DesktopState = {
+  status: Object.fromEntries(INITIAL_ORDER.map((id) => [id, "open"])) as Record<WindowId, WindowStatus>,
+  order: INITIAL_ORDER,
+}
+
+function withStatus(state: DesktopState, id: WindowId, status: WindowStatus): DesktopState {
+  return state.status[id] === status ? state : { ...state, status: { ...state.status, [id]: status } }
+}
+
+function raiseOrder(state: DesktopState, id: WindowId): DesktopState {
+  return state.order[state.order.length - 1] === id
+    ? state
+    : { ...state, order: [...state.order.filter((existing) => existing !== id), id] }
+}
+
+function desktopReducer(state: DesktopState, event: DesktopEvent): DesktopState {
+  switch (event.type) {
+    case "raise":
+      return raiseOrder(state, event.id)
+    case "minimize":
+      return withStatus(state, event.id, "minimized")
+    case "close":
+      return withStatus(state, event.id, "closed")
+    case "restore":
+      return raiseOrder(withStatus(state, event.id, "open"), event.id)
+  }
+}
+
+function findTopOpenId(state: DesktopState) {
+  return state.order.findLast((id) => state.status[id] === "open")
+}
+
+function useReopenTimers(status: Record<WindowId, WindowStatus>, restore: (id: WindowId) => void) {
+  const timersRef = useRef(new Map<WindowId, number>())
+  useEffect(() => {
+    const timers = timersRef.current
+    for (const id of INITIAL_ORDER) {
+      const timer = timers.get(id)
+      if (status[id] !== "open" && timer === undefined) {
+        timers.set(id, window.setTimeout(() => {
+          timers.delete(id)
+          restore(id)
+        }, REOPEN_DELAY_MS))
+      } else if (status[id] === "open" && timer !== undefined) {
+        window.clearTimeout(timer)
+        timers.delete(id)
+      }
+    }
+  }, [status, restore])
+  useEffect(() => {
+    const timers = timersRef.current
+    return () => {
+      timers.forEach((timer) => window.clearTimeout(timer))
+      timers.clear()
+    }
   }, [])
+}
+
+function useDesktopWindows() {
+  const [state, dispatch] = useReducer(desktopReducer, INITIAL_STATE)
+  const restore = useCallback((id: WindowId) => dispatch({ type: "restore", id }), [])
+  useReopenTimers(state.status, restore)
+  const topOpenId = findTopOpenId(state)
   const readWindowProps = (id: WindowId) => ({
-    isActive: order[order.length - 1] === id,
-    onActivate: () => raise(id),
+    title: WINDOW_TITLES[id],
+    isActive: topOpenId === id,
+    onActivate: () => dispatch({ type: "raise", id }),
+    onMinimize: () => dispatch({ type: "minimize", id }),
+    onClose: () => dispatch({ type: "close", id }),
     defaultPosition: PLACEMENTS[id].position,
-    className: `max-xl:static w-full ${PLACEMENTS[id].width}`,
-    style: { zIndex: order.indexOf(id) + 1 },
+    className: `max-xl:static w-full ${PLACEMENTS[id].width}${state.status[id] === "open" ? "" : " hidden!"}`,
+    style: { zIndex: state.order.indexOf(id) + 1 },
   })
-  return readWindowProps
+  const readTaskButtons = () =>
+    INITIAL_ORDER.map((id) => {
+      const isPressed = topOpenId === id
+      return (
+        <TaskButton
+          key={id}
+          label={WINDOW_TITLES[id]}
+          isPressed={isPressed}
+          className="max-xl:hidden"
+          onClick={() => dispatch({ type: isPressed ? "minimize" : "restore", id })}
+        />
+      )
+    })
+  return { readWindowProps, readTaskButtons }
 }
 
 function useErrorStack() {
@@ -128,7 +224,7 @@ type DesktopProps = {
 }
 
 function Desktop({ itemCount }: DesktopProps) {
-  const readWindowProps = useWindowOrder()
+  const { readWindowProps, readTaskButtons } = useDesktopWindows()
   const { errors, spawnErrors, dismissError } = useErrorStack()
   return (
     <main className="relative min-h-svh w-full overflow-hidden bg-desktop xl:h-svh xl:min-h-[920px]">
@@ -141,11 +237,11 @@ function Desktop({ itemCount }: DesktopProps) {
         <BuilderWindow {...readWindowProps("builder")} />
         <PaintWindow {...readWindowProps("paint")} />
         <ProblemsWindow {...readWindowProps("problems")} onCancel={() => spawnErrors(1)} />
-        <ControlPanelWindow {...readWindowProps("control")} onSpawnError={() => spawnErrors(1)} />
+        <ControlPanelWindow {...readWindowProps("control")} />
         <IdeasWindow {...readWindowProps("ideas")} onAcknowledge={() => spawnErrors(4)} />
       </div>
       <ErrorDialogStack errors={errors} onDismiss={dismissError} />
-      <Taskbar onShutDown={() => spawnErrors(1)} />
+      <Taskbar onShutDown={() => spawnErrors(1)}>{readTaskButtons()}</Taskbar>
     </main>
   )
 }

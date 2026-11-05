@@ -28,6 +28,8 @@ export const soundSlots: Record<string, SlotRule> = {
   "command-item": { key: fixed("menu"), gesture: "menu" },
   toggle: { key: fixed("toggle"), gesture: "toggle" },
   "toggle-group-item": { key: fixed("toggle"), gesture: (element) => (element.getAttribute("role") === "radio" ? "select" : "toggle") },
+  "carousel-previous": { key: (element) => (SMALL_SIZES.has(element.getAttribute("data-size") ?? "") ? "small-button" : "button"), gesture: "press" },
+  "carousel-next": { key: (element) => (SMALL_SIZES.has(element.getAttribute("data-size") ?? "") ? "small-button" : "button"), gesture: "press" },
   slider: { key: fixed("slider"), gesture: "steps" },
   "resizable-handle": { key: fixed("slider"), gesture: "steps" },
   "sidebar-menu-button": { key: (element) => (element.getAttribute("data-size") === "sm" ? "small-button" : "button"), gesture: "press" },
@@ -205,12 +207,14 @@ export function attachSoundSlots(engine: SoundEngine, root: Document = document)
           continue
         }
         const tickKey = `${target.key}.tick`
-        const units = Math.abs(value - previous.value) / Math.max(engine.detent(tickKey).step, 1e-6) + previous.carry
-        const steps = Math.floor(units + 1e-9)
-        values.set(element, { value, carry: units - steps })
         const min = Number(element.getAttribute("aria-valuemin") ?? 0)
         const max = Number(element.getAttribute("aria-valuemax") ?? 100)
-        engine.step(tickKey, steps, max > min ? (value - min) / (max - min) : 0.5)
+        const range = max > min ? max - min : 100
+        const percent = (Math.abs(value - previous.value) / range) * 100
+        const units = percent / Math.max(engine.detent(tickKey).step, 1e-6) + previous.carry
+        const steps = Math.floor(units + 1e-9)
+        values.set(element, { value, carry: units - steps })
+        engine.step(tickKey, steps, max > min ? (value - min) / range : 0.5)
       }
     }
   }

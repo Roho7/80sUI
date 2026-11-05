@@ -12,7 +12,6 @@ type IdeasWindowProps = DesktopWindowProps & {
 function IdeasWindow({ onAcknowledge, ...windowProps }: IdeasWindowProps) {
   return (
     <Window
-      title="Error"
       {...windowProps}
     >
       <div className="flex flex-col items-center gap-5 px-4 py-6">

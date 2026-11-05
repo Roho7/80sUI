@@ -1,6 +1,6 @@
 import type * as React from "react"
 
-export type ShowcaseSpan = "single" | "wide" | "tall" | "large"
+export type ShowcaseSpan = "single" | "wide" | "tall" | "large" | "full"
 
 export type ShowcaseVariant = {
   label: string

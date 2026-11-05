@@ -117,7 +117,7 @@ function SelectItem({
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        "relative flex h-8 w-full cursor-default items-center gap-2 pr-2 pl-7 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-disabled:pointer-events-none data-disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
+        "relative flex h-8 w-full items-center gap-2 pr-2 pl-7 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-disabled:pointer-events-none data-disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
         className
       )}
       {...props}
@@ -156,7 +156,7 @@ function SelectScrollUpButton({
     <SelectPrimitive.ScrollUpButton
       data-slot="select-scroll-up-button"
       className={cn(
-        "z-10 flex h-6 cursor-default items-center justify-center bg-popover",
+        "z-10 flex h-6 items-center justify-center bg-popover",
         className
       )}
       {...props}
@@ -174,7 +174,7 @@ function SelectScrollDownButton({
     <SelectPrimitive.ScrollDownButton
       data-slot="select-scroll-down-button"
       className={cn(
-        "z-10 flex h-6 cursor-default items-center justify-center bg-popover",
+        "z-10 flex h-6 items-center justify-center bg-popover",
         className
       )}
       {...props}

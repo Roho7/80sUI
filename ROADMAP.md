@@ -6,7 +6,7 @@ What NOSTALGUI has shipped and what is left. A box is ticked when the component 
 
 Every `registry:ui` component in shadcn's `radix-nova` style (64 as of November 2026). Each ships as a drop-in reskin: same file name, exports and variant names.
 
-49 of 64 done.
+52 of 64 done.
 
 - [x] accordion
 - [x] alert
@@ -21,7 +21,7 @@ Every `registry:ui` component in shadcn's `radix-nova` style (64 as of November 
 - [x] button-group
 - [x] calendar
 - [x] card
-- [ ] carousel
+- [x] carousel
 - [ ] chart
 - [x] checkbox
 - [ ] code-block
@@ -31,7 +31,7 @@ Every `registry:ui` component in shadcn's `radix-nova` style (64 as of November 
 - [x] context-menu
 - [x] dialog
 - [ ] direction
-- [ ] drawer
+- [x] drawer
 - [x] dropdown-menu
 - [x] empty
 - [x] field
@@ -62,7 +62,7 @@ Every `registry:ui` component in shadcn's `radix-nova` style (64 as of November 
 - [x] sidebar
 - [x] skeleton
 - [x] slider
-- [ ] sonner
+- [x] sonner
 - [x] spinner
 - [x] switch
 - [x] table
@@ -84,7 +84,6 @@ Shipped components with no shadcn counterpart.
 - [x] error-dialog
 - [x] terminal
 - [x] taskbar
-- [x] desktop-icon
 - [x] plate
 - [x] highlighted-text
 

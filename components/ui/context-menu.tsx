@@ -76,7 +76,7 @@ function ContextMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "group/context-menu-item relative flex h-8 cursor-default items-center gap-2 px-2 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-inset:pl-7 data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive data-[variant=destructive]:focus:text-popover data-disabled:pointer-events-none data-disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5",
+        "group/context-menu-item relative flex h-8 items-center gap-2 px-2 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-inset:pl-7 data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive data-[variant=destructive]:focus:text-popover data-disabled:pointer-events-none data-disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5",
         className
       )}
       {...props}
@@ -98,7 +98,7 @@ function ContextMenuCheckboxItem({
       data-slot="context-menu-checkbox-item"
       data-inset={inset}
       className={cn(
-        "relative flex h-8 cursor-default items-center gap-2 pr-2 pl-7 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-disabled:pointer-events-none data-disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "relative flex h-8 items-center gap-2 pr-2 pl-7 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-disabled:pointer-events-none data-disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       checked={checked}
@@ -141,7 +141,7 @@ function ContextMenuRadioItem({
       data-slot="context-menu-radio-item"
       data-inset={inset}
       className={cn(
-        "relative flex h-8 cursor-default items-center gap-2 pr-2 pl-7 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-disabled:pointer-events-none data-disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        "relative flex h-8 items-center gap-2 pr-2 pl-7 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-disabled:pointer-events-none data-disabled:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0",
         className
       )}
       {...props}
@@ -230,7 +230,7 @@ function ContextMenuSubTrigger({
       data-slot="context-menu-sub-trigger"
       data-inset={inset}
       className={cn(
-        "flex h-8 cursor-default items-center gap-2 px-2 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-inset:pl-7 data-open:bg-foreground data-open:text-popover [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5",
+        "flex h-8 items-center gap-2 px-2 text-xl leading-none outline-hidden select-none focus:bg-foreground focus:text-popover data-inset:pl-7 data-open:bg-foreground data-open:text-popover [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3.5",
         className
       )}
       {...props}

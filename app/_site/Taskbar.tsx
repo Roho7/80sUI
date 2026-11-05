@@ -1,5 +1,6 @@
 "use client"
 
+import { cn } from "cn"
 import Link from "next/link"
 import { useState } from "react"
 
@@ -15,17 +16,42 @@ import {
 } from "@/components/ui/dialog"
 import { DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
 
-type TaskbarProps = {
-  onShutDown: () => void
+import { StartLogoGlyph } from "./LogoGlyph"
+
+type TaskButtonProps = {
+  label: string
+  isPressed: boolean
+  onClick?: () => void
+  className?: string
 }
 
-function Taskbar({ onShutDown }: TaskbarProps) {
+function TaskButton({ label, isPressed, onClick, className }: TaskButtonProps) {
+  return (
+    <Button
+      variant="secondary"
+      size="sm"
+      aria-pressed={isPressed}
+      onClick={onClick}
+      className={cn("min-w-0 max-w-40 justify-start truncate aria-pressed:bevel-sunken aria-pressed:bg-muted", className)}
+    >
+      <span className="truncate">{label}</span>
+    </Button>
+  )
+}
+
+type TaskbarProps = {
+  onShutDown: () => void
+  children?: React.ReactNode
+}
+
+function Taskbar({ onShutDown, children }: TaskbarProps) {
   const [isAboutOpen, setIsAboutOpen] = useState(false)
 
   return (
     <>
       <RetroTaskbar
         className="fixed inset-x-0 bottom-0 z-30"
+        startIcon={<StartLogoGlyph />}
         startMenu={
           <>
             <DropdownMenuItem onSelect={() => setIsAboutOpen(true)}>About NOSTALGUI</DropdownMenuItem>
@@ -40,12 +66,7 @@ function Taskbar({ onShutDown }: TaskbarProps) {
           </>
         }
       >
-        <Button asChild variant="secondary" size="sm">
-          <Link href="/components">Components</Link>
-        </Button>
-        <Button asChild variant="secondary" size="sm" className="max-sm:hidden">
-          <Link href="/docs">Docs</Link>
-        </Button>
+        {children}
       </RetroTaskbar>
       <Dialog open={isAboutOpen} onOpenChange={setIsAboutOpen}>
         <DialogContent>
@@ -63,4 +84,4 @@ function Taskbar({ onShutDown }: TaskbarProps) {
   )
 }
 
-export { Taskbar }
+export { Taskbar, TaskButton }
