@@ -6,6 +6,7 @@ import { Window } from "@/components/retro/window"
 import { Button } from "@/components/ui/button"
 import { CtaButton } from "@/components/ui/cta-button"
 
+import { StartLogoGlyph } from "../_site/LogoGlyph"
 import type { DesktopWindowProps } from "./types"
 
 type AboutWindowProps = DesktopWindowProps & {
@@ -16,7 +17,7 @@ function AboutWindow({ itemCount, ...windowProps }: AboutWindowProps) {
   return (
     <Window statusBar={<span>{itemCount} items in the registry</span>} {...windowProps}>
       <div className="flex flex-col gap-4 p-5">
-        <h1 className="font-pixel text-[44px] leading-none uppercase md:text-[56px]">NOSTALGUI</h1>
+        <h1 className="font-pixel text-[44px] leading-none uppercase md:text-[56px] flex items-baseline"><StartLogoGlyph className="w-16" /> OSTALGUI</h1>
         <p className="text-2xl leading-tight mb-6">
           Retro components for shadcn.
         </p>

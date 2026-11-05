@@ -24,8 +24,8 @@ function StartLogoGlyph({ className, ...props }: React.ComponentProps<"svg">) {
   return (
     <svg
       viewBox="0 0 14 9"
-      width={28}
-      height={18}
+      width={22}
+      height={12}
       shapeRendering="crispEdges"
       aria-hidden="true"
       className={cn("size-auto shrink-0 fill-current", className)}

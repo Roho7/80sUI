@@ -4,7 +4,6 @@ import { FileAlt, Folder, Github } from "@nsmr/pixelart-react"
 import { useRouter } from "next/navigation"
 import { useCallback, useEffect, useReducer, useRef, useState } from "react"
 
-import { DesktopIcon } from "./DesktopIcon"
 import { ErrorDialogStack, type ErrorEntry } from "@/components/retro/error-dialog"
 import type { Point } from "@/hooks/use-window-drag"
 
@@ -12,6 +11,7 @@ import { Taskbar, TaskButton } from "../_site/Taskbar"
 import { AboutWindow } from "./AboutWindow"
 import { BuilderWindow } from "./BuilderWindow"
 import { ControlPanelWindow } from "./ControlPanelWindow"
+import { DesktopIcon } from "./DesktopIcon"
 import { HexBackdrop } from "./HexBackdrop"
 import { IdeasWindow } from "./IdeasWindow"
 import { InstallWindow } from "./InstallWindow"
@@ -35,7 +35,7 @@ const WINDOW_TITLES: Record<WindowId, string> = {
   terminal: "install.bat",
   paint: "untitled - Paint",
   problems: "Downloading",
-  ideas: "Error",
+  ideas: "INFO",
   control: "Control Panel",
 }
 
@@ -237,7 +237,7 @@ function Desktop({ itemCount }: DesktopProps) {
         <BuilderWindow {...readWindowProps("builder")} />
         <PaintWindow {...readWindowProps("paint")} />
         <ProblemsWindow {...readWindowProps("problems")} onCancel={() => spawnErrors(1)} />
-        <ControlPanelWindow {...readWindowProps("control")} onSpawnError={() => spawnErrors(1)} />
+        <ControlPanelWindow {...readWindowProps("control")} />
         <IdeasWindow {...readWindowProps("ideas")} onAcknowledge={() => spawnErrors(4)} />
       </div>
       <ErrorDialogStack errors={errors} onDismiss={dismissError} />

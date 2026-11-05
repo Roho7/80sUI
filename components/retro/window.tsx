@@ -72,6 +72,7 @@ function Window({
   className,
   style,
   children,
+
   ...props
 }: WindowProps) {
   const isDraggable = defaultPosition !== undefined
@@ -104,7 +105,7 @@ function Window({
             ? "bg-titlebar text-titlebar-foreground"
             : VARIANT_SURFACES[variant].inactiveTitlebar,
           isDraggable && "cursor-grab touch-none",
-          isDragging && "cursor-grabbing"
+          isDragging && "cursor-grabbing",
         )}
       >
         {titleIcon}
