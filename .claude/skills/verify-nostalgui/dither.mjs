@@ -123,7 +123,7 @@ function stopServer() {
 }
 
 function runChecks() {
-  const commands = ["npm run lint", "npm run typecheck", "npm run check:style", "npm run docs:generate"]
+  const commands = ["npm run verify"]
   let isOk = true
   for (const command of commands) {
     try {
