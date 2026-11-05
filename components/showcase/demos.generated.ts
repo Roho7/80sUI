@@ -9,6 +9,7 @@ import { demo as buttonDemo } from "./demos/button"
 import { demo as buttonGroupDemo } from "./demos/button-group"
 import { demo as calendarDemo } from "./demos/calendar"
 import { demo as cardDemo } from "./demos/card"
+import { demo as carouselDemo } from "./demos/carousel"
 import { demo as checkboxDemo } from "./demos/checkbox"
 import { demo as collapsibleDemo } from "./demos/collapsible"
 import { demo as commandDemo } from "./demos/command"
@@ -17,6 +18,7 @@ import { demo as ctaButtonDemo } from "./demos/cta-button"
 import { demo as dialogDemo } from "./demos/dialog"
 import { demo as ditherImageDemo } from "./demos/dither-image"
 import { demo as ditherShineDemo } from "./demos/dither-shine"
+import { demo as drawerDemo } from "./demos/drawer"
 import { demo as dropdownMenuDemo } from "./demos/dropdown-menu"
 import { demo as emptyDemo } from "./demos/empty"
 import { demo as errorDialogDemo } from "./demos/error-dialog"
@@ -45,6 +47,7 @@ import { demo as sheetDemo } from "./demos/sheet"
 import { demo as sidebarDemo } from "./demos/sidebar"
 import { demo as skeletonDemo } from "./demos/skeleton"
 import { demo as sliderDemo } from "./demos/slider"
+import { demo as sonnerDemo } from "./demos/sonner"
 import { demo as spinnerDemo } from "./demos/spinner"
 import { demo as switchDemo } from "./demos/switch"
 import { demo as tableDemo } from "./demos/table"
@@ -382,6 +385,24 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
     title: "Calendar",
     description: "shadcn calendar reskinned for NOSTALGUI.",
     demo: calendarDemo,
+  },
+  {
+    name: "sonner",
+    title: "Sonner",
+    description: "shadcn sonner reskinned for NOSTALGUI.",
+    demo: sonnerDemo,
+  },
+  {
+    name: "drawer",
+    title: "Drawer",
+    description: "shadcn drawer reskinned for NOSTALGUI.",
+    demo: drawerDemo,
+  },
+  {
+    name: "carousel",
+    title: "Carousel",
+    description: "shadcn carousel reskinned for NOSTALGUI.",
+    demo: carouselDemo,
   },
   {
     name: "window",

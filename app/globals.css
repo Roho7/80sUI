@@ -356,6 +356,12 @@
   :where(button, select, input, [role]):where(:disabled, [aria-disabled="true"], [data-disabled]) {
     cursor: default;
     }
+  [data-vaul-drawer],
+  [data-vaul-overlay],
+  [data-sonner-toast] {
+    transition: none !important;
+    animation: none !important;
+    }
   ::selection {
     background-color: var(--foreground);
     color: var(--background);
