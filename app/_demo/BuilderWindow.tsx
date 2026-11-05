@@ -13,7 +13,7 @@ const LINKS = [
 
 function BuilderWindow(windowProps: DesktopWindowProps) {
   return (
-    <Window title="Roho7.vcf" {...windowProps}>
+    <Window {...windowProps}>
       <div className="flex flex-col gap-3 p-4">
         <div className="flex items-center gap-3">
           <DitherImage src="/eye1.png" alt="Dithered eye" width={64} height={63} pixelSize={2} />

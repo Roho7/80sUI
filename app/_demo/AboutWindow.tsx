@@ -14,7 +14,7 @@ type AboutWindowProps = DesktopWindowProps & {
 
 function AboutWindow({ itemCount, ...windowProps }: AboutWindowProps) {
   return (
-    <Window title="README.TXT" statusBar={<span>{itemCount} items in the registry</span>} {...windowProps}>
+    <Window statusBar={<span>{itemCount} items in the registry</span>} {...windowProps}>
       <div className="flex flex-col gap-4 p-5">
         <h1 className="font-pixel text-[44px] leading-none uppercase md:text-[56px]">NOSTALGUI</h1>
         <p className="text-2xl leading-tight mb-6">

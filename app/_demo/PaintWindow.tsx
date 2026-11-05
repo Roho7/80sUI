@@ -101,7 +101,6 @@ function PaintWindow(windowProps: PaintWindowProps) {
 
   return (
     <Window
-      title="untitled - Paint"
       statusBar={<span>For Help, click Help Topics on the Help Menu.</span>}
       {...windowProps}
     >

@@ -13,7 +13,6 @@ type ControlPanelWindowProps = DesktopWindowProps & {
 function ControlPanelWindow({ onSpawnError, ...windowProps }: ControlPanelWindowProps) {
   return (
     <Window
-      title="Control Panel"
       {...windowProps}
     >
       <div className="flex flex-col gap-4 p-4">
