@@ -13,6 +13,8 @@ const GLYPH_PATHS = {
   check:
     "M6 1h1v1H6zM5 2h2v1H5zM0 3h1v1H0zM4 3h2v1H4zM0 4h2v1H0zM3 4h2v1H3zM1 5h3v1H1zM2 6h1v1H2z",
   minus: "M1 3h5v1H1z",
+  minimize: "M1 5h5v2H1z",
+  maximize: "M0 0h7v2H0zM0 2h1v5H0zM6 2h1v5H6zM1 6h5v1H1z",
   close:
     "M0 0h2v1H0zM5 0h2v1H5zM1 1h2v1H1zM4 1h2v1H4zM2 2h3v1H2zM3 3h1v1H3zM2 4h3v1H2zM1 5h2v1H1zM4 5h2v1H4zM0 6h2v1H0zM5 6h2v1H5z",
   chevron:
@@ -67,6 +69,14 @@ function CheckGlyph(props: GlyphProps) {
 
 function MinusGlyph(props: GlyphProps) {
   return renderGlyph(GLYPH_PATHS.minus, props)
+}
+
+function MinimizeGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.minimize, props)
+}
+
+function MaximizeGlyph(props: GlyphProps) {
+  return renderGlyph(GLYPH_PATHS.maximize, props)
 }
 
 function CloseGlyph(props: GlyphProps) {
@@ -201,6 +211,8 @@ export {
   ErrorGlyph,
   FolderGlyph,
   type GlyphDirection,
+  MaximizeGlyph,
+  MinimizeGlyph,
   MinusGlyph,
   PanelGlyph,
   RadioDotGlyph,

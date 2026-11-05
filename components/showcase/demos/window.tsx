@@ -28,10 +28,29 @@ function ClosableWindow() {
   )
 }
 
+function FullControlsWindow() {
+  const [isMinimized, setIsMinimized] = useState(false)
+
+  if (isMinimized) {
+    return (
+      <Button size="sm" className="self-center" onClick={() => setIsMinimized(false)}>
+        Restore
+      </Button>
+    )
+  }
+
+  return (
+    <Window title="Explorer" className="w-full" onMinimize={() => setIsMinimized(true)} onClose={() => setIsMinimized(true)}>
+      <p className="p-3 text-xl">Maximize is disabled here.</p>
+    </Window>
+  )
+}
+
 export const demo: ShowcaseDemo = {
   span: "wide",
   variants: [
     { label: "active, close, status bar", render: () => <ClosableWindow /> },
+    { label: "minimize, maximize, close", render: () => <FullControlsWindow /> },
     {
       label: "inactive",
       render: () => (

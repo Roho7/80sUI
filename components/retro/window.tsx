@@ -4,7 +4,7 @@ import { cn } from "cn"
 import * as React from "react"
 
 import { Button } from "@/components/ui/button"
-import { CloseGlyph } from "@/components/ui/pixel-glyphs"
+import { CloseGlyph, MaximizeGlyph, MinimizeGlyph } from "@/components/ui/pixel-glyphs"
 import { type Point, useWindowDrag } from "@/hooks/use-window-drag"
 
 type WindowProps = Omit<React.ComponentProps<"section">, "title"> & {
@@ -12,6 +12,8 @@ type WindowProps = Omit<React.ComponentProps<"section">, "title"> & {
   defaultPosition?: Point
   isActive?: boolean
   statusBar?: React.ReactNode
+  onMinimize?: () => void
+  onMaximize?: () => void
   onClose?: () => void
   onActivate?: () => void
 }
@@ -22,11 +24,37 @@ function stopPointerPropagation(event: React.PointerEvent) {
   event.stopPropagation()
 }
 
+function TitleBarButton({
+  label,
+  onClick,
+  children,
+}: {
+  label: string
+  onClick?: () => void
+  children: React.ReactNode
+}) {
+  return (
+    <Button
+      variant="ghost"
+      size="icon-xs"
+      aria-label={label}
+      className="text-current"
+      disabled={onClick === undefined}
+      onPointerDown={stopPointerPropagation}
+      onClick={onClick}
+    >
+      {children}
+    </Button>
+  )
+}
+
 function Window({
   title,
   defaultPosition,
   isActive = true,
   statusBar,
+  onMinimize,
+  onMaximize,
   onClose,
   onActivate,
   className,
@@ -36,6 +64,7 @@ function Window({
 }: WindowProps) {
   const isDraggable = defaultPosition !== undefined
   const { position, isDragging, startDrag } = useWindowDrag(defaultPosition ?? ORIGIN)
+  const hasFullControls = onMinimize !== undefined || onMaximize !== undefined
 
   return (
     <section
@@ -66,17 +95,20 @@ function Window({
       >
         <h2 className="truncate">{title}</h2>
         <span aria-hidden="true" className="h-4 min-w-6 flex-1 stripes" />
-        {onClose && (
-          <Button
-            variant="ghost"
-            size="icon-xs"
-            aria-label={`Close ${title}`}
-            className="text-current"
-            onPointerDown={stopPointerPropagation}
-            onClick={onClose}
-          >
+        {hasFullControls && (
+          <TitleBarButton label={`Minimize ${title}`} onClick={onMinimize}>
+            <MinimizeGlyph />
+          </TitleBarButton>
+        )}
+        {hasFullControls && (
+          <TitleBarButton label={`Maximize ${title}`} onClick={onMaximize}>
+            <MaximizeGlyph />
+          </TitleBarButton>
+        )}
+        {(hasFullControls || onClose) && (
+          <TitleBarButton label={`Close ${title}`} onClick={onClose}>
             <CloseGlyph />
-          </Button>
+          </TitleBarButton>
         )}
       </header>
       <div data-slot="window-body" className="min-h-0 flex-1">
