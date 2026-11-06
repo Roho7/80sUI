@@ -30,7 +30,7 @@ function ProgramMain({ children }: Readonly<{ children: React.ReactNode }>) {
   const pathname = usePathname()
 
   return (
-    <ScrollArea key={pathname} className="min-w-0 flex-1">
+    <ScrollArea key={pathname} type="scroll" className="min-w-0 flex-1">
       <main className="flex flex-col gap-8 px-4 py-6 md:px-8 md:py-10">{children}</main>
     </ScrollArea>
   )

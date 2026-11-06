@@ -41,6 +41,8 @@ export const soundSlots: Record<string, SlotRule> = {
   window: { key: fixed("drag"), gesture: "drag" },
 }
 
+const UNLOCK_EVENTS = ["pointerup", "touchend", "click", "keydown"] as const
+
 type Target = { element: Element; key: string; gesture: SoundGesture }
 
 const BUTTON_LIKE_SUFFIXES = ["-trigger", "-action", "-cancel", "-close", "-link"]
@@ -95,6 +97,12 @@ export function attachSoundSlots(engine: SoundEngine, root: Document = document)
     if (pressed) {
       engine.play(`${pressed.key}.release`)
       pressed = null
+    }
+  }
+
+  const unlockAudio = () => {
+    if (engine.enabled) {
+      engine.unlock()
     }
   }
 
@@ -239,6 +247,9 @@ export function attachSoundSlots(engine: SoundEngine, root: Document = document)
     attributeFilter: ["aria-checked", "aria-pressed", "aria-selected", "aria-valuenow", "data-dragging"],
   })
   const options = { capture: true, passive: true }
+  for (const type of UNLOCK_EVENTS) {
+    root.addEventListener(type, unlockAudio, options)
+  }
   root.addEventListener("pointerdown", onPointerDown, options)
   root.addEventListener("pointerdown", primeSliders, options)
   root.addEventListener("pointerup", onPointerUp, options)
@@ -251,6 +262,9 @@ export function attachSoundSlots(engine: SoundEngine, root: Document = document)
   return () => {
     observer.disconnect()
     dragLoop?.stop()
+    for (const type of UNLOCK_EVENTS) {
+      root.removeEventListener(type, unlockAudio, options)
+    }
     root.removeEventListener("pointerdown", onPointerDown, options)
     root.removeEventListener("pointerdown", primeSliders, options)
     root.removeEventListener("pointerup", onPointerUp, options)
