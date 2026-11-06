@@ -120,11 +120,17 @@ Every primitive wraps `radix-ui`, so UI95 supports Radix projects only. Consumer
 `/components` is a bento catalogue of every `registry:ui` and `registry:block` item, generated from `registry.json`.
 
 ```ts
-type ShowcaseSpan = "single" | "wide" | "tall" | "large"
+type ShowcaseSpan = "single" | "wide" | "tall" | "large" | "full"
+type ShowcaseVariantLayout = "wrap" | "stack"
 type ShowcaseVariant = { label: string; render: () => React.ReactNode }
-type ShowcaseDemo = { span: ShowcaseSpan; variants: readonly ShowcaseVariant[] }
+type ShowcaseDemo = {
+  span: ShowcaseSpan
+  variants: readonly ShowcaseVariant[]
+  variantLayout?: ShowcaseVariantLayout
+}
 ```
 
+- Optional `variantLayout: "stack"` lays out each variant in its own full-width row (default is wrapping columns). Use when tall variants would otherwise sit side-by-side with dead space.
 - Adding a component means adding its registry item and `components/showcase/demos/<item-name>.tsx` exporting `demo: ShowcaseDemo`. Nothing else.
 - `scripts/generate-registry-docs.mjs` writes `components/showcase/demos.generated.ts` in registry order and `lib/docs/registry-docs.generated.json` (git-ignored), the data behind every docs page. It fails, naming the file, when a showcased item has no demo or a demo has no showcased item. It runs in `predev`, `prebuild`, `pretypecheck` and `registry:build`; `npm run docs:generate` runs it by hand while `next dev` is already up. Commit the generated `.ts` file.
 - A demo shows every exported variant, size and state. Overlays open from a trigger. Floating compositions render as static instances inside their card.

@@ -6,13 +6,12 @@ import { Slot } from "radix-ui"
 import * as React from "react"
 
 import { DitherShine } from "@/components/ui/dither-shine"
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion"
 import { defaultPreset, type DitherShineParams } from "@/lib/shaders/dither-shine"
 
 const TILT_LEVELS = 2
 
 const TILT_REST = 0
-
-const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)"
 
 const ctaButtonVariants = cva(
   "group/cta-button relative isolate inline-flex shrink-0 items-center justify-center overflow-hidden border-solid bg-(--keycap) font-pixel text-[16px] leading-none whitespace-nowrap text-(--keycap-foreground) uppercase outline-none select-none [--tilt-x:0] [--tilt-y:0] [--tilt-lift:0] [border-top-color:var(--keycap-wall-hi)] [border-left-color:var(--keycap-wall-hi)] [border-right-color:var(--keycap-wall-lo)] [border-bottom-color:var(--keycap-wall-lo)] [border-top-width:calc((1+var(--tilt-y)*0.5)*var(--pixel))] [border-bottom-width:calc((3+var(--tilt-lift)-var(--tilt-y)*1.5)*var(--pixel))] [border-left-width:calc((2.5+var(--tilt-x)*1.5)*var(--pixel))] [border-right-width:calc((2.5-var(--tilt-x)*1.5)*var(--pixel))] [box-shadow:0_0_0_var(--pixel)_var(--keycap-outline)] focus-visible:outline-solid focus-visible:outline-offset-[calc(var(--pixel)*2)] " +
@@ -46,24 +45,6 @@ type TiltTarget = {
   x: number
   y: number
   lift: number
-}
-
-function subscribeReducedMotion(onChange: () => void) {
-  const query = window.matchMedia(REDUCED_MOTION_QUERY)
-  query.addEventListener("change", onChange)
-  return () => query.removeEventListener("change", onChange)
-}
-
-function readReducedMotion(): boolean {
-  return window.matchMedia(REDUCED_MOTION_QUERY).matches
-}
-
-function readServerReducedMotion(): boolean {
-  return true
-}
-
-function usePrefersReducedMotion(): boolean {
-  return React.useSyncExternalStore(subscribeReducedMotion, readReducedMotion, readServerReducedMotion)
 }
 
 function quantizeTilt(value: number): number {

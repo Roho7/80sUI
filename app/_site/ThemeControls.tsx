@@ -1,6 +1,6 @@
 "use client"
 
-import { Moon, Sun, Volume3, VolumeX } from "@nsmr/pixelart-react"
+import { Monitor, Moon, Sun, Volume3, VolumeX } from "@nsmr/pixelart-react"
 import { cn } from "cn"
 import { useTheme } from "next-themes"
 
@@ -15,6 +15,7 @@ import { Switch } from "@/components/ui/switch"
 import { useSoundEnabled } from "@/hooks/use-sound"
 
 import { isPalette, PALETTES } from "./palettes"
+import { useCrt } from "./useCrt"
 import { useIsHydrated } from "./useIsHydrated"
 import { usePalette } from "./usePalette"
 
@@ -28,6 +29,7 @@ function ThemeControls({ className }: ThemeControlsProps) {
   const isHydrated = useIsHydrated()
   const isDark = isHydrated && resolvedTheme === "dark"
   const [isSoundOn, setSoundOn] = useSoundEnabled()
+  const [isCrtOn, setCrtOn] = useCrt()
   const ThemeIcon = isDark ? Moon : Sun
   const SoundIcon = isSoundOn ? Volume3 : VolumeX
 
@@ -61,6 +63,10 @@ function ThemeControls({ className }: ThemeControlsProps) {
       <label className="flex items-center gap-2" title={isSoundOn ? "Sound on" : "Sound off"}>
         <SoundIcon size={20} className="fill-current" aria-hidden="true" />
         <Switch aria-label="Sound" checked={isSoundOn} onCheckedChange={setSoundOn} />
+      </label>
+      <label className="flex items-center gap-2" title={isCrtOn ? "CRT on" : "CRT off"}>
+        <Monitor size={20} className="fill-current" aria-hidden="true" />
+        <Switch aria-label="CRT" checked={isCrtOn} onCheckedChange={setCrtOn} />
       </label>
     </div>
   )

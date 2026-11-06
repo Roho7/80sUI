@@ -61,11 +61,11 @@ const PLACEMENTS: Record<WindowId, WindowPlacement> = {
   about: { desktop: { position: { x: 120, y: 24 }, width: 470 }, mobile: { x: 0.6, y: 0.14, width: 0.9 } },
   install: { desktop: { position: { x: 612, y: 16 }, width: 420 }, mobile: { x: 1.1, y: 0.3, width: 0.84 } },
   builder: { desktop: { position: { x: 1050, y: 40 }, width: 214 }, mobile: { x: 1.3, y: 0.66, width: 0.5 } },
-  terminal: { desktop: { position: { x: 890, y: 372 }, width: 380 }, mobile: { x: 0.9, y: 0.6, width: 0.82 } },
+  terminal: { desktop: { position: { x: 730, y: 372 }, width: 380 }, mobile: { x: 0.9, y: 0.6, width: 0.82 } },
   paint: { desktop: { position: { x: 330, y: 400 }, width: 580 }, mobile: { x: 0.2, y: 0.4, width: 1 } },
-  problems: { desktop: { position: { x: 24, y: 520 }, width: 380 }, mobile: { x: -0.1, y: 0.7, width: 0.88 } },
+  problems: { desktop: { position: { x: 24, y: 380 }, width: 380 }, mobile: { x: -0.1, y: 0.7, width: 0.88 } },
   ideas: { desktop: { position: { x: 588, y: 384 }, width: 300 }, mobile: { x: 0.1, y: 0.6, width: 0.72 } },
-  control: { desktop: { position: { x: 840, y: 540 }, width: 420 }, mobile: { x: 0.7, y: 0.8, width: 0.9 } },
+  control: { desktop: { position: { x: 920, y: 460 }, width: 360 }, mobile: { x: 0.7, y: 0.8, width: 0.9 } },
 }
 
 const DESKTOP_QUERY = "(min-width: 80rem)"
@@ -105,8 +105,8 @@ function placeWindow(id: WindowId, layout: DesktopLayout): PixelPlacement {
 
 const INITIAL_ORDER: readonly WindowId[] = [
   "paint",
-  "problems",
   "terminal",
+  "problems",
   "control",
   "builder",
   "install",
@@ -298,9 +298,9 @@ function Desktop({ itemCount }: DesktopProps) {
         >
           <AboutWindow itemCount={itemCount} {...readWindowProps("about")} />
           <InstallWindow {...readWindowProps("install")} />
-          <TerminalWindow {...readWindowProps("terminal")} />
           <BuilderWindow {...readWindowProps("builder")} />
           <PaintWindow {...readWindowProps("paint")} />
+          <TerminalWindow {...readWindowProps("terminal")} />
           <ProblemsWindow {...readWindowProps("problems")} onCancel={() => spawnErrors(1)} />
           <ControlPanelWindow {...readWindowProps("control")} />
           <IdeasWindow {...readWindowProps("ideas")} onAcknowledge={() => spawnErrors(4)} />

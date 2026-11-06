@@ -34,14 +34,27 @@ function formatVariantCode(index: number): string {
   return String.fromCharCode("A".charCodeAt(0) + index)
 }
 
-function VariantCell({ variant, index }: { variant: ShowcaseVariant; index: number }) {
+function VariantCell({
+  variant,
+  index,
+  layout,
+}: {
+  variant: ShowcaseVariant
+  index: number
+  layout: "wrap" | "stack"
+}) {
   return (
-    <figure className="flex max-w-full min-w-[min(100%,var(--cell-min))] flex-[1_1_content] flex-col gap-3 bg-card p-3 shadow-[0_0_0_var(--pixel)_var(--color-border)]">
+    <figure
+      className={cn(
+        "flex max-w-full min-w-[min(100%,var(--cell-min))] flex-col gap-3 bg-card p-3 shadow-[0_0_0_var(--pixel)_var(--color-border)]",
+        layout === "wrap" ? "flex-[1_1_content]" : "w-full shrink-0"
+      )}
+    >
       <figcaption className="flex items-center gap-2 font-pixel text-sm leading-none uppercase">
         <span className="bg-foreground px-1 py-0.5 text-card">{formatVariantCode(index)}</span>
         {variant.label}
       </figcaption>
-      <div className="-mx-3 flex min-w-0 flex-1 flex-col justify-center overflow-x-auto px-3">{variant.render()}</div>
+      <div className="-mx-3 flex min-w-0 flex-1 flex-col justify-start overflow-x-auto px-3">{variant.render()}</div>
     </figure>
   )
 }
@@ -74,10 +87,18 @@ function ShowcaseCard({ entry, index }: ShowcaseCardProps) {
       </div>
       <div
         style={cellGridStyle}
-        className="flex flex-1 flex-wrap gap-(--pixel) overflow-hidden"
+        className={cn(
+          "flex min-h-0 flex-1 gap-(--pixel)",
+          demo.variantLayout === "stack" ? "flex-col overflow-y-auto" : "flex-wrap overflow-hidden"
+        )}
       >
         {demo.variants.map((variant, variantIndex) => (
-          <VariantCell key={variant.label} variant={variant} index={variantIndex} />
+          <VariantCell
+            key={variant.label}
+            variant={variant}
+            index={variantIndex}
+            layout={demo.variantLayout === "stack" ? "stack" : "wrap"}
+          />
         ))}
       </div>
     </Window>

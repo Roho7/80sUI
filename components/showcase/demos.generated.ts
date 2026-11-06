@@ -14,6 +14,7 @@ import { demo as checkboxDemo } from "./demos/checkbox"
 import { demo as collapsibleDemo } from "./demos/collapsible"
 import { demo as commandDemo } from "./demos/command"
 import { demo as contextMenuDemo } from "./demos/context-menu"
+import { demo as crtScreenDemo } from "./demos/crt-screen"
 import { demo as ctaButtonDemo } from "./demos/cta-button"
 import { demo as dialogDemo } from "./demos/dialog"
 import { demo as ditherImageDemo } from "./demos/dither-image"
@@ -427,5 +428,11 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
     title: "Taskbar",
     description: "Beveled taskbar with a Start button, a start menu built on dropdown-menu, a task area and a clock slot.",
     demo: taskbarDemo,
+  },
+  {
+    name: "crt-screen",
+    title: "CRT screen",
+    description: "A realistic CRT filter to really take your UI back in time. Fully customizable.",
+    demo: crtScreenDemo,
   },
 ]

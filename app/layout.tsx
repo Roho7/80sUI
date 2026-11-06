@@ -9,6 +9,8 @@ import { BRAND_INKS } from "@/lib/brand/keycap"
 import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TAGLINE, SITE_TWITTER, SITE_URL } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
+import { RESTORE_CRT_SCRIPT } from "./_site/crt"
+import { CrtSite } from "./_site/CrtSite"
 import { RESTORE_PALETTE_SCRIPT } from "./_site/palettes"
 
 const fontPixel = Silkscreen({
@@ -66,10 +68,11 @@ export default function RootLayout({
       className={cn(fontPixel.variable, fontMono.variable)}
     >
       <body>
-        <script dangerouslySetInnerHTML={{ __html: RESTORE_PALETTE_SCRIPT }} />
+        <script dangerouslySetInnerHTML={{ __html: RESTORE_PALETTE_SCRIPT + RESTORE_CRT_SCRIPT }} />
         <ThemeProvider defaultTheme="light" enableSystem={false}>
           {children}
           <Ui95Sounds />
+          <CrtSite />
         </ThemeProvider>
       </body>
     </html>

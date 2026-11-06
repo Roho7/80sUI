@@ -86,6 +86,7 @@ Shipped components with no shadcn counterpart.
 - [x] taskbar
 - [x] plate
 - [x] highlighted-text
+- [x] crt-screen
 
 ## Special components
 

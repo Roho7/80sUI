@@ -1,5 +1,6 @@
 "use client"
 
+import { cn } from "cn"
 import type { CSSProperties } from "react"
 
 import { SHOWCASE_ENTRIES } from "@/components/showcase/demos.generated"
@@ -19,11 +20,18 @@ function DemoVariants({ name }: DemoPreviewProps) {
   const style: CSSProperties & { "--cell-min": string } = {
     "--cell-min": SPAN_LAYOUTS[entry.demo.span].cellMinWidth,
   }
+  const cellLayout = entry.demo.variantLayout === "stack" ? "stack" : "wrap"
 
   return (
-    <div style={style} className="flex flex-wrap gap-(--pixel) overflow-hidden pixel-border border-border bg-card">
+    <div
+      style={style}
+      className={cn(
+        "flex min-h-0 gap-(--pixel) overflow-hidden pixel-border border-border bg-card",
+        cellLayout === "stack" ? "flex-col overflow-y-auto" : "flex-wrap"
+      )}
+    >
       {entry.demo.variants.map((variant, index) => (
-        <VariantCell key={variant.label} variant={variant} index={index} />
+        <VariantCell key={variant.label} variant={variant} index={index} layout={cellLayout} />
       ))}
     </div>
   )

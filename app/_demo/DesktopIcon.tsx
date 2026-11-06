@@ -30,7 +30,7 @@ function DesktopIcon({
       data-selected={isSelected}
       aria-pressed={isSelected}
       className={cn(
-        "group/desktop-icon flex w-20 flex-col items-center gap-1 p-1 text-center text-foreground select-none disabled:pointer-events-none disabled:text-muted-foreground",
+        "group/desktop-icon flex w-20 flex-col items-center gap-1 p-1 text-center text-foreground dark:text-(--ink-3) select-none disabled:pointer-events-none disabled:text-muted-foreground",
         className
       )}
       onClick={(event) => {

@@ -525,6 +525,18 @@
       ]
     },
     {
+      "name": "use-prefers-reduced-motion",
+      "type": "registry:lib",
+      "title": "Use prefers reduced motion",
+      "description": "Hook that reports the prefers-reduced-motion media query and stays true on the server so motion starts off.",
+      "files": [
+        {
+          "path": "hooks/use-prefers-reduced-motion.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "dither-shine",
       "type": "registry:ui",
       "title": "Dither shine",
@@ -637,7 +649,8 @@
       ],
       "registryDependencies": [
         "@ui95/theme",
-        "@ui95/dither-shine"
+        "@ui95/dither-shine",
+        "@ui95/use-prefers-reduced-motion"
       ],
       "files": [
         {
@@ -1924,6 +1937,38 @@
           "taskbar.release"
         ]
       }
+    },
+    {
+      "name": "crt-screen",
+      "type": "registry:block",
+      "title": "CRT screen",
+      "description": "A realistic CRT filter to really take your UI back in time. Fully customizable.",
+      "docs": "Scoped is the default: the effect covers the box and its children, and the overlay never takes the pointer. Pass fullscreen to lay it over the whole viewport instead; curvature, aberration and bloom then filter the whole document, which costs more on large pages. Put padding and backgrounds on the children, not on CrtScreen, so the warp and the overlay share one box. Scanlines and grain are alpha black and white at device resolution and follow the barrel curve. Under curvature, clicks land at the undistorted position of the element. Portals opened from inside a scoped CrtScreen (dialogs, menus, toasts) mount on the body and escape the effect; use fullscreen to cover them. Reduced motion freezes the grain and turns flicker off.",
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "@ui95/theme",
+        "@ui95/shader-mount",
+        "@ui95/use-prefers-reduced-motion"
+      ],
+      "files": [
+        {
+          "path": "lib/shaders/crt.ts",
+          "type": "registry:lib",
+          "target": "@lib/shaders/crt.ts"
+        },
+        {
+          "path": "lib/crt/warp-filter.ts",
+          "type": "registry:lib",
+          "target": "@lib/crt/warp-filter.ts"
+        },
+        {
+          "path": "components/retro/crt-screen.tsx",
+          "type": "registry:component",
+          "target": "@components/retro/crt-screen.tsx"
+        }
+      ]
     }
   ]
 }
