@@ -46,6 +46,7 @@ export function ditherOnCpu(
   context.drawImage(source, 0, 0, width, height)
   const image = context.getImageData(0, 0, width, height)
   const [offsetX, offsetY] = readSeedOffset(request.seed)
+  const lastInk = inks.length - 1
   for (let y = 0; y < height; y += 1) {
     for (let x = 0; x < width; x += 1) {
       const offset = (y * width + x) * 4
@@ -60,7 +61,7 @@ export function ditherOnCpu(
         255
       const contrasted = Math.min(1, Math.max(0, (luminance - 0.5) * contrast + 0.5))
       const threshold = readBayerThreshold(x + offsetX, y + offsetY, matrixSize)
-      const ink = inks[Math.min(3, Math.max(0, Math.floor(contrasted * 3 + threshold)))]
+      const ink = inks[Math.min(lastInk, Math.max(0, Math.floor(contrasted * lastInk + threshold)))]
       image.data[offset] = ink[0]
       image.data[offset + 1] = ink[1]
       image.data[offset + 2] = ink[2]

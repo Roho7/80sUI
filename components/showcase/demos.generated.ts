@@ -65,7 +65,7 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
   {
     name: "dither-image",
     title: "Dither image",
-    description: "Ordered Bayer dithering quantized to the theme inks.",
+    description: "Ordered Bayer dithering quantized to the theme inks, or to two to four colors of your own.",
     demo: ditherImageDemo,
   },
   {

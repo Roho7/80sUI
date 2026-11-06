@@ -51,7 +51,7 @@ Light comes from the top-left. Depth is drawn with the inks, never with alpha, b
 
 ## Rendering
 
-- **`DitherImage`.** Draws the source into a small canvas, applies ordered Bayer (4x4 or 8x8) thresholds on the CPU, quantizes to the four inks and puts the result on its own canvas. A `MutationObserver` on `<html>` `class`, `data-theme` and `style` re-renders it when the inks change. `isAnimated` reseeds the matrix offset at 12 fps.
+- **`DitherImage`.** Draws the source into a small canvas, applies ordered Bayer (4x4 or 8x8) thresholds on the CPU, quantizes to the four inks and puts the result on its own canvas. A `MutationObserver` on `<html>` `class`, `data-theme` and `style` re-renders it when the inks change. `isAnimated` reseeds the matrix offset at 12 fps. Inks are read from the canvas's own computed style, so a wrapper can override `--ink-0..3` for one image. `colors` takes two to four colors, dark to light, as CSS colors, `var(--token)` or a bare `--token`; they are written to `--dither-ink-*` on the canvas and resolved at draw time, so token colors follow theme and dark mode.
 - **`Window`.** With `defaultPosition` it is absolutely positioned and its title bar drags it with `useWindowDrag`, snapped to `--pixel`. Without one it renders in flow and does not drag.
 
 ## Shaders

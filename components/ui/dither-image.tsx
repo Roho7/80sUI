@@ -5,8 +5,13 @@ import * as React from "react"
 
 import type { BayerMatrixSize } from "@/lib/dither/bayer"
 import { ditherOnCpu, type DitherRequest } from "@/lib/dither/ditherOnCpu"
-import { readInks } from "@/lib/dither/inks"
+import { INK_TOKENS, readInks } from "@/lib/dither/inks"
 import { useInkVersion } from "@/lib/dither/useInkVersion"
+
+type DitherImageColors =
+  | readonly [string, string]
+  | readonly [string, string, string]
+  | readonly [string, string, string, string]
 
 type DitherImageProps = Omit<
   React.ComponentProps<"canvas">,
@@ -20,6 +25,28 @@ type DitherImageProps = Omit<
   matrixSize?: BayerMatrixSize
   contrast?: number
   isAnimated?: boolean
+  colors?: DitherImageColors
+}
+
+const COLOR_TOKENS = ["--dither-ink-0", "--dither-ink-1", "--dither-ink-2", "--dither-ink-3"] as const
+
+function toCssColor(color: string): string {
+  return color.startsWith("--") ? `var(${color})` : color
+}
+
+function readColorStyle(colors: DitherImageColors | undefined): React.CSSProperties {
+  if (!colors) {
+    return {}
+  }
+  return Object.fromEntries(colors.map((color, index) => [COLOR_TOKENS[index], toCssColor(color)]))
+}
+
+function readColorTokens(colorCount: number): readonly [string, string, ...string[]] {
+  if (colorCount < 2) {
+    return INK_TOKENS
+  }
+  const [first, second, ...rest] = COLOR_TOKENS.slice(0, colorCount)
+  return [first, second, ...rest]
 }
 
 function useLoadedImage(src: string): HTMLImageElement | null {
@@ -77,6 +104,7 @@ function DitherImage({
   matrixSize = 4,
   contrast = 1.2,
   isAnimated = false,
+  colors,
   className,
   style,
   ...props
@@ -87,6 +115,8 @@ function DitherImage({
   const seed = useReseed(isAnimated)
   const outputWidth = Math.max(1, Math.round(width / pixelSize))
   const outputHeight = Math.max(1, Math.round(height / pixelSize))
+  const colorKey = colors?.join("|") ?? ""
+  const colorCount = colors?.length ?? 0
 
   React.useEffect(() => {
     const canvas = canvasRef.current
@@ -101,11 +131,11 @@ function DitherImage({
       contrast,
       seed,
     }
-    const dithered = ditherOnCpu(request, readInks(document.documentElement))
+    const dithered = ditherOnCpu(request, readInks(canvas, readColorTokens(colorCount)))
     if (dithered) {
       canvas.getContext("2d")?.putImageData(dithered, 0, 0)
     }
-  }, [image, inkVersion, seed, outputWidth, outputHeight, matrixSize, contrast])
+  }, [image, inkVersion, seed, outputWidth, outputHeight, matrixSize, contrast, colorCount, colorKey])
 
   return (
     <canvas
@@ -116,10 +146,11 @@ function DitherImage({
       width={outputWidth}
       height={outputHeight}
       className={cn("block pixelated", className)}
-      style={{ width, height, ...style }}
+      style={{ width, height, ...readColorStyle(colors), ...style }}
       {...props}
     />
   )
 }
 
 export { DitherImage }
+export type { DitherImageColors, DitherImageProps }
