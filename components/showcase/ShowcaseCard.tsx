@@ -2,6 +2,7 @@ import { cn } from "cn"
 import Link from "next/link"
 import type { CSSProperties } from "react"
 
+import { Window } from "@/components/retro/window"
 import { docHref } from "@/lib/docs/routes"
 
 import { InstallCommand } from "./InstallCommand"
@@ -48,31 +49,25 @@ function VariantCell({ variant, index }: { variant: ShowcaseVariant; index: numb
 function ShowcaseCard({ entry, index }: ShowcaseCardProps) {
   const { name, title, description, demo } = entry
   const layout = SPAN_LAYOUTS[demo.span]
-  const titleId = `showcase-${name}`
   const cellGridStyle: CSSProperties & { "--cell-min": string } = {
     "--cell-min": layout.cellMinWidth,
   }
 
   return (
-    <article
+    <Window
       id={name}
-      aria-labelledby={titleId}
+      title={`${formatCatalogueNumber(index)} ${title}`}
       data-span={demo.span}
-      className={cn(
-        "flex min-w-0 flex-col pixel-border border-border bg-card text-card-foreground offset-shadow-3",
-        layout.className
-      )}
-    >
-      <header className="flex h-8 shrink-0 items-center gap-3 border-b-(length:--pixel) border-border bg-titlebar px-3 font-pixel text-[16px] leading-none text-titlebar-foreground uppercase">
-        <span aria-hidden="true">{formatCatalogueNumber(index)}</span>
-        <h2 id={titleId} className="truncate">
+      className={cn("min-w-0", layout.className)}
+      statusBar={
+        <>
           <Link href={docHref(name)} className="hover:underline">
-            {title}
+            Docs
           </Link>
-        </h2>
-        <span aria-hidden="true" className="h-4 min-w-6 flex-1 stripes" />
-        <span className="shrink-0 text-sm">{demo.variants.length} var.</span>
-      </header>
+          <span className="ml-auto">{demo.variants.length} variants</span>
+        </>
+      }
+    >
       <div className="flex flex-col gap-3 border-b-(length:--pixel) border-border p-3">
         <p className="text-xl leading-tight">{description}</p>
         <InstallCommand name={name} />
@@ -85,7 +80,7 @@ function ShowcaseCard({ entry, index }: ShowcaseCardProps) {
           <VariantCell key={variant.label} variant={variant} index={variantIndex} />
         ))}
       </div>
-    </article>
+    </Window>
   )
 }
 

@@ -129,7 +129,7 @@ function Window({
       </header>
       <ScrollArea
         data-slot="window-body"
-        className="min-h-0 flex-1 [&>[data-slot=scroll-area-viewport]>div]:relative [&>[data-slot=scroll-area-viewport]>div]:min-h-full"
+        className="min-h-0 flex-1 [&>[data-slot=scroll-area-viewport]>div]:relative [&>[data-slot=scroll-area-viewport]>div]:block! [&>[data-slot=scroll-area-viewport]>div]:min-h-full"
       >
         {children}
       </ScrollArea>
