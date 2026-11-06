@@ -2,9 +2,9 @@ export type Rgb = readonly [number, number, number]
 
 export type Rgba = readonly [number, number, number, number]
 
-export type InkPalette = readonly [Rgb, Rgb, Rgb, Rgb]
+export type InkPalette = readonly [Rgb, Rgb, ...Rgb[]]
 
-const INK_TOKENS = ["--ink-0", "--ink-1", "--ink-2", "--ink-3"] as const
+export const INK_TOKENS = ["--ink-0", "--ink-1", "--ink-2", "--ink-3"] as const
 
 const THEME_ATTRIBUTES = ["class", "data-theme", "style"]
 
@@ -34,13 +34,17 @@ export function parseCssColor(value: string): Rgba {
   return [red, green, blue, alpha]
 }
 
-export function readInks(root: Element): InkPalette {
+export function readInks(
+  root: Element,
+  tokens: readonly [string, string, ...string[]] = INK_TOKENS
+): InkPalette {
   const style = getComputedStyle(root)
-  const [ink0, ink1, ink2, ink3] = INK_TOKENS.map((token): Rgb => {
+  const readInk = (token: string): Rgb => {
     const [red, green, blue] = parseCssColor(style.getPropertyValue(token).trim())
     return [red, green, blue]
-  })
-  return [ink0, ink1, ink2, ink3]
+  }
+  const [first, second, ...rest] = tokens
+  return [readInk(first), readInk(second), ...rest.map(readInk)]
 }
 
 export function observeInkChange(onChange: () => void): () => void {
