@@ -22,7 +22,7 @@ function MobileNav({ groups }: MobileNavProps) {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon-sm" className="lg:hidden" aria-label="Open navigation">
+        <Button variant="outline" size="sm" className="lg:hidden" aria-label="Open navigation">
           <Menu shapeRendering="crispEdges" strokeWidth={3} />
         </Button>
       </SheetTrigger>

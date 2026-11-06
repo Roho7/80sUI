@@ -23,6 +23,8 @@ const BLOOM_GAIN = 1.2
 
 const FULLSCREEN_OVERLAY_CLASS = "fixed inset-0 z-[2147483647]"
 
+const VIEWPORT_PROBE_CLASS = "pointer-events-none invisible fixed inset-x-0 top-0 h-lvh"
+
 const CHANNELS = [
   { name: "red", matrix: "1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0", direction: -1 },
   { name: "green", matrix: "0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0", direction: 0 },
@@ -71,27 +73,6 @@ function useElementSize(element: HTMLElement | null): Size | null {
     return () => observer.disconnect()
   }, [element])
   return size
-}
-
-function subscribeViewport(onChange: () => void): () => void {
-  window.addEventListener("resize", onChange)
-  return () => window.removeEventListener("resize", onChange)
-}
-
-function readViewportKey(): string {
-  return `${window.innerWidth}x${window.innerHeight}`
-}
-
-function readServerViewportKey(): string {
-  return "0x0"
-}
-
-function useViewportSize(): Size {
-  const key = React.useSyncExternalStore(subscribeViewport, readViewportKey, readServerViewportKey)
-  return React.useMemo(() => {
-    const [width, height] = key.split("x").map(Number)
-    return { width, height }
-  }, [key])
 }
 
 function useCrtWarp(
@@ -240,10 +221,12 @@ function FullscreenCrt({
   ...props
 }: { params: CrtParams } & React.ComponentProps<"div">) {
   const root = React.useSyncExternalStore(subscribeNothing, readRootElement, readServerElement)
-  const viewport = useViewportSize()
+  const [probe, setProbe] = React.useState<HTMLDivElement | null>(null)
+  const viewport = useElementSize(probe)
   const warp = useCrtWarp(root, viewport, params.curvature, params.aberration, params.bloom)
   return (
     <>
+      <div ref={setProbe} aria-hidden="true" className={VIEWPORT_PROBE_CLASS} />
       <WarpDefs warp={warp} />
       {children}
       <CrtOverlay data-slot="crt-screen" data-fullscreen="" params={params} {...props} className={cn(FULLSCREEN_OVERLAY_CLASS, props.className)} />

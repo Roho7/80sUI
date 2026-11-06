@@ -16,10 +16,10 @@ const STATES: readonly ToggleState[] = [
   { label: "default pressed", variant: "default", size: "default", isPressed: true },
   { label: "outline", variant: "outline", size: "default" },
   { label: "outline pressed", variant: "outline", size: "default", isPressed: true },
-  { label: "sm", variant: "outline", size: "sm" },
-  { label: "lg", variant: "outline", size: "lg" },
-  { label: "disabled", variant: "outline", size: "default", isDisabled: true },
-  { label: "invalid", variant: "outline", size: "default", isInvalid: true },
+  { label: "sm", variant: "default", size: "sm" },
+  { label: "lg", variant: "default", size: "lg" },
+  { label: "disabled", variant: "default", size: "default", isDisabled: true },
+  { label: "invalid", variant: "default", size: "default", isInvalid: true },
 ]
 
 export const demo: ShowcaseDemo = {

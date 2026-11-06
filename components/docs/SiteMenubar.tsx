@@ -3,7 +3,6 @@
 import Link from "next/link"
 
 import {
-  Menubar,
   MenubarContent,
   MenubarItem,
   MenubarMenu,
@@ -19,12 +18,11 @@ import { SOURCE_URL } from "@/lib/site"
 type SiteMenubarProps = {
   guides: DocGroup
   sections: readonly DocGroup[]
-  className?: string
 }
 
-function SiteMenubar({ guides, sections, className }: SiteMenubarProps) {
+function SiteMenubar({ guides, sections }: SiteMenubarProps) {
   return (
-    <Menubar aria-label="Site" className={className}>
+    <>
       <MenubarMenu>
         <MenubarTrigger>Docs</MenubarTrigger>
         <MenubarContent>
@@ -69,7 +67,7 @@ function SiteMenubar({ guides, sections, className }: SiteMenubarProps) {
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
-    </Menubar>
+    </>
   )
 }
 
