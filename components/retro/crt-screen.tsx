@@ -53,6 +53,14 @@ function readServerElement(): null {
   return null
 }
 
+function readIsWebKit(): boolean {
+  return navigator.vendor.startsWith("Apple")
+}
+
+function readServerIsWebKit(): boolean {
+  return false
+}
+
 function useElementSize(element: HTMLElement | null): Size | null {
   const [size, setSize] = React.useState<Size | null>(null)
   React.useEffect(() => {
@@ -223,7 +231,9 @@ function FullscreenCrt({
   const root = React.useSyncExternalStore(subscribeNothing, readRootElement, readServerElement)
   const [probe, setProbe] = React.useState<HTMLDivElement | null>(null)
   const viewport = useElementSize(probe)
-  const warp = useCrtWarp(root, viewport, params.curvature, params.aberration, params.bloom)
+  const isWebKit = React.useSyncExternalStore(subscribeNothing, readIsWebKit, readServerIsWebKit)
+  const warpTarget = isWebKit ? null : root
+  const warp = useCrtWarp(warpTarget, viewport, params.curvature, params.aberration, params.bloom)
   return (
     <>
       <div ref={setProbe} aria-hidden="true" className={VIEWPORT_PROBE_CLASS} />
