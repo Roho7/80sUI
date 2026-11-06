@@ -1,5 +1,6 @@
 "use client"
 
+import { Search } from "@nsmr/pixelart-react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
@@ -43,7 +44,7 @@ function DocsSearch({ groups }: DocsSearchProps) {
   return (
     <>
       <Button variant="outline" size="sm" onClick={() => setIsOpen(true)} aria-label="Search documentation">
-        <span>Search</span>
+        <Search size={20} className="fill-current" aria-hidden="true" />
         <Kbd className="max-md:hidden">⌘K</Kbd>
       </Button>
       <CommandDialog
@@ -54,23 +55,23 @@ function DocsSearch({ groups }: DocsSearchProps) {
       >
         <Command>
           <CommandInput placeholder="Search pages" />
-        <CommandList>
-          <CommandEmpty>No pages found.</CommandEmpty>
-          {groups.map((group) => (
-            <CommandGroup key={group.label} heading={group.label}>
-              {group.pages.map((page) => (
-                <CommandItem
-                  key={page.href}
-                  value={`${group.label} ${page.title}`}
-                  keywords={[page.description]}
-                  onSelect={() => openPage(page.href)}
-                >
-                  {page.title}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          ))}
-        </CommandList>
+          <CommandList>
+            <CommandEmpty>No pages found.</CommandEmpty>
+            {groups.map((group) => (
+              <CommandGroup key={group.label} heading={group.label}>
+                {group.pages.map((page) => (
+                  <CommandItem
+                    key={page.href}
+                    value={`${group.label} ${page.title}`}
+                    keywords={[page.description]}
+                    onSelect={() => openPage(page.href)}
+                  >
+                    {page.title}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            ))}
+          </CommandList>
         </Command>
       </CommandDialog>
     </>

@@ -2,7 +2,7 @@
 
 import { useCallback, useSyncExternalStore } from "react"
 
-import { DEFAULT_PALETTE, isPalette, type Palette } from "./palettes"
+import { DEFAULT_PALETTE, isPalette, type Palette, PALETTE_STORAGE_KEY } from "./palettes"
 
 function subscribePalette(onChange: () => void) {
   const observer = new MutationObserver(onChange)
@@ -26,6 +26,7 @@ export function usePalette(): readonly [Palette, (palette: Palette) => void] {
   const palette = useSyncExternalStore(subscribePalette, readPalette, readServerPalette)
   const setPalette = useCallback((next: Palette) => {
     document.documentElement.dataset.theme = next
+    window.localStorage.setItem(PALETTE_STORAGE_KEY, next)
   }, [])
   return [palette, setPalette]
 }

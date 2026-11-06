@@ -19,7 +19,7 @@ function ScrollArea({
     >
       <ScrollAreaPrimitive.Viewport
         data-slot="scroll-area-viewport"
-        className="size-full focus-visible:outline-offset-[calc(var(--pixel)*-2)]"
+        className="size-full focus-visible:outline-offset-[calc(var(--pixel)*-2)] [&>div]:block!"
       >
         {children}
       </ScrollAreaPrimitive.Viewport>

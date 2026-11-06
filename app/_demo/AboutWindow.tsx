@@ -19,9 +19,9 @@ function AboutWindow({ itemCount, ...windowProps }: AboutWindowProps) {
       <div className="flex flex-col gap-4 p-5">
         <h1 className="font-pixel text-[44px] leading-none uppercase md:text-[56px] flex items-baseline">UI <BrandLogo className="h-[27px] mr-3 md:h-[35px] md:mr-4" /></h1>
         <p className="text-2xl leading-tight mb-6">
-          Retro components for shadcn.
+          Retro Win95 style components for Shadcn.
         </p>
-        <div className="flex  gap-3">
+        <div className="flex flex-col md:flex-row gap-3">
           <CtaButton asChild shine={{ pauseDuration: 4, sweepDuration: 0.9 }}>
             <Link href="/components">Browse components</Link>
           </CtaButton>

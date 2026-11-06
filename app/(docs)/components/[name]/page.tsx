@@ -141,7 +141,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex flex-wrap items-start justify-between gap-3">
           <h1 className="font-pixel text-[32px] leading-none uppercase md:text-[48px]">{doc.title}</h1>
           <CopyPageButton markdown={registryDocToMarkdown(doc)} />
         </div>

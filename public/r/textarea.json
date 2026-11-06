@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "components/ui/textarea.tsx",
-      "content": "import { cn } from \"cn\"\nimport * as React from \"react\"\n\nfunction Textarea({ className, ...props }: React.ComponentProps<\"textarea\">) {\n  return (\n    <textarea\n      data-slot=\"textarea\"\n      className={cn(\n        \"flex field-sizing-content min-h-24 w-full pixel-border border-border well px-2 py-1.5 text-xl leading-tight placeholder:text-well-muted disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground aria-invalid:border-dashed aria-invalid:border-destructive\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Textarea }\n",
+      "content": "import { cn } from \"cn\"\nimport * as React from \"react\"\n\nfunction Textarea({ className, ...props }: React.ComponentProps<\"textarea\">) {\n  return (\n    <textarea\n      data-slot=\"textarea\"\n      className={cn(\n        \"flex field-sizing-content min-h-24 w-full pixel-border bg-input text-foreground border-border well px-2 py-1.5 text-xl leading-tight placeholder:text-well-muted disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground aria-invalid:border-dashed aria-invalid:border-destructive\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Textarea }\n",
       "type": "registry:ui"
     }
   ],
