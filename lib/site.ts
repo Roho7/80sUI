@@ -2,14 +2,14 @@ const PRODUCTION_HOST = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? "nostalgui.
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? `https://${PRODUCTION_HOST}`
 
-export const SITE_NAME = "NOSTALGUI"
+export const SITE_NAME = "UI95"
 
 export const SOURCE_URL = "https://github.com/Roho7/nostalgui"
 
 export const SITE_TAGLINE = "Retro components for shadcn."
 
 export const SITE_DESCRIPTION =
-  "NOSTALGUI is a shadcn registry of retro, Windows 95 style React components: square corners, four inks, stepped motion, ordered dither and synthesized click sounds. Install them with the shadcn CLI and own the code."
+  "UI95 is a shadcn registry of retro, Windows 95 style React components: square corners, four inks, stepped motion, ordered dither and synthesized click sounds. Install them with the shadcn CLI and own the code."
 
 export const SITE_KEYWORDS = [
   "shadcn",

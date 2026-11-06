@@ -216,6 +216,7 @@ function DesktopIcons() {
           isSelected={selectedLabel === label}
           onSelect={() => setSelectedLabel(label)}
           onOpen={() => (href.startsWith("/") ? router.push(href) : window.open(href, "_blank", "noreferrer"))}
+          className="text-[var(--ink-0)]"
         />
       ))}
     </nav>

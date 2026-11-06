@@ -5,12 +5,12 @@ import { parseArgs } from "node:util"
 
 const USAGE = `Usage: node scripts/dither-sounds.mjs sync [items...] [options]
 
-Adds the sounds of every installed NOSTALGUI component to sounds.json.
+Adds the sounds of every installed UI95 component to sounds.json.
 Entries already in sounds.json are kept as they are.
 
 Options:
   --overwrite         replace existing entries with the registry defaults
-  --registry <url>    item URL template, default: components.json registries["@nostalgui"]
+  --registry <url>    item URL template, default: components.json registries["@ui95"]
   --file <path>       sounds.json location, default: where "@/sounds.json" resolves
   --dry-run           print the changes without writing
   -h, --help          show this help`
@@ -66,7 +66,7 @@ function readRegistryTemplate(componentsJson, override) {
   if (override) {
     return { url: override, headers: {}, style }
   }
-  const entry = componentsJson.registries?.["@nostalgui"]
+  const entry = componentsJson.registries?.["@ui95"]
   if (typeof entry === "string") {
     return { url: entry, headers: {}, style }
   }
@@ -74,7 +74,7 @@ function readRegistryTemplate(componentsJson, override) {
     const headers = Object.fromEntries(Object.entries(entry.headers ?? {}).map(([key, value]) => [key, String(value).replace(/\$\{(\w+)\}/g, (_, name) => process.env[name] ?? "")]))
     return { url: entry.url, headers, style }
   }
-  fail('components.json has no registries["@nostalgui"]; pass --registry "https://host/r/{style}/{name}.json"')
+  fail('components.json has no registries["@ui95"]; pass --registry "https://host/r/{style}/{name}.json"')
 }
 
 async function fetchItem(registry, name) {
@@ -138,7 +138,7 @@ async function sync(names, options) {
   const known = new Set(items.map((item) => item.name))
   for (const name of names) {
     if (!known.has(name)) {
-      fail(`"${name}" is not a NOSTALGUI item with sounds. Items with sounds: ${[...known].join(", ")}`)
+      fail(`"${name}" is not a UI95 item with sounds. Items with sounds: ${[...known].join(", ")}`)
     }
   }
   const chosen = names.length > 0 ? items.filter((item) => names.includes(item.name)) : items.filter((item) => isInstalled(item, aliases, aliasRoot))
@@ -172,7 +172,7 @@ async function sync(names, options) {
   }
 
   const where = relative(CWD, soundsPath) || soundsPath
-  console.log(`dither-sounds: ${chosen.length === 0 ? "no installed NOSTALGUI components have sounds" : `checked ${chosen.map((item) => item.name).join(", ")}`}`)
+  console.log(`dither-sounds: ${chosen.length === 0 ? "no installed UI95 components have sounds" : `checked ${chosen.map((item) => item.name).join(", ")}`}`)
   if (added.length) console.log(`  added ${added.length}: ${added.join(", ")}`)
   if (replaced.length) console.log(`  replaced ${replaced.length}: ${replaced.join(", ")}`)
   if (kept.length) console.log(`  kept ${kept.length} you already have: ${kept.join(", ")}`)

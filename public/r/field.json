@@ -8,9 +8,9 @@
     "cn"
   ],
   "registryDependencies": [
-    "@nostalgui/theme",
-    "@nostalgui/label",
-    "@nostalgui/separator"
+    "@ui95/theme",
+    "@ui95/label",
+    "@ui95/separator"
   ],
   "files": [
     {

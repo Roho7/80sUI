@@ -94,7 +94,7 @@ export const demo: ShowcaseDemo = {
       render: () => (
         <Desk>
           <Window title="About" defaultPosition={START} className={WINDOW_WIDTH}>
-            <p className="p-3 text-xl">NOSTALGUI v0.0.1</p>
+            <p className="p-3 text-xl">UI95 v0.0.1</p>
           </Window>
         </Desk>
       ),

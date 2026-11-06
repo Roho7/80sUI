@@ -7,8 +7,26 @@ export const BRAND_INKS = {
   desktop: "#a7ab7f",
 } as const
 
-export const START_LOGO_PATH =
-  "M6 0h1v5H6zM10 0h1v5h-1zM7 1h1v1H7zM8 2h1v1H8zM9 3h1v1H9zM4 0h1v2H4zM4 3h1v2H4zM2 1h1v1H2zM2 3h1v1H2zM0 2h1v1H0z"
+const BRAND_LOGO_ROWS = [
+  "T.T.XX.XXXX",
+  ".T.X..XX...",
+  "T.T.XXXXXX.",
+  ".T....X...X",
+  "T.T.XX.XXX.",
+] as const
+
+function readLogoPath(mark: "X" | "T"): string {
+  return BRAND_LOGO_ROWS.flatMap((row, y) =>
+    [...row].flatMap((cell, x) => (cell === mark ? [`M${x} ${y}h1v1H${x}z`] : []))
+  ).join("")
+}
+
+export const BRAND_LOGO = {
+  width: BRAND_LOGO_ROWS[0].length,
+  height: BRAND_LOGO_ROWS.length,
+  digits: readLogoPath("X"),
+  trail: readLogoPath("T"),
+} as const
 
 type Cell = readonly [x: number, y: number, width: number, height: number, fill: string]
 
@@ -28,7 +46,10 @@ export function buildKeycapSvg(size: number): string {
   const rects = KEYCAP_CELLS.map(
     ([x, y, width, height, fill]) => `<rect x="${x}" y="${y}" width="${width}" height="${height}" fill="${fill}"/>`
   ).join("")
-  const logo = `<path d="${START_LOGO_PATH}" transform="translate(5 9) scale(2)" fill="${BRAND_INKS.ink1}"/>`
+  const logo = [
+    `<path d="${BRAND_LOGO.trail}" transform="translate(5 9) scale(2)" fill="${BRAND_INKS.ink2}"/>`,
+    `<path d="${BRAND_LOGO.digits}" transform="translate(5 9) scale(2)" fill="${BRAND_INKS.ink0}"/>`,
+  ].join("")
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="${size}" height="${size}" shape-rendering="crispEdges">${rects}${logo}</svg>`
 }
 

@@ -1,7 +1,7 @@
 import { findDoc, REGISTRY_DOCS, SECTION_LABELS } from "@/lib/docs/registry-docs"
 import { OG_SIZE, renderOgImage } from "@/lib/og/render-og-image"
 
-export const alt = "NOSTALGUI component"
+export const alt = "UI95 component"
 export const size = OG_SIZE
 export const contentType = "image/png"
 

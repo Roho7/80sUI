@@ -2,15 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "command",
   "title": "Command",
-  "description": "shadcn command reskinned for NOSTALGUI.",
+  "description": "shadcn command reskinned for UI95.",
   "dependencies": [
     "cmdk",
     "cn"
   ],
   "registryDependencies": [
-    "@nostalgui/theme",
-    "@nostalgui/dialog",
-    "@nostalgui/pixel-glyphs"
+    "@ui95/theme",
+    "@ui95/dialog",
+    "@ui95/pixel-glyphs"
   ],
   "files": [
     {

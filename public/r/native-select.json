@@ -7,8 +7,8 @@
     "cn"
   ],
   "registryDependencies": [
-    "@nostalgui/theme",
-    "@nostalgui/pixel-glyphs"
+    "@ui95/theme",
+    "@ui95/pixel-glyphs"
   ],
   "files": [
     {

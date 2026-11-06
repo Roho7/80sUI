@@ -4,10 +4,10 @@
   "title": "Error dialog",
   "description": "Stackable error dialogs that cascade diagonally.",
   "registryDependencies": [
-    "@nostalgui/theme",
-    "@nostalgui/button",
-    "@nostalgui/dialog",
-    "@nostalgui/pixel-glyphs"
+    "@ui95/theme",
+    "@ui95/button",
+    "@ui95/dialog",
+    "@ui95/pixel-glyphs"
   ],
   "files": [
     {

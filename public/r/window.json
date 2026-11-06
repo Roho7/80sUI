@@ -7,10 +7,10 @@
     "cn"
   ],
   "registryDependencies": [
-    "@nostalgui/theme",
-    "@nostalgui/button",
-    "@nostalgui/pixel-glyphs",
-    "@nostalgui/scroll-area"
+    "@ui95/theme",
+    "@ui95/button",
+    "@ui95/pixel-glyphs",
+    "@ui95/scroll-area"
   ],
   "files": [
     {

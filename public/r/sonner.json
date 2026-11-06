@@ -2,15 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "sonner",
   "title": "Sonner",
-  "description": "shadcn sonner reskinned for NOSTALGUI.",
+  "description": "shadcn sonner reskinned for UI95.",
   "dependencies": [
     "next-themes",
     "sonner"
   ],
   "registryDependencies": [
-    "@nostalgui/theme",
-    "@nostalgui/pixel-glyphs",
-    "@nostalgui/spinner"
+    "@ui95/theme",
+    "@ui95/pixel-glyphs",
+    "@ui95/spinner"
   ],
   "files": [
     {

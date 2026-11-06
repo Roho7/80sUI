@@ -43,7 +43,7 @@ export const demo: ShowcaseDemo = {
       render: () => (
         <div className="flex">
           <CtaButton size="lg" shine={glintPreset.params}>
-            Get NOSTALGUI
+            Get UI95
           </CtaButton>
         </div>
       ),

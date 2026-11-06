@@ -1,22 +1,22 @@
 ---
-name: verify-nostalgui
-description: Verify the NOSTALGUI component registry (Next.js showcase at /components, retro desktop landing at /, docs at /docs, shadcn registry at /r/*.json) against its locked 1-bit retro style. Use after adding or changing any component, demo, token or shader, before committing, when asked to "verify", "check the style", "prove it works", or when something looks off-palette, rounded, smooth-animated or overflowing.
+name: verify-ui95
+description: Verify the UI95 component registry (Next.js showcase at /components, retro desktop landing at /, docs at /docs, shadcn registry at /r/*.json) against its locked 1-bit retro style. Use after adding or changing any component, demo, token or shader, before committing, when asked to "verify", "check the style", "prove it works", or when something looks off-palette, rounded, smooth-animated or overflowing.
 ---
 
-# Verify NOSTALGUI
+# Verify UI95
 
-NOSTALGUI is a shadcn registry with a locked style: four inks per theme, square corners, `--pixel`-multiple borders, stepped (never tweened) motion, dither instead of alpha, no comments anywhere. This skill proves a change keeps that style and that new components are built like the existing ones. Read `docs/DESIGN.md` for the rules themselves; this file is how to check them.
+UI95 is a shadcn registry with a locked style: four inks per theme, square corners, `--pixel`-multiple borders, stepped (never tweened) motion, dither instead of alpha, no comments anywhere. This skill proves a change keeps that style and that new components are built like the existing ones. Read `docs/DESIGN.md` for the rules themselves; this file is how to check them.
 
 Everything runs through one helper from the repo root:
 
 ```bash
-node .claude/skills/verify-nostalgui/dither.mjs <command>
+node .claude/skills/verify-ui95/dither.mjs <command>
 ```
 
 ## Launch
 
 ```bash
-node .claude/skills/verify-nostalgui/dither.mjs up
+node .claude/skills/verify-ui95/dither.mjs up
 ```
 
 - If a `next dev` from this repo already owns port 3000 (the user usually runs one), `up` reuses it and `down` will never stop it.
@@ -28,7 +28,7 @@ node .claude/skills/verify-nostalgui/dither.mjs up
 ## Doctor
 
 ```bash
-node .claude/skills/verify-nostalgui/dither.mjs doctor
+node .claude/skills/verify-ui95/dither.mjs doctor
 ```
 
 Read-only. Checks port 3000 is listening, its process runs from this repo, `/components` renders the catalogue, the registry serves `/r/button.json`, and Google Chrome is installed. Run it first whenever anything looks off; drive only a `doctor: healthy` instance.
@@ -36,7 +36,7 @@ Read-only. Checks port 3000 is listening, its process runs from this repo, `/com
 ## Static checks
 
 ```bash
-node .claude/skills/verify-nostalgui/dither.mjs check
+node .claude/skills/verify-ui95/dither.mjs check
 ```
 
 Runs `npm run verify`: `npm run lint`, `npm run typecheck`, `npm run check:style` and the registry docs generator (`npm run docs:generate`). `check:style` (`scripts/check-style.mjs`) is the style contract in code. Its rules are a table you extend when a new convention is agreed:
@@ -53,15 +53,15 @@ Runs `npm run verify`: `npm run lint`, `npm run typecheck`, `npm run check:style
 | `no-framer-or-gsap` | `framer-motion`, `motion/react`, `gsap`, `react-spring` imports |
 | `no-comments` | `//`, `/* */`, `{/* */}` in any source file, GLSL strings included |
 | `roadmap-matches-registry` | a ticked `ROADMAP.md` entry that is not a shipped ui/block item, or a shipped item left unticked |
-| `registry-*` | every component file ships in an item, every item file exists, every `@/` import is declared as a `@nostalgui/*` registry dependency, every npm import is in the item's `dependencies`, every ui/block item depends on `@nostalgui/theme` |
+| `registry-*` | every component file ships in an item, every item file exists, every `@/` import is declared as a `@ui95/*` registry dependency, every npm import is in the item's `dependencies`, every ui/block item depends on `@ui95/theme` |
 
 The generator fails if a `registry:ui` or `registry:block` item has no demo, or a demo has no item.
 
 ## Drive: the drift audit
 
 ```bash
-node .claude/skills/verify-nostalgui/dither.mjs audit            # 1440 and 375
-node .claude/skills/verify-nostalgui/dither.mjs audit 1440 900 375
+node .claude/skills/verify-ui95/dither.mjs audit            # 1440 and 375
+node .claude/skills/verify-ui95/dither.mjs audit 1440 900 375
 ```
 
 Headless Chrome via `playwright-core` (channel `chrome`, no browser download). For each width and route it loads the page, then switches theme the way a user does: clicks the `Phosphor` / `Cyan pixel` / `Retro Candy` buttons and the `Dark mode` checkbox (ARIA names from `app/_site/ThemeControls.tsx`), waits for `<html data-theme>` and the `dark` class to match, and inspects every rendered element:
@@ -76,14 +76,14 @@ Headless Chrome via `playwright-core` (channel `chrome`, no browser download). F
 Routes: `/`, `/docs`, `/components`, `/components/button`, `/components/window` and `/components/pixel-glyphs` at every width. `/` is the desktop landing: windows float on a 1280px stage at 1280px and wider and stack in reading order below that. Routes with variant cells fail if they render none.
 
 ```bash
-node .claude/skills/verify-nostalgui/dither.mjs shot cta-button cyan-pixel-dark
+node .claude/skills/verify-ui95/dither.mjs shot cta-button cyan-pixel-dark
 ```
 
 Screenshots one catalogue card at 2x. Card ids are registry item names (`article#<name>`).
 
 ```bash
-node .claude/skills/verify-nostalgui/dither.mjs journey cta-button
-node .claude/skills/verify-nostalgui/dither.mjs journey desktop
+node .claude/skills/verify-ui95/dither.mjs journey cta-button
+node .claude/skills/verify-ui95/dither.mjs journey desktop
 ```
 
 Runs `features/journeys/<name>.mjs` against a 1440px page: real pointer and keyboard input, measured state before and after, screenshots at each step, a `journey.json` of every expectation, and a final `no console errors` check. A journey is a default-exported `async ({ page, baseUrl, evidenceDir, expect, applyTheme })`. Add one per interactive feature; the feature files say which exist.
@@ -102,7 +102,7 @@ Proof standards:
 
 When a component is added, all of these must hold before it is done. The tools enforce most of them; the rest are judgment calls to check by eye in the `shot` output.
 
-1. **Registry item** in `registry.json` with the right `type`, `dependencies` and `registryDependencies` (always `@nostalgui/theme`, plus every `@nostalgui/*` it imports). `check:style` enforces this.
+1. **Registry item** in `registry.json` with the right `type`, `dependencies` and `registryDependencies` (always `@ui95/theme`, plus every `@ui95/*` it imports). `check:style` enforces this.
 2. **Demo** at `components/showcase/demos/<item-name>.tsx` exporting `demo: ShowcaseDemo` that shows every variant, size and state. Pick the `span` that keeps the bento grid without holes. The generator enforces existence; completeness is yours to check.
 3. **Style:** square, `--pixel` borders, ink tokens only, dither for shades, `font-pixel` for labels and `font-mono` for body, offset shadows only on primary buttons and outer containers, bevels from `bevel-raised` / `bevel-sunken`, glyphs from `pixel-glyphs`. Drop-in shadcn reskins keep shadcn's file name, exports and variant names.
 4. **Motion:** stepped. CSS `steps()`, a `1000 / fps` timer, or the shader mount's clock. Respect `prefers-reduced-motion`.
@@ -113,7 +113,7 @@ When a component is added, all of these must hold before it is done. The tools e
 ## Cleanup
 
 ```bash
-node .claude/skills/verify-nostalgui/dither.mjs down
+node .claude/skills/verify-ui95/dither.mjs down
 ```
 
 Stops only the process group whose pid `up` recorded in `.verify/dev.pid`, then removes the pid file and log. It never touches a dev server it did not start and never deletes `.verify/evidence/`. Browsers launched by `audit` and `shot` close themselves.

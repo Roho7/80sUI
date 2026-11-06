@@ -124,7 +124,7 @@ function Taskbar({
   startMenu,
   startIcon,
   startLabel = "Start",
-  startMenuTitle = "nostalgui",
+  startMenuTitle = "ui95",
   clock = <TaskbarClock />,
   maxVisibleTasks = DEFAULT_MAX_VISIBLE_TASKS,
   className,

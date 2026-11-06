@@ -2,14 +2,14 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input-otp",
   "title": "Input Otp",
-  "description": "shadcn input-otp reskinned for NOSTALGUI.",
+  "description": "shadcn input-otp reskinned for UI95.",
   "dependencies": [
     "cn",
     "input-otp"
   ],
   "registryDependencies": [
-    "@nostalgui/theme",
-    "@nostalgui/pixel-glyphs"
+    "@ui95/theme",
+    "@ui95/pixel-glyphs"
   ],
   "files": [
     {

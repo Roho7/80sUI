@@ -20,8 +20,8 @@ Preconditions:
 
 - `doctor` is healthy.
 
-- **All four themes.** Run `node .claude/skills/verify-nostalgui/dither.mjs audit 1440`. It clicks each control in turn and reports one line per theme. Each line reads `offPalette 0`; `audit.json` records the resolved `allowedColors` for each theme.
-- **Shaders repaint.** Run `node .claude/skills/verify-nostalgui/dither.mjs shot dither-image phosphor-light` and `shot dither-image cyan-pixel-dark`. The eye is drawn in the olive inks in the first and the cyan-pixel dark inks in the second.
+- **All four themes.** Run `node .claude/skills/verify-ui95/dither.mjs audit 1440`. It clicks each control in turn and reports one line per theme. Each line reads `offPalette 0`; `audit.json` records the resolved `allowedColors` for each theme.
+- **Shaders repaint.** Run `node .claude/skills/verify-ui95/dither.mjs shot dither-image phosphor-light` and `shot dither-image cyan-pixel-dark`. The eye is drawn in the olive inks in the first and the cyan-pixel dark inks in the second.
 - **Desktop entry.** On `/`, the same controls live in the `Control Panel` window; `audit` covers `/` at 1280px and wider.
 
 ## Gotchas

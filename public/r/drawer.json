@@ -2,13 +2,13 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "drawer",
   "title": "Drawer",
-  "description": "shadcn drawer reskinned for NOSTALGUI.",
+  "description": "shadcn drawer reskinned for UI95.",
   "dependencies": [
     "cn",
     "vaul"
   ],
   "registryDependencies": [
-    "@nostalgui/theme"
+    "@ui95/theme"
   ],
   "files": [
     {

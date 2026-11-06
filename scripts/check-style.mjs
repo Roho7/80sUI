@@ -133,7 +133,7 @@ function findRegistryViolations() {
   for (const item of REGISTRY.items) {
     const declared = new Set(item.registryDependencies ?? [])
     const npmDeclared = new Set(item.dependencies ?? [])
-    if ((item.type === "registry:ui" || item.type === "registry:block") && !declared.has("@nostalgui/theme")) {
+    if ((item.type === "registry:ui" || item.type === "registry:block") && !declared.has("@ui95/theme")) {
       violations.push({ path: "registry.json", line: 0, rule: "registry-depends-on-theme", found: item.name, why: "every component needs the theme tokens and utilities" })
     }
     for (const file of item.files ?? []) {
@@ -151,8 +151,8 @@ function findRegistryViolations() {
             }
             continue
           }
-          if (owner !== item.name && !declared.has(`@nostalgui/${owner}`)) {
-            violations.push({ path: file.path, line: 0, rule: "registry-declares-import", found: `${item.name} imports ${specifier} but does not list @nostalgui/${owner}`, why: "an install would miss that file" })
+          if (owner !== item.name && !declared.has(`@ui95/${owner}`)) {
+            violations.push({ path: file.path, line: 0, rule: "registry-declares-import", found: `${item.name} imports ${specifier} but does not list @ui95/${owner}`, why: "an install would miss that file" })
           }
           continue
         }

@@ -17,7 +17,7 @@ const SCRIPT: readonly TerminalLine[] = [
   { kind: "command", text: `npx shadcn@latest add ${registryItemUrl("terminal")}` },
   { kind: "output", text: "Created components/retro/terminal.tsx" },
   { kind: "output", text: "" },
-  { kind: "output", text: "NOSTALGUI installed. Welcome back to 1995." },
+  { kind: "output", text: "UI95 installed. Welcome back to 1995." },
 ]
 
 function TerminalWindow(windowProps: DesktopWindowProps) {

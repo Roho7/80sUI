@@ -15,7 +15,7 @@ import { articleJsonLd, pageMetadata } from "@/lib/seo"
 
 const PAGE = GUIDE_PAGES[1]
 
-const REGISTRIES_SNIPPET = JSON.stringify({ registries: { "@nostalgui": REGISTRY_URL } }, null, 2)
+const REGISTRIES_SNIPPET = JSON.stringify({ registries: { "@ui95": REGISTRY_URL } }, null, 2)
 
 export const metadata: Metadata = pageMetadata({ title: PAGE.title, description: PAGE.description, path: PAGE.href })
 
@@ -67,7 +67,7 @@ export default function InstallationPage() {
           code={`import { Moon } from "@nsmr/pixelart-react"\n\n<Moon size={24} />`}
         />
       </DocSection>
-      <DocSection id="namespace" title="Use the @nostalgui namespace">
+      <DocSection id="namespace" title="Use the @ui95 namespace">
         <p className="max-w-3xl text-xl leading-tight">
           Register the namespace once and install by name. The CLI fills {"{style}"} from your
           components.json.
@@ -77,7 +77,7 @@ export default function InstallationPage() {
           That writes this to components.json. You can also paste it yourself.
         </p>
         <CodeBlock title="components.json" code={REGISTRIES_SNIPPET} />
-        <CodeBlock title="Terminal" code="npx shadcn@latest add @nostalgui/button" />
+        <CodeBlock title="Terminal" code="npx shadcn@latest add @ui95/button" />
       </DocSection>
       <DocSection id="package-managers" title="Package managers">
         <Table>

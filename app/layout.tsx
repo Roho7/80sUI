@@ -4,7 +4,7 @@ import type { Metadata, Viewport } from "next"
 import { Silkscreen, VT323 } from "next/font/google"
 
 import { ThemeProvider } from "@/components/theme-provider"
-import { NostalguiSounds } from "@/components/ui/nostalgui-sounds"
+import { Ui95Sounds } from "@/components/ui/ui95-sounds"
 import { BRAND_INKS } from "@/lib/brand/keycap"
 import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TAGLINE, SITE_TWITTER, SITE_URL } from "@/lib/site"
 import { cn } from "@/lib/utils"
@@ -66,7 +66,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider defaultTheme="light" enableSystem={false}>
           {children}
-          <NostalguiSounds />
+          <Ui95Sounds />
         </ThemeProvider>
       </body>
     </html>

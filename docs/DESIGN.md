@@ -1,6 +1,6 @@
-# NOSTALGUI design
+# UI95 design
 
-A shadcn registry of retro, 1-bit, Win95-flavoured components. Web only. Installed like beui: `npx shadcn add @nostalgui/window`.
+A shadcn registry of retro, 1-bit, Win95-flavoured components. Web only. Installed like beui: `npx shadcn add @ui95/window`.
 
 ## Decisions
 
@@ -80,13 +80,13 @@ Where we differ from Paper:
 
 ## Sound
 
-Sound is opt-in: components never import it. Installing `@nostalgui/sound` and rendering `<NostalguiSounds />` once turns it on.
+Sound is opt-in: components never import it. Installing `@ui95/sound` and rendering `<Ui95Sounds />` once turns it on.
 
 - **`sounds.json`** in the project root (where `@/sounds.json` resolves) is the single place every sound is configured: `enabled`, `volume`, `reducedMotion` and a flat `sounds` map keyed like `button.press`. An entry is a patch (`layers` of sine, square, blend or noise with an envelope, pitch drop, optional filter, plus `jitter`, `crush` and, for `.tick` sounds, a `detent`), a `loop` for continuous drags, or `false` to silence it. `/schema/sounds.json` is its JSON Schema.
 - **Growing it.** `shadcn add` cannot merge JSON, so each component's registry item lists its sound keys in `meta.sounds`, and `npm run registry:build` embeds their data from the repo's `sounds.json` (`scripts/build-sound-meta.mjs`). In a user's project, `node scripts/dither-sounds.mjs sync` adds the entries of installed components only and never overwrites existing keys (`--overwrite` restores defaults).
 - **`SoundEngine`** (`lib/sound/sound-engine.ts`) is framework-agnostic: one shared AudioContext created on the first gesture, every patch rendered on the CPU (`lib/sound/render.ts`) into six jittered buffers played round-robin, envelopes that end at exactly zero, `step()` for detents (spread, collapse or per-event, with a minimum gap and a look-ahead cap), `startLoop()` for drags, and a runtime `setEnabled` stored in localStorage that wins over `enabled`.
 - **Event delegation, not props.** `attachSoundSlots` (`lib/sound/sound-slots.ts`) maps `data-slot` to a sound and a gesture: press and release for buttons and `*-trigger`s, on and off for checkbox and switch, select for radio items, tabs and menu items, ticks from `aria-valuenow` for sliders, pick-up, friction and drop from `data-dragging` for windows. Pointer gestures play on pointer down; keyboard changes play from the attribute mutation. `data-sound="key"` renames an element's sound and `data-sound="none"` silences it.
-- **React** has `<NostalguiSounds />`, `useSoundEnabled()` and `useSound(key)`. Under `prefers-reduced-motion`, `"thin"` collapses drag ticks and skips loops; `"mute"` silences everything.
+- **React** has `<Ui95Sounds />`, `useSoundEnabled()` and `useSound(key)`. Under `prefers-reduced-motion`, `"thin"` collapses drag ticks and skips loops; `"mute"` silences everything.
 - `/sound-lab` is the sound designer: every component with its real sounds and knob editors. Under `next dev`, "save to sounds.json" (per sound or for every edit) posts to `app/sound-lab/save/route.ts`, which validates the entries and merges them into the repo's `sounds.json`; it refuses outside development and from other origins.
 
 ## Registry
@@ -100,15 +100,15 @@ Sound is opt-in: components never import it. Installing `@nostalgui/sound` and r
 | `shader-mount` | `registry:lib` | `lib/shaders/types.ts`, `lib/shaders/shader-mount.ts` and `components/ui/shader-mount.tsx` |
 | `dither-shine` | `registry:ui` | `lib/shaders/dither-shine.ts` and its `DitherShine` component |
 | `cta-button` | `registry:ui` | Call-to-action button over `dither-shine` |
-| `sound` | `registry:lib` | `lib/sound/*`, `hooks/use-sound.ts`, `<NostalguiSounds />`, a starter `sounds.json` and `scripts/dither-sounds.mjs` |
+| `sound` | `registry:lib` | `lib/sound/*`, `hooks/use-sound.ts`, `<Ui95Sounds />`, a starter `sounds.json` and `scripts/dither-sounds.mjs` |
 | `button`, `checkbox`, `slider`, `progress`, `dialog`, `input`, `textarea`, `label`, `radio-group`, `switch`, `select`, `tabs`, `tooltip`, `dropdown-menu`, `menubar`, `scroll-area`, `separator`, `badge`, `alert`, `card`, `accordion` | `registry:ui` | Layer 1 primitives |
 | `window`, `error-dialog`, `terminal`, `taskbar` | `registry:block` | Layer 2 compositions. `window` ships `hooks/use-window-drag.ts` |
 
-Each item's `registryDependencies` pull in what it needs, so `shadcn add @nostalgui/window` brings in everything below it.
+Each item's `registryDependencies` pull in what it needs, so `shadcn add @ui95/window` brings in everything below it.
 
 ### Bases
 
-Every primitive wraps `radix-ui`, so NOSTALGUI supports Radix projects only. Consumers register `@nostalgui=https://<site>/r/{style}/{name}.json`; the CLI fills `{style}` from their `components.json`, the same way shadcn serves `/r/styles/{style}/{name}.json`.
+Every primitive wraps `radix-ui`, so UI95 supports Radix projects only. Consumers register `@ui95=https://<site>/r/{style}/{name}.json`; the CLI fills `{style}` from their `components.json`, the same way shadcn serves `/r/styles/{style}/{name}.json`.
 
 - `app/r/[style]/[file]/route.ts` redirects any `radix-*` (or legacy Radix) style to the single build in `public/r/<file>`.
 - A `base-*` style gets a 404 whose JSON `message` tells the user to init with `-b radix`. The CLI prints that message, so a Base UI project fails before any file is written instead of failing typecheck after.

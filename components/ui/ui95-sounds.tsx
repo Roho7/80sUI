@@ -7,11 +7,11 @@ import { SoundEngine } from "@/lib/sound/sound-engine"
 import { attachSoundSlots } from "@/lib/sound/sound-slots"
 import type { SoundsConfig } from "@/lib/sound/types"
 
-type NostalguiSoundsProps = {
+type Ui95SoundsProps = {
   config?: SoundsConfig
 }
 
-function NostalguiSounds({ config = soundsConfig }: NostalguiSoundsProps) {
+function Ui95Sounds({ config = soundsConfig }: Ui95SoundsProps) {
   useEffect(() => {
     const engine = SoundEngine.get()
     if (!engine) {
@@ -23,4 +23,4 @@ function NostalguiSounds({ config = soundsConfig }: NostalguiSoundsProps) {
   return null
 }
 
-export { NostalguiSounds }
+export { Ui95Sounds }

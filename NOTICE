@@ -1,4 +1,4 @@
-NOSTALGUI
+UI95
 
 The ShaderMount class and the one-module-per-shader layout in lib/shaders
 (fragment shader string, uniform and param types, enum maps and presets,

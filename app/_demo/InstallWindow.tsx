@@ -13,7 +13,7 @@ function InstallWindow(windowProps: DesktopWindowProps) {
     <Window {...windowProps}>
       <div className="flex flex-col gap-3 p-4">
         <p className="text-xl leading-tight">
-          NOSTALGUI is built on Radix. Start a Radix project; Base UI is not supported yet.
+          UI95 is built on Radix. Start a Radix project; Base UI is not supported yet.
         </p>
         <CopyCommand command="npx shadcn@latest init -b radix" label="Radix init command" />
         <p className="font-pixel text-[20px] leading-none uppercase">Install the theme</p>

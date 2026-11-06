@@ -242,7 +242,7 @@ export default function ThemingPage() {
       </DocSection>
       <DocSection id="pixel" title="Pixel scale">
         <Prose>
-          NOSTALGUI has no radius scale; <Code>--radius</Code> is 0. Its scale is{" "}
+          UI95 has no radius scale; <Code>--radius</Code> is 0. Its scale is{" "}
           <Code>--pixel</Code>, one pixel unit. Borders, offsets and dither cells are whole multiples
           of it, so <Code>offset-shadow-2</Code> drops a shadow two units. Change{" "}
           <Code>--pixel</Code> and the whole library grows or shrinks on the same grid.

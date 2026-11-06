@@ -91,7 +91,7 @@ function packageOf(specifier) {
 }
 
 function deriveDependencies(item, itemByFile) {
-  const registryDependencies = new Set(["@nostalgui/theme"])
+  const registryDependencies = new Set(["@ui95/theme"])
   const dependencies = new Set()
   for (const file of item.files) {
     const path = join(ROOT, file.path)
@@ -106,7 +106,7 @@ function deriveDependencies(item, itemByFile) {
         const local = specifier.slice(2)
         const owner = ["", ".tsx", ".ts", "/index.ts"].map((extension) => itemByFile.get(`${local}${extension}`)).find(Boolean)
         if (owner && owner !== item.name) {
-          registryDependencies.add(`@nostalgui/${owner}`)
+          registryDependencies.add(`@ui95/${owner}`)
         }
         continue
       }
@@ -116,7 +116,7 @@ function deriveDependencies(item, itemByFile) {
       }
     }
   }
-  return { dependencies: [...dependencies].sort(), registryDependencies: [...registryDependencies].sort((a, b) => (a === "@nostalgui/theme" ? -1 : b === "@nostalgui/theme" ? 1 : a.localeCompare(b))) }
+  return { dependencies: [...dependencies].sort(), registryDependencies: [...registryDependencies].sort((a, b) => (a === "@ui95/theme" ? -1 : b === "@ui95/theme" ? 1 : a.localeCompare(b))) }
 }
 
 function indexFiles(registry) {
@@ -156,7 +156,7 @@ function tickRoadmap(names) {
   for (const name of names) {
     roadmap = roadmap.replace(new RegExp(`^- \\[ \\] ${name}$`, "m"), `- [x] ${name}`)
   }
-  const section = roadmap.slice(roadmap.indexOf("## shadcn components"), roadmap.indexOf("## NOSTALGUI originals"))
+  const section = roadmap.slice(roadmap.indexOf("## shadcn components"), roadmap.indexOf("## UI95 originals"))
   const done = (section.match(/^- \[x\] /gm) ?? []).length
   const total = (section.match(/^- \[[ x]\] /gm) ?? []).length
   roadmap = roadmap.replace(/^\d+ of \d+ done\.$/m, `${done} of ${total} done.`)
@@ -200,9 +200,9 @@ async function add(names) {
         name,
         type: "registry:ui",
         title: upstream.title ?? titleOf(name),
-        description: upstream.description ?? `shadcn ${name} reskinned for NOSTALGUI.`,
+        description: upstream.description ?? `shadcn ${name} reskinned for UI95.`,
         files: files.map((file) => ({ path: `components/ui/${basename(file.path)}`, type: "registry:ui" })),
-        registryDependencies: ["@nostalgui/theme"],
+        registryDependencies: ["@ui95/theme"],
       })
       known.add(name)
       added.push(name)

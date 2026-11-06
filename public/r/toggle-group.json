@@ -9,8 +9,8 @@
     "radix-ui"
   ],
   "registryDependencies": [
-    "@nostalgui/theme",
-    "@nostalgui/toggle"
+    "@ui95/theme",
+    "@ui95/toggle"
   ],
   "files": [
     {

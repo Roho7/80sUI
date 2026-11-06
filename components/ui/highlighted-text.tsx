@@ -70,7 +70,7 @@ function readFrameOffset(frame: number): string {
 }
 
 const STYLES = `
-@keyframes nostalgui-twinkle {
+@keyframes ui95-twinkle {
 ${FRAME_SEQUENCE.map(({ at, frame }) => `  ${at} { mask-position: ${readFrameOffset(frame)}; }`).join("\n")}
 }
 [data-slot="highlighted-text-star"] {
@@ -81,7 +81,7 @@ ${FRAME_SEQUENCE.map(({ at, frame }) => `  ${at} { mask-position: ${readFrameOff
   mask-size: calc(${PIXEL} * ${STAR_CELLS * FRAME_COUNT}) calc(${PIXEL} * ${STAR_CELLS});
   mask-repeat: no-repeat;
   mask-position: 0 0;
-  animation: nostalgui-twinkle var(--twinkle-period) steps(1, end) var(--twinkle-delay) infinite;
+  animation: ui95-twinkle var(--twinkle-period) steps(1, end) var(--twinkle-delay) infinite;
 }
 @media (prefers-reduced-motion: reduce) {
   [data-slot="highlighted-text-star"] {
@@ -100,7 +100,7 @@ function HighlightedText({ className, children, ...props }: React.ComponentProps
   const random = createRandom(useId())
   return (
     <span data-slot="highlighted-text" className={cn("relative inline-block", className)} {...props}>
-      <style href="nostalgui-highlighted-text" precedence="default">
+      <style href="ui95-highlighted-text" precedence="default">
         {STYLES}
       </style>
       {children}

@@ -305,7 +305,7 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
   {
     name: "pagination",
     title: "Pagination",
-    description: "Page links built from NOSTALGUI buttons with pixel arrows.",
+    description: "Page links built from UI95 buttons with pixel arrows.",
     demo: paginationDemo,
   },
   {
@@ -353,55 +353,55 @@ export const SHOWCASE_ENTRIES: readonly ShowcaseEntry[] = [
   {
     name: "navigation-menu",
     title: "Navigation Menu",
-    description: "shadcn navigation-menu reskinned for NOSTALGUI.",
+    description: "shadcn navigation-menu reskinned for UI95.",
     demo: navigationMenuDemo,
   },
   {
     name: "input-otp",
     title: "Input Otp",
-    description: "shadcn input-otp reskinned for NOSTALGUI.",
+    description: "shadcn input-otp reskinned for UI95.",
     demo: inputOtpDemo,
   },
   {
     name: "command",
     title: "Command",
-    description: "shadcn command reskinned for NOSTALGUI.",
+    description: "shadcn command reskinned for UI95.",
     demo: commandDemo,
   },
   {
     name: "resizable",
     title: "Resizable",
-    description: "shadcn resizable reskinned for NOSTALGUI.",
+    description: "shadcn resizable reskinned for UI95.",
     demo: resizableDemo,
   },
   {
     name: "sidebar",
     title: "Sidebar",
-    description: "shadcn sidebar reskinned for NOSTALGUI.",
+    description: "shadcn sidebar reskinned for UI95.",
     demo: sidebarDemo,
   },
   {
     name: "calendar",
     title: "Calendar",
-    description: "shadcn calendar reskinned for NOSTALGUI.",
+    description: "shadcn calendar reskinned for UI95.",
     demo: calendarDemo,
   },
   {
     name: "sonner",
     title: "Sonner",
-    description: "shadcn sonner reskinned for NOSTALGUI.",
+    description: "shadcn sonner reskinned for UI95.",
     demo: sonnerDemo,
   },
   {
     name: "drawer",
     title: "Drawer",
-    description: "shadcn drawer reskinned for NOSTALGUI.",
+    description: "shadcn drawer reskinned for UI95.",
     demo: drawerDemo,
   },
   {
     name: "carousel",
     title: "Carousel",
-    description: "shadcn carousel reskinned for NOSTALGUI.",
+    description: "shadcn carousel reskinned for UI95.",
     demo: carouselDemo,
   },
   {

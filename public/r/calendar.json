@@ -2,15 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "calendar",
   "title": "Calendar",
-  "description": "shadcn calendar reskinned for NOSTALGUI.",
+  "description": "shadcn calendar reskinned for UI95.",
   "dependencies": [
     "cn",
     "react-day-picker"
   ],
   "registryDependencies": [
-    "@nostalgui/theme",
-    "@nostalgui/button",
-    "@nostalgui/pixel-glyphs"
+    "@ui95/theme",
+    "@ui95/button",
+    "@ui95/pixel-glyphs"
   ],
   "files": [
     {

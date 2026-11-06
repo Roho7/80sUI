@@ -8,10 +8,10 @@
     "cn"
   ],
   "registryDependencies": [
-    "@nostalgui/theme",
-    "@nostalgui/button",
-    "@nostalgui/input",
-    "@nostalgui/textarea"
+    "@ui95/theme",
+    "@ui95/button",
+    "@ui95/input",
+    "@ui95/textarea"
   ],
   "files": [
     {

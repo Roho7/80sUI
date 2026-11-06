@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "nostalgui",
+  "name": "ui95",
   "homepage": "https://nostalgui.vercel.app",
   "items": [
     {
@@ -393,7 +393,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ]
     },
     {
@@ -409,7 +409,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ]
     },
     {
@@ -442,8 +442,8 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/dither-inks"
+        "@ui95/theme",
+        "@ui95/dither-inks"
       ]
     },
     {
@@ -468,7 +468,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/dither-inks"
+        "@ui95/dither-inks"
       ]
     },
     {
@@ -488,16 +488,16 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/shader-mount"
+        "@ui95/theme",
+        "@ui95/shader-mount"
       ]
     },
     {
       "name": "sound",
       "type": "registry:lib",
       "title": "Sound",
-      "description": "Tactile synthesized sounds for NOSTALGUI components: one shared AudioContext, sounds configured in sounds.json, played by event delegation on each component's data-slot.",
-      "docs": "Render <NostalguiSounds /> once in your root layout. Sounds live in sounds.json next to components.json (in src/ if @/* maps to ./src/*). After adding NOSTALGUI components run: node scripts/dither-sounds.mjs sync. It adds only the sounds of installed components and keeps your edits. Silence one element with data-sound=\"none\", rename its sound with data-sound=\"my-key\", silence a sound with \"key\": false, or everything with \"enabled\": false.",
+      "description": "Tactile synthesized sounds for UI95 components: one shared AudioContext, sounds configured in sounds.json, played by event delegation on each component's data-slot.",
+      "docs": "Render <Ui95Sounds /> once in your root layout. Sounds live in sounds.json next to components.json (in src/ if @/* maps to ./src/*). After adding UI95 components run: node scripts/dither-sounds.mjs sync. It adds only the sounds of installed components and keeps your edits. Silence one element with data-sound=\"none\", rename its sound with data-sound=\"my-key\", silence a sound with \"key\": false, or everything with \"enabled\": false.",
       "files": [
         {
           "path": "lib/sound/types.ts",
@@ -529,7 +529,7 @@
           "type": "registry:hook"
         },
         {
-          "path": "components/ui/nostalgui-sounds.tsx",
+          "path": "components/ui/ui95-sounds.tsx",
           "type": "registry:ui"
         },
         {
@@ -561,7 +561,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "meta": {
         "sounds": [
@@ -583,8 +583,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/dither-shine"
+        "@ui95/theme",
+        "@ui95/dither-shine"
       ],
       "files": [
         {
@@ -609,8 +609,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/pixel-glyphs"
       ],
       "files": [
         {
@@ -641,7 +641,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "meta": {
         "sounds": [
@@ -665,7 +665,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ]
     },
     {
@@ -678,9 +678,9 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/button",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/button",
+        "@ui95/pixel-glyphs"
       ],
       "files": [
         {
@@ -698,7 +698,7 @@
         "cn"
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "files": [
         {
@@ -716,7 +716,7 @@
         "cn"
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "files": [
         {
@@ -735,7 +735,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "files": [
         {
@@ -754,8 +754,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/pixel-glyphs"
       ],
       "files": [
         {
@@ -779,7 +779,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "files": [
         {
@@ -804,8 +804,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/pixel-glyphs"
       ],
       "files": [
         {
@@ -832,7 +832,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "files": [
         {
@@ -856,7 +856,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "files": [
         {
@@ -875,8 +875,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/pixel-glyphs"
       ],
       "files": [
         {
@@ -900,8 +900,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/pixel-glyphs"
       ],
       "files": [
         {
@@ -925,7 +925,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "files": [
         {
@@ -944,7 +944,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "files": [
         {
@@ -964,7 +964,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "files": [
         {
@@ -984,7 +984,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "files": [
         {
@@ -1002,7 +1002,7 @@
         "cn"
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "files": [
         {
@@ -1021,7 +1021,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "files": [
         {
@@ -1039,7 +1039,7 @@
         "cn"
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "files": [
         {
@@ -1058,8 +1058,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/pixel-glyphs"
       ],
       "files": [
         {
@@ -1080,7 +1080,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "dependencies": [
         "cn"
@@ -1098,7 +1098,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1124,8 +1124,8 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/toggle"
+        "@ui95/theme",
+        "@ui95/toggle"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1152,7 +1152,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "dependencies": [
         "radix-ui"
@@ -1176,7 +1176,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "dependencies": [
         "cn",
@@ -1201,7 +1201,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "dependencies": [
         "cn",
@@ -1220,8 +1220,8 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/button"
+        "@ui95/theme",
+        "@ui95/button"
       ],
       "dependencies": [
         "cn",
@@ -1246,9 +1246,9 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/button",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/button",
+        "@ui95/pixel-glyphs"
       ],
       "dependencies": [
         "cn",
@@ -1273,8 +1273,8 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/pixel-glyphs"
       ],
       "dependencies": [
         "cn",
@@ -1298,8 +1298,8 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/dither-inks"
+        "@ui95/theme",
+        "@ui95/dither-inks"
       ],
       "dependencies": [
         "cn"
@@ -1317,7 +1317,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "dependencies": [
         "cn"
@@ -1335,7 +1335,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "dependencies": [
         "cn",
@@ -1354,8 +1354,8 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/pixel-glyphs"
       ],
       "dependencies": [
         "cn",
@@ -1374,7 +1374,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "dependencies": [
         "cn"
@@ -1384,7 +1384,7 @@
       "name": "pagination",
       "type": "registry:ui",
       "title": "Pagination",
-      "description": "Page links built from NOSTALGUI buttons with pixel arrows.",
+      "description": "Page links built from UI95 buttons with pixel arrows.",
       "files": [
         {
           "path": "components/ui/pagination.tsx",
@@ -1392,9 +1392,9 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/button",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/button",
+        "@ui95/pixel-glyphs"
       ],
       "dependencies": [
         "cn"
@@ -1418,8 +1418,8 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/separator"
+        "@ui95/theme",
+        "@ui95/separator"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1439,7 +1439,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1458,8 +1458,8 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/pixel-glyphs"
       ],
       "dependencies": [
         "cn"
@@ -1477,7 +1477,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "dependencies": [
         "cn",
@@ -1496,8 +1496,8 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/separator"
+        "@ui95/theme",
+        "@ui95/separator"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1517,9 +1517,9 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/label",
-        "@nostalgui/separator"
+        "@ui95/theme",
+        "@ui95/label",
+        "@ui95/separator"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1538,10 +1538,10 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/button",
-        "@nostalgui/input",
-        "@nostalgui/textarea"
+        "@ui95/theme",
+        "@ui95/button",
+        "@ui95/input",
+        "@ui95/textarea"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1552,7 +1552,7 @@
       "name": "navigation-menu",
       "type": "registry:ui",
       "title": "Navigation Menu",
-      "description": "shadcn navigation-menu reskinned for NOSTALGUI.",
+      "description": "shadcn navigation-menu reskinned for UI95.",
       "files": [
         {
           "path": "components/ui/navigation-menu.tsx",
@@ -1560,8 +1560,8 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/pixel-glyphs"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1579,7 +1579,7 @@
       "name": "input-otp",
       "type": "registry:ui",
       "title": "Input Otp",
-      "description": "shadcn input-otp reskinned for NOSTALGUI.",
+      "description": "shadcn input-otp reskinned for UI95.",
       "files": [
         {
           "path": "components/ui/input-otp.tsx",
@@ -1587,8 +1587,8 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/pixel-glyphs"
       ],
       "dependencies": [
         "cn",
@@ -1599,7 +1599,7 @@
       "name": "command",
       "type": "registry:ui",
       "title": "Command",
-      "description": "shadcn command reskinned for NOSTALGUI.",
+      "description": "shadcn command reskinned for UI95.",
       "files": [
         {
           "path": "components/ui/command.tsx",
@@ -1607,9 +1607,9 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/dialog",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/dialog",
+        "@ui95/pixel-glyphs"
       ],
       "dependencies": [
         "cmdk",
@@ -1625,7 +1625,7 @@
       "name": "resizable",
       "type": "registry:ui",
       "title": "Resizable",
-      "description": "shadcn resizable reskinned for NOSTALGUI.",
+      "description": "shadcn resizable reskinned for UI95.",
       "files": [
         {
           "path": "components/ui/resizable.tsx",
@@ -1633,7 +1633,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "dependencies": [
         "cn",
@@ -1649,7 +1649,7 @@
       "name": "sidebar",
       "type": "registry:ui",
       "title": "Sidebar",
-      "description": "shadcn sidebar reskinned for NOSTALGUI.",
+      "description": "shadcn sidebar reskinned for UI95.",
       "files": [
         {
           "path": "components/ui/sidebar.tsx",
@@ -1661,14 +1661,14 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/button",
-        "@nostalgui/input",
-        "@nostalgui/pixel-glyphs",
-        "@nostalgui/separator",
-        "@nostalgui/sheet",
-        "@nostalgui/skeleton",
-        "@nostalgui/tooltip"
+        "@ui95/theme",
+        "@ui95/button",
+        "@ui95/input",
+        "@ui95/pixel-glyphs",
+        "@ui95/separator",
+        "@ui95/sheet",
+        "@ui95/skeleton",
+        "@ui95/tooltip"
       ],
       "dependencies": [
         "class-variance-authority",
@@ -1688,7 +1688,7 @@
       "name": "calendar",
       "type": "registry:ui",
       "title": "Calendar",
-      "description": "shadcn calendar reskinned for NOSTALGUI.",
+      "description": "shadcn calendar reskinned for UI95.",
       "files": [
         {
           "path": "components/ui/calendar.tsx",
@@ -1696,9 +1696,9 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/button",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/button",
+        "@ui95/pixel-glyphs"
       ],
       "dependencies": [
         "cn",
@@ -1717,7 +1717,7 @@
       "name": "sonner",
       "type": "registry:ui",
       "title": "Sonner",
-      "description": "shadcn sonner reskinned for NOSTALGUI.",
+      "description": "shadcn sonner reskinned for UI95.",
       "files": [
         {
           "path": "components/ui/sonner.tsx",
@@ -1725,9 +1725,9 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/pixel-glyphs",
-        "@nostalgui/spinner"
+        "@ui95/theme",
+        "@ui95/pixel-glyphs",
+        "@ui95/spinner"
       ],
       "dependencies": [
         "next-themes",
@@ -1738,7 +1738,7 @@
       "name": "drawer",
       "type": "registry:ui",
       "title": "Drawer",
-      "description": "shadcn drawer reskinned for NOSTALGUI.",
+      "description": "shadcn drawer reskinned for UI95.",
       "files": [
         {
           "path": "components/ui/drawer.tsx",
@@ -1746,7 +1746,7 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "dependencies": [
         "cn",
@@ -1757,7 +1757,7 @@
       "name": "carousel",
       "type": "registry:ui",
       "title": "Carousel",
-      "description": "shadcn carousel reskinned for NOSTALGUI.",
+      "description": "shadcn carousel reskinned for UI95.",
       "files": [
         {
           "path": "components/ui/carousel.tsx",
@@ -1765,9 +1765,9 @@
         }
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/button",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/button",
+        "@ui95/pixel-glyphs"
       ],
       "dependencies": [
         "cn",
@@ -1783,10 +1783,10 @@
         "cn"
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/button",
-        "@nostalgui/pixel-glyphs",
-        "@nostalgui/scroll-area"
+        "@ui95/theme",
+        "@ui95/button",
+        "@ui95/pixel-glyphs",
+        "@ui95/scroll-area"
       ],
       "files": [
         {
@@ -1813,10 +1813,10 @@
       "title": "Error dialog",
       "description": "Stackable error dialogs that cascade diagonally.",
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/button",
-        "@nostalgui/dialog",
-        "@nostalgui/pixel-glyphs"
+        "@ui95/theme",
+        "@ui95/button",
+        "@ui95/dialog",
+        "@ui95/pixel-glyphs"
       ],
       "files": [
         {
@@ -1835,7 +1835,7 @@
         "cn"
       ],
       "registryDependencies": [
-        "@nostalgui/theme"
+        "@ui95/theme"
       ],
       "files": [
         {
@@ -1854,9 +1854,9 @@
         "cn"
       ],
       "registryDependencies": [
-        "@nostalgui/theme",
-        "@nostalgui/button",
-        "@nostalgui/dropdown-menu"
+        "@ui95/theme",
+        "@ui95/button",
+        "@ui95/dropdown-menu"
       ],
       "files": [
         {

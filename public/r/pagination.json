@@ -2,14 +2,14 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "pagination",
   "title": "Pagination",
-  "description": "Page links built from NOSTALGUI buttons with pixel arrows.",
+  "description": "Page links built from UI95 buttons with pixel arrows.",
   "dependencies": [
     "cn"
   ],
   "registryDependencies": [
-    "@nostalgui/theme",
-    "@nostalgui/button",
-    "@nostalgui/pixel-glyphs"
+    "@ui95/theme",
+    "@ui95/button",
+    "@ui95/pixel-glyphs"
   ],
   "files": [
     {

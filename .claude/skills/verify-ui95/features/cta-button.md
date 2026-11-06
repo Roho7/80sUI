@@ -13,7 +13,7 @@
 
 ## How to get to it (user POV)
 
-- `/components`, card `CTA Button` (`article#cta-button`): sizes, disabled, as link (`Get started`) and the glint preset hero (`Get NOSTALGUI`).
+- `/components`, card `CTA Button` (`article#cta-button`): sizes, disabled, as link (`Get started`) and the glint preset hero (`Get UI95`).
 
 ## Driving it with dither.mjs
 
@@ -21,7 +21,7 @@ Preconditions:
 
 - `doctor` is healthy.
 
-- **Rest, tilt, release.** Run `node .claude/skills/verify-nostalgui/dither.mjs journey cta-button`. It reads the computed wall widths of `button "Get NOSTALGUI"` at rest (`2,5,6,5` px), after hovering 3px inside the top-left corner (left and top walls thinner, right and bottom thicker), after the bottom-right corner (mirrored), and after leaving (back to rest), and checks the outer box never changes size. Screenshots `rest.png`, `hover-top-left.png` and `hover-bottom-right.png` land in the evidence directory.
+- **Rest, tilt, release.** Run `node .claude/skills/verify-ui95/dither.mjs journey cta-button`. It reads the computed wall widths of `button "Get UI95"` at rest (`2,5,6,5` px), after hovering 3px inside the top-left corner (left and top walls thinner, right and bottom thicker), after the bottom-right corner (mirrored), and after leaving (back to rest), and checks the outer box never changes size. Screenshots `rest.png`, `hover-top-left.png` and `hover-bottom-right.png` land in the evidence directory.
 - **Look at it.** Open `hover-top-left.png`. The face sits toward the top-left with a deep dark skirt on the right and bottom.
 - **Press.** Headless `:active` lasts only while the mouse is down. Hold it in a journey with `page.mouse.down()`, read the walls, then `page.mouse.up()`. The pressed walls are top 2, right 2.5, bottom 2.5, left 2 `--pixel`s with the light and dark tones swapped.
 - **Reduced motion.** Create the page with `reducedMotion: "reduce"` in a journey. `button.locator("canvas")` has count 0 and hovering leaves the walls at rest.

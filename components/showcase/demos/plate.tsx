@@ -19,7 +19,7 @@ export const demo: ShowcaseDemo = {
       label: "sunken",
       render: () => (
         <Plate variant="sunken" asChild>
-          <p className="text-xl leading-tight">C:\NOSTALGUI&gt; READY</p>
+          <p className="text-xl leading-tight">C:\UI95&gt; READY</p>
         </Plate>
       ),
     },

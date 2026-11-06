@@ -4,7 +4,7 @@
   "title": "Dither inks",
   "description": "Reads theme colors through a canvas probe and observes <html> for theme changes.",
   "registryDependencies": [
-    "@nostalgui/theme"
+    "@ui95/theme"
   ],
   "files": [
     {

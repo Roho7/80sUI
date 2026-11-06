@@ -8,8 +8,8 @@
     "radix-ui"
   ],
   "registryDependencies": [
-    "@nostalgui/theme",
-    "@nostalgui/button"
+    "@ui95/theme",
+    "@ui95/button"
   ],
   "files": [
     {

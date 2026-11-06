@@ -26,7 +26,7 @@ function SiteMenuRow() {
       <div className="flex w-full items-center gap-4 lg:w-auto">
         <ThemeControls />
         <Button asChild variant="link" size="icon-sm">
-          <a href={SOURCE_URL} target="_blank" rel="noreferrer" aria-label="NOSTALGUI on GitHub">
+          <a href={SOURCE_URL} target="_blank" rel="noreferrer" aria-label="UI95 on GitHub">
             <Github className="size-5 fill-current" aria-hidden="true" />
           </a>
         </Button>

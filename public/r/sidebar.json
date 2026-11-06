@@ -2,21 +2,21 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "sidebar",
   "title": "Sidebar",
-  "description": "shadcn sidebar reskinned for NOSTALGUI.",
+  "description": "shadcn sidebar reskinned for UI95.",
   "dependencies": [
     "class-variance-authority",
     "cn",
     "radix-ui"
   ],
   "registryDependencies": [
-    "@nostalgui/theme",
-    "@nostalgui/button",
-    "@nostalgui/input",
-    "@nostalgui/pixel-glyphs",
-    "@nostalgui/separator",
-    "@nostalgui/sheet",
-    "@nostalgui/skeleton",
-    "@nostalgui/tooltip"
+    "@ui95/theme",
+    "@ui95/button",
+    "@ui95/input",
+    "@ui95/pixel-glyphs",
+    "@ui95/separator",
+    "@ui95/sheet",
+    "@ui95/skeleton",
+    "@ui95/tooltip"
   ],
   "files": [
     {

@@ -257,6 +257,20 @@
     --bevel-hi: var(--ink-4);
 }
 
+[data-theme="95"] {
+    --ink-0: #080808;
+    --ink-1: #4B4B4B;
+    --ink-2: #a4a4a4;
+    --ink-3: #C3C3C3;
+    --ink-4: #c0bfbf;
+    --desktop: #028180;
+    --titlebar: #02007C;
+    --titlebar-foreground: var(--ink-4);
+    --muted: #bbbbbb;
+    --bevel-lo: var(--ink-1);
+
+}
+
 
 @utility dither-25 {
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='1' height='1'/%3E%3Crect x='2' y='0' width='1' height='1'/%3E%3Crect x='0' y='2' width='1' height='1'/%3E%3Crect x='2' y='2' width='1' height='1'/%3E%3C/svg%3E");

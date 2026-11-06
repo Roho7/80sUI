@@ -8,7 +8,7 @@ function RegistrySetup() {
     <div className="flex flex-col gap-3">
       <CopyCommand command="npx shadcn@latest init -b radix" label="Radix init command" />
       <CopyCommand
-        command={`npx shadcn@latest registry add "@nostalgui=${REGISTRY_URL}"`}
+        command={`npx shadcn@latest registry add "@ui95=${REGISTRY_URL}"`}
         label="registry add command"
       />
     </div>

@@ -13,14 +13,14 @@ const PAGE = GUIDE_PAGES[3]
 
 export const metadata: Metadata = pageMetadata({ title: PAGE.title, description: PAGE.description, path: PAGE.href })
 
-const LAYOUT_SNIPPET = `import { NostalguiSounds } from "@/components/ui/nostalgui-sounds"
+const LAYOUT_SNIPPET = `import { Ui95Sounds } from "@/components/ui/ui95-sounds"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
         {children}
-        <NostalguiSounds />
+        <Ui95Sounds />
       </body>
     </html>
   )
@@ -100,7 +100,7 @@ export default function SoundPage() {
           script at <Code>scripts/dither-sounds.mjs</Code>.
         </Prose>
         <Prose>
-          Render the player once, at the end of your root layout. Every NOSTALGUI component on
+          Render the player once, at the end of your root layout. Every UI95 component on
           every page uses that one player, so you never add sound code to a component.
         </Prose>
         <CodeBlock title="app/layout.tsx" code={LAYOUT_SNIPPET} />
@@ -126,7 +126,7 @@ export default function SoundPage() {
         </Prose>
         <Prose>
           The player listens once for the whole page. When someone presses a control, it reads
-          the control&apos;s <Code>data-slot</Code>, which every NOSTALGUI component already has,
+          the control&apos;s <Code>data-slot</Code>, which every UI95 component already has,
           and plays the matching sound: a press and a release for a button, an on or an off for a
           switch, a tick for each step of a slider.
         </Prose>

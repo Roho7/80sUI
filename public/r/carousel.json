@@ -2,15 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "carousel",
   "title": "Carousel",
-  "description": "shadcn carousel reskinned for NOSTALGUI.",
+  "description": "shadcn carousel reskinned for UI95.",
   "dependencies": [
     "cn",
     "embla-carousel-react"
   ],
   "registryDependencies": [
-    "@nostalgui/theme",
-    "@nostalgui/button",
-    "@nostalgui/pixel-glyphs"
+    "@ui95/theme",
+    "@ui95/button",
+    "@ui95/pixel-glyphs"
   ],
   "files": [
     {

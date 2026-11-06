@@ -71,7 +71,7 @@ function InstallSection({ doc }: { doc: RegistryDoc }) {
           <InstallCommand name={doc.name} />
           <p className="text-lg leading-tight">
             Run it in a Radix shadcn project that already has the{" "}
-            <ProseLink href="/docs/installation">NOSTALGUI theme</ProseLink>
+            <ProseLink href="/docs/installation">UI95 theme</ProseLink>
             .
           </p>
         </TabsContent>

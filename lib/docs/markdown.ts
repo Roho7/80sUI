@@ -32,7 +32,7 @@ export function registryDocToMarkdown(doc: RegistryDoc): string {
   blocks.push(
     "## Installation",
     fenced("bash", `npx shadcn@latest add ${registryItemUrl(doc.name)}`),
-    "Run it in a Radix shadcn project that already has the NOSTALGUI theme."
+    "Run it in a Radix shadcn project that already has the UI95 theme."
   )
   if (doc.dependencies.length > 0) {
     blocks.push("Dependencies:", fenced("bash", `npm install ${doc.dependencies.join(" ")}`))

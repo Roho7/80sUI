@@ -25,7 +25,7 @@ function renderTabs({ variant, orientation }: TabsSetting) {
           Modem
         </TabsTrigger>
       </TabsList>
-      <TabsContent value="general">System: NOSTALGUI 0.0.1. Memory: 640K.</TabsContent>
+      <TabsContent value="general">System: UI95 0.0.1. Memory: 640K.</TabsContent>
       <TabsContent value="sound">Speaker: PC beeper. Volume: loud.</TabsContent>
     </Tabs>
   )

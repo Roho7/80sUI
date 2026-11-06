@@ -1,8 +1,8 @@
-# NOSTALGUI
+# UI95
 
 Retro, 1-bit, Win95-flavoured components for shadcn.
 
-![The NOSTALGUI desktop: draggable windows, a dithered eye in Paint and a Win95 taskbar](docs/images/desktop.png)
+![The UI95 desktop: draggable windows, a dithered eye in Paint and a Win95 taskbar](docs/images/desktop.png)
 
 ## Documentation
 
@@ -10,18 +10,18 @@ Visit [nostalgui.vercel.app/docs](https://nostalgui.vercel.app/docs) for the gui
 
 ## Install
 
-NOSTALGUI is built on Radix. Base UI projects are not supported yet.
+UI95 is built on Radix. Base UI projects are not supported yet.
 
 ```bash
 npx shadcn@latest init -b radix
 ```
 
 ```bash
-npx shadcn@latest registry add "@nostalgui=https://nostalgui.vercel.app/r/{style}/{name}.json"
+npx shadcn@latest registry add "@ui95=https://nostalgui.vercel.app/r/{style}/{name}.json"
 ```
 
 ```bash
-npx shadcn@latest add @nostalgui/theme @nostalgui/button
+npx shadcn@latest add @ui95/theme @ui95/button
 ```
 
 The CLI fills `{style}` from your `components.json`. No icon pack ships with the theme; [pixelarticons-react](https://github.com/gitntg/pixelarticons-react) sits on the same pixel grid and is what this site uses.
@@ -31,20 +31,20 @@ The CLI fills `{style}` from your `components.json`. No icon pack ships with the
 Every button, switch, menu and slider can click like real hardware. Sound is opt-in. The [Sound guide](https://nostalgui.vercel.app/docs/sound) explains how the clicks are made and how to tune them.
 
 ```bash
-npx shadcn@latest add @nostalgui/sound
+npx shadcn@latest add @ui95/sound
 ```
 
 This adds the sound engine, a `sounds.json` next to your `components.json` and `scripts/dither-sounds.mjs`. Render the player once in your root layout:
 
 ```tsx
-import { NostalguiSounds } from "@/components/ui/nostalgui-sounds"
+import { Ui95Sounds } from "@/components/ui/ui95-sounds"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
         {children}
-        <NostalguiSounds />
+        <Ui95Sounds />
       </body>
     </html>
   )
@@ -65,7 +65,7 @@ Silence one element with `data-sound="none"`, give it another sound with `data-s
 
 ```bash
 git clone https://github.com/Roho7/nostalgui.git
-cd nostalgui
+cd ui95
 npm install
 npm run dev
 ```

@@ -2,12 +2,12 @@
 
 import { DitherImage } from "@/components/ui/dither-image"
 
-const WALLPAPER_SIZE = 620
+const WALLPAPER_SIZE = 690
 
 function Wallpaper() {
   return (
     <DitherImage
-      src="/1980.png"
+      src="/404.png"
       alt=""
       aria-hidden="true"
       width={WALLPAPER_SIZE}

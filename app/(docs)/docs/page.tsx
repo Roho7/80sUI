@@ -51,7 +51,7 @@ export default function IntroductionPage() {
       </DocSection>
       <DocSection id="principle" title="Design Principle">
         <p className="max-w-3xl text-xl leading-tight">
-          Nostalgui is built on top of shadcn. Just plug it in and watch your UI transform into this. I&apos;ve built some special components that
+          UI95 is built on top of shadcn. Just plug it in and watch your UI transform into this. I&apos;ve built some special components that
           mimic the 80s vibe and plan to add a few more in the future.
         </p>
         <p className="max-w-3xl text-xl leading-tight">

@@ -1,15 +1,15 @@
 ---
-name: write-nostalgui-docs
-description: Write or rewrite a NOSTALGUI docs guide page under app/(docs)/docs in the house voice. Use when adding a guide (like Sound, Theming, Installation), when a docs page reads poorly, or when asked to "write the docs for X" on this site.
+name: write-ui95-docs
+description: Write or rewrite a UI95 docs guide page under app/(docs)/docs in the house voice. Use when adding a guide (like Sound, Theming, Installation), when a docs page reads poorly, or when asked to "write the docs for X" on this site.
 ---
 
-# Write a NOSTALGUI docs page
+# Write a UI95 docs page
 
 The reference page is `app/(docs)/docs/sound/page.tsx`. Read it first and match it.
 
 ## Before writing
 
-- Name the reader. Default: an app developer who installed NOSTALGUI with the shadcn CLI. They know React and shadcn, not the internals (audio, shaders, dithering).
+- Name the reader. Default: an app developer who installed UI95 with the shadcn CLI. They know React and shadcn, not the internals (audio, shaders, dithering).
 - List the topics, then merge. Two or three sections beat six. Small related topics become paragraphs inside one section.
 - Order by what the reader does. Install or set up first, then explain how it works using the files they now have, then how to change it.
 

@@ -17,7 +17,7 @@ export const GUIDE_PAGES: DocPage[] = [
   {
     href: "/docs",
     title: "Introduction",
-    description: "What NOSTALGUI is and how a component page is organised.",
+    description: "What UI95 is and how a component page is organised.",
   },
   {
     href: "/docs/installation",

@@ -11,7 +11,7 @@ const SHOWCASE_OUTPUT_PATH = join(ROOT, "components/showcase/demos.generated.ts"
 const DOCS_OUTPUT_PATH = join(ROOT, "lib/docs/registry-docs.generated.json")
 const TSCONFIG_PATH = join(ROOT, "tsconfig.json")
 const DEMOS_PATH_LABEL = "components/showcase/demos"
-const NAMESPACE_PREFIX = "@nostalgui/"
+const NAMESPACE_PREFIX = "@ui95/"
 const SHOWCASED_TYPES = new Set(["registry:ui", "registry:block"])
 const SECTION_BY_TYPE = {
   "registry:ui": "components",

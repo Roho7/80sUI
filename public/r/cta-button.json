@@ -9,8 +9,8 @@
     "radix-ui"
   ],
   "registryDependencies": [
-    "@nostalgui/theme",
-    "@nostalgui/dither-shine"
+    "@ui95/theme",
+    "@ui95/dither-shine"
   ],
   "files": [
     {

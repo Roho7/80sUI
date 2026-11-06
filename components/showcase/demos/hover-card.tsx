@@ -12,7 +12,7 @@ function renderHoverCard(align: "start" | "center" | "end", label: string) {
         </Button>
       </HoverCardTrigger>
       <HoverCardContent align={align}>
-        <p className="font-pixel text-[12px] uppercase">NOSTALGUI</p>
+        <p className="font-pixel text-[12px] uppercase">UI95</p>
         <p className="text-lg leading-tight text-muted-foreground">One bit, four inks, zero tweens.</p>
       </HoverCardContent>
     </HoverCard>
@@ -22,7 +22,7 @@ function renderHoverCard(align: "start" | "center" | "end", label: string) {
 export const demo: ShowcaseDemo = {
   span: "single",
   variants: [
-    { label: "align center", render: () => renderHoverCard("center", "@nostalgui") },
+    { label: "align center", render: () => renderHoverCard("center", "@ui95") },
     { label: "align start", render: () => renderHoverCard("start", "@start") },
     { label: "align end", render: () => renderHoverCard("end", "@end") },
   ],

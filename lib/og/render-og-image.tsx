@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og"
 
-import { BRAND_INKS, START_LOGO_PATH } from "@/lib/brand/keycap"
+import { BRAND_INKS, BRAND_LOGO } from "@/lib/brand/keycap"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 
 export const OG_SIZE = { width: 1200, height: 630 }
@@ -73,16 +73,16 @@ function buildGlyphUri(path: string, fill: string, isDithered = false): string {
   )
 }
 
-function buildLogoUri(fill: string): string {
+function buildLogoUri(digitsFill: string, trailFill: string): string {
   return svgDataUri(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 5" shape-rendering="crispEdges"><path d="${START_LOGO_PATH}" fill="${fill}"/></svg>`
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${BRAND_LOGO.width} ${BRAND_LOGO.height}" shape-rendering="crispEdges"><path d="${BRAND_LOGO.trail}" fill="${trailFill}"/><path d="${BRAND_LOGO.digits}" fill="${digitsFill}"/></svg>`
   )
 }
 
 export async function renderOgImage({ eyebrow, title, description: fullDescription, windowTitle: customWindowTitle }: OgImageContent) {
   const description = clampDescription(fullDescription)
   const isHome = title === SITE_NAME
-  const headline = (isHome ? title.slice(1) : title).toUpperCase()
+  const headline = (isHome ? title.replace(/95$/, "") : title).toUpperCase()
   const windowTitle = customWindowTitle ?? (isHome ? "README.TXT" : `${title.replace(/\s+/g, "_")}.TXT`.toUpperCase())
   const statusText = HOST
   const fonts = (
@@ -151,17 +151,17 @@ export async function renderOgImage({ eyebrow, title, description: fullDescripti
             <div style={{ display: "flex", fontFamily: "Silkscreen", fontSize: 12 * SCALE, color: BRAND_INKS.ink1, letterSpacing: 2 }}>
               {eyebrow.toUpperCase()}
             </div>
-            <div style={{ display: "flex", alignItems: "flex-end", fontFamily: "Silkscreen", fontSize: headlineSize, lineHeight: 1, color: BRAND_INKS.ink0 }}>
+            <div style={{ display: "flex", alignItems: "flex-end", gap: 12 * SCALE, fontFamily: "Silkscreen", fontSize: headlineSize, lineHeight: 1, color: BRAND_INKS.ink0 }}>
+              {headline}
               {isHome && (
                 <img
-                  src={buildLogoUri(BRAND_INKS.ink0)}
+                  src={buildLogoUri(BRAND_INKS.ink0, BRAND_INKS.ink2)}
                   width={Math.round(headlineSize * 0.62 * 2.2)}
                   height={Math.round(headlineSize * 0.62)}
                   alt=""
-                  style={{ marginRight: 4 * SCALE, marginBottom: Math.round(headlineSize * 0.12) }}
+                  style={{ marginBottom: Math.round(headlineSize * 0.12) }}
                 />
               )}
-              {headline}
             </div>
             <div
               style={{

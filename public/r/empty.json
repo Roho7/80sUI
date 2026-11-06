@@ -8,7 +8,7 @@
     "cn"
   ],
   "registryDependencies": [
-    "@nostalgui/theme"
+    "@ui95/theme"
   ],
   "files": [
     {

@@ -2,13 +2,13 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "resizable",
   "title": "Resizable",
-  "description": "shadcn resizable reskinned for NOSTALGUI.",
+  "description": "shadcn resizable reskinned for UI95.",
   "dependencies": [
     "cn",
     "react-resizable-panels"
   ],
   "registryDependencies": [
-    "@nostalgui/theme"
+    "@ui95/theme"
   ],
   "files": [
     {

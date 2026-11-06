@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dialog"
 import { DropdownMenuItem, DropdownMenuSeparator } from "@/components/ui/dropdown-menu"
 
-import { StartLogoGlyph } from "./LogoGlyph"
+import { BrandLogo } from "./LogoGlyph"
 
 type TaskbarProps = {
   onShutDown: () => void
@@ -29,11 +29,11 @@ function Taskbar({ onShutDown, maxVisibleTasks, children }: TaskbarProps) {
     <>
       <RetroTaskbar
         className="fixed inset-x-0 bottom-0 z-30"
-        startIcon={<StartLogoGlyph />}
+        startIcon={<BrandLogo />}
         maxVisibleTasks={maxVisibleTasks}
         startMenu={
           <>
-            <DropdownMenuItem onSelect={() => setIsAboutOpen(true)}>About NOSTALGUI</DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => setIsAboutOpen(true)}>About UI95</DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Link href="/components">Components</Link>
             </DropdownMenuItem>
@@ -50,10 +50,9 @@ function Taskbar({ onShutDown, maxVisibleTasks, children }: TaskbarProps) {
       <Dialog open={isAboutOpen} onOpenChange={setIsAboutOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>About NOSTALGUI</DialogTitle>
+            <DialogTitle>About UI95</DialogTitle>
             <DialogDescription>
-              Retro components for shadcn. Real DOM, 1-bit borders, offset shadows and
-              ordered-dither images quantized to the theme inks.
+              Retro components for shadcn. Reminiscent of the 80s.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter showCloseButton />
