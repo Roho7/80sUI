@@ -257,6 +257,37 @@
       "--bevel-lo": "var(--ink-4)",
       "--bevel-hi": "var(--ink-4)"
     },
+    "[data-theme=\"95\"]": {
+      "--ink-0": "#000000",
+      "--ink-1": "#808080",
+      "--ink-2": "#a0a0a0",
+      "--ink-3": "#c0c0c0",
+      "--ink-4": "#ffffff",
+      "--desktop": "#008080",
+      "--titlebar": "#000080",
+      "--titlebar-foreground": "var(--ink-4)",
+      "--wallpaper-2": "var(--desktop)",
+      "--wallpaper-3": "var(--desktop)",
+      "--keycap": "var(--ink-3)",
+      "--keycap-foreground": "var(--ink-0)",
+      "--keycap-wall-hi": "var(--ink-4)",
+      "--keycap-wall-lo": "var(--ink-1)",
+      "--keycap-outline": "var(--ink-0)"
+    },
+    ".dark[data-theme=\"95\"]": {
+      "--ink-0": "#000000",
+      "--ink-1": "#404040",
+      "--ink-2": "#808080",
+      "--ink-3": "#c0c0c0",
+      "--ink-4": "#606060",
+      "--desktop": "#004040",
+      "--titlebar": "#000080",
+      "--titlebar-foreground": "var(--ink-3)",
+      "--keycap": "var(--ink-2)",
+      "--keycap-foreground": "var(--ink-0)",
+      "--keycap-wall-hi": "var(--ink-3)",
+      "--keycap-wall-lo": "var(--ink-1)"
+    },
     "@utility dither-25": {
       "mask-image": "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 4' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='1' height='1'/%3E%3Crect x='2' y='0' width='1' height='1'/%3E%3Crect x='0' y='2' width='1' height='1'/%3E%3Crect x='2' y='2' width='1' height='1'/%3E%3C/svg%3E\")",
       "mask-size": "calc(var(--pixel) * 4) calc(var(--pixel) * 4)",

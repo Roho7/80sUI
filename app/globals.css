@@ -266,17 +266,36 @@
 }
 
 [data-theme="95"] {
-    --ink-0: #080808;
-    --ink-1: #4B4B4B;
-    --ink-2: #a4a4a4;
-    --ink-3: #C3C3C3;
-    --ink-4: #c0bfbf;
-    --desktop: #028180;
-    --titlebar: #02007C;
+    --ink-0: #000000;
+    --ink-1: #808080;
+    --ink-2: #a0a0a0;
+    --ink-3: #c0c0c0;
+    --ink-4: #ffffff;
+    --desktop: #008080;
+    --titlebar: #000080;
     --titlebar-foreground: var(--ink-4);
-    --muted: #bbbbbb;
-    --bevel-lo: var(--ink-1);
+    --wallpaper-2: var(--desktop);
+    --wallpaper-3: var(--desktop);
+    --keycap: var(--ink-3);
+    --keycap-foreground: var(--ink-0);
+    --keycap-wall-hi: var(--ink-4);
+    --keycap-wall-lo: var(--ink-1);
+    --keycap-outline: var(--ink-0);
+}
 
+.dark[data-theme="95"] {
+    --ink-0: #000000;
+    --ink-1: #404040;
+    --ink-2: #808080;
+    --ink-3: #c0c0c0;
+    --ink-4: #606060;
+    --desktop: #004040;
+    --titlebar: #000080;
+    --titlebar-foreground: var(--ink-3);
+    --keycap: var(--ink-2);
+    --keycap-foreground: var(--ink-0);
+    --keycap-wall-hi: var(--ink-3);
+    --keycap-wall-lo: var(--ink-1);
 }
 
 
