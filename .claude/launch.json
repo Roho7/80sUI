@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dither-ui",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["next", "dev", "-p", "3195"],
+      "port": 3195
+    }
+  ]
+}

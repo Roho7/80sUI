@@ -3,7 +3,6 @@
 import { useState } from "react"
 
 import { CrtScreen } from "@/components/retro/crt-screen"
-import { Terminal, type TerminalLine } from "@/components/retro/terminal"
 import { Window } from "@/components/retro/window"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
@@ -12,14 +11,14 @@ import type { CrtParams, CrtPresetName } from "@/lib/shaders/crt"
 
 import type { ShowcaseDemo } from "../types"
 
-const LINES: readonly TerminalLine[] = [
-  { kind: "command", text: "ver" },
-  { kind: "output", text: "UI95 [Version 0.0.1]" },
-  { kind: "command", text: "dir" },
-  { kind: "output", text: "3 file(s)  640 bytes" },
-]
-
-type SliderKey = "scanlines" | "noise" | "vignette" | "mask" | "bloom" | "curvature" | "aberration"
+type SliderKey =
+  | "scanlines"
+  | "noise"
+  | "vignette"
+  | "mask"
+  | "bloom"
+  | "curvature"
+  | "aberration"
 
 const SLIDERS: readonly { key: SliderKey; max: number; step: number }[] = [
   { key: "scanlines", max: 1, step: 0.05 },
@@ -57,39 +56,63 @@ function ControlsScreen() {
   const [flicker, setFlicker] = useState(false)
 
   return (
-    <div className="flex w-full flex-col gap-4">
-      <CrtScreen {...values} roll={roll} flicker={flicker ? 0.5 : 0} className="w-full min-w-0">
-        <div className="bg-desktop p-12">
-          <Window title="script.bash  ">
-            <Terminal lines={LINES} isLooping className="h-60" />
-          </Window>
-        </div>
-      </CrtScreen>
-      <div className="flex w-full flex-col gap-3">
-        {SLIDERS.map(({ key, max, step }) => (
-          <div key={key} className="flex flex-col gap-1">
-            <Label className="justify-between">
-              <span>{key}</span>
-              <span>{values[key]}</span>
-            </Label>
-            <Slider
-              aria-label={key}
-              min={0}
-              max={max}
-              step={step}
-              value={[values[key]]}
-              onValueChange={([next]) => setValues((previous) => ({ ...previous, [key]: next }))}
+    <div className="@container w-full overflow-y-hidden">
+      <div className="flex w-full flex-col gap-4 @xl:flex-row @xl:items-start">
+        <CrtScreen
+          {...values}
+          roll={roll}
+          flicker={flicker ? 0.5 : 0}
+          className="w-full min-w-0 @xl:flex-1"
+        >
+          <Window title="video.mpg">
+            <video
+              src="/demovideo.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              disablePictureInPicture
+              aria-hidden="true"
+              className="pointer-events-none block aspect-square w-full bg-black object-cover"
             />
-          </div>
-        ))}
-        <Label>
-          <Switch aria-label="roll" checked={roll} onCheckedChange={setRoll} />
-          roll
-        </Label>
-        <Label>
-          <Switch aria-label="flicker" checked={flicker} onCheckedChange={setFlicker} />
-          flicker
-        </Label>
+          </Window>
+        </CrtScreen>
+        <div className="flex w-full flex-col gap-3 @xl:w-56 @xl:shrink-0">
+          {SLIDERS.map(({ key, max, step }) => (
+            <div key={key} className="flex flex-col gap-1">
+              <Label className="justify-between">
+                <span>{key}</span>
+                <span>{values[key]}</span>
+              </Label>
+              <Slider
+                aria-label={key}
+                min={0}
+                max={max}
+                step={step}
+                value={[values[key]]}
+                onValueChange={([next]) =>
+                  setValues((previous) => ({ ...previous, [key]: next }))
+                }
+              />
+            </div>
+          ))}
+          <Label>
+            <Switch
+              aria-label="roll"
+              checked={roll}
+              onCheckedChange={setRoll}
+            />
+            roll
+          </Label>
+          <Label>
+            <Switch
+              aria-label="flicker"
+              checked={flicker}
+              onCheckedChange={setFlicker}
+            />
+            flicker
+          </Label>
+        </div>
       </div>
     </div>
   )

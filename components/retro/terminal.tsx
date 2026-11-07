@@ -107,7 +107,7 @@ function Terminal({
       data-slot="terminal"
       data-finished={isFinished}
       className={cn(
-        "w-full overflow-hidden bg-foreground [contain:inline-size] p-3 font-mono text-xl leading-tight whitespace-pre-wrap text-background",
+        "w-full overflow-hidden bg-foreground [contain:inline-size] p-3 font-mono text-xl leading-tight whitespace-pre-wrap text-background selection:bg-background selection:text-foreground",
         className
       )}
       {...props}
