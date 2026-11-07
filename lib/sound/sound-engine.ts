@@ -322,7 +322,7 @@ export class SoundEngine {
       return
     }
     this.warned.add(key)
-    console.warn(`UI95 sound "${key}" is not in sounds.json. Run: node scripts/dither-sounds.mjs sync`)
+    console.warn(`UI95 sound "${key}" is not in sounds.json. Run: node scripts/95-sound-lib.mjs sync`)
   }
 
   private refresh() {

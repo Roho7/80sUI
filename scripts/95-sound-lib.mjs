@@ -3,7 +3,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs"
 import { basename, dirname, join, relative, resolve } from "node:path"
 import { parseArgs } from "node:util"
 
-const USAGE = `Usage: node scripts/dither-sounds.mjs sync [items...] [options]
+const USAGE = `Usage: node scripts/95-sound-lib.mjs sync [items...] [options]
 
 Adds the sounds of every installed UI95 component to sounds.json.
 Entries already in sounds.json are kept as they are.
@@ -18,7 +18,7 @@ Options:
 const CWD = process.cwd()
 
 function fail(message) {
-  console.error(`dither-sounds: ${message}`)
+  console.error(`95-sound-lib: ${message}`)
   process.exit(1)
 }
 
@@ -172,7 +172,7 @@ async function sync(names, options) {
   }
 
   const where = relative(CWD, soundsPath) || soundsPath
-  console.log(`dither-sounds: ${chosen.length === 0 ? "no installed UI95 components have sounds" : `checked ${chosen.map((item) => item.name).join(", ")}`}`)
+  console.log(`95-sound-lib: ${chosen.length === 0 ? "no installed UI95 components have sounds" : `checked ${chosen.map((item) => item.name).join(", ")}`}`)
   if (added.length) console.log(`  added ${added.length}: ${added.join(", ")}`)
   if (replaced.length) console.log(`  replaced ${replaced.length}: ${replaced.join(", ")}`)
   if (kept.length) console.log(`  kept ${kept.length} you already have: ${kept.join(", ")}`)

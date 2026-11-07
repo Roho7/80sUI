@@ -562,7 +562,7 @@
       "type": "registry:lib",
       "title": "Sound",
       "description": "Tactile synthesized sounds for UI95 components: one shared AudioContext, sounds configured in sounds.json, played by event delegation on each component's data-slot.",
-      "docs": "Render <Ui95Sounds /> once in your root layout. Sounds live in sounds.json next to components.json (in src/ if @/* maps to ./src/*). After adding UI95 components run: node scripts/dither-sounds.mjs sync. It adds only the sounds of installed components and keeps your edits. Silence one element with data-sound=\"none\", rename its sound with data-sound=\"my-key\", silence a sound with \"key\": false, or everything with \"enabled\": false.",
+      "docs": "Render <Ui95Sounds /> once in your root layout. Sounds live in sounds.json next to components.json (in src/ if @/* maps to ./src/*). After adding UI95 components run: node scripts/95-sound-lib.mjs sync. It adds only the sounds of installed components and keeps your edits. Silence one element with data-sound=\"none\", rename its sound with data-sound=\"my-key\", silence a sound with \"key\": false, or everything with \"enabled\": false.",
       "files": [
         {
           "path": "lib/sound/types.ts",
@@ -603,9 +603,9 @@
           "target": "~/sounds.json"
         },
         {
-          "path": "scripts/dither-sounds.mjs",
+          "path": "scripts/95-sound-lib.mjs",
           "type": "registry:file",
-          "target": "~/scripts/dither-sounds.mjs"
+          "target": "~/scripts/95-sound-lib.mjs"
         }
       ]
     },

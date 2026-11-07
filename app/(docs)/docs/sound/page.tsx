@@ -97,7 +97,7 @@ export default function SoundPage() {
         <Prose>
           The install puts three things in your project: the sound player, a{" "}
           <Code>sounds.json</Code> file next to your <Code>components.json</Code>, and a sync
-          script at <Code>scripts/dither-sounds.mjs</Code>.
+          script at <Code>scripts/95-sound-lib.mjs</Code>.
         </Prose>
         <Prose>
           Render the player once, at the end of your root layout. Every UI95 component on
@@ -109,7 +109,7 @@ export default function SoundPage() {
           installed, and nothing else. Run it again whenever you add a component. It is better to add this step to your AGENTS.md file.
           It only adds what is missing, so your edits to <Code>sounds.json</Code> stay put.
         </Prose>
-        <CodeBlock title="Terminal" code="node scripts/dither-sounds.mjs sync" />
+        <CodeBlock title="Terminal" code="node scripts/95-sound-lib.mjs sync" />
       </DocSection>
       <DocSection id="how-sound-works" title="How a click is made" >
         <Prose>

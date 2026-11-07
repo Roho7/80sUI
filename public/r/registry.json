@@ -525,6 +525,18 @@
       ]
     },
     {
+      "name": "use-prefers-reduced-motion",
+      "type": "registry:lib",
+      "title": "Use prefers reduced motion",
+      "description": "Hook that reports the prefers-reduced-motion media query and stays true on the server so motion starts off.",
+      "files": [
+        {
+          "path": "hooks/use-prefers-reduced-motion.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "dither-shine",
       "type": "registry:ui",
       "title": "Dither shine",
@@ -550,7 +562,7 @@
       "type": "registry:lib",
       "title": "Sound",
       "description": "Tactile synthesized sounds for UI95 components: one shared AudioContext, sounds configured in sounds.json, played by event delegation on each component's data-slot.",
-      "docs": "Render <Ui95Sounds /> once in your root layout. Sounds live in sounds.json next to components.json (in src/ if @/* maps to ./src/*). After adding UI95 components run: node scripts/dither-sounds.mjs sync. It adds only the sounds of installed components and keeps your edits. Silence one element with data-sound=\"none\", rename its sound with data-sound=\"my-key\", silence a sound with \"key\": false, or everything with \"enabled\": false.",
+      "docs": "Render <Ui95Sounds /> once in your root layout. Sounds live in sounds.json next to components.json (in src/ if @/* maps to ./src/*). After adding UI95 components run: node scripts/95-sound-lib.mjs sync. It adds only the sounds of installed components and keeps your edits. Silence one element with data-sound=\"none\", rename its sound with data-sound=\"my-key\", silence a sound with \"key\": false, or everything with \"enabled\": false.",
       "files": [
         {
           "path": "lib/sound/types.ts",
@@ -591,9 +603,9 @@
           "target": "~/sounds.json"
         },
         {
-          "path": "scripts/dither-sounds.mjs",
+          "path": "scripts/95-sound-lib.mjs",
           "type": "registry:file",
-          "target": "~/scripts/dither-sounds.mjs"
+          "target": "~/scripts/95-sound-lib.mjs"
         }
       ]
     },
@@ -637,7 +649,8 @@
       ],
       "registryDependencies": [
         "@ui95/theme",
-        "@ui95/dither-shine"
+        "@ui95/dither-shine",
+        "@ui95/use-prefers-reduced-motion"
       ],
       "files": [
         {
@@ -1924,6 +1937,38 @@
           "taskbar.release"
         ]
       }
+    },
+    {
+      "name": "crt-screen",
+      "type": "registry:block",
+      "title": "CRT screen",
+      "description": "A realistic CRT filter to really take your UI back in time. Fully customizable.",
+      "docs": "Scoped is the default: the effect covers the box and its children, and the overlay never takes the pointer. Pass fullscreen to lay it over the whole viewport instead; curvature, aberration and bloom then filter the whole document, which costs more on large pages. Put padding and backgrounds on the children, not on CrtScreen, so the warp and the overlay share one box. Scanlines and grain are alpha black and white at device resolution and follow the barrel curve. Under curvature, clicks land at the undistorted position of the element. Portals opened from inside a scoped CrtScreen (dialogs, menus, toasts) mount on the body and escape the effect; use fullscreen to cover them. Reduced motion freezes the grain and turns flicker off.",
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "@ui95/theme",
+        "@ui95/shader-mount",
+        "@ui95/use-prefers-reduced-motion"
+      ],
+      "files": [
+        {
+          "path": "lib/shaders/crt.ts",
+          "type": "registry:lib",
+          "target": "@lib/shaders/crt.ts"
+        },
+        {
+          "path": "lib/crt/warp-filter.ts",
+          "type": "registry:lib",
+          "target": "@lib/crt/warp-filter.ts"
+        },
+        {
+          "path": "components/retro/crt-screen.tsx",
+          "type": "registry:component",
+          "target": "@components/retro/crt-screen.tsx"
+        }
+      ]
     }
   ]
 }

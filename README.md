@@ -34,7 +34,7 @@ Every button, switch, menu and slider can click like real hardware. Sound is opt
 npx shadcn@latest add @ui95/sound
 ```
 
-This adds the sound engine, a `sounds.json` next to your `components.json` and `scripts/dither-sounds.mjs`. Render the player once in your root layout:
+This adds the sound engine, a `sounds.json` next to your `components.json` and `scripts/95-sound-lib.mjs`. Render the player once in your root layout:
 
 ```tsx
 import { Ui95Sounds } from "@/components/ui/ui95-sounds"
@@ -54,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 Then pull in the sounds of the components you installed. Rerun it after adding more; it keeps your edits.
 
 ```bash
-node scripts/dither-sounds.mjs sync
+node scripts/95-sound-lib.mjs sync
 ```
 
 Silence one element with `data-sound="none"`, give it another sound with `data-sound="my-key"`, turn a sound off in `sounds.json` with `"key": false`, or everything with `"enabled": false`.
