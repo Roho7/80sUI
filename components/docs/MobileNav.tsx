@@ -36,6 +36,7 @@ function MobileNav({ groups }: MobileNavProps) {
                 <li key={link.href}>
                   <Link
                     href={link.href}
+                    data-sound="menu"
                     onClick={() => setIsOpen(false)}
                     className="block px-2 py-0.5 text-xl leading-tight hover:bg-muted"
                   >

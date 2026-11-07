@@ -255,6 +255,7 @@
     --titlebar-foreground: var(--ink-0);
     --muted: #bbcaae;
     --bevel-lo: var(--ink-1);
+    --well-muted: var(--muted);
 
 }
 
@@ -271,6 +272,7 @@
     --muted-foreground: #56684a;
     --bevel-lo: var(--ink-4);
     --bevel-hi: var(--ink-4);
+    --well-muted: var(--ink-1);
 }
 
 [data-theme="95"] {

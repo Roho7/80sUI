@@ -33,6 +33,7 @@ function SidebarNav({ groups, onNavigate, className }: SidebarNavProps) {
                 <li key={page.href}>
                   <Link
                     href={page.href}
+                    data-sound="menu"
                     onClick={onNavigate}
                     aria-current={isActive ? "page" : undefined}
                     className={cn(

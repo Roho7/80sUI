@@ -30,7 +30,7 @@ function CopyCommand({ command, label }: CopyCommandProps) {
   }
 
   return (
-    <div className="flex items-center gap-2 bg-foreground py-1 pr-1 pl-2 text-background">
+    <div className="flex items-center gap-2 bg-foreground py-1 pr-1 pl-2 text-background selection:bg-background selection:text-foreground">
       <code className="min-w-0 flex-1 font-mono text-lg leading-tight break-all">
         <span aria-hidden="true">$ </span>
         {command}

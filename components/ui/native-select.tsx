@@ -24,7 +24,7 @@ function NativeSelect({
       <select
         data-slot="native-select"
         data-size={size}
-        className="h-10 w-full min-w-0 appearance-none pixel-border border-border well py-1 pr-9 pl-2 text-xl leading-none outline-none select-none placeholder:text-well-muted disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground aria-invalid:border-dashed aria-invalid:border-destructive data-[size=sm]:h-8 data-[size=sm]:py-0.5"
+        className="h-10 w-full min-w-0 appearance-none pixel-border border-border well bg-input text-foreground py-1 pr-9 pl-2 text-xl leading-none outline-none select-none placeholder:text-well-muted disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground aria-invalid:border-dashed aria-invalid:border-destructive data-[size=sm]:h-8 data-[size=sm]:py-0.5"
         {...props}
       />
       <ChevronGlyph

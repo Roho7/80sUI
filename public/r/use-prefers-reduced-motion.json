@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "use-prefers-reduced-motion",
-  "title": "Use prefers reduced motion",
+  "title": "usePrefersReducedMotion",
   "description": "Hook that reports the prefers-reduced-motion media query and stays true on the server so motion starts off.",
   "files": [
     {

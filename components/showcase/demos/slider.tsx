@@ -5,9 +5,7 @@ import type { ShowcaseDemo } from "../types"
 export const demo: ShowcaseDemo = {
   span: "tall",
   variants: [
-    { label: "empty", render: () => <Slider defaultValue={[0]} aria-label="Empty" /> },
-    { label: "half", render: () => <Slider defaultValue={[50]} aria-label="Half" /> },
-    { label: "full", render: () => <Slider defaultValue={[100]} aria-label="Full" /> },
+    { label: "regular", render: () => <Slider defaultValue={[50]} aria-label="Regular" /> },
     { label: "range", render: () => <Slider defaultValue={[20, 80]} aria-label="Range" /> },
     {
       label: "step 25",

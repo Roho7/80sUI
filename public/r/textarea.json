@@ -16,5 +16,172 @@
       "type": "registry:ui"
     }
   ],
+  "meta": {
+    "sounds": {
+      "typewriter.key": {
+        "note": "Brown-switch bottom-out: keycap edge clack over a short plate resonance and a low thock, all at fixed pitch",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0001,
+            "decay": 0.004,
+            "curve": 5,
+            "gain": 0.35,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 1300,
+              "q": 1.2
+            }
+          },
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0002,
+            "decay": 0.014,
+            "curve": 4,
+            "gain": 1.5,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 470,
+              "q": 3
+            }
+          },
+          {
+            "wave": "blend",
+            "frequency": 230,
+            "sineShare": 0.7,
+            "attack": 0.0003,
+            "decay": 0.008,
+            "curve": 5,
+            "gain": 0.17
+          }
+        ],
+        "jitter": {
+          "cents": 60,
+          "gainDb": 3,
+          "decay": 0.1
+        }
+      },
+      "typewriter.space": {
+        "note": "Stabilized space bar: deeper plate ring and thock, with a faint stabilizer rattle",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0001,
+            "decay": 0.005,
+            "curve": 5,
+            "gain": 0.3,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 1100,
+              "q": 1.2
+            }
+          },
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.018,
+            "curve": 4,
+            "gain": 1.5,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 340,
+              "q": 3
+            }
+          },
+          {
+            "wave": "blend",
+            "frequency": 180,
+            "sineShare": 0.75,
+            "attack": 0.0004,
+            "decay": 0.012,
+            "curve": 5,
+            "gain": 0.14
+          },
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0001,
+            "decay": 0.003,
+            "curve": 4,
+            "gain": 0.06,
+            "delay": 0.004,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 3000,
+              "q": 2
+            }
+          }
+        ],
+        "jitter": {
+          "cents": 45,
+          "gainDb": 2.5,
+          "decay": 0.1
+        }
+      },
+      "typewriter.return": {
+        "note": "Stabilized Enter: the heaviest clack, a touch longer than space",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0001,
+            "decay": 0.005,
+            "curve": 5,
+            "gain": 0.35,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 1200,
+              "q": 1.2
+            }
+          },
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.022,
+            "curve": 4,
+            "gain": 1.6,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 400,
+              "q": 3
+            }
+          },
+          {
+            "wave": "blend",
+            "frequency": 210,
+            "sineShare": 0.75,
+            "attack": 0.0004,
+            "decay": 0.014,
+            "curve": 5,
+            "gain": 0.16
+          },
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0001,
+            "decay": 0.003,
+            "curve": 4,
+            "gain": 0.07,
+            "delay": 0.005,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 2800,
+              "q": 2
+            }
+          }
+        ],
+        "jitter": {
+          "cents": 40,
+          "gainDb": 2,
+          "decay": 0.08
+        }
+      }
+    }
+  },
   "type": "registry:ui"
 }

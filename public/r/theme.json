@@ -249,7 +249,8 @@
       "--titlebar": "var(--ink-2)",
       "--titlebar-foreground": "var(--ink-0)",
       "--muted": "#bbcaae",
-      "--bevel-lo": "var(--ink-1)"
+      "--bevel-lo": "var(--ink-1)",
+      "--well-muted": "var(--muted)"
     },
     ".dark[data-theme=\"soul-green\"]": {
       "--ink-0": "#1d3f32",
@@ -263,7 +264,8 @@
       "--muted": "#2b3423",
       "--muted-foreground": "#56684a",
       "--bevel-lo": "var(--ink-4)",
-      "--bevel-hi": "var(--ink-4)"
+      "--bevel-hi": "var(--ink-4)",
+      "--well-muted": "var(--ink-1)"
     },
     "[data-theme=\"95\"]": {
       "--ink-0": "#000000",

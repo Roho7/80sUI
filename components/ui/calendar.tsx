@@ -77,7 +77,7 @@ function Calendar({
           defaultClassNames.dropdown_root
         ),
         dropdown: cn(
-          "h-8 w-full min-w-0 appearance-none pixel-border border-border well py-0.5 pr-7 pl-2 text-lg leading-none outline-none select-none",
+          "h-8 w-full min-w-0 appearance-none pixel-border border-border well bg-input text-foreground py-0.5 pr-7 pl-2 text-lg leading-none outline-none select-none",
           defaultClassNames.dropdown
         ),
         caption_label: cn(

@@ -15,7 +15,7 @@ function CodeBlock({ code, title, className }: CodeBlockProps) {
         <span className="min-w-0 truncate normal-case">{title ?? "Code"}</span>
         <CopyButton label={title ?? "code"} className="shrink-0" />
       </div>
-      <pre className="max-h-[32rem] overflow-auto bg-foreground p-3 font-mono text-lg leading-tight text-background">
+      <pre className="max-h-[32rem] overflow-auto bg-foreground p-3 font-mono text-lg leading-tight text-background selection:bg-background selection:text-foreground">
         <code>{code}</code>
       </pre>
     </div>

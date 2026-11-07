@@ -255,7 +255,8 @@
           "--titlebar": "var(--ink-2)",
           "--titlebar-foreground": "var(--ink-0)",
           "--muted": "#bbcaae",
-          "--bevel-lo": "var(--ink-1)"
+          "--bevel-lo": "var(--ink-1)",
+          "--well-muted": "var(--muted)"
         },
         ".dark[data-theme=\"soul-green\"]": {
           "--ink-0": "#1d3f32",
@@ -269,7 +270,8 @@
           "--muted": "#2b3423",
           "--muted-foreground": "#56684a",
           "--bevel-lo": "var(--ink-4)",
-          "--bevel-hi": "var(--ink-4)"
+          "--bevel-hi": "var(--ink-4)",
+          "--well-muted": "var(--ink-1)"
         },
         "[data-theme=\"95\"]": {
           "--ink-0": "#000000",
@@ -527,7 +529,7 @@
     {
       "name": "use-prefers-reduced-motion",
       "type": "registry:lib",
-      "title": "Use prefers reduced motion",
+      "title": "usePrefersReducedMotion",
       "description": "Hook that reports the prefers-reduced-motion media query and stays true on the server so motion starts off.",
       "files": [
         {
@@ -771,7 +773,14 @@
           "path": "components/ui/input.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "meta": {
+        "sounds": [
+          "typewriter.key",
+          "typewriter.space",
+          "typewriter.return"
+        ]
+      }
     },
     {
       "name": "textarea",
@@ -789,7 +798,14 @@
           "path": "components/ui/textarea.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "meta": {
+        "sounds": [
+          "typewriter.key",
+          "typewriter.space",
+          "typewriter.return"
+        ]
+      }
     },
     {
       "name": "label",
@@ -1612,7 +1628,14 @@
       "dependencies": [
         "class-variance-authority",
         "cn"
-      ]
+      ],
+      "meta": {
+        "sounds": [
+          "typewriter.key",
+          "typewriter.space",
+          "typewriter.return"
+        ]
+      }
     },
     {
       "name": "navigation-menu",
@@ -1683,7 +1706,10 @@
       ],
       "meta": {
         "sounds": [
-          "menu.select"
+          "menu.select",
+          "typewriter.key",
+          "typewriter.space",
+          "typewriter.return"
         ]
       }
     },

@@ -16,9 +16,176 @@
   "files": [
     {
       "path": "components/ui/input-group.tsx",
-      "content": "\"use client\"\n\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"cn\"\nimport * as React from \"react\"\n\nimport { Button } from \"@/components/ui/button\"\nimport { Input } from \"@/components/ui/input\"\nimport { Textarea } from \"@/components/ui/textarea\"\n\nfunction InputGroup({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"input-group\"\n      role=\"group\"\n      className={cn(\n        \"group/input-group relative flex h-10 w-full min-w-0 items-center pixel-border border-border well outline-none has-disabled:bg-muted has-disabled:text-muted-foreground has-[[data-slot][aria-invalid=true]]:border-dashed has-[[data-slot][aria-invalid=true]]:border-destructive has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>textarea]:h-auto has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=inline-end]]:[&>input]:pr-1.5 has-[>[data-align=inline-start]]:[&>input]:pl-1.5\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nconst inputGroupAddonVariants = cva(\n  \"flex h-auto cursor-text items-center justify-center gap-2 py-1.5 font-pixel text-[16px] leading-none text-well-muted uppercase select-none group-data-[disabled=true]/input-group:text-well-muted [&>svg:not([class*='size-'])]:size-4\",\n  {\n    variants: {\n      align: {\n        \"inline-start\":\n          \"order-first pl-2 has-[>button]:ml-[-0.3rem] has-[>kbd]:ml-[-0.15rem]\",\n        \"inline-end\":\n          \"order-last pr-2 has-[>button]:mr-[-0.3rem] has-[>kbd]:mr-[-0.15rem]\",\n        \"block-start\":\n          \"order-first w-full justify-start px-2.5 pt-2 group-has-[>input]/input-group:pt-2 [.border-b]:pb-2\",\n        \"block-end\":\n          \"order-last w-full justify-start px-2.5 pb-2 group-has-[>input]/input-group:pb-2 [.border-t]:pt-2\",\n      },\n    },\n    defaultVariants: {\n      align: \"inline-start\",\n    },\n  }\n)\n\nfunction InputGroupAddon({\n  className,\n  align = \"inline-start\",\n  ...props\n}: React.ComponentProps<\"div\"> & VariantProps<typeof inputGroupAddonVariants>) {\n  return (\n    <div\n      role=\"group\"\n      data-slot=\"input-group-addon\"\n      data-align={align}\n      className={cn(inputGroupAddonVariants({ align }), className)}\n      onClick={(e) => {\n        if ((e.target as HTMLElement).closest(\"button\")) {\n          return\n        }\n        e.currentTarget.parentElement?.querySelector(\"input\")?.focus()\n      }}\n      {...props}\n    />\n  )\n}\n\nconst inputGroupButtonVariants = cva(\n  \"flex items-center gap-2\",\n  {\n    variants: {\n      size: {\n        xs: \"h-6 gap-1 px-1.5 text-sm [&>svg:not([class*='size-'])]:size-3.5\",\n        sm: \"\",\n        \"icon-xs\": \"size-6 p-0 has-[>svg]:p-0\",\n        \"icon-sm\": \"size-8 p-0 has-[>svg]:p-0\",\n      },\n    },\n    defaultVariants: {\n      size: \"xs\",\n    },\n  }\n)\n\nfunction InputGroupButton({\n  className,\n  type = \"button\",\n  variant = \"ghost\",\n  size = \"xs\",\n  ...props\n}: Omit<React.ComponentProps<typeof Button>, \"size\"> &\n  VariantProps<typeof inputGroupButtonVariants>) {\n  return (\n    <Button\n      type={type}\n      data-size={size}\n      variant={variant}\n      className={cn(inputGroupButtonVariants({ size }), className)}\n      {...props}\n    />\n  )\n}\n\nfunction InputGroupText({ className, ...props }: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      className={cn(\n        \"flex items-center gap-2 font-pixel text-[16px] leading-none text-well-muted uppercase [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction InputGroupInput({\n  className,\n  ...props\n}: React.ComponentProps<\"input\">) {\n  return (\n    <Input\n      data-slot=\"input-group-control\"\n      className={cn(\n        \"flex-1 border-0 bg-transparent shadow-none disabled:bg-transparent\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction InputGroupTextarea({\n  className,\n  ...props\n}: React.ComponentProps<\"textarea\">) {\n  return (\n    <Textarea\n      data-slot=\"input-group-control\"\n      className={cn(\n        \"flex-1 resize-none border-0 bg-transparent py-2 shadow-none disabled:bg-transparent\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupText,\n  InputGroupTextarea,\n}\n",
+      "content": "\"use client\"\n\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"cn\"\nimport * as React from \"react\"\n\nimport { Button } from \"@/components/ui/button\"\nimport { Input } from \"@/components/ui/input\"\nimport { Textarea } from \"@/components/ui/textarea\"\n\nfunction InputGroup({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"input-group\"\n      role=\"group\"\n      className={cn(\n        \"group/input-group relative flex h-10 w-full min-w-0 items-stretch overflow-hidden pixel-border border-border well bg-input text-foreground outline-none has-[[data-slot=input-group-control]:focus-visible]:outline-dashed has-[[data-slot=input-group-control]:focus-visible]:outline-(length:--pixel) has-[[data-slot=input-group-control]:focus-visible]:outline-offset-(--pixel) has-[[data-slot=input-group-control]:focus-visible]:outline-foreground has-disabled:bg-muted has-disabled:text-muted-foreground has-[[data-slot][aria-invalid=true]]:border-dashed has-[[data-slot][aria-invalid=true]]:border-destructive has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>textarea]:h-auto has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=inline-end]]:[&>input]:pr-1.5 has-[>[data-align=inline-start]]:[&>input]:pl-1.5\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nconst inputGroupAddonVariants = cva(\n  \"flex h-auto cursor-text items-center justify-center gap-2 py-1.5 font-pixel text-[16px] leading-none text-well-muted uppercase select-none group-data-[disabled=true]/input-group:text-well-muted [&>svg:not([class*='size-'])]:size-4\",\n  {\n    variants: {\n      align: {\n        \"inline-start\":\n          \"order-first pl-2 has-[>button]:ml-[-0.3rem] has-[>kbd]:ml-[-0.15rem]\",\n        \"inline-end\":\n          \"order-last pr-2 has-[>button]:mr-[-0.3rem] has-[>kbd]:mr-[-0.15rem]\",\n        \"block-start\":\n          \"order-first w-full justify-start px-2.5 pt-2 group-has-[>input]/input-group:pt-2 [.border-b]:pb-2\",\n        \"block-end\":\n          \"order-last w-full justify-start px-2.5 pb-2 group-has-[>input]/input-group:pb-2 [.border-t]:pt-2\",\n      },\n    },\n    defaultVariants: {\n      align: \"inline-start\",\n    },\n  }\n)\n\nfunction InputGroupAddon({\n  className,\n  align = \"inline-start\",\n  ...props\n}: React.ComponentProps<\"div\"> & VariantProps<typeof inputGroupAddonVariants>) {\n  return (\n    <div\n      role=\"group\"\n      data-slot=\"input-group-addon\"\n      data-align={align}\n      className={cn(inputGroupAddonVariants({ align }), className)}\n      onClick={(e) => {\n        if ((e.target as HTMLElement).closest(\"button\")) {\n          return\n        }\n        e.currentTarget.parentElement?.querySelector(\"input\")?.focus()\n      }}\n      {...props}\n    />\n  )\n}\n\nconst inputGroupButtonVariants = cva(\n  \"flex items-center gap-2\",\n  {\n    variants: {\n      size: {\n        xs: \"h-6 gap-1 px-1.5 text-sm [&>svg:not([class*='size-'])]:size-3.5\",\n        sm: \"\",\n        \"icon-xs\": \"size-6 p-0 has-[>svg]:p-0\",\n        \"icon-sm\": \"size-8 p-0 has-[>svg]:p-0\",\n      },\n    },\n    defaultVariants: {\n      size: \"xs\",\n    },\n  }\n)\n\nfunction InputGroupButton({\n  className,\n  type = \"button\",\n  variant = \"ghost\",\n  size = \"xs\",\n  ...props\n}: Omit<React.ComponentProps<typeof Button>, \"size\"> &\n  VariantProps<typeof inputGroupButtonVariants>) {\n  return (\n    <Button\n      type={type}\n      data-size={size}\n      variant={variant}\n      className={cn(inputGroupButtonVariants({ size }), className)}\n      {...props}\n    />\n  )\n}\n\nfunction InputGroupText({ className, ...props }: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      className={cn(\n        \"flex items-center gap-2 font-pixel text-[16px] leading-none text-well-muted uppercase [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction InputGroupInput({\n  className,\n  ...props\n}: React.ComponentProps<\"input\">) {\n  return (\n    <Input\n      data-slot=\"input-group-control\"\n      className={cn(\n        \"h-full flex-1 border-0! bg-transparent shadow-none! outline-none focus-visible:outline-none disabled:bg-transparent\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction InputGroupTextarea({\n  className,\n  ...props\n}: React.ComponentProps<\"textarea\">) {\n  return (\n    <Textarea\n      data-slot=\"input-group-control\"\n      className={cn(\n        \"flex-1 resize-none border-0! bg-transparent py-2 shadow-none! outline-none focus-visible:outline-none disabled:bg-transparent\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport {\n  InputGroup,\n  InputGroupAddon,\n  InputGroupButton,\n  InputGroupInput,\n  InputGroupText,\n  InputGroupTextarea,\n}\n",
       "type": "registry:ui"
     }
   ],
+  "meta": {
+    "sounds": {
+      "typewriter.key": {
+        "note": "Brown-switch bottom-out: keycap edge clack over a short plate resonance and a low thock, all at fixed pitch",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0001,
+            "decay": 0.004,
+            "curve": 5,
+            "gain": 0.35,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 1300,
+              "q": 1.2
+            }
+          },
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0002,
+            "decay": 0.014,
+            "curve": 4,
+            "gain": 1.5,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 470,
+              "q": 3
+            }
+          },
+          {
+            "wave": "blend",
+            "frequency": 230,
+            "sineShare": 0.7,
+            "attack": 0.0003,
+            "decay": 0.008,
+            "curve": 5,
+            "gain": 0.17
+          }
+        ],
+        "jitter": {
+          "cents": 60,
+          "gainDb": 3,
+          "decay": 0.1
+        }
+      },
+      "typewriter.space": {
+        "note": "Stabilized space bar: deeper plate ring and thock, with a faint stabilizer rattle",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0001,
+            "decay": 0.005,
+            "curve": 5,
+            "gain": 0.3,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 1100,
+              "q": 1.2
+            }
+          },
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.018,
+            "curve": 4,
+            "gain": 1.5,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 340,
+              "q": 3
+            }
+          },
+          {
+            "wave": "blend",
+            "frequency": 180,
+            "sineShare": 0.75,
+            "attack": 0.0004,
+            "decay": 0.012,
+            "curve": 5,
+            "gain": 0.14
+          },
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0001,
+            "decay": 0.003,
+            "curve": 4,
+            "gain": 0.06,
+            "delay": 0.004,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 3000,
+              "q": 2
+            }
+          }
+        ],
+        "jitter": {
+          "cents": 45,
+          "gainDb": 2.5,
+          "decay": 0.1
+        }
+      },
+      "typewriter.return": {
+        "note": "Stabilized Enter: the heaviest clack, a touch longer than space",
+        "layers": [
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0001,
+            "decay": 0.005,
+            "curve": 5,
+            "gain": 0.35,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 1200,
+              "q": 1.2
+            }
+          },
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0003,
+            "decay": 0.022,
+            "curve": 4,
+            "gain": 1.6,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 400,
+              "q": 3
+            }
+          },
+          {
+            "wave": "blend",
+            "frequency": 210,
+            "sineShare": 0.75,
+            "attack": 0.0004,
+            "decay": 0.014,
+            "curve": 5,
+            "gain": 0.16
+          },
+          {
+            "wave": "noise",
+            "frequency": 0,
+            "attack": 0.0001,
+            "decay": 0.003,
+            "curve": 4,
+            "gain": 0.07,
+            "delay": 0.005,
+            "filter": {
+              "type": "bandpass",
+              "frequency": 2800,
+              "q": 2
+            }
+          }
+        ],
+        "jitter": {
+          "cents": 40,
+          "gainDb": 2,
+          "decay": 0.08
+        }
+      }
+    }
+  },
   "type": "registry:ui"
 }

@@ -7,11 +7,13 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { CtaButton } from "@/components/ui/cta-button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Textarea } from "@/components/ui/textarea"
 import { Toggle } from "@/components/ui/toggle"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { SoundEngine } from "@/lib/sound/sound-engine"
@@ -148,6 +150,13 @@ function demoFor(entry: BoardEntry, detentStep: number): ReactNode {
           <Window title="Drag me" defaultPosition={{ x: 8, y: 8 }} className="w-56">
             <p className="p-3 text-lg">Grab the title bar.</p>
           </Window>
+        </div>
+      )
+    case "typewriter":
+      return (
+        <div className="flex flex-col gap-3">
+          <Input placeholder="Type a line" aria-label="Type a line" />
+          <Textarea placeholder="Press Enter for a new line" aria-label="Type a note" />
         </div>
       )
     case "pad":

@@ -1,6 +1,6 @@
 import type { SoundEngine, SoundLoopHandle } from "./sound-engine"
 
-export type SoundGesture = "press" | "toggle" | "select" | "menu" | "steps" | "drag"
+export type SoundGesture = "press" | "toggle" | "select" | "menu" | "steps" | "drag" | "type"
 
 type SlotRule = { key: (element: Element) => string; gesture: SoundGesture | ((element: Element) => SoundGesture) }
 
@@ -39,7 +39,17 @@ export const soundSlots: Record<string, SlotRule> = {
   "sidebar-menu-button": { key: (element) => (element.getAttribute("data-size") === "sm" ? "small-button" : "button"), gesture: "press" },
   "sidebar-menu-sub-button": { key: fixed("small-button"), gesture: "press" },
   window: { key: fixed("drag"), gesture: "drag" },
+  input: { key: fixed("typewriter"), gesture: "type" },
+  textarea: { key: fixed("typewriter"), gesture: "type" },
+  "input-group-control": { key: fixed("typewriter"), gesture: "type" },
+  "command-input": { key: fixed("typewriter"), gesture: "type" },
 }
+
+const BARE_ELEMENT = { getAttribute: () => null } as unknown as Element
+
+const keyGestures = new Map<string, SoundGesture>(
+  Object.values(soundSlots).flatMap((rule) => (typeof rule.gesture === "string" ? [[rule.key(BARE_ELEMENT), rule.gesture] as const] : []))
+)
 
 const UNLOCK_EVENTS = ["pointerup", "touchend", "click", "keydown"] as const
 
@@ -48,6 +58,23 @@ type Target = { element: Element; key: string; gesture: SoundGesture }
 const BUTTON_LIKE_SUFFIXES = ["-trigger", "-action", "-cancel", "-close", "-link"]
 const RECENT_MS = 400
 const DISABLED = ":disabled, [aria-disabled='true'], [data-disabled]"
+const TEXT_ENTRY = "textarea, input:not([type]), input:is([type='text'], [type='search'], [type='email'], [type='url'], [type='tel'], [type='password'], [type='number'])"
+
+function typedStroke(event: InputEvent): string | null {
+  if (event.isComposing) {
+    return null
+  }
+  if (event.inputType === "insertLineBreak" || event.inputType === "insertParagraph") {
+    return "return"
+  }
+  if (event.inputType === "insertText") {
+    return event.data === " " ? "space" : "key"
+  }
+  if (event.inputType.startsWith("delete") || event.inputType.startsWith("insertFrom") || event.inputType === "insertCompositionText") {
+    return "key"
+  }
+  return null
+}
 
 function resolveTarget(start: EventTarget | null): Target | null {
   let node = start instanceof Element ? start : null
@@ -60,7 +87,7 @@ function resolveTarget(start: EventTarget | null): Target | null {
     const rule = slot ? (soundSlots[slot] ?? (BUTTON_LIKE_SUFFIXES.some((suffix) => slot.endsWith(suffix)) ? soundSlots.button : undefined)) : undefined
     const gesture = typeof rule?.gesture === "function" ? rule.gesture(node) : rule?.gesture
     if (sound) {
-      return { element: node, key: sound, gesture: gesture ?? "press" }
+      return { element: node, key: sound, gesture: gesture ?? keyGestures.get(sound) ?? "press" }
     }
     if (rule && gesture) {
       return { element: node, key: rule.key(node), gesture }
@@ -166,6 +193,17 @@ export function attachSoundSlots(engine: SoundEngine, root: Document = document)
     }
   }
 
+  const onInput = (event: Event) => {
+    if (!engine.enabled || !(event instanceof InputEvent) || !(event.target instanceof Element) || !event.target.matches(TEXT_ENTRY)) {
+      return
+    }
+    const target = resolveTarget(event.target)
+    const stroke = target?.gesture === "type" ? typedStroke(event) : null
+    if (target && stroke) {
+      engine.play(`${target.key}.${stroke}`)
+    }
+  }
+
   const onKeyUp = (event: KeyboardEvent) => {
     if (event.key === " " || event.key === "Enter") {
       release()
@@ -257,6 +295,7 @@ export function attachSoundSlots(engine: SoundEngine, root: Document = document)
   root.addEventListener("pointermove", onPointerMove, options)
   root.addEventListener("keydown", onKeyDown, options)
   root.addEventListener("keyup", onKeyUp, options)
+  root.addEventListener("input", onInput, options)
   root.addEventListener("focusin", onFocusIn, options)
 
   return () => {
@@ -272,6 +311,7 @@ export function attachSoundSlots(engine: SoundEngine, root: Document = document)
     root.removeEventListener("pointermove", onPointerMove, options)
     root.removeEventListener("keydown", onKeyDown, options)
     root.removeEventListener("keyup", onKeyUp, options)
+    root.removeEventListener("input", onInput, options)
     root.removeEventListener("focusin", onFocusIn, options)
   }
 }
